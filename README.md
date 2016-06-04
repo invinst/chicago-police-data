@@ -1,16 +1,14 @@
-# What is this data about?
+# What is this?
 
-This is data about shootings by Chicago Police Officers.
+This is a living repository of public data about Chicago’s police officers and their encounters with the public. It includes the names of officers involved in and witness to each incident along with other metadata, for example: location, category, outcome, and demographic information.
+
+This repo also includes working/work-in-progress code intended to help build a legible structure for the data so that it can be more useful to the public.
 
 # Where did it come from?
 
-IPRA: the Independent Police Review Authority.
-
-This data was obtained by the The Invisible Institute through FOIA requests.
+The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners. If you want to learn more about this process, please post/create an issue here in GitHub about it!
 
 # Why is it relevant right now?
-
-The Invisible Institute obtained this data during February, April, and May 2016.
 
 On June 3, 2016, IPRA released a major trove of video, audio, and police reports from police-involved incidents:
 
