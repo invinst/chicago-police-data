@@ -75,7 +75,11 @@ Look in the `Context` folder:
 
 # File/folder organization
 
-+ `shootings-append.csv` is a merge of the three data dumps. It needs to be deduplicated, cleaned, analyzed. This is the "final product" of the repo and is a work in progress.
++ `shootings-append.csv` is an un-merged append of the different police shootings data dumps.
+
++ `shootings-merge.csv` doesn't exist yet. We need to create it by merging the three data dumps.
+
+  + You can use your GitHub username or initials to identify your attempt at merging the data. For example, Matt Li might name his solution: `shootings-merge-ml.csv`
 
 + `Master.do` --> instruction file for Stata
 
