@@ -1,39 +1,36 @@
 # What is this?
 
-This is a living repository of public data about Chicago’s police officers and their encounters with the public. It includes the names of officers involved in and witness to each incident along with other metadata, for example: location, category, outcome, and demographic information.
+This is a living repository of public data about Chicago’s police officers and their encounters with the public. It includes the names of officers involved in and witness to each incident along with other metadata, for example: location, category, demographic information, and investigation status/outcomes.
 
 This repo also includes working/work-in-progress code intended to help build a legible structure for the data so that it can be more useful to the public.
 
 # Where did it come from?
 
-The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners. If you want to learn more about this process, please post/create an issue here in GitHub about it!
+The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners. 
+
+If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it! 
 
 # Why is it relevant right now?
 
-On June 3, 2016, IPRA released a major trove of video, audio, and police reports from police-involved incidents:
+On 3 June 2016, IPRA released a significant dump of audio-video recordings and PDF documents for 101 incidents that they investigated. This mass release is indexed per “log number” in a datatable at [portal.iprachicago.org](http://portal.iprachicago.org/) along with videos hosted on [Vimeo](https://vimeo.com/user51379210/videos/sort:date/format:thumbnail) and audio recordings hosted on [SoundCloud](https://soundcloud.com/ipra-455127423).
 
-+ [Vimeo: IPRA Chicago’s Videos](https://vimeo.com/user51379210/videos/sort:plays/format:thumbnail)
-+ [IPRA Chicago Data Portal](http://portal.iprachicago.org/)
+Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident.
 
-Journalists are currently digging through that data and writing about it:
-
-+ [Chicago Tribune: Video releases include police fatal shooting, off-duty Chicago cop's punches at Portillo's](http://chicago.suntimes.com/politics/city-releases-police-misconduct-files-videos/)
++ [Chicago Tribune: Video releases include police fatal shooting, off-duty Chicago cop’s punches at Portillo’s](http://chicago.suntimes.com/politics/city-releases-police-misconduct-files-videos/)
 + [DNAinfo: Was Force Justified? What We Found In The Videos Released By IPRA So Far](https://www.dnainfo.com/chicago/20160603/west-town/chicago-police-misconduct-videos-released-by-ipra-show-shootings-more)
 + [BuzzFeed: Chicago Releases 300 Videos From Police Misconduct Investigations](https://www.buzzfeed.com/mikehayes/chicago-police-video-release?utm_term=.pdlwaZEGYM#.qhvOxpWQv5)
 + [NBC Chicago: IPRA Releases Hundreds of Videos of Police Shootings, Incidents](http://www.nbcchicago.com/news/local/IPRA-to-Release-Police-Misconduct-Videos-381758681.html)
-+ _and many more..._
++ _and many more…_
 
-But the June 3 trove is incomplete in critical ways.
+But this trove of information is incomplete in critical ways.
 
-According to what we see now, the Officers involved are not identified in the June 3 trove -- incidents are identified by complaint numbers only. That is very frustrating if you want to research a particular Officer and combine information from different sources.
-
-Our first goal is to use the FOIA'ed shootings data to identify officers in the June 3 trove.
+Our first goal is to use the FOIA’ed shootings data here to identify officers per incident log number in the June 3 trove.
 
 # What are we going to do with the merged data?
 
 We could do at least three important things with this data once it is cleaned and merged:
 
-## 1. Assist journalists
+## 1. Support journalists
 
 __If we can put this data into usable form for journalists, they may be able to learn more by cross-referencing the video, audio, and police reports with officer shooting histories.__
 
@@ -55,7 +52,7 @@ By merging the shootings data into the Chicago Police Data Project, we can creat
 
 # Linking officer records
 
-We need to make sure we have enough unique identifiying information about each officer to make sure we can merge our three raw shootings data dumps confidently. Different rows in different dumps could contain different and useful information about involved officers.
+We need to make sure we have enough unique identifying information about each officer to make sure we can merge our three raw shootings data dumps confidently. Different rows in different dumps could contain different and useful information about involved officers.
 
 ## Officer identifiers
 
