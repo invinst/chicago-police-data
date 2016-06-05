@@ -90,6 +90,8 @@ __CURRENT_STATUS:__
 __FINDING_CODE:__
 + Finding of the investigation about the incident -- IPRA makes findings and recommendations but cannot enforce or implement disciplinary actions against police officers
 
+_We started documenting these on Saturday and ran out of steam around 7:30pm, will finish this later, soon..._
+
 __INVOLVED_OFFICER_LNAME:__
 
 
