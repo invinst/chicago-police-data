@@ -97,4 +97,4 @@ We want your help.
 1. Read through the README (you probably just finished doing this).
 2. Dive into the data.
 3. Share questions or problems by [making an issue](https://github.com/invinst/shootings-data/issues).
-4. Join us on Slack: https://invisibleinstitute.signup.team/
+4. Talk with us on Slack: https://invisibleinstitute.signup.team/ -- please join us in the #data channel
