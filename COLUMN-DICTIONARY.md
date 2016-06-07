@@ -42,12 +42,12 @@ __NOTIFICATION_DATE:__
 
 __ACCSUEDOFFICER_FNAME:__
 + First name of accused officer.
-+ __Data quality issue:___ Some first names missing. Makes matching difficult.
-+ __Data quality issue:___ Nicknames. Robert vs. Bob, Thomas vs. Tom, Chris vs. Christian/Christopher.
++ ___Data quality issue:___ Some first names missing. Makes matching difficult.
++ ___Data quality issue:___ Nicknames. Robert vs. Bob, Thomas vs. Tom, Chris vs. Christian/Christopher.
 
 __ACCUSEDOFFICER_LNAME:__
 + Last name of accused officer.
-+ __Data quality issue:___ We don't have middle names. This is far more important than it might sound, because many officers share the same first name, last name combination across the system. (Common names, family relationships, etc.) Missing middle names makes it harder to identify officers.
++ ___Data quality issue:___ We don't have middle names. This is far more important than it might sound, because many officers share the same first name, last name combination across the system. (Common names, family relationships, etc.) Missing middle names makes it harder to identify officers.
 
 __ACCUSED_STAR:__
 + Badge number at date of production of FOIA. Note that badge numbers are recycled: Every time a police officer is promoted or changes unit, badge number can change. That badge number can be given to someone else later one.
@@ -90,48 +90,52 @@ __CURRENT_STATUS:__
 __FINDING_CODE:__
 + Finding of the investigation about the incident -- IPRA makes findings and recommendations but cannot enforce or implement disciplinary actions against police officers
 
-_We started documenting these on Saturday and ran out of steam around 7:30pm, will finish this later, soon..._
-
 __INVOLVED_OFFICER_LNAME:__
-
++ An involved officer could be a witness, or co-accused officer -- depends on the FOIA. See INVOLVED_OFFICER_TYPE below.
++ Same data quality issues as ACCUSEDOFFICER_LNAME
 
 __INVOLVED_OFFICER_FNAME:__
-
++ Same data quality issues as ACCUSEDOFFICER_FNAME
 
 __INVOLVED_OFFICER_UNIT:__
-
++ Involved officer's unit (see ACCUSED_UNIT above)
 
 __INVOLVED_OFFICER_DETAIL:__
-
++ Involved officer's detail (see ACCUSED_DETAIL above)
 
 __INVOLVED_OFFICER_POSITION:__
-
++ Involved officer's position (see ACCUSED_POSITION above)
 
 __INVOLVED_OFFICER_AGE:__
-
++ Age of involved officer -- at date of FOIA or date of incident?
 
 __INVOLVED_OFFICER_SEX:__
-
++ Sex of involved officer
 
 __INVOLVED_OFFICER_RACE:__
-
++ Race of involved officer
 
 __foia:__
++ From which FOIA was this row extracted -- May or April?
 
+__INVOLVED_PARTY_DESCRIPTION:__
++ Confusing freetext, not sure how to extract value from this column
 
-__INVOLVED_OFFICER_DESCRIPTION:__
-
-
-__INVOLVED_OFFICER_TYPE:__
-
+__INVOLVED_PARTY_TYPE:__
++ Four categories:
+  + Complainant
+  + Inmate
+  + Victim
+  + Witness
 
 __start_code_2:__
-
++ This column is used for calculation by @ithinkidontknow, was not in the original FOIA
 
 __start_code_1:__
-
++ This column is used for calculation by @ithinkidontknow, was not in the original FOIA
 
 __rec:__
-
++ This column is used for calculation by @ithinkidontknow, was not in the original FOIA
 
 __sum_rec:__
++ This column is used for calculation by @ithinkidontknow, was not in the original FOIA
