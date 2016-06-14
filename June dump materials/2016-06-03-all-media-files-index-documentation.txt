@@ -1,0 +1,98 @@
+All Media Files Index Documentation
+
+Documentation for the file 2016-06-03-all-media-files-index.csv
+This index includes PDF documents, audio files, and video clips.
+June 9, 2016
+by Anna Schibrowsky
+
+How I compiled the index:
+
+1. I visited http://portal.iprachicago.org/ in Chrome browser Version 49.0.2623.112 (64-bit) on June 5-9, 2016.
+
+2. I clicked the top-right dropdown menu (under the blue "Viewer Discretion Advised" box) to "Show All entries" to display all entries.
+
+3. I clicked each Log# hyperlink to view each individual entry and gathered the file information in an Excel worksheet and downloaded the files:
+
+a. I copied and pasted the Log# into the COMPLAINT_NUMBER column.
+
+b. I highlighted the text on the page from the "Media" subhead down to the last file on the page. I copied and pasted this text into TextEdit, removed blank lines in TextEdit, and copied and pasted the results into the IPRA_PORTAL_LABEL column. Then I added (copied and pasted) the COMPLAINT_NUMBER and MEDIA_FILE_TYPE for each file.
+
+c. Working from the top down to match URLs with IPRA_PORTAL_LABELs, I copied and pasted the IPRA_URL into the worksheet and downloaded the file to my computer if possible, noting any FILE_PROBLEMS in that column. This process varied by file type:
+
+Video: I clicked on the button to open the pop-up window with the embedded Vimeo file. I right-clicked the title at the top of the player and selected "Copy Link Address" from the dropdown menu and pasted this into the IPRA_URL column. I clicked on the title at the top or the Vimeo logo at the bottom of the player to view the video on the Vimeo website, where I scrolled down to see if there was a "Download" button under the video, beside the "Share" button. Downloading was only an option for 7 of the 326 video files. If there was a "Download" button, I clicked it. When I found a large batch of videos, I only clicked through the first 3 and every 3rd one to confirm they weren't downloadable.
+
+Audio: I clicked on the button to open the pop-up window with the embedded SoundCloud file. I clicked the download arrow button in the top right corner of the pop-up window. This automatically opened and then rapidly closed a new tab. Once the new tab had closed, I right-clicked the title at the top of the player and selected "Copy Link Address" from the dropdown menu and pasted this into the IPRA_URL column.
+
+Documents: At first, I clicked the button to open the document, copied the IPRA_URL from my browser's address bar, and clicked the download arrow that appears in the top right corner when Chrome opens a PDF. I found it was faster and just as accurate to right click the button, select "Copy Link Address" from the dropdown menu, and paste this into the IPRA_URL column, and then to right click the button again, select "Save Link As" from the dropdown menu, and then click "Save" or press the Return key to save the document.
+
+Throughout this process, when I noticed a file did not start with the text "Log" and then the COMPLAINT_NUMBER, I added this to the file name so they could be easily sorted and associated with the proper complaint. Before the next step, I also cleaned up the filenames by removing periods and #s, deleting spaces around hyphens, and replacing spaces and underscores with hyphens.
+
+4. I uploaded the files to non-IPRA-controlled public repositories.
+
+Documents: RS sent me an invitation to the Invisible Institute's IPRA Shootings June 3rd project on DocumentCloud. I signed up and uploaded the PDF documents in batches.
+
+Audio and Video: RS recommended using Archive.org for the audio and video files. I created an Archive.org account and uploaded the files in batches.
+
+5. I captured the PUBLIC_FILE_NAME and PUBLIC_URL for each file, accumulated them in a separate public-URL worksheet, and then carefully pasted them in batches onto the correct lines on the main index worksheet.
+
+Documents: I visited the project on the DocumentCloud website. I clicked through each page displaying project files. On each page, I scrolled to the bottom, clicked very close to the bottom-right filename hyperlink, dragged up to highlight all filenames on the page, pasted them into TextEdit to remove formatting, copied and pasted them into the spreadsheet, and then sorted the still-selected pasted material to remove blank lines. I returned to the web browser, right clicked each file image, and selected "Open" to open each file in a new browser tab, working in batches across each row. I clicked on each new tab, copied the address for the file out of the browser's address bar, and pasted it beside the corresponding file name in the public-URL worksheet. (RS said there is a DocumentCloud API, which would probably automate this but require time and know-how to automate.)
+
+Audio and Video: I visited the collection at https://archive.org/details/iprashootings06032016. In the right "DOWNLOAD OPTIONS" menu, I clicked the "SHOW ALL" link on the bottom left. Archive.org had created multiple files types (AFPK, FLAC, OGG, and PNG visualizations) for each file I'd uploaded. I determined it had not created WAV files, so if a WAV file existed for a particular file name, the WAV file was the original. If there was no WAV file for a file name, the MP3 was the original. At first I copied each individual file name, but later I found it faster to copy all of them into TextEdit and then delete out the ones that were not the originals before pasting the PUBLIC_FILE_NAMEs into the public-URL worksheet. Then I added the PUBLIC_URL beside each PUBLIC_FILE_NAME. At first, I right clicked the file name, selected "Copy Link Address" from the dropdown menu, and pasted it beside the corresponding PUBLIC_FILE_NAME. When I saw all the files used the same path, with no extra text added to the file name, I started copying the PUBLIC_FILE_NAMEs into the PUBLIC_URL column and doing a Find-Replace to change "Log" to "https://archive.org/download/iprashootings06032016/Log" in the still-selected pasted text. I spot-tested some of these URLs and confirmed they work.
+
+Once I had the PUBLIC_FILE_NAME and PUBLIC_URL filled in on the public-URL worksheet, I pasted them into the main index worksheet in batches, checking that the PUBLIC_FILE_NAME corresponded to the file name in the IPRA_URL.*
+
+Due to the large number of files, slow residential upload speeds, and interest in providing preliminary lists for others to work with, I worked through steps 1-5 in batches, working back through the steps when I discovered in Step 5 that certain files had not been uploaded or even downloaded. 
+
+------
+* Some of the audio PUBLIC_FILE_NAMEs and Archive.org PUBLIC_URLs do not look like they correspond to the SoundCloud IPRA_URLs they're listed with, but they do. Please do not try to "correct" them! When downloaded, these files had different file names than the SoundCloud URL would suggest. I kept the downloaded file names. Here is a list of files related to this issue:
+
+COMPLAINT_NUMBER	Short IPRA_URL	Title on Player	Downloads As
+1071524			756		755		755
+1071524			757		756		756
+1071524			r-758		757		757
+1071524			r-00000758	758		758
+
+1073410			r-824		823		823
+1073410			0000824		824		824
+
+1074934			r-687		686		686
+1074934			r-00000687	687		687
+
+1075692			a-002203…	a-002203…	zone-4-a…
+1075692			a-1		a		ev-00284-a
+1075692			b-1		b		ev-00263-b
+1075692			ev-00263-a	EV 00263-A	ev-00263-a
+
+1075770			6487		6486		6486
+1075770			6493		6492		6492
+1075770			6495		6494		6494
+
+1076922			1023		1022		1022
+1076922			1031		1030		1030
+1076922			1034		1033		1033
+
+1078789			b-2		b		05dec15ev05059-b
+
+1079080			7458-redacted-1	7458 Redacted	7458-Redacted
+1079080			7458-redacted-2	7458 Redacted	7458-Redacted
+In this case, I left -1 as 7458-Redacted and renamed -2 7458-Redacted 2.
+
+1080018			oemc-2		OEMC #2		ev12185
+1080018			oemc-1		OEMC #1		zone-7-a-184526…
+
+
+Also, some files related to COMPLAINT_NUMBER 1076214 have 1076241 in their file names, but if you open the document files, you will see they are marked 1076214.
+
+------
+
+Here are all the all media files index field names:
+
+COMPLAINT_NUMBER
+MEDIA_FILE_TYPE
+IPRA_PORTAL_LABEL
+IPRA_URL
+FILE_PROBLEMS
+PUBLIC_FILE_NAME
+PUBLIC_URL
+
+*****
