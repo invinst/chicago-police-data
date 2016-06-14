@@ -10,7 +10,7 @@ The original data/documents are all sourced directly from the Chicago Police Dep
 
 __[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)__
 
-If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it!
+If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it.
 
 # Why is it relevant right now?
 
@@ -82,17 +82,9 @@ Look in the `Context` folder:
 
   + You can use your GitHub username or initials to identify your attempt at merging the data. For example, Matt Li might name his solution: `shootings-merge-ml.csv`
 
-+ `Master.do` --> instruction file for Stata
-
 + `Raw` --> Raw data
 
 + `Context` --> Context for working with the data, not all machine-readable
-
-# Data quality
-
-+ Of the May, April, and February dumps, February is the most incomplete.
-
-+ We are still in the discovery phase: actively digging through the data to grok it, analyze it, clean it,  and document it.
 
 # Contributing
 
