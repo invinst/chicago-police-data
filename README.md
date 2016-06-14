@@ -6,13 +6,17 @@ This repo also includes working/work-in-progress code intended to help build a l
 
 # Where did it come from?
 
-The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners. 
+The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners.
 
-If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it! 
+__[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)__
+
+If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it!
 
 # Why is it relevant right now?
 
 On 3 June 2016, IPRA released a significant dump of audio-video recordings and PDF documents for 101 incidents that they investigated. This mass release is indexed per “log number” in a datatable at [portal.iprachicago.org](http://portal.iprachicago.org/) along with videos hosted on [Vimeo](https://vimeo.com/user51379210/videos/sort:date/format:thumbnail) and audio recordings hosted on [SoundCloud](https://soundcloud.com/ipra-455127423).
+
+__[We've created our own mirror/archive of the June data dump. Read more in the Wiki.](https://github.com/invinst/shootings-data/wiki/Archived-Media-Files)__
 
 Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident.
 
