@@ -72,10 +72,6 @@ Look in the `Context` folder:
 
 + `shootings-append.csv` is an un-merged append of the different police shootings data dumps.
 
-+ `shootings-merge.csv` doesn't exist yet. We need to create it by merging the three data dumps.
-
-  + You can use your GitHub username or initials to identify your attempt at merging the data. For example, Matt Li might name his solution: `shootings-merge-ml.csv`
-
 + `Raw` --> Raw data
 
 + `Context` --> Context for working with the data, not all machine-readable
