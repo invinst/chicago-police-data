@@ -1,0 +1,43 @@
+Complaint Index Documentation
+
+Documentation for the file 2016-06-03-complaint-index.xlsx
+June 8, 2016
+by Anna Schibrowsky
+
+How I compiled the complaint index:
+
+1. I visited http://portal.iprachicago.org/ in Chrome browser Version 49.0.2623.112 (64-bit) on June 5 and June 8, 2016.
+
+2. I clicked the top-right dropdown menu (under the blue "Viewer Discretion Advised" box) to "Show All entries" to display all entries.
+
+3. I highlighted the table of entries and copied-and-pasted them into an Excel workbook as plain text. This captured the fields Log#, Incident Types, IPRA Notification Date, and Incident Date & Time. To match the existing Invisible Institute GitHub data file field names and field-name style, I renamed these COMPLAINT_NUMBER, INCIDENT_TYPE, NOTIFICATION_DATE, and INCIDENT_TIME_START. I looked at one sample entry to confirm that the Incident Date & Time is the INCIDENT_TIME_START and not the time the incident ended.
+
+4. I clicked each Log# hyperlink to view each individual entry, gathered the content from each entry, and added that content to the Excel workbook beside the corresponding data pasted in step 3:
+
+The IPRA site uses the headings "Subject" for one subject involved in a complaint and "Subjects" with a bulleted list for multiple subjects. I copied-and-pasted the names listed into the Excel workbook in 4 fields (SUBJECT_1, SUBJECT_2, SUBJECT_3, and SUBJECT_4) to separate the individual names while keeping each entry on a single line. The most subjects any entry had was 4.
+
+Some entries included notes saying files were withheld. I copied the entire note (except the introduction "Note:" that was only on some of them) into the Excel workbook as plain text (this lost some text formatting) and named this field DOCS_WITHHELD_NOTES. The reasons given for withholding files were either that a subject was a juvenile or the file content would violate the Health Insurance Portability and Accountability Act of 1996 (HIPAA), such as a 911 call that included private health information. I added the fields HIPAA_WITHHELD and JUVENILE_WITHHELD and marked them TRUE if the note indicated files were withheld for the corresponding reason. I marked these fields FALSE if they didn't apply in order to avoid blank fields. If there was only 1 subject for an entry, and that subject was a juvenile, there were no media files attached to the entry. However, if there were 2 or more subjects for an entry, and 1 subject was a juvenile, there were files attached but not personal files related to the juvenile.
+
+While I was looking at each entry, I visually counted the number of media files and recorded these in the fields VIDEO_COUNT, AUDIO_COUNT, and DOCUMENT_COUNT. I typed "0" when there were no attached files of each type to avoid blank fields and aid statistical analysis like averaging.
+
+------
+
+Here are the Portal.IPRA.org field names and corresponding complaint index field names:
+
+Portal.IPRA.org Field Name:	Complaint Index Field Name:
+
+Log#				COMPLAINT_NUMBER
+Incident Types			INCIDENT_TYPE
+IPRA Notification Date		NOTIFICATION_DATE
+Incident Date & Time		INCIDENT_TIME_START
+Subject (OR) Subjects		SUBJECT_1
+				SUBJECT_2
+				SUBJECT_3
+				SUBJECT_4
+				DOCS_WITHHELD_NOTES
+				HIPAA_WITHHELD
+				JUVENILE_WITHHELD
+				VIDEO_COUNT
+				AUDIO_COUNT
+				DOCUMENT_COUNT
+*****
