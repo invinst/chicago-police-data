@@ -18,13 +18,7 @@ On 3 June 2016, IPRA released a significant dump of audio-video recordings and P
 
 __[We've created our own mirror/archive of the June data dump. Read more in the Wiki.](https://github.com/invinst/shootings-data/wiki/Archived-Media-Files)__
 
-Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident.
-
-+ [Chicago Tribune: Video releases include police fatal shooting, off-duty Chicago cop’s punches at Portillo’s](http://chicago.suntimes.com/politics/city-releases-police-misconduct-files-videos/)
-+ [DNAinfo: Was Force Justified? What We Found In The Videos Released By IPRA So Far](https://www.dnainfo.com/chicago/20160603/west-town/chicago-police-misconduct-videos-released-by-ipra-show-shootings-more)
-+ [BuzzFeed: Chicago Releases 300 Videos From Police Misconduct Investigations](https://www.buzzfeed.com/mikehayes/chicago-police-video-release?utm_term=.pdlwaZEGYM#.qhvOxpWQv5)
-+ [NBC Chicago: IPRA Releases Hundreds of Videos of Police Shootings, Incidents](http://www.nbcchicago.com/news/local/IPRA-to-Release-Police-Misconduct-Videos-381758681.html)
-+ _and many more…_
+Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident. __[(See the News section of the Wiki.)](https://github.com/invinst/shootings-data/wiki/News)__
 
 But this trove of information is incomplete in critical ways.
 
