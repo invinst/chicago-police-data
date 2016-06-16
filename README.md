@@ -6,21 +6,19 @@ This repo also includes working/work-in-progress code intended to help build a l
 
 # Where did it come from?
 
-The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners. 
+The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners.
 
-If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it! 
+__[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)__
+
+If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it.
 
 # Why is it relevant right now?
 
 On 3 June 2016, IPRA released a significant dump of audio-video recordings and PDF documents for 101 incidents that they investigated. This mass release is indexed per “log number” in a datatable at [portal.iprachicago.org](http://portal.iprachicago.org/) along with videos hosted on [Vimeo](https://vimeo.com/user51379210/videos/sort:date/format:thumbnail) and audio recordings hosted on [SoundCloud](https://soundcloud.com/ipra-455127423).
 
-Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident.
+__[We've created our own mirror/archive of the June data dump. Read more in the Wiki.](https://github.com/invinst/shootings-data/wiki/Archived-Media-Files)__
 
-+ [Chicago Tribune: Video releases include police fatal shooting, off-duty Chicago cop’s punches at Portillo’s](http://chicago.suntimes.com/politics/city-releases-police-misconduct-files-videos/)
-+ [DNAinfo: Was Force Justified? What We Found In The Videos Released By IPRA So Far](https://www.dnainfo.com/chicago/20160603/west-town/chicago-police-misconduct-videos-released-by-ipra-show-shootings-more)
-+ [BuzzFeed: Chicago Releases 300 Videos From Police Misconduct Investigations](https://www.buzzfeed.com/mikehayes/chicago-police-video-release?utm_term=.pdlwaZEGYM#.qhvOxpWQv5)
-+ [NBC Chicago: IPRA Releases Hundreds of Videos of Police Shootings, Incidents](http://www.nbcchicago.com/news/local/IPRA-to-Release-Police-Misconduct-Videos-381758681.html)
-+ _and many more…_
+Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident. __[(See the News section of the Wiki.)](https://github.com/invinst/shootings-data/wiki/News)__
 
 But this trove of information is incomplete in critical ways.
 
@@ -74,21 +72,9 @@ Look in the `Context` folder:
 
 + `shootings-append.csv` is an un-merged append of the different police shootings data dumps.
 
-+ `shootings-merge.csv` doesn't exist yet. We need to create it by merging the three data dumps.
-
-  + You can use your GitHub username or initials to identify your attempt at merging the data. For example, Matt Li might name his solution: `shootings-merge-ml.csv`
-
-+ `Master.do` --> instruction file for Stata
-
 + `Raw` --> Raw data
 
 + `Context` --> Context for working with the data, not all machine-readable
-
-# Data quality
-
-+ Of the May, April, and February dumps, February is the most incomplete.
-
-+ We are still in the discovery phase: actively digging through the data to grok it, analyze it, clean it,  and document it.
 
 # Contributing
 
