@@ -36,9 +36,9 @@ We want to try to do this as quickly as possible.
 
 ## 2. Find officers with highest number of shootings
 
-Which Chicago Police Officers have the highest number of shootings?
+Which Chicago Police Officers have the highest number of shootings (and which _will_ have the highest number)?
 
-Once we have cleaned and merged the data, it will be straightforward to answer this question.
+Once we have cleaned and merged the data, it will be straightforward to figure out who currently has the most shootings. This data could also be used to predict other officers' liklihoods to commit a unjustified shooting.
 
 ## 3. Link data to officer profiles
 
