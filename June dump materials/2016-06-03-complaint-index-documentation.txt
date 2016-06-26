@@ -1,7 +1,8 @@
 Complaint Index Documentation
 
 Documentation for the file 2016-06-03-complaint-index.xlsx
-June 8, 2016
+Created June 8, 2016
+Updated June 25, 2016
 by Anna Schibrowsky
 
 How I compiled the complaint index:
@@ -20,6 +21,7 @@ Some entries included notes saying files were withheld. I copied the entire note
 
 While I was looking at each entry, I visually counted the number of media files and recorded these in the fields VIDEO_COUNT, AUDIO_COUNT, and DOCUMENT_COUNT. I typed "0" when there were no attached files of each type to avoid blank fields and aid statistical analysis like averaging.
 
+5. On June 25, 2016, I followed steps 1, 2, and 3 and pasted today's "new" table of entries into a temporary Excel worksheet beside the existing "old" table of entries. I created and dragged down an Excel equation subtracting the "new" complaint numbers ("CRIDs") from the "old" complaint numbers to identify complaints that had been added to the IPRA portal since June 8, 2016. I identified 5 "new" complaints and followed steps 1-4 to add these new complaints to my working Excel file. Then I saved the worksheet as a csv, opened it in TextEdit, and pasted the new comma-separated lines into GitHub, initiating a Pull Request to merge the updates into the master branch.
 ------
 
 Here are the Portal.IPRA.org field names and corresponding complaint index field names:
