@@ -44,7 +44,7 @@ Once I had the PUBLIC_FILE_NAME and PUBLIC_URL filled in on the public-URL works
 
 Due to the large number of files, slow residential upload speeds, and interest in providing preliminary lists for others to work with, I worked through steps 1-5 in batches, working back through the steps when I discovered in Step 5 that certain files had not been uploaded or even downloaded. 
 
-On June 25, 2016, I followed steps 1-5 to add the files for the 5 new complaints ("CRIDs") added to portal.iprachicago.org.
+On June 25, 2016, I followed steps 1-5 to add the files for the 5 new complaints ("CRIDs") added to portal.iprachicago.org. Then I saved the worksheet as a csv, opened it in TextEdit, and pasted the new comma-separated lines into GitHub, initiating a Pull Request to merge the updates into the master branch.
 
 ------
 * Some of the audio PUBLIC_FILE_NAMEs and Archive.org PUBLIC_URLs do not look like they correspond to the SoundCloud IPRA_URLs they're listed with, but they do. Please do not try to "correct" them! When downloaded, these files had different file names than the SoundCloud URL would suggest. I kept the downloaded file names. Here is a list of files related to this issue:
