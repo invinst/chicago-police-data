@@ -2,7 +2,8 @@ All Media Files Index Documentation
 
 Documentation for the file 2016-06-03-all-media-files-index.csv
 This index includes PDF documents, audio files, and video clips.
-June 9, 2016
+Created June 9, 2016
+Updated June 25, 2016
 by Anna Schibrowsky
 
 How I compiled the index:
@@ -42,6 +43,8 @@ Audio and Video: I visited the collection at https://archive.org/details/iprasho
 Once I had the PUBLIC_FILE_NAME and PUBLIC_URL filled in on the public-URL worksheet, I pasted them into the main index worksheet in batches, checking that the PUBLIC_FILE_NAME corresponded to the file name in the IPRA_URL.*
 
 Due to the large number of files, slow residential upload speeds, and interest in providing preliminary lists for others to work with, I worked through steps 1-5 in batches, working back through the steps when I discovered in Step 5 that certain files had not been uploaded or even downloaded. 
+
+On June 25, 2016, I followed steps 1-5 to add the files for the 5 new complaints ("CRIDs") added to portal.iprachicago.org.
 
 ------
 * Some of the audio PUBLIC_FILE_NAMEs and Archive.org PUBLIC_URLs do not look like they correspond to the SoundCloud IPRA_URLs they're listed with, but they do. Please do not try to "correct" them! When downloaded, these files had different file names than the SoundCloud URL would suggest. I kept the downloaded file names. Here is a list of files related to this issue:
