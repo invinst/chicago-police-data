@@ -1,4 +1,4 @@
-,Complaint_Number,Accused_Accused_Name,Accused_Accused_Birth_Yr,Accused_Accused_Gender,Accused_Accused_Race_Code,Accused_Accused_Date_of_Appt,Accused_Accused_Current_Unit,Accused_Accused_Current_Rank,Accused_Accused_Star,Accused_Accused_Complaint_Category,Accused_Accused_Finding,Accused_Accused_Recommended_Discipline,Accused_Accused_Final_Finding,Accused_Accused_Discipline
+,Complaint_Number,Accused_Name,Accused_Birth_Yr,Accused_Gender,Accused_Race_Code,Accused_Date_of_Appt,Accused_Current_Unit,Accused_Current_Rank,Accused_Star,Accused_Complaint_Category,Accused_Finding,Accused_Recommended_Discipline,Accused_Final_Finding,Accused_Discipline
 1,107901,"GONZALES, ROBIN",1981,F,S,2008-04-28,18.0,PO,5137.0,,,,,
 4,108026,"BECKER, JOHN",1970,M,WHI,2000-01-24,17.0,PO,4734.0,,,,,
 5,108026,"MARKHAM, SEAN",1971,M,I,2000-06-19,17.0,PO,19054.0,,,,,
