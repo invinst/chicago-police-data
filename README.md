@@ -16,7 +16,7 @@ The original data and documents are all sourced directly from the Chicago Police
 
 ## Why is it relevant right now?
 
-Police accountability and misconduct has long been a major issue in Chicago, with the [Invisible Institute being a prominent player for more than 10 years](https://cpdb.co/story/). It has gained especially increased attention after the [October 2014 shooting of Laquan McDonald](https://www.wikiwand.com/en/Shooting_of_Laquan_McDonald) and is an active issue being investigated and worked on by the community, the city government, and even the U.S. Department of Justice. 
+Police accountability and misconduct has long been a major issue in Chicago, with the [Invisible Institute](https://cpdb.co/story/) working on it for more than a decade. It has gained especially increased attention after the [October 2014 shooting of Laquan McDonald](https://www.wikiwand.com/en/Shooting_of_Laquan_McDonald) and is an active issue being investigated and worked on by the community, the city government, and even the U.S. Department of Justice. 
 
 [Read more about the history of police misconduct in Chicago and recent developments on the repository wiki.]()
 
