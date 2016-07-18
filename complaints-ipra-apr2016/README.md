@@ -1,8 +1,11 @@
-# April 2016 - IPRA
+# complaints-ipra-apr2016
 
-## Misconduct  - Open + Closed
+This dataset contains records of complaints against police officers, obtained from IPRA in April 2016 filling a FOIA request by the Invisible Institute. The corresponding [**complaints-cpd-june2016**]() dataset was obtained from CPD using an indentical FOIA request. 
 
-Current data sets used **"/raw dump April2016"** as raw data source.
+The files in this directory have been formatted to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+
+## Notes
+
 - Original folder contained separate files for years 2012-2016YTD
   - these separate files were collapsed into one file  
 - Fixed **Accused_Officer_FName** column

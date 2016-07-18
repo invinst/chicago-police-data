@@ -1,8 +1,10 @@
-# June 2016 - CPD
+# complaints-cpd-june2016
 
-## Complaints
+This dataset contains records of complaints against police officers, obtained from CPD in June 2016 filling a FOIA request by the Invisible Institute. The corresponding [**complaints-ipra-apr2016**]() dataset was obtained from IPRA using an indentical FOIA request. 
 
-Current data sets used **"/raw dump June 2016"** as raw data source.
+The files in this directory have been formatted to facilitate use. The raw files from CPD and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+
+## Notes
 
 General notes:
 - In each file it was assumed that **"Number:"** corresponded to complaint number
