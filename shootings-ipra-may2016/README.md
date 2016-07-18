@@ -1,8 +1,10 @@
-# May 2016 - IPRA
+# shootings-ipra-may2016
 
-## Shootings, Open + Closed
+This dataset contains records of shooting incidents, obtained from IPRA in May 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-cpd-feb2016**]() dataset was obtained from CPD using an indentical FOIA request. 
 
-Current data sets used **"/raw dump May2016"** as raw data source. 
+The files in this directory have been formatted to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+
+## Notes
 
 - Original tabs for 2013 through 2016 have all 48 columns aggregated in one sheet
 - Original tabs for 200807 through 2012 have **[incid]** and **[parties]** in separate sheets

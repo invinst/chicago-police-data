@@ -1,8 +1,10 @@
-# February 2016 - CPD
+# shootings-cpd-feb2016
 
-## Firearm Discharge, Open + Closed
+This dataset contains records of firearm discharge incidents, obtained from CPD in February 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-ipra-may2016**]() dataset was obtained from IPRA using an indentical FOIA request. 
 
-Current data sets used **"/raw dump Feburary2016"** as raw data source. _Folder name is currently misspelled._
+The files in this directory have been formatted to facilitate use. The raw files from CPD and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+
+## Notes
 
 ### Notes from original spreadsheets:
 
