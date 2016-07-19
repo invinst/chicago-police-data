@@ -1,86 +1,53 @@
-# What is this?
+# Chicago Police Incidents Data
 
-This is a living repository of public data about Chicago’s police officers and their encounters with the public. It includes the names of officers involved in and witness to each incident along with other metadata, for example: location, category, demographic information, and investigation status/outcomes.
+## What is this?
 
-This repo also includes working/work-in-progress code intended to help build a legible structure for the data so that it can be more useful to the public.
+This is a living repository of public data about Chicago’s police officers and their encounters with the public, maintained by the Invisible Institute and other volunteers from the Chicago community. The datasets deal with several different categories of incidents, including shootings, use-of-force, complaints of misconduct, and open investigations by the Independent Police Review Authority (IPRA). 
 
-# Where did it come from?
+This repository also serves as a hub to facilitate the Chicago community's efforts to use the data in the interest of promoting police accountability. Interactions are primarily coordinated via the repository's [Issue Tracker](https://github.com/invinst/shootings-data/issues) and organized using labels. 
 
-The original data/documents are all sourced directly from the Chicago Police Department (CPD) and the Independent Police Review Authority (IPRA) and the City of Chicago. The raw files were released pursuant to FOIA requests (Freedom Of Information Act) made by the Invisible Institute and its partners.
+More specific details about the datasets here are discussed later in this readme. 
 
-__[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)__
+## Where did it come from?
 
-If you want to know more about [this process](https://cpdb.co/method/), please post/create an issue here in GitHub about it.
+The original data and documents are all sourced directly from the Chicago Police Department (CPD), the Independent Police Review Authority (IPRA), or the City of Chicago. The raw files were released pursuant to [Freedom of Information Act (FOIA)](https://www.wikiwand.com/en/Freedom_of_Information_Act_(United_States)) requests made by the Invisible Institute and its partners. Scraped data from the [IPRA data portal](http://portal.iprachicago.org/) is also included.
 
-# Why is it relevant right now?
+[Read more about the process on the respository wiki.]()
 
-On 3 June 2016, IPRA released a significant dump of audio-video recordings and PDF documents for 101 incidents that they investigated. This mass release is indexed per “log number” in a datatable at [portal.iprachicago.org](http://portal.iprachicago.org/) along with videos hosted on [Vimeo](https://vimeo.com/user51379210/videos/sort:date/format:thumbnail) and audio recordings hosted on [SoundCloud](https://soundcloud.com/ipra-455127423).
+## Why is it relevant right now?
 
-__[We've created our own mirror/archive of the June data dump. Read more in the Wiki.](https://github.com/invinst/shootings-data/wiki/Archived-Media-Files)__
+Police accountability and misconduct has long been a major issue in Chicago, with the [Invisible Institute](https://cpdb.co/story/) working on it for more than a decade. It has gained especially increased attention after the [October 2014 shooting of Laquan McDonald](https://www.wikiwand.com/en/Shooting_of_Laquan_McDonald) and is an active issue being investigated and worked on by the community, the city government, and even the U.S. Department of Justice. 
 
-Reporters and researchers are currently exploring the released information, documents and recordings but without knowing the identity of police officers involved in each incident. __[(See the News section of the Wiki.)](https://github.com/invinst/shootings-data/wiki/News)__
+[Read more about the history of police misconduct in Chicago and recent developments on the repository wiki.]()
 
-But this trove of information is incomplete in critical ways.
+## What can I do?
 
-Our first goal is to use the FOIA’ed shootings data here to identify officers per incident log number in the June 3 trove.
+### Using the data
 
-# What are we going to do with the merged data?
+This repository exists so that the public can use the data in the interest of police accountability. Feel free to dive into the data. 
 
-We could do at least three important things with this data once it is cleaned and merged:
+You are welcome to contribute to existing research and analysis projects, posted on the repository's [Issue Tracker under the "independent projects" label](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22). If you would like to start a new project, we encourage you to create your own [new ticket](https://github.com/invinst/shootings-data/issues/new) (use the yellow "independent project" label) to collaborate with others. 
 
-## 1. Support journalists
+### Contributing to this repository
 
-__If we can put this data into usable form for journalists, they may be able to learn more by cross-referencing the video, audio, and police reports with officer shooting histories.__
+We want your help. 
 
-We want to try to do this as quickly as possible.
+Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see what needs help. 
 
-## 2. Find officers with highest number of shootings
+If you come across a problem with the repository, you can open a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the red "repo issue" label.
 
-Which Chicago Police Officers have the highest number of shootings?
+You are welcome to talk with us (the repo maintainers) on Slack: https://invisibleinstitute.signup.team/ -- please join us in the #data channel.
 
-Once we have cleaned and merged the data, it will be straightforward to answer this question.
+### I have a question
 
-## 3. Link data to officer profiles
+If you have a question about the data, where the data comes from, or anything else related, open up a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the purple "question" label. 
 
-The Invisible Institute runs the Chicago Police Data Project: https://cpdb.co/
+## Overview of the datasets
 
-This project collects data about Chicago police officers to create profiles. For example, here is the profile of CPD officer Raymond Piwnicki: https://cpdb.co/officer/raymond-piwnicki/5875
+* **shootings-cpd-feb2016/** and **shootings-ipra-may2016/** -- records of shooting incidents obtained by the same FOIA request made to CPD and IPRA, respectively. 
+* **complaints-cpd-june2016/** and **complaints-ipra-apr2016/** -- records of complaints against officers obtained by the same FOIA request made to CPD and IPRA, respectively. 
+* **cpdb_complaints-cpd/** -- records of complaints against officers that are currently in the database used by Citizens Police Data Project
+* **open_investigations-ipra-portal/** -- open cases under investigation by IPRA made available on their data portal since June 3, 2016. The data has been scraped into machine-friendly formats to facilitate analysis. 
+* **context/** -- additional datasets to supplement analyses, including definitions of incident category codes and lists of CPD employees. 
 
-By merging the shootings data into the Chicago Police Data Project, we can create an increasingly complete officer profile encompassing demographics, misconduct allegations, discipline, shootings, salary, employment history, and other important data points.
-
-# Linking officer records
-
-We need to make sure we have enough unique identifying information about each officer to make sure we can merge our three raw shootings data dumps confidently. Different rows in different dumps could contain different and useful information about involved officers.
-
-## Officer identifiers
-
-* Date of appointment
-* Name
-* Demographics
-* Unit Number
-* Badge ID: Badge IDs are eventually recycled and reassigned to a different Officer
-
-## Sources of officer ID data
-
-Look in the `Context` folder:
-
-+ `Context/CPD Employees, one row per individual.csv`
-
-+ `Context/CPD Employees, one row per unit assignment per officer.xlsx`
-
-# File/folder organization
-
-+ `shootings-append.csv` is an un-merged append of the different police shootings data dumps.
-
-+ `Raw` --> Raw data
-
-+ `Context` --> Context for working with the data, not all machine-readable
-
-# Contributing
-
-We want your help.
-
-1. Read through the README (you probably just finished doing this).
-2. Dive into the data.
-3. Share questions or problems by [making an issue](https://github.com/invinst/shootings-data/issues).
-4. Talk with us on Slack: https://invisibleinstitute.signup.team/ -- please join us in the #data channel
+[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)
