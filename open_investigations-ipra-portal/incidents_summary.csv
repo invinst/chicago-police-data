@@ -1,0 +1,119 @@
+COMPLAINT_NUMBER,POST_DATETIME,INCIDENT_TYPE,INCIDENT_DATETIME,IPRA_NOTIF_DATE,SUBJECTS_COUNT,VIDEO_COUNT,AUDIO_COUNT,DOCUMENT_COUNT,NOTES
+1042469,2016-06-03T01:47:12+00:00,Firearm Discharge,01-04-2011 9:35 pm,01-04-2011,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order.\xa0 As a result, the City is restricted from releasing records related to this incident.']"
+1042532,2016-06-03T01:48:24+00:00,Firearm Discharge,01-07-2011 1:33 am,01-07-2011,1,1,5,5,
+1044336,2016-06-03T00:00:50+00:00,Firearm Discharge,03-29-2011 7:48 am,03-29-2011,1,0,1,4,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1045673,2016-07-15T17:09:08+00:00,Firearm Discharge,05-25-2011 10:30 pm,05-25-2011,1,11,7,11,
+1045950,2016-06-03T01:56:50+00:00,Firearm Discharge,06-07-2011 1:48 am,06-07-2011,1,1,2,7,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1049286,2016-06-03T01:22:59+00:00,Incident in Police Custody,10-13-2011 12:17 am,10-13-2011,1,1,1,7,
+1050919,2016-06-03T01:51:13+00:00,Firearm Discharge,12-28-2011 1:42 am,12-28-2011,1,0,6,8,
+1052578,2016-06-03T01:57:45+00:00,Firearm Discharge,03-14-2012 8:32 pm,03-14-2012,4,3,16,14,['Two 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1052816,2016-06-03T01:59:18+00:00,Firearm Discharge,03-23-2012 11:05 pm,03-24-2012,1,0,11,7,
+1053667,2016-06-03T01:00:13+00:00,Firearm Discharge,04-30-2012 2:51 am,04-30-2012,3,62,11,30,
+1056252,2016-06-03T01:01:27+00:00,Firearm Discharge,08-11-2012 9:51 pm,08-11-2012,1,2,0,4,
+1056803,2016-06-03T01:02:32+00:00,Firearm Discharge,09-04-2012 3:39 am,09-04-2012,1,4,7,12,
+1057079,2016-06-03T01:03:54+00:00,Firearm Discharge,09-14-2012 9:33 pm,09-14-2012,1,0,12,8,['Two 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1058279,2016-06-03T01:05:06+00:00,Firearm Discharge,11-08-2012 3:43 pm,11-08-2012,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order.\xa0 As a result, the City is restricted from releasing records related to this incident.']"
+1058573,2016-06-03T01:06:15+00:00,Firearm Discharge,11-22-2012 3:55 pm,11-22-2012,1,17,13,7,
+1060762,2016-06-03T01:08:13+00:00,Firearm Discharge,03-16-2013 2:55 am,03-16-2013,1,1,5,5,
+1060844,2016-06-03T01:15:16+00:00,Firearm Discharge,03-19-2013 9:50 pm,03-19-2013,1,0,34,7,
+1061883,2016-06-03T01:16:48+00:00,Firearm Discharge,04-30-2013 9:30 pm,04-30-2013,1,0,13,14,
+1062377,2016-07-19T18:27:34+00:00,Incident in Police Custody,05-13-2013 11:00 pm,05-21-2013,1,9,4,4,
+1063127,2016-06-03T01:18:14+00:00,Firearm Discharge,06-26-2013 12:09 am,06-26-2013,1,0,16,7,
+1063442,2016-06-03T01:20:40+00:00,Firearm Discharge,07-11-2013 1:05 pm,07-11-2013,1,2,5,14,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1065582,2016-06-03T01:21:39+00:00,Firearm Discharge,10-18-2013 1:10 am,10-18-2013,1,0,4,8,
+1065714,2016-06-03T01:23:36+00:00,Firearm Discharge,10-24-2013 6:40 pm,10-24-2013,1,0,2,6,
+1066296,2016-06-03T01:27:41+00:00,Incident in Police Custody,11-25-2013 7:55 pm,11-26-2013,1,0,0,4,
+1066371,2016-07-19T18:09:09+00:00,Incident in Police Custody,07-25-2013 10:04 pm,12-02-2013,1,1,0,5,
+1066725,2016-06-03T01:24:47+00:00,Firearm Discharge,12-22-2013 5:06 pm,12-22-2013,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order.\xa0 As a result, the City is restricted from releasing records related to this incident.']"
+1067572,2016-06-03T01:25:52+00:00,Firearm Discharge,02-18-2014 12:00 am,02-18-2014,3,0,16,12,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing certain records related to this incident.']"
+1068046,2016-06-03T01:26:56+00:00,Firearm Discharge,03-17-2014 9:51 pm,03-17-2014,1,2,4,8,
+1068101,2016-06-03T01:27:41+00:00,Firearm Discharge,03-20-2014 6:42 pm,03-20-2014,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1068271,2016-06-03T01:28:31+00:00,Firearm Discharge,03-29-2014 8:49 pm,03-29-2014,1,1,1,4,
+1069058,2016-06-03T01:34:35+00:00,Incident in Police Custody,05-07-2014 12:17 am,05-09-2014,1,1,0,3,
+1069633,2016-06-03T01:20:44+00:00,Other Use Of Force,06-03-2014 11:16 pm,06-06-2014,1,2,0,0,
+1069651,2016-06-03T01:30:12+00:00,Firearm Discharge,06-06-2014 11:28 pm,06-07-2014,1,14,6,12,
+1069721,2016-06-03T01:37:05+00:00,Firearm Discharge,06-10-2014 11:46 pm,06-11-2014,1,12,29,13,
+1069981,2016-06-03T01:38:27+00:00,Firearm Discharge,06-24-2014 6:23 pm,06-24-2014,1,0,2,8,
+1070148,2016-06-03T01:40:39+00:00,Firearm Discharge,07-04-2014 9:53 pm,07-04-2014,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1070168,2016-06-03T01:41:30+00:00,Firearm Discharge,07-05-2014 6:40 pm,07-05-2014,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday. As a result, the City is restricted from releasing records related to this incident.']"
+1070445,2016-06-03T01:46:08+00:00,Firearm Discharge,07-19-2014 6:10 am,07-19-2014,1,2,20,6,
+1070681,2016-06-03T01:08:50+00:00,Incident in Police Custody,07-30-2014 3:00 am,07-31-2014,1,2,0,1,
+1071168,2016-06-03T01:08:49+00:00,Firearm Discharge,08-24-2014 8:58 pm,08-24-2014,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1071320,2016-06-03T01:10:52+00:00,Incident in Police Custody,07-12-2014 10:30 pm,09-02-2014,1,3,0,11,
+1071524,2016-06-03T01:48:03+00:00,Firearm Discharge,09-13-2014 10:12 pm,09-13-2014,1,1,10,9,
+1071635,2016-06-03T01:12:35+00:00,Incident in Police Custody,09-20-2014 6:18 pm,09-20-2014,1,0,0,1,
+1071970,2016-06-03T01:11:21+00:00,Firearm Discharge,10-12-2014 12:35 am,10-12-2014,1,16,11,9,
+1072297,2016-06-03T01:23:33+00:00,Firearm Discharge,10-29-2014 11:03 pm,10-30-2014,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1072342,2016-06-03T01:46:12+00:00,Firearm Discharge,11-01-2014 8:22 pm,11-01-2014,1,0,8,6,
+1072855,2016-06-03T01:23:42+00:00,Firearm Discharge,12-06-2014 10:49 pm,12-07-2014,1,0,4,5,
+1072859,2016-06-03T01:25:02+00:00,Firearm Discharge,12-07-2014 6:27 pm,12-07-2014,1,6,0,3,
+1073105,2016-06-03T01:33:08+00:00,Firearm Discharge,12-25-2014 6:41 pm,12-25-2014,1,9,5,4,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1073410,2016-06-03T01:14:52+00:00,Incident in Police Custody,01-18-2015 4:55 am,01-18-2015,2,4,4,1,
+1073693,2016-06-03T01:34:19+00:00,Firearm Discharge,02-07-2015 2:46 pm,02-07-2015,1,6,1,11,
+1073710,2016-06-03T01:35:24+00:00,Firearm Discharge,02-09-2015 3:30 am,02-09-2015,1,0,0,2,
+1073787,2016-06-03T01:37:02+00:00,Firearm Discharge,02-14-2015 12:29 am,02-14-2015,1,0,3,6,
+1073789,2016-06-03T01:17:01+00:00,Incident in Police Custody,02-14-2015 3:22 am,02-14-2015,1,2,1,1,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1074111,2016-06-03T01:20:20+00:00,Incident in Police Custody,03-09-2015 9:45 pm,03-09-2015,1,0,0,6,
+1074270,2016-06-24T13:18:42+00:00,Incident in Police Custody,03-04-2015 4:45 pm,03-18-2015,1,1,0,3,
+1074294,2016-06-24T13:29:06+00:00,Incident in Police Custody,03-17-2015 10:38 pm,03-19-2015,1,1,0,2,
+1074534,2016-06-03T01:39:39+00:00,Firearm Discharge,04-04-2015 4:19 pm,04-04-2015,1,0,9,8,
+1074736,2016-06-03T01:41:06+00:00,Firearm Discharge,04-17-2015 10:53 pm,04-17-2015,1,0,28,7,['Four 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1074934,2016-06-03T01:42:31+00:00,Firearm Discharge,05-01-2015 3:25 am,05-01-2015,1,2,13,10,['Several 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1074962,2016-06-03T01:21:10+00:00,Incident in Police Custody,04-30-2015 2:00 am,05-02-2015,1,0,0,3,
+1074984,2016-06-03T01:21:59+00:00,Incident in Police Custody,05-03-2015 10:30 pm,05-04-2015,1,0,11,17,
+1075069,2016-06-03T01:22:27+00:00,Incident in Police Custody,05-08-2015 3:05 am,05-08-2015,1,0,8,2,
+1075655,2016-06-03T01:23:28+00:00,Incident in Police Custody,06-13-2015 4:20 am,06-13-2015,1,0,0,8,
+1075692,2016-06-03T01:23:57+00:00,Incident in Police Custody,06-16-2015 12:20 am,06-16-2015,1,11,5,4,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1075770,2016-06-03T01:48:29+00:00,Firearm Discharge,06-20-2015 12:10 am,06-20-2015,1,8,7,4,
+1075866,2016-06-03T01:25:27+00:00,Incident in Police Custody,08-27-2013 12:00 am,06-26-2015,1,0,0,5,
+1076072,2016-06-03T01:51:13+00:00,Firearm Discharge,07-09-2015 11:34 pm,07-10-2015,1,0,12,3,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1076081,2016-06-03T01:52:46+00:00,Firearm Discharge,07-10-2015 4:03 pm,07-10-2015,1,1,1,18,
+1076204,2016-06-03T01:54:00+00:00,Firearm Discharge,07-19-2015 3:56 am,07-19-2015,1,0,9,6,
+1076214,2016-06-03T01:26:15+00:00,Incident in Police Custody,07-20-2015 1:15 am,07-20-2015,1,7,3,3,
+1076216,2016-06-03T01:02:05+00:00,Firearm Discharge,07-20-2015 4:01 am,07-20-2015,1,2,5,4,
+1076261,2016-06-03T01:04:32+00:00,Firearm Discharge,07-22-2015 1:41 am,07-22-2015,1,1,8,10,
+1076367,2016-06-03T01:13:13+00:00,Firearm Discharge,07-27-2015 5:00 pm,07-27-2015,1,0,0,3,
+1076425,2016-06-03T01:16:18+00:00,Firearm Discharge,07-30-2015 3:15 am,07-30-2015,1,0,17,10,
+1076618,2016-06-03T01:26:57+00:00,Incident in Police Custody,03-23-2014 10:11 pm,08-10-2015,1,0,0,7,
+1076714,2016-06-03T01:17:12+00:00,Firearm Discharge,08-15-2015 7:48 pm,08-15-2015,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1076797,2016-06-03T01:18:16+00:00,Firearm Discharge,08-20-2015 10:25 pm,08-20-2015,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1076808,2016-06-03T01:29:04+00:00,Incident in Police Custody,03-19-2015 5:09 am,08-21-2015,1,0,0,6,
+1076815,2016-06-03T01:18:59+00:00,Firearm Discharge,08-21-2015 7:28 pm,08-21-2015,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1076844,2016-06-03T01:30:41+00:00,Incident in Police Custody,08-22-2015 11:45 am,08-24-2015,1,0,0,4,
+1076922,2016-06-03T01:21:14+00:00,Firearm Discharge,08-29-2015 1:30 am,08-29-2015,2,3,31,13,
+1076980,2016-06-03T01:44:01+00:00,Incident in Police Custody,09-02-2015 7:51 pm,09-02-2015,1,2,5,3,
+1077051,2016-06-03T01:45:20+00:00,Incident in Police Custody,09-04-2015 4:20 pm,09-08-2015,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing certain records related to this incident.']"
+1077146,2016-06-03T01:22:37+00:00,Firearm Discharge,09-14-2015 9:38 pm,09-14-2015,1,0,1,6,
+1077328,2016-06-03T01:23:59+00:00,Firearm Discharge,09-25-2015 8:53 pm,09-25-2015,1,0,5,10,
+1077396,2016-06-03T01:25:23+00:00,Firearm Discharge,10-01-2015 6:31 pm,10-01-2015,1,0,8,6,
+1077428,2016-06-03T01:26:42+00:00,Firearm Discharge,10-04-2015 8:27 am,10-04-2015,1,0,3,10,
+1077477,2016-06-01T12:08:35+00:00,Other Use Of Force,10-07-2015 3:40 am,10-07-2015,1,1,0,0,
+1077848,2016-06-03T01:27:21+00:00,Firearm Discharge,10-31-2015 1:26 am,10-31-2015,1,0,3,8,['Chicago Fire Department dispatch has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1078178,2016-06-03T01:46:35+00:00,Incident in Police Custody,11-21-2015 10:05 pm,11-24-2015,1,0,1,8,['A Chicago Fire Department dispatch recording was withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1078329,2016-06-03T01:02:10+00:00,Incident in Police Custody,12-13-2012 7:45 am,12-05-2015,1,6,4,26,
+1078413,2016-06-03T01:28:06+00:00,Firearm Discharge,12-12-2015 6:09 am,12-12-2015,1,3,5,4,
+1078435,2016-07-08T18:00:00+00:00,Taser Discharge,12-08-2015 1:09 pm,12-14-2015,1,2,1,4,
+1078530,2016-06-03T01:29:47+00:00,Firearm Discharge,12-20-2015 10:37 am,12-20-2015,1,2,9,6,['Chicago Fire Department dispatch recordings have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1078616,2016-06-03T01:28:31+00:00,Firearm Discharge,12-26-2015 4:25 am,12-26-2015,2,73,18,6,
+1078622,2016-06-03T01:02:19+00:00,Firearm Discharge,12-26-2015 1:30 pm,12-26-2015,1,0,5,6,
+1078789,2016-06-03T01:25:48+00:00,Firearm Discharge,01-07-2016 10:27 pm,01-07-2016,2,5,18,6,['Four 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1078952,2016-06-03T01:23:46+00:00,Firearm Discharge,12-29-2015 2:40 am,01-21-2016,1,14,1,6,
+1079080,2016-06-03T09:01:59+00:00,Firearm Discharge,01-31-2016 4:25 am,01-31-2016,1,3,15,6,
+1079160,2016-06-03T01:07:28+00:00,Firearm Discharge,02-06-2016 12:00 pm,02-06-2016,3,0,0,3,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing certain records related to this incident.']"
+1079273,2016-06-03T01:10:51+00:00,Incident in Police Custody,09-11-2015 12:22 am,02-16-2016,1,1,0,4,
+1079618,2016-06-03T01:06:35+00:00,Firearm Discharge,03-12-2016 12:40 am,03-12-2016,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing records related to this incident.']"
+1079644,2016-06-03T01:05:32+00:00,Firearm Discharge,03-10-2016 5:55 am,03-10-2016,1,0,0,4,
+1079661,2016-06-03T01:03:08+00:00,Firearm Discharge,03-14-2016 9:46 pm,03-14-2016,1,1,12,9,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1079728,2016-06-03T01:43:24+00:00,Firearm Discharge,03-19-2016 9:30 pm,03-19-2016,1,7,14,4,['One 911 call has been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1079743,2016-06-03T01:30:51+00:00,Incident in Police Custody,03-21-2016 2:30 am,03-21-2016,1,0,12,0,['3 911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1080018,2016-06-07T16:22:16+00:00,Incident in Police Custody,04-07-2016 6:49 pm,04-08-2016,1,11,2,9,
+1080064,2016-06-10T12:14:10+00:00,Incident in Police Custody,04-11-2016 7:43 pm,04-11-2016,1,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing certain records related to this incident.']"
+1080144,2016-06-14T18:07:02+00:00,Firearm Discharge,04-15-2016 10:27 pm,04-15-2016,4,0,0,3,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order. As a result, the City is restricted from releasing certain records related to this incident.']"
+1080395,2016-07-01T10:50:16+00:00,Taser Discharge,05-04-2016 1:06 pm,05-04-2016,1,0,0,3,
+1080417,2016-07-05T16:34:19+00:00,Firearm Discharge,05-06-2016 9:32 am,05-06-2016,1,5,3,4,
+1080437,2016-07-07T16:50:35+00:00,Incident in Police Custody,05-07-2016 3:03 pm,05-07-2016,1,1,2,5,
+1080449,2016-07-08T22:43:42+00:00,Firearm Discharge,05-09-2016 11:00 pm,05-09-2016,1,31,9,9,
+1080476,2016-07-08T23:41:04+00:00,Firearm Discharge,05-10-2016 10:41 pm,05-11-2016,2,2,8,5,
+1080505,2016-07-11T18:40:35+00:00,Firearm Discharge,05-12-2016 12:00 pm,05-12-2016,1,0,12,17,['Three\xa0911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
+1080615,2016-07-19T14:26:40+00:00,Firearm Discharge,05-21-2016 10:19 pm,05-21-2016,2,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order.\xa0 As a result, the City is restricted from releasing records related to this incident.']"
+1080972,2016-06-15T19:06:03+00:00,Incident in Police Custody,06-13-2016 3:30 pm,06-13-2016,1,1,0,0,
