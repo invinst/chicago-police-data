@@ -12,13 +12,13 @@ More specific details about the datasets here are discussed later in this readme
 
 The original data and documents are all sourced directly from the Chicago Police Department (CPD), the Independent Police Review Authority (IPRA), or the City of Chicago. The raw files were released pursuant to [Freedom of Information Act (FOIA)](https://www.wikiwand.com/en/Freedom_of_Information_Act_(United_States)) requests made by the Invisible Institute and its partners. Scraped data from the [IPRA data portal](http://portal.iprachicago.org/) is also included.
 
-[Read more about the process on the respository wiki.]()
+[Read more about the process on the respository wiki.](https://github.com/invinst/chicago-police-data/wiki/Data-Sources)
 
 ## Why is it relevant right now?
 
 Police accountability and misconduct has long been a major issue in Chicago, with the [Invisible Institute](https://cpdb.co/story/) working on it for more than a decade. It has gained especially increased attention after the [October 2014 shooting of Laquan McDonald](https://www.wikiwand.com/en/Shooting_of_Laquan_McDonald) and is an active issue being investigated and worked on by the community, the city government, and even the U.S. Department of Justice. 
 
-[Read more about the history of police misconduct in Chicago and recent developments on the repository wiki.]()
+[Read more about the history and recent news of police misconduct in Chicago and recent developments on the repository wiki.](https://github.com/invinst/chicago-police-data/wiki/News)
 
 ## What can I do?
 
