@@ -116,4 +116,7 @@ COMPLAINT_NUMBER,POST_DATETIME,INCIDENT_TYPE,INCIDENT_DATETIME,IPRA_NOTIF_DATE,S
 1080476,2016-07-08T23:41:04+00:00,Firearm Discharge,05-10-2016 10:41 pm,05-11-2016,2,2,8,5,
 1080505,2016-07-11T18:40:35+00:00,Firearm Discharge,05-12-2016 12:00 pm,05-12-2016,1,0,12,17,['Three\xa0911 calls have been withheld pursuant to the Health Insurance Portability and Accountability Act of 1996 (“HIPAA”).']
 1080615,2016-07-19T14:26:40+00:00,Firearm Discharge,05-21-2016 10:19 pm,05-21-2016,2,0,0,0,"['Pursuant to the Illinois Juvenile Court Act, 705 ILCS 405/1-1, et seq., the City is prohibited from releasing law enforcement records that relate to a minor who has been investigated, arrested, or taken into custody before his or her 18th birthday, without a court order.\xa0 As a result, the City is restricted from releasing records related to this incident.']"
+1080674,2016-07-25T17:59:49+00:00,Firearm Discharge,05-25-2016 1:26 pm,05-25-2016,1,6,30,3,
+1080871,2016-08-05T10:38:02+00:00,Incident in Police Custody,08-07-2016 1:30 am,06-07-2016,1,3,3,8,
 1080972,2016-06-15T19:06:03+00:00,Incident in Police Custody,06-13-2016 3:30 pm,06-13-2016,1,1,0,0,
+1081642,2016-08-05T10:55:18+00:00,Firearm Discharge,07-28-2016 7:34 pm,07-28-2016,2,9,0,0,
