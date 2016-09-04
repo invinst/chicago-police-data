@@ -15,7 +15,7 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1053667,Firearm Discharge,04-30-2012 2:51 am,Leland Dudley
 1053667,Firearm Discharge,04-30-2012 2:51 am,John Givens
 1056252,Firearm Discharge,08-11-2012 9:51 pm,Christopher Middleton
-1056803,Firearm Discharge,09-04-2012 3:39 am,Glenn Robinson
+1056803,Firearm Discharge,09-04-2012 3:39 am,Glen Robinson
 1057079,Firearm Discharge,09-14-2012 9:33 pm,Christopher McGowen
 1058279,Firearm Discharge,11-08-2012 3:43 pm,Dakota Bright
 1058573,Firearm Discharge,11-22-2012 3:55 pm,Ismael Jamison
@@ -45,6 +45,7 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1070168,Firearm Discharge,07-05-2014 6:40 pm,Warren Robinson
 1070445,Firearm Discharge,07-19-2014 6:10 am,Juan Perea
 1070681,Incident in Police Custody,07-30-2014 3:00 am,Kurtis Garrett
+1071109,Incident in Police Custody,04-29-2014 8:00 pm,Lawrence Scott
 1071168,Firearm Discharge,08-24-2014 8:58 pm,DeSean Pittman
 1071320,Incident in Police Custody,07-12-2014 10:30 pm,Lisa Simmons
 1071524,Firearm Discharge,09-13-2014 10:12 pm,Denzel Ford
@@ -70,6 +71,7 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1074962,Incident in Police Custody,04-30-2015 2:00 am,Jeremy Morris
 1074984,Incident in Police Custody,05-03-2015 10:30 pm,Miguel Gama
 1075069,Incident in Police Custody,05-08-2015 3:05 am,Dionne Battle
+1075350,Other Use Of Force,04-19-2014 1:25 am,Darren Clemons
 1075655,Incident in Police Custody,06-13-2015 4:20 am,Jimmie Miller
 1075692,Incident in Police Custody,06-16-2015 12:20 am,Terrence Clarke
 1075770,Firearm Discharge,06-20-2015 12:10 am,Alfontish Cockerham
@@ -101,7 +103,7 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1078178,Incident in Police Custody,11-21-2015 10:05 pm,Richard Booker
 1078329,Incident in Police Custody,12-13-2012 7:45 am,Phillip Coleman
 1078413,Firearm Discharge,12-12-2015 6:09 am,Unknown
-1078435,Taser Discharge,12-08-2015 1:09 pm,Kenneth Lee
+1078435,Taser Discharge,12-08-2016 1:09 pm,Kenneth Lee
 1078530,Firearm Discharge,12-20-2015 10:37 am,James Holland
 1078616,Firearm Discharge,12-26-2015 4:25 am,Betty Jones
 1078616,Firearm Discharge,12-26-2015 4:25 am,Quientonio LeGrier
@@ -125,7 +127,7 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1080144,Firearm Discharge,04-15-2016 10:27 pm,Naheem King
 1080144,Firearm Discharge,04-15-2016 10:27 pm,Jermaine Porter
 1080144,Firearm Discharge,04-15-2016 10:27 pm,Kewon Vinson
-1080395,Taser Discharge,05-04-2016 1:06 pm,Fernando Escobedo
+1080395,Firearm Discharge,05-04-2016 1:06 pm,Fernando Escobedo
 1080417,Firearm Discharge,05-06-2016 9:32 am,Terrick Beasley
 1080437,Incident in Police Custody,05-07-2016 3:03 pm,Reese Hartstirn
 1080449,Firearm Discharge,05-09-2016 11:00 pm,Michael Johnson
@@ -134,8 +136,17 @@ COMPLAINT_NUMBER,INCIDENT_TYPE,INCIDENT_DATETIME,SUBJECT_NAME
 1080505,Firearm Discharge,05-12-2016 12:00 pm,Kevin Robinson
 1080615,Firearm Discharge,05-21-2016 10:19 pm,Tomari Rapp
 1080615,Firearm Discharge,05-21-2016 10:19 pm,Jannaro Deberry
-1080674,Firearm Discharge,05-25-2016 1:26 pm,Unknown
+1080674,Firearm Discharge,05-05-2016 1:26 pm,Unknown
 1080871,Incident in Police Custody,08-07-2016 1:30 am,Alan Lee Shields
 1080972,Incident in Police Custody,06-13-2016 3:30 pm,Shaquille O’Neal
+1081009,Other Use Of Force,10-10-2015 7:40 pm,Cesar Carrizalez
+1081009,Other Use Of Force,10-10-2015 7:40 pm,Theresa Cmiel
+1081058,Other Use Of Force,06-19-2016 2:26 pm,Robert Foreman
+1081059,Firearm Discharge,06-19-2016 9:12 pm,Angelo Dixon
+1081086,Other Use Of Force,06-21-2016 6:24 pm,Amari Catchings
+1081228,Other Use Of Force,07-01-2016 11:10 am,Ronald Arrington
+1081228,Other Use Of Force,07-01-2016 11:10 am,Michael Cokes
+1081228,Other Use Of Force,07-01-2016 11:10 am,Jimmy Malone
+1081228,Other Use Of Force,07-01-2016 11:10 am,Isiah Stevens
 1081642,Firearm Discharge,07-28-2016 7:34 pm,Paul O’Neal
 1081642,Firearm Discharge,07-28-2016 7:34 pm,Michael Williams
