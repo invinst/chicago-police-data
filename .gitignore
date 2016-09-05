@@ -15,6 +15,12 @@
 ######################
 *-jw.xlsx
 
+########################
+# MS office temp files #
+########################
+~$*.doc*
+~$*.xls*
+~$*.ppt*
 
 ######################
 # OS generated files #
@@ -26,5 +32,3 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-
