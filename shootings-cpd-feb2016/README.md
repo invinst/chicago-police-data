@@ -1,10 +1,32 @@
 # shootings-cpd-feb2016
 
-This dataset contains records of firearm discharge incidents, obtained from CPD in February 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-ipra-may2016**]() dataset was obtained from IPRA using an indentical FOIA request. 
+This dataset contains records of firearm discharge incidents, obtained from CPD in February 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-ipra-may2016**](https://github.com/invinst/chicago-police-data/tree/master/shootings-ipra-may2016) dataset was obtained from IPRA using an indentical FOIA request. 
 
-The files in this directory have been formatted to facilitate use. The raw files from CPD and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+The files in this directory have been formatted and cleaned to facilitate use. The raw files from CPD and copies of the FOIA documents can be found in the **raw/** subdirectory. 
 
-## Notes
+## List of Columns
+
+**dat\_feb2016.csv**
+
+* Log No* Assignment* Initial Category* Assigned Team* Team Assigned Date* Investigator Assigned* Inv Assigned Date* Supervisor Assigned* Closed at IPRA* Involved Member* CPD Witness* CPD Reporting Party* Incident Date/Time* Incident Address* District of Occurrence
+
+**dat\_feb2016\_officer.csv**
+
+* CATEGORY
+* PERS\_STAR\_NO
+* PERS\_LAST\_NME
+* PERS\_FIRST\_NME
+* DESCR
+
+**dat\_feb2016\_victimdetainee.csv**
+
+* Log Number
+* Age
+* Sex
+* Ethnicity
+* Person\_Count
+
+## Cleaning Notes
 
 ### Notes from original spreadsheets:
 
@@ -38,7 +60,9 @@ The files in this directory have been formatted to facilitate use. The raw files
   + crms - 05j Officer(1).xls
 + Consider "-" as blanks or not found.
 + "Closed at IPRA" - There are a number of Closed 1/1/9999 datetimes. **Are these currently under investigation?**
-+ [dat_feb2016_officer] tab contains officer information that corresponds to "Involved Member" in [dat_feb2016]
++ [dat\_feb2016\_officer] tab contains officer information that corresponds to "Involved Member" in [dat\_feb2016]
+
+## Summary
 
 ### Summary Table
 
