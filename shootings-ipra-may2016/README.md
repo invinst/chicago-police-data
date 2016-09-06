@@ -1,18 +1,70 @@
 # shootings-ipra-may2016
 
-This dataset contains records of shooting incidents, obtained from IPRA in May 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-cpd-feb2016**]() dataset was obtained from CPD using an indentical FOIA request. 
+This dataset contains records of shooting incidents, obtained from IPRA in May 2016 filling a FOIA request by the Invisible Institute. The corresponding [**shootings-cpd-feb2016**](https://github.com/invinst/chicago-police-data/tree/master/shootings-cpd-feb2016) dataset was obtained from CPD using an indentical FOIA request.
 
-The files in this directory have been formatted to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+The files in this directory have been formatted and cleaned to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory.
+
+## List of columns
+* SOURCE
+* FILEYR
+* CR\_REQUIRED
+* INITIAL\_CATEGORY\_CODE	
+* INITIAL\_CATEGORY
+* CURRENT\_CATEGORY\_CODE
+* CURRENT\_CATEGORY
+* CURRENT\_STATUS
+* Complaint\_Number
+* Beat
+* Street
+* Address
+* LOCATION\_CODE
+* Incident\_Time\_Start
+* Incident\_Time\_End
+* COMPLAINT\_DATE
+* CLOSEDATIPRA\_DATETIME
+* IPRA\_Investigator\_LastName
+* IPRA\_Investigator\_FirstName
+* IPRA\_Assign\_Date\_Time
+* IPRA\_Investigate\_Begin\_Date
+* IPRA\_Investigate\_End\_Date
+* IPRA\_Investigator\_Type
+* Report\_Status
+* FINDING\_CODE
+* FINDING\_ID
+* PENALTY\_CODE
+* NO\_OF\_DAYS
+* Penalty\_Status
+* Accused\_FName
+* Accused\_LName
+* Accused\_Star\_No
+* Accused\_Assignment
+* Accused\_Detail
+* Accused\_Appointment\_Date
+* Accused\_Position
+* IAD\_OPS
+* CONVERTED\_REC\_I
+* Invovled\_Party\_Description
+* Invovled\_Party\_Type
+* Invovled\_Party\_LName
+* Invovled\_Party\_FName
+* Invovled\_Party\_Assignment
+* Invovled\_Party\_Detail
+* Invovled\_Party\_Position
+* Invovled\_Party\_Age
+* Invovled\_Party\_Sex
+* Invovled\_Party\_Race
+* POLICE\_SHOOTING\_NO
+* POLICE\_SHOOTING
 
 ## Notes
 
 - Original tabs for 2013 through 2016 have all 48 columns aggregated in one sheet
 - Original tabs for 200807 through 2012 have **[incid]** and **[parties]** in separate sheets
   -  **[incid]**  and **[parties]** combined include all 48 cols found in 2013-2016
-  - the **[incid]** sheets seem to be unique per **complaint_number** and **finding_id**
-  - **finding_id** is not found in **[parties]** sheets
-  - used **complaint_number** and **accused_star_no** (approx. officer) to merge sheets
-    - if match not found, tried to match by **complaint_number** only
+  - the **[incid]** sheets seem to be unique per **complaint\_number** and **finding\_id**
+  - **finding\_id** is not found in **[parties]** sheets
+  - used **complaint\_number** and **accused\_star\_no** (approx. officer) to merge sheets
+    - if match not found, tried to match by **complaint\_number** only
     - for numeric fields, made sure 0 -> blank (to avoid dates turning into 1900's)
 
 ### Summary Table
@@ -32,7 +84,7 @@ The files in this directory have been formatted to facilitate use. The raw files
 
 ### Unique CRID by Year
 
-| FILEYR | Complaint_Number |
+| FILEYR | Complaint\_Number |
 |--------|------------------|
 | 2016   | 1079080          |
 | 2016   | 1079661          |

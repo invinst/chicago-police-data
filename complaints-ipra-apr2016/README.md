@@ -1,15 +1,51 @@
 # complaints-ipra-apr2016
 
-This dataset contains records of complaints against police officers, obtained from IPRA in April 2016 filling a FOIA request by the Invisible Institute. The corresponding [**complaints-cpd-june2016**]() dataset was obtained from CPD using an indentical FOIA request. 
+This dataset contains records of complaints against police officers, obtained from IPRA in April 2016 filling a FOIA request by the Invisible Institute. The corresponding [**complaints-cpd-june2016**](https://github.com/invinst/chicago-police-data/tree/master/complaints-cpd-june2016) dataset was obtained from CPD using an indentical FOIA request. 
 
-The files in this directory have been formatted to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory. 
+The files in this directory have been formatted and cleaned to facilitate use. The raw files from IPRA and copies of the FOIA documents can be found in the **raw/** subdirectory. 
 
-## Notes
+## List of Columns
+* Accused\_Officer\_FName
+* Accused\_Officer\_LName
+* Accused\_Appointment\_Date
+* Accused\_Detail
+* Accused\_Position
+* Accused\_Star
+* Accused\_Unit
+* Address	Beat
+* CURRENT\_CATEGORY
+* CURRENT\_CATEGORY\_CODE
+* CURRENT\_STATUS
+* Complaint\_Number
+* Discipline\_Code
+* FINDING\_CODE
+* INITIAL\_CATEGORY
+* INITIAL\_CATEGORY\_CODE
+* IPRA\_Closed\_Date
+* IPRA\_Investigator\_FirstName
+* IPRA\_Investigator\_LastName
+* Incident\_Time\_End
+* Incident\_Time\_Start
+* Involved\_Officer\_Age
+* Involved\_Officer\_Detail
+* Involved\_Officer\_FName
+* Involved\_Officer\_Lname
+* Involved\_Officer\_Position
+* Involved\_Officer\_Race
+* Involved\_Officer\_Sex
+* Involved\_Officer\_Unit
+* LOCATION\_CODE
+* Notification\_Date
+* Recommended\_Number\_Of\_Days
+* Street
+
+
+## Cleaning Notes
 
 - Original folder contained separate files for years 2012-2016YTD
   - these separate files were collapsed into one file  
-- Fixed **Accused_Officer_FName** column
-  - Originally had three different spellings: Accused_Officer_FName, Accsued_Officer_FName, AccusedOfficer_FName
+- Fixed **Accused\_Officer\_FName** column
+  - Originally had three different spellings: Accused\_Officer\_FName, Accsued\_Officer\_FName, AccusedOfficer\_FName
   - Collapsed these columns together after confirming that there were no conflicts across the different columns
 
 ### Summary Table
@@ -23,7 +59,7 @@ The files in this directory have been formatted to facilitate use. The raw files
 
 ### Unique CRID Count per Category
 
-| Category                                                  | INITIAL_CATEGORY Count | CURRENT_CATEGORY Count |
+| Category                                                  | INITIAL\_CATEGORY Count | CURRENT\_CATEGORY Count |
 |-----------------------------------------------------------|------------------------|------------------------|
 | ALTERCATION / DISTURBANCE - OTHER                         | 2                      | 2                      |
 | CHOKED                                                    | 33                     | 97                     |
