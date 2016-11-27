@@ -1,0 +1,176 @@
+name,number_of_total_complaints,number_of_officers,number_of_no_affidavit_complaints,number_of_sustained_complaints,number_of_disciplined_complaints
+neighborhoods: Edgewater,153,93,45,2,1
+neighborhoods: Lake View,322,170,81,13,10
+neighborhoods: Lincoln Park,112,61,37,0,0
+neighborhoods: Lincoln Square,147,102,39,7,4
+neighborhoods: Avondale,140,80,63,0,0
+neighborhoods: Rush & Division,45,28,8,0,0
+neighborhoods: Burnside,23,17,17,0,0
+neighborhoods: Riverdale,147,101,48,5,3
+neighborhoods: Hegewisch,97,55,36,2,2
+neighborhoods: Kenwood,105,76,39,4,4
+neighborhoods: Rogers Park,348,163,116,11,5
+neighborhoods: Jefferson Park,153,111,57,11,7
+"neighborhoods: Sauganash,Forest Glen",36,22,8,1,1
+neighborhoods: North Park,43,22,17,0,0
+neighborhoods: Albany Park,171,88,54,3,3
+neighborhoods: Museum Campus,15,12,3,0,0
+neighborhoods: Portage Park,181,112,82,1,1
+neighborhoods: Printers Row,11,8,1,0,0
+neighborhoods: Humboldt Park,942,523,414,1,1
+neighborhoods: Garfield Park,1345,570,418,37,27
+neighborhoods: North Lawndale,1058,474,384,40,24
+neighborhoods: Millenium Park,7,2,1,0,0
+neighborhoods: Auburn Gresham,1099,456,349,29,17
+neighborhoods: Edison Park,20,13,5,1,1
+neighborhoods: Hyde Park,103,74,38,2,2
+neighborhoods: Grand Boulevard,275,157,87,6,4
+neighborhoods: Greektown,9,8,4,1,1
+neighborhoods: Magnificent Mile,19,15,6,0,0
+neighborhoods: Ukrainian Village,42,30,11,1,1
+neighborhoods: Norwood Park,142,89,40,8,4
+neighborhoods: Streeterville,117,64,39,3,2
+neighborhoods: South Shore,1028,521,468,11,9
+neighborhoods: United Center,140,92,47,3,2
+neighborhoods: Sheffield & DePaul,21,15,8,0,0
+neighborhoods: Little Village,382,207,160,3,1
+neighborhoods: Armour Square,66,43,19,2,0
+neighborhoods: Avalon Park,150,106,42,4,2
+neighborhoods: Calumet Heights,137,97,39,3,3
+neighborhoods: Pullman,377,221,77,35,25
+neighborhoods: Douglas,472,277,80,56,29
+neighborhoods: Oakland,33,22,9,1,0
+neighborhoods: Grant Park,19,11,4,1,0
+neighborhoods: West Loop,234,157,85,15,8
+neighborhoods: Fuller Park,343,216,92,25,17
+neighborhoods: Chatham,562,269,214,2,2
+neighborhoods: South Chicago,578,294,221,8,5
+neighborhoods: Roseland,910,443,348,8,7
+neighborhoods: North Center,159,95,42,11,6
+neighborhoods: South Deering,242,141,93,6,6
+neighborhoods: East Side,117,60,33,2,2
+neighborhoods: West Pullman,416,210,187,6,4
+neighborhoods: Garfield Ridge,307,149,78,6,5
+neighborhoods: New City,587,240,238,3,3
+neighborhoods: Englewood,2022,742,695,49,39
+neighborhoods: Grand Crossing,995,534,376,26,17
+neighborhoods: Ashburn,243,145,73,6,3
+neighborhoods: Mount Greenwood,117,75,40,3,1
+neighborhoods: Morgan Park,314,178,96,18,14
+neighborhoods: O'Hare,11,3,3,0,0
+neighborhoods: Jackson Park,62,34,22,0,0
+neighborhoods: Loop,339,219,117,11,5
+neighborhoods: Woodlawn,413,200,175,0,0
+neighborhoods: Hermosa,47,29,14,0,0
+neighborhoods: Old Town,119,65,43,2,1
+neighborhoods: Near South Side,288,158,86,18,11
+"neighborhoods: Little Italy, UIC",281,163,51,12,6
+neighborhoods: Irving Park,194,113,57,3,2
+neighborhoods: Dunning,110,72,41,3,0
+neighborhoods: West Ridge,229,115,79,1,1
+neighborhoods: Uptown,301,172,103,2,2
+neighborhoods: Washington Park,269,166,97,0,0
+neighborhoods: Chicago Lawn,735,360,255,10,9
+neighborhoods: Washington Heights,322,144,112,5,2
+neighborhoods: East Village,21,13,0,3,2
+neighborhoods: Bucktown,43,28,9,0,0
+neighborhoods: Lower West Side,153,106,51,2,2
+neighborhoods: Wrigleyville,48,24,10,2,0
+neighborhoods: Archer Heights,83,54,33,2,2
+neighborhoods: Mckinley Park,100,58,42,1,0
+neighborhoods: Brighton Park,197,124,83,5,4
+neighborhoods: Bridgeport,224,132,74,5,3
+neighborhoods: Boystown,24,18,5,0,0
+neighborhoods: West Elsdon,47,36,21,0,0
+neighborhoods: Gage Park,190,115,79,0,0
+neighborhoods: Wicker Park,111,74,50,2,1
+neighborhoods: Galewood,34,27,8,3,3
+neighborhoods: Montclare,45,36,10,2,2
+neighborhoods: Belmont Cragin,471,257,110,15,8
+neighborhoods: Gold Coast,48,33,15,2,1
+neighborhoods: River North,369,182,112,15,11
+neighborhoods: Andersonville,15,13,6,2,2
+neighborhoods: Chinatown,22,14,8,0,0
+neighborhoods: West Town,152,104,60,0,0
+neighborhoods: Austin,1732,689,595,27,20
+neighborhoods: Clearing,104,64,36,4,2
+neighborhoods: West Lawn,63,35,15,2,1
+Community: LOGAN SQUARE,400,231,142,12,7
+Community: AVONDALE,140,80,63,0,0
+Community: AUSTIN,1766,705,603,30,23
+Community: WEST TOWN,446,282,170,6,4
+Community: LINCOLN SQUARE,147,102,39,7,4
+Community: KENWOOD,105,76,39,4,4
+Community: DUNNING,110,72,41,3,0
+Community: IRVING PARK,194,113,57,3,2
+Community: PORTAGE PARK,181,112,82,1,1
+Community: ALBANY PARK,171,88,54,3,3
+Community: NORTH PARK,43,22,17,0,0
+Community: FOREST GLEN,36,22,8,1,1
+Community: JEFFERSON PARK,153,111,57,11,7
+Community: ROGERS PARK,348,163,116,11,5
+Community: WOODLAWN,471,225,197,0,0
+Community: HYDE PARK,107,76,38,2,2
+Community: WEST RIDGE,229,115,79,1,1
+Community: UPTOWN,301,172,103,2,2
+Community: NORTH LAWNDALE,1058,474,384,40,24
+Community: NEAR WEST SIDE,664,396,187,31,17
+Community: NEAR SOUTH SIDE,303,162,89,18,11
+Community: CHATHAM,562,269,214,2,2
+Community: SOUTH SHORE,1028,521,468,11,9
+Community: LOOP,376,234,123,12,5
+Community: NEAR NORTH SIDE,698,317,215,22,15
+Community: NORWOOD PARK,142,89,40,8,4
+Community: SOUTH CHICAGO,578,294,221,8,5
+Community: LAKE VIEW,394,202,96,15,10
+Community: GARFIELD RIDGE,307,149,78,6,5
+Community: HEGEWISCH,97,55,36,2,2
+Community: RIVERDALE,147,101,48,5,3
+Community: WEST PULLMAN,416,210,187,6,4
+Community: EAST SIDE,117,60,33,2,2
+Community: SOUTH DEERING,242,141,93,6,6
+Community: NORTH CENTER,159,95,42,11,6
+Community: ROSELAND,910,443,348,8,7
+Community: NEW CITY,587,240,238,3,3
+Community: WEST LAWN,63,35,15,2,1
+Community: CLEARING,104,64,36,4,2
+Community: AUBURN GRESHAM,1099,456,349,29,17
+Community: ASHBURN,243,145,73,6,3
+Community: LINCOLN PARK,152,86,53,0,0
+Community: GREATER GRAND CROSSING,995,534,376,26,17
+Community: ENGLEWOOD,882,457,308,30,28
+Community: EDISON PARK,20,13,5,1,1
+Community: EDGEWATER,168,102,51,4,3
+Community: OHARE,11,3,3,0,0
+Community: MORGAN PARK,314,178,96,18,14
+Community: MOUNT GREENWOOD,117,75,40,3,1
+Community: WASHINGTON HEIGHTS,322,144,112,5,2
+Community: BEVERLY,129,97,32,6,6
+Community: WEST ENGLEWOOD,1140,496,387,19,11
+Community: CHICAGO LAWN,735,360,255,10,9
+Community: GAGE PARK,190,115,79,0,0
+Community: WEST ELSDON,47,36,21,0,0
+Community: BRIDGEPORT,224,132,74,5,3
+Community: MCKINLEY PARK,100,58,42,1,0
+Community: BURNSIDE,23,17,17,0,0
+Community: HERMOSA,47,29,14,0,0
+Community: BRIGHTON PARK,197,124,83,5,4
+Community: ARCHER HEIGHTS,83,54,33,2,2
+Community: PULLMAN,377,221,77,35,25
+Community: CALUMET HEIGHTS,137,97,39,3,3
+Community: AVALON PARK,150,106,42,4,2
+Community: ARMOUR SQUARE,88,57,27,2,0
+Community: LOWER WEST SIDE,153,106,51,2,2
+Community: SOUTH LAWNDALE,382,207,160,3,1
+Community: EAST GARFIELD PARK,741,362,207,30,22
+Community: WEST GARFIELD PARK,604,324,211,7,5
+Community: HUMBOLDT PARK,822,451,365,1,1
+Community: BELMONT CRAGIN,471,257,110,15,8
+Community: MONTCLARE,45,36,10,2,2
+Community: WASHINGTON PARK,269,166,97,0,0
+Community: GRAND BOULEVARD,275,157,87,6,4
+Community: FULLER PARK,343,216,92,25,17
+Community: OAKLAND,33,22,9,1,0
+Community: DOUGLAS,472,277,80,56,29
+neighborhoods: Logan Square,357,211,133,12,7
+neighborhoods: Beverly,129,97,32,6,6
