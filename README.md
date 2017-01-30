@@ -14,20 +14,21 @@ The original data and documents are all sourced directly from the Chicago Police
 
 [Read more about the process on the repository wiki.](https://github.com/invinst/chicago-police-data/wiki/Data-Sources)
 
+## If you are looking for the older folder setup:
 
-## What can I do?
+Check the Previous_Format folder. The current format is an attempt at being consistent with [Patrick Ball's talk on Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI)
 
 ### Using the data
 
-This repository exists so that the public can use the data in the interest of police accountability. Feel free to explore and ask questions and share your work. 
+This repository exists so that the public can use the data in the interest of police accountability. Feel free to explore and ask questions and share your work.
 
-You are welcome to contribute to existing research and analysis projects, posted on the repository's [Issue Tracker under the "independent projects" label](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22). If you would like to start a new project, we encourage you to create your own [new ticket](https://github.com/invinst/shootings-data/issues/new) (use the yellow "independent project" label) to collaborate with others. 
+You are welcome to contribute to existing research and analysis projects, posted on the repository's [Issue Tracker under the "independent projects" label](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22). If you would like to start a new project, we encourage you to create your own [new ticket](https://github.com/invinst/shootings-data/issues/new) (use the yellow "independent project" label) to collaborate with others.
 
 ### Contributing to this repository
 
-We want your help. 
+We want your help.
 
-Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see where help is needed. 
+Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see where help is needed.
 
 If you come across a problem with the repository, you can open a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the red "repo issue" label.
 
@@ -35,14 +36,14 @@ You are welcome to join our community and chat with us (the repo maintainers) vi
 
 ### I have a question
 
-If you have a question about the data, where the data comes from, or anything else related, open up a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the purple "question" label. 
+If you have a question about the data, where the data comes from, or anything else related, open up a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the purple "question" label.
 
 ## Overview of the datasets
 
-* **shootings-cpd-feb2016/** and **shootings-ipra-may2016/** -- records of shooting incidents obtained by the same FOIA request made to CPD and IPRA, respectively. 
-* **complaints-cpd-june2016/** and **complaints-ipra-apr2016/** -- records of complaints against officers obtained by the same FOIA request made to CPD and IPRA, respectively. 
+* **shootings-cpd-feb2016/** and **shootings-ipra-may2016/** -- records of shooting incidents obtained by the same FOIA request made to CPD and IPRA, respectively.
+* **complaints-cpd-june2016/** and **complaints-ipra-apr2016/** -- records of complaints against officers obtained by the same FOIA request made to CPD and IPRA, respectively.
 * **cpdb_complaints-cpd/** -- records of complaints against officers that are currently in the database used by Citizens Police Data Project
-* **open_investigations-ipra-portal/** -- open cases under investigation by IPRA made available on their data portal since June 3, 2016. The data has been scraped into machine-friendly formats to facilitate analysis. 
-* **context/** -- additional datasets to supplement analyses, including definitions of incident category codes and lists of CPD employees. 
+* **open_investigations-ipra-portal/** -- open cases under investigation by IPRA made available on their data portal since June 3, 2016. The data has been scraped into machine-friendly formats to facilitate analysis.
+* **context/** -- additional datasets to supplement analyses, including definitions of incident category codes and lists of CPD employees.
 
 [Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)
