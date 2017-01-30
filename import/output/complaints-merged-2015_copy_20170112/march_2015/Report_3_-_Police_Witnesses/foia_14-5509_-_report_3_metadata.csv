@@ -1,0 +1,6 @@
+Original_Dataset,Column_Name,Column_Info
+foia 14-5509 - report 3 - police officer witness data xi.xls,CRID,3172 non-null int64
+foia 14-5509 - report 3 - police officer witness data xi.xls,Officer_Witness,3171 non-null object
+foia 14-5509 - report 3 - police officer witness data xi.xls,Officer_Witness_Gender,3172 non-null object
+foia 14-5509 - report 3 - police officer witness data xi.xls,Officer_Witness_Race,3172 non-null object
+foia 14-5509 - report 3 - police officer witness data xi.xls,Officer_Witness_Star,2972 non-null object
