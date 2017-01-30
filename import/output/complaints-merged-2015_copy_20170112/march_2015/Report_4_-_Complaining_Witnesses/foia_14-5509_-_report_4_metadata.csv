@@ -1,0 +1,25 @@
+Original_Dataset,Column_Name,Column_Info
+foia 14-5509 - report 4a - complaining witness data.xls,CRID,2704 non-null int64
+foia 14-5509 - report 4a - complaining witness data.xls,Witness_Gender,2704 non-null object
+foia 14-5509 - report 4a - complaining witness data.xls,Witness_Race,2704 non-null object
+foia 14-5509 - report 4b - complaining witness data.xls,CRID,2365 non-null int64
+foia 14-5509 - report 4b - complaining witness data.xls,Witness_Gender,2365 non-null object
+foia 14-5509 - report 4b - complaining witness data.xls,Witness_Race,2365 non-null object
+foia 14-5509 - report 4c - complaining witness data.xls,CRID,2663 non-null int64
+foia 14-5509 - report 4c - complaining witness data.xls,Witness_Gender,2663 non-null object
+foia 14-5509 - report 4c - complaining witness data.xls,Witness_Race,2663 non-null object
+foia 14-5509 - report 4d - complaining witness data.xls,CRID,2003 non-null int64
+foia 14-5509 - report 4d - complaining witness data.xls,Witness_Gender,2003 non-null object
+foia 14-5509 - report 4d - complaining witness data.xls,Witness_Race,2003 non-null object
+foia 14-5509 - report 4e - complaining witness data.xls,CRID,2491 non-null int64
+foia 14-5509 - report 4e - complaining witness data.xls,Witness_Gender,2491 non-null object
+foia 14-5509 - report 4e - complaining witness data.xls,Witness_Race,2491 non-null object
+foia 14-5509 - report 4f - complaining witness data.xls,CRID,1764 non-null int64
+foia 14-5509 - report 4f - complaining witness data.xls,Witness_Gender,1764 non-null object
+foia 14-5509 - report 4f - complaining witness data.xls,Witness_Race,1764 non-null object
+foia 14-5509 - report 4g - complaining witness data.xls,CRID,2106 non-null int64
+foia 14-5509 - report 4g - complaining witness data.xls,Witness_Gender,2106 non-null object
+foia 14-5509 - report 4g - complaining witness data.xls,Witness_Race,2106 non-null object
+foia 14-5509 - report 4h - complaining witness data.xls,CRID,902 non-null int64
+foia 14-5509 - report 4h - complaining witness data.xls,Witness_Gender,902 non-null object
+foia 14-5509 - report 4h - complaining witness data.xls,Witness_Race,902 non-null object
