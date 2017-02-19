@@ -1,0 +1,7 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,CRID,13441,13238,int64
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,Witness_Gender,13441,3,object
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,Witness_Age,11675,7260,float64
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,Witness_Race,13441,8,object
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,FOIA_Request_Number,13441,1,object
+P046957 - report 5 - complainant (reporting party) data-unlocked.xlsx,Report_Produced_Date,13441,1,object

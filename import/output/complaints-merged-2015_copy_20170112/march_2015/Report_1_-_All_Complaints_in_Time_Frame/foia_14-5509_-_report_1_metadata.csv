@@ -1,89 +1,105 @@
-Original_Dataset,Column_Name,Column_Info
-foia 14-5509 - report 1a - all complaints in time frame.xls,CRID,2740 non-null int64
-foia 14-5509 - report 1a - all complaints in time frame.xls,Beat,2725 non-null float64
-foia 14-5509 - report 1a - all complaints in time frame.xls,Location_Code,2739 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,Address_of_Incident,2740 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,City,2740 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,State,2142 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,Zip,1075 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,Incident_Date,2740 non-null datetime64[ns]
-foia 14-5509 - report 1a - all complaints in time frame.xls,Complaint_Date,2740 non-null datetime64[ns]
-foia 14-5509 - report 1a - all complaints in time frame.xls,Closed_Date,2674 non-null object
-foia 14-5509 - report 1a - all complaints in time frame.xls,Investigator,2731 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,CRID,2443 non-null int64
-foia 14-5509 - report 1b - all complaints in time frame.xls,Beat,2424 non-null float64
-foia 14-5509 - report 1b - all complaints in time frame.xls,Location_Code,2442 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,Address_of_Incident,2443 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,City,2443 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,State,1939 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,Zip,1154 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,Incident_Date,2443 non-null datetime64[ns]
-foia 14-5509 - report 1b - all complaints in time frame.xls,Complaint_Date,2443 non-null datetime64[ns]
-foia 14-5509 - report 1b - all complaints in time frame.xls,Closed_Date,2352 non-null object
-foia 14-5509 - report 1b - all complaints in time frame.xls,Investigator,2402 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,CRID,2732 non-null int64
-foia 14-5509 - report 1c - all complaints in time frame.xls,Beat,2701 non-null float64
-foia 14-5509 - report 1c - all complaints in time frame.xls,Location_Code,2732 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,Address_of_Incident,2732 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,City,2732 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,State,2108 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,Zip,1590 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,Incident_Date,2732 non-null datetime64[ns]
-foia 14-5509 - report 1c - all complaints in time frame.xls,Complaint_Date,2732 non-null datetime64[ns]
-foia 14-5509 - report 1c - all complaints in time frame.xls,Closed_Date,2610 non-null object
-foia 14-5509 - report 1c - all complaints in time frame.xls,Investigator,2698 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,CRID,2098 non-null int64
-foia 14-5509 - report 1d - all complaints in time frame.xls,Beat,2077 non-null float64
-foia 14-5509 - report 1d - all complaints in time frame.xls,Location_Code,2098 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,Address_of_Incident,2098 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,City,2098 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,State,1593 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,Zip,914 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,Incident_Date,2098 non-null datetime64[ns]
-foia 14-5509 - report 1d - all complaints in time frame.xls,Complaint_Date,2098 non-null datetime64[ns]
-foia 14-5509 - report 1d - all complaints in time frame.xls,Closed_Date,1975 non-null object
-foia 14-5509 - report 1d - all complaints in time frame.xls,Investigator,2089 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,CRID,2533 non-null int64
-foia 14-5509 - report 1e - all complaints in time frame.xls,Beat,2517 non-null float64
-foia 14-5509 - report 1e - all complaints in time frame.xls,Location_Code,2533 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,Address_of_Incident,2533 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,City,2533 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,State,2088 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,Zip,1026 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,Incident_Date,2533 non-null datetime64[ns]
-foia 14-5509 - report 1e - all complaints in time frame.xls,Complaint_Date,2533 non-null datetime64[ns]
-foia 14-5509 - report 1e - all complaints in time frame.xls,Closed_Date,2290 non-null object
-foia 14-5509 - report 1e - all complaints in time frame.xls,Investigator,2521 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,CRID,1802 non-null int64
-foia 14-5509 - report 1f - all complaints in time frame.xls,Beat,1771 non-null float64
-foia 14-5509 - report 1f - all complaints in time frame.xls,Location_Code,1802 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,Address_of_Incident,1802 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,City,1802 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,State,1443 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,Zip,720 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,Incident_Date,1802 non-null datetime64[ns]
-foia 14-5509 - report 1f - all complaints in time frame.xls,Complaint_Date,1802 non-null datetime64[ns]
-foia 14-5509 - report 1f - all complaints in time frame.xls,Closed_Date,1569 non-null object
-foia 14-5509 - report 1f - all complaints in time frame.xls,Investigator,1791 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,CRID,2234 non-null int64
-foia 14-5509 - report 1g - all complaints in time frame.xls,Beat,2202 non-null float64
-foia 14-5509 - report 1g - all complaints in time frame.xls,Location_Code,2234 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,Address_of_Incident,2234 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,City,2234 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,State,1815 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,Zip,809 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,Incident_Date,2234 non-null datetime64[ns]
-foia 14-5509 - report 1g - all complaints in time frame.xls,Complaint_Date,2234 non-null datetime64[ns]
-foia 14-5509 - report 1g - all complaints in time frame.xls,Closed_Date,1796 non-null object
-foia 14-5509 - report 1g - all complaints in time frame.xls,Investigator,2205 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,CRID,1531 non-null int64
-foia 14-5509 - report 1h - all complaints in time frame.xls,Beat,1510 non-null float64
-foia 14-5509 - report 1h - all complaints in time frame.xls,Location_Code,1530 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,Address_of_Incident,1531 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,City,1531 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,State,1216 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,Zip,642 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,Incident_Date,1531 non-null datetime64[ns]
-foia 14-5509 - report 1h - all complaints in time frame.xls,Complaint_Date,1531 non-null datetime64[ns]
-foia 14-5509 - report 1h - all complaints in time frame.xls,Closed_Date,644 non-null object
-foia 14-5509 - report 1h - all complaints in time frame.xls,Investigator,1303 non-null object
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+foia 14-5509 - report 1a - all complaints in time frame.xls,CRID,2740,2739,int64
+foia 14-5509 - report 1a - all complaints in time frame.xls,Beat,2725,296,float64
+foia 14-5509 - report 1a - all complaints in time frame.xls,Location_Code,2739,20,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,Location_Value,2242,11,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,Address_of_Incident,2740,1713,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,City,2740,29,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,State,2142,4,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,Zip,1075,68,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,Incident_Date,2740,1923,datetime64[ns]
+foia 14-5509 - report 1a - all complaints in time frame.xls,Complaint_Date,2740,304,datetime64[ns]
+foia 14-5509 - report 1a - all complaints in time frame.xls,Closed_Date,2674,410,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,Investigator,2731,670,object
+foia 14-5509 - report 1a - all complaints in time frame.xls,FOIA_Request_Number,2740,1,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,CRID,2443,2441,int64
+foia 14-5509 - report 1b - all complaints in time frame.xls,Beat,2424,290,float64
+foia 14-5509 - report 1b - all complaints in time frame.xls,Location_Code,2442,21,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,Location_Value,1928,11,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,Address_of_Incident,2443,1520,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,City,2443,25,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,State,1939,8,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,Zip,1154,66,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,Incident_Date,2443,1728,datetime64[ns]
+foia 14-5509 - report 1b - all complaints in time frame.xls,Complaint_Date,2443,323,datetime64[ns]
+foia 14-5509 - report 1b - all complaints in time frame.xls,Closed_Date,2352,407,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,Investigator,2402,622,object
+foia 14-5509 - report 1b - all complaints in time frame.xls,FOIA_Request_Number,2443,1,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,CRID,2732,2731,int64
+foia 14-5509 - report 1c - all complaints in time frame.xls,Beat,2701,282,float64
+foia 14-5509 - report 1c - all complaints in time frame.xls,Location_Code,2732,19,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,Location_Value,2228,10,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,Address_of_Incident,2732,1721,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,City,2732,28,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,State,2108,3,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,Zip,1590,67,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,Incident_Date,2732,1687,datetime64[ns]
+foia 14-5509 - report 1c - all complaints in time frame.xls,Complaint_Date,2732,310,datetime64[ns]
+foia 14-5509 - report 1c - all complaints in time frame.xls,Closed_Date,2610,375,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,Investigator,2698,722,object
+foia 14-5509 - report 1c - all complaints in time frame.xls,FOIA_Request_Number,2732,1,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,CRID,2098,2098,int64
+foia 14-5509 - report 1d - all complaints in time frame.xls,Beat,2077,268,float64
+foia 14-5509 - report 1d - all complaints in time frame.xls,Location_Code,2098,19,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,Location_Value,1704,10,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,Address_of_Incident,2098,1290,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,City,2098,24,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,State,1593,5,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,Zip,914,65,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,Incident_Date,2098,1470,datetime64[ns]
+foia 14-5509 - report 1d - all complaints in time frame.xls,Complaint_Date,2098,292,datetime64[ns]
+foia 14-5509 - report 1d - all complaints in time frame.xls,Closed_Date,1975,332,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,Investigator,2089,637,object
+foia 14-5509 - report 1d - all complaints in time frame.xls,FOIA_Request_Number,2098,1,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,CRID,2533,2532,int64
+foia 14-5509 - report 1e - all complaints in time frame.xls,Beat,2517,271,float64
+foia 14-5509 - report 1e - all complaints in time frame.xls,Location_Code,2533,19,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,Location_Value,1892,10,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,Address_of_Incident,2533,1501,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,City,2533,28,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,State,2088,6,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,Zip,1026,72,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,Incident_Date,2533,2086,datetime64[ns]
+foia 14-5509 - report 1e - all complaints in time frame.xls,Complaint_Date,2533,291,datetime64[ns]
+foia 14-5509 - report 1e - all complaints in time frame.xls,Closed_Date,2290,310,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,Investigator,2521,682,object
+foia 14-5509 - report 1e - all complaints in time frame.xls,FOIA_Request_Number,2533,1,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,CRID,1802,1801,int64
+foia 14-5509 - report 1f - all complaints in time frame.xls,Beat,1771,265,float64
+foia 14-5509 - report 1f - all complaints in time frame.xls,Location_Code,1802,16,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,Location_Value,1460,8,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,Address_of_Incident,1802,1180,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,City,1802,25,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,State,1443,8,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,Zip,720,66,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,Incident_Date,1802,1685,datetime64[ns]
+foia 14-5509 - report 1f - all complaints in time frame.xls,Complaint_Date,1802,273,datetime64[ns]
+foia 14-5509 - report 1f - all complaints in time frame.xls,Closed_Date,1569,237,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,Investigator,1791,597,object
+foia 14-5509 - report 1f - all complaints in time frame.xls,FOIA_Request_Number,1802,1,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,CRID,2234,2233,int64
+foia 14-5509 - report 1g - all complaints in time frame.xls,Beat,2202,270,float64
+foia 14-5509 - report 1g - all complaints in time frame.xls,Location_Code,2234,19,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,Location_Value,1818,11,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,Address_of_Incident,2234,1475,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,City,2234,29,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,State,1815,6,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,Zip,809,68,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,Incident_Date,2234,2101,datetime64[ns]
+foia 14-5509 - report 1g - all complaints in time frame.xls,Complaint_Date,2234,242,datetime64[ns]
+foia 14-5509 - report 1g - all complaints in time frame.xls,Closed_Date,1796,206,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,Investigator,2205,701,object
+foia 14-5509 - report 1g - all complaints in time frame.xls,FOIA_Request_Number,2234,1,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,CRID,1531,1531,int64
+foia 14-5509 - report 1h - all complaints in time frame.xls,Beat,1510,261,float64
+foia 14-5509 - report 1h - all complaints in time frame.xls,Location_Code,1530,19,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,Location_Value,1172,10,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,Address_of_Incident,1531,937,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,City,1531,15,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,State,1216,5,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,Zip,642,65,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,Incident_Date,1531,1447,datetime64[ns]
+foia 14-5509 - report 1h - all complaints in time frame.xls,Complaint_Date,1531,180,datetime64[ns]
+foia 14-5509 - report 1h - all complaints in time frame.xls,Closed_Date,644,91,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,Investigator,1303,498,object
+foia 14-5509 - report 1h - all complaints in time frame.xls,FOIA_Request_Number,1531,1,object

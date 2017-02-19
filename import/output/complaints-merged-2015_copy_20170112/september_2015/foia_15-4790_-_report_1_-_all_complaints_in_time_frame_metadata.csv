@@ -1,0 +1,17 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+foia 15-4790 - report 1 - all complaints in time frame.xls,CRID,1424,1424,int64
+foia 15-4790 - report 1 - all complaints in time frame.xls,Beat,1410,256,float64
+foia 15-4790 - report 1 - all complaints in time frame.xls,Location_Code,1424,17,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Location_Value,1128,9,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Address_of_Incident,1424,905,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,City,1424,23,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,State,1133,7,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Zip,710,65,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Incident_Date,1424,1335,datetime64[ns]
+foia 15-4790 - report 1 - all complaints in time frame.xls,Complaint_Date,1424,168,datetime64[ns]
+foia 15-4790 - report 1 - all complaints in time frame.xls,Closed_Date,595,98,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Investigator_Full_Name,1236,510,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Investigator_Assignment,1236,53,float64
+foia 15-4790 - report 1 - all complaints in time frame.xls,Investigator_Rank,1236,16,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,FOIA_Request_Number,1424,1,object
+foia 15-4790 - report 1 - all complaints in time frame.xls,Report_Produced_Date,1424,1,object

@@ -1,0 +1,19 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+p046957 - report 5.1 - complainant (reporting party) data.xls,CRID,10184,9781,int64
+p046957 - report 5.1 - complainant (reporting party) data.xls,Witness_Gender,10184,3,object
+p046957 - report 5.1 - complainant (reporting party) data.xls,Witness_Age,8232,5905,float64
+p046957 - report 5.1 - complainant (reporting party) data.xls,Witness_Race,10184,8,object
+p046957 - report 5.1 - complainant (reporting party) data.xls,FOIA_Request_Number,10184,1,object
+p046957 - report 5.1 - complainant (reporting party) data.xls,Report_Produced_Date,10184,1,object
+p046957 - report 5.2 - complainant (reporting party) data.xls,CRID,22806,22280,int64
+p046957 - report 5.2 - complainant (reporting party) data.xls,Witness_Gender,22806,3,object
+p046957 - report 5.2 - complainant (reporting party) data.xls,Witness_Age,19456,10345,float64
+p046957 - report 5.2 - complainant (reporting party) data.xls,Witness_Race,22806,8,object
+p046957 - report 5.2 - complainant (reporting party) data.xls,FOIA_Request_Number,22806,1,object
+p046957 - report 5.2 - complainant (reporting party) data.xls,Report_Produced_Date,22806,1,object
+p046957 - report 5.3 - complainant (reporting party) data.xls,CRID,15224,14981,int64
+p046957 - report 5.3 - complainant (reporting party) data.xls,Witness_Gender,15224,3,object
+p046957 - report 5.3 - complainant (reporting party) data.xls,Witness_Age,13181,7876,float64
+p046957 - report 5.3 - complainant (reporting party) data.xls,Witness_Race,15224,8,object
+p046957 - report 5.3 - complainant (reporting party) data.xls,FOIA_Request_Number,15224,1,object
+p046957 - report 5.3 - complainant (reporting party) data.xls,Report_Produced_Date,15224,1,object

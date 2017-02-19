@@ -1,105 +1,121 @@
-Original_Dataset,Column_Name,Column_Info
-foia 14-5509 - report 2a - identified accused xi.xls,CRID,3241 non-null int64
-foia 14-5509 - report 2a - identified accused xi.xls,Accused,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Accused_Gender,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Accused_Race_Code,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Date_of_Appt,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Current_Unit,3240 non-null float64
-foia 14-5509 - report 2a - identified accused xi.xls,Current_Rank,3218 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Star,2956 non-null float64
-foia 14-5509 - report 2a - identified accused xi.xls,Complaint_Category,3114 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Orig_Finding,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Orig_Recommended_Discipline,3012 non-null float64
-foia 14-5509 - report 2a - identified accused xi.xls,Final_Finding,3241 non-null object
-foia 14-5509 - report 2a - identified accused xi.xls,Final_Recommended_Discipline,3007 non-null float64
-foia 14-5509 - report 2b - identified accused xi.xls,CRID,2721 non-null int64
-foia 14-5509 - report 2b - identified accused xi.xls,Accused,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Accused_Gender,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Accused_Race_Code,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Date_of_Appt,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Current_Unit,2721 non-null float64
-foia 14-5509 - report 2b - identified accused xi.xls,Current_Rank,2699 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Star,2542 non-null float64
-foia 14-5509 - report 2b - identified accused xi.xls,Complaint_Category,2604 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Orig_Finding,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Orig_Recommended_Discipline,2444 non-null float64
-foia 14-5509 - report 2b - identified accused xi.xls,Final_Finding,2721 non-null object
-foia 14-5509 - report 2b - identified accused xi.xls,Final_Recommended_Discipline,2444 non-null float64
-foia 14-5509 - report 2c - identified accused xi.xls,CRID,2969 non-null int64
-foia 14-5509 - report 2c - identified accused xi.xls,Accused,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Accused_Gender,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Accused_Race_Code,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Date_of_Appt,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Current_Unit,2969 non-null float64
-foia 14-5509 - report 2c - identified accused xi.xls,Current_Rank,2949 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Star,2793 non-null float64
-foia 14-5509 - report 2c - identified accused xi.xls,Complaint_Category,2782 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Orig_Finding,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Orig_Recommended_Discipline,2504 non-null float64
-foia 14-5509 - report 2c - identified accused xi.xls,Final_Finding,2969 non-null object
-foia 14-5509 - report 2c - identified accused xi.xls,Final_Recommended_Discipline,2508 non-null float64
-foia 14-5509 - report 2d - identified accused xi.xls,CRID,2270 non-null int64
-foia 14-5509 - report 2d - identified accused xi.xls,Accused,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Accused_Gender,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Accused_Race_Code,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Date_of_Appt,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Current_Unit,2270 non-null float64
-foia 14-5509 - report 2d - identified accused xi.xls,Current_Rank,2257 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Star,2182 non-null float64
-foia 14-5509 - report 2d - identified accused xi.xls,Complaint_Category,2126 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Orig_Finding,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Orig_Recommended_Discipline,1980 non-null float64
-foia 14-5509 - report 2d - identified accused xi.xls,Final_Finding,2270 non-null object
-foia 14-5509 - report 2d - identified accused xi.xls,Final_Recommended_Discipline,1974 non-null float64
-foia 14-5509 - report 2e - identified accused xi.xls,CRID,2701 non-null int64
-foia 14-5509 - report 2e - identified accused xi.xls,Accused,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Accused_Gender,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Accused_Race_Code,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Date_of_Appt,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Current_Unit,2701 non-null float64
-foia 14-5509 - report 2e - identified accused xi.xls,Current_Rank,2686 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Star,2592 non-null float64
-foia 14-5509 - report 2e - identified accused xi.xls,Complaint_Category,2448 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Orig_Finding,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Orig_Recommended_Discipline,2214 non-null float64
-foia 14-5509 - report 2e - identified accused xi.xls,Final_Finding,2701 non-null object
-foia 14-5509 - report 2e - identified accused xi.xls,Final_Recommended_Discipline,2210 non-null float64
-foia 14-5509 - report 2f - identified accused xi.xls,CRID,2038 non-null int64
-foia 14-5509 - report 2f - identified accused xi.xls,Accused,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Accused_Gender,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Accused_Race_Code,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Date_of_Appt,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Current_Unit,2038 non-null float64
-foia 14-5509 - report 2f - identified accused xi.xls,Current_Rank,2030 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Star,1995 non-null float64
-foia 14-5509 - report 2f - identified accused xi.xls,Complaint_Category,1772 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Orig_Finding,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Orig_Recommended_Discipline,1668 non-null float64
-foia 14-5509 - report 2f - identified accused xi.xls,Final_Finding,2038 non-null object
-foia 14-5509 - report 2f - identified accused xi.xls,Final_Recommended_Discipline,1663 non-null float64
-foia 14-5509 - report 2g - identified accused xi.xls,CRID,2302 non-null int64
-foia 14-5509 - report 2g - identified accused xi.xls,Accused,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Accused_Gender,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Accused_Race_Code,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Date_of_Appt,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Current_Unit,2302 non-null float64
-foia 14-5509 - report 2g - identified accused xi.xls,Current_Rank,2291 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Star,2248 non-null float64
-foia 14-5509 - report 2g - identified accused xi.xls,Complaint_Category,1833 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Orig_Finding,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Orig_Recommended_Discipline,1701 non-null float64
-foia 14-5509 - report 2g - identified accused xi.xls,Final_Finding,2302 non-null object
-foia 14-5509 - report 2g - identified accused xi.xls,Final_Recommended_Discipline,1698 non-null float64
-foia 14-5509 - report 2h - identified accused xi.xls,CRID,1206 non-null int64
-foia 14-5509 - report 2h - identified accused xi.xls,Accused,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Accused_Gender,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Accused_Race_Code,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Date_of_Appt,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Current_Unit,1206 non-null float64
-foia 14-5509 - report 2h - identified accused xi.xls,Current_Rank,1201 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Star,1188 non-null float64
-foia 14-5509 - report 2h - identified accused xi.xls,Complaint_Category,617 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Orig_Finding,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Orig_Recommended_Discipline,524 non-null float64
-foia 14-5509 - report 2h - identified accused xi.xls,Final_Finding,1206 non-null object
-foia 14-5509 - report 2h - identified accused xi.xls,Final_Recommended_Discipline,524 non-null float64
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+foia 14-5509 - report 2a - identified accused xi.xls,CRID,3241,1772,int64
+foia 14-5509 - report 2a - identified accused xi.xls,Accused,3241,2430,object
+foia 14-5509 - report 2a - identified accused xi.xls,Accused_Gender,3241,2,object
+foia 14-5509 - report 2a - identified accused xi.xls,Accused_Race_Code,3241,6,object
+foia 14-5509 - report 2a - identified accused xi.xls,Date_of_Appt,3241,195,object
+foia 14-5509 - report 2a - identified accused xi.xls,Current_Unit,3240,99,float64
+foia 14-5509 - report 2a - identified accused xi.xls,Current_Rank,3218,10,object
+foia 14-5509 - report 2a - identified accused xi.xls,Star,2956,2210,float64
+foia 14-5509 - report 2a - identified accused xi.xls,Complaint_Category,3114,82,object
+foia 14-5509 - report 2a - identified accused xi.xls,Orig_Finding,3241,6,object
+foia 14-5509 - report 2a - identified accused xi.xls,Orig_Recommended_Discipline,3012,17,float64
+foia 14-5509 - report 2a - identified accused xi.xls,Final_Finding,3241,6,object
+foia 14-5509 - report 2a - identified accused xi.xls,Final_Recommended_Discipline,3007,22,float64
+foia 14-5509 - report 2a - identified accused xi.xls,FOIA_Request_Number,3241,1,object
+foia 14-5509 - report 2a - identified accused xi.xls,Report_Produced_Date,3241,1,object
+foia 14-5509 - report 2b - identified accused xi.xls,CRID,2721,1515,int64
+foia 14-5509 - report 2b - identified accused xi.xls,Accused,2721,2057,object
+foia 14-5509 - report 2b - identified accused xi.xls,Accused_Gender,2721,2,object
+foia 14-5509 - report 2b - identified accused xi.xls,Accused_Race_Code,2721,6,object
+foia 14-5509 - report 2b - identified accused xi.xls,Date_of_Appt,2721,192,object
+foia 14-5509 - report 2b - identified accused xi.xls,Current_Unit,2721,91,float64
+foia 14-5509 - report 2b - identified accused xi.xls,Current_Rank,2699,10,object
+foia 14-5509 - report 2b - identified accused xi.xls,Star,2542,1919,float64
+foia 14-5509 - report 2b - identified accused xi.xls,Complaint_Category,2604,75,object
+foia 14-5509 - report 2b - identified accused xi.xls,Orig_Finding,2721,6,object
+foia 14-5509 - report 2b - identified accused xi.xls,Orig_Recommended_Discipline,2444,16,float64
+foia 14-5509 - report 2b - identified accused xi.xls,Final_Finding,2721,6,object
+foia 14-5509 - report 2b - identified accused xi.xls,Final_Recommended_Discipline,2444,18,float64
+foia 14-5509 - report 2b - identified accused xi.xls,FOIA_Request_Number,2721,1,object
+foia 14-5509 - report 2b - identified accused xi.xls,Report_Produced_Date,2721,1,object
+foia 14-5509 - report 2c - identified accused xi.xls,CRID,2969,1606,int64
+foia 14-5509 - report 2c - identified accused xi.xls,Accused,2969,2211,object
+foia 14-5509 - report 2c - identified accused xi.xls,Accused_Gender,2969,2,object
+foia 14-5509 - report 2c - identified accused xi.xls,Accused_Race_Code,2969,6,object
+foia 14-5509 - report 2c - identified accused xi.xls,Date_of_Appt,2969,189,object
+foia 14-5509 - report 2c - identified accused xi.xls,Current_Unit,2969,83,float64
+foia 14-5509 - report 2c - identified accused xi.xls,Current_Rank,2949,10,object
+foia 14-5509 - report 2c - identified accused xi.xls,Star,2793,2078,float64
+foia 14-5509 - report 2c - identified accused xi.xls,Complaint_Category,2782,75,object
+foia 14-5509 - report 2c - identified accused xi.xls,Orig_Finding,2969,6,object
+foia 14-5509 - report 2c - identified accused xi.xls,Orig_Recommended_Discipline,2504,20,float64
+foia 14-5509 - report 2c - identified accused xi.xls,Final_Finding,2969,6,object
+foia 14-5509 - report 2c - identified accused xi.xls,Final_Recommended_Discipline,2508,18,float64
+foia 14-5509 - report 2c - identified accused xi.xls,FOIA_Request_Number,2969,1,object
+foia 14-5509 - report 2c - identified accused xi.xls,Report_Produced_Date,2969,1,object
+foia 14-5509 - report 2d - identified accused xi.xls,CRID,2270,1238,int64
+foia 14-5509 - report 2d - identified accused xi.xls,Accused,2270,1821,object
+foia 14-5509 - report 2d - identified accused xi.xls,Accused_Gender,2270,2,object
+foia 14-5509 - report 2d - identified accused xi.xls,Accused_Race_Code,2270,6,object
+foia 14-5509 - report 2d - identified accused xi.xls,Date_of_Appt,2270,191,object
+foia 14-5509 - report 2d - identified accused xi.xls,Current_Unit,2270,83,float64
+foia 14-5509 - report 2d - identified accused xi.xls,Current_Rank,2257,9,object
+foia 14-5509 - report 2d - identified accused xi.xls,Star,2182,1747,float64
+foia 14-5509 - report 2d - identified accused xi.xls,Complaint_Category,2126,75,object
+foia 14-5509 - report 2d - identified accused xi.xls,Orig_Finding,2270,6,object
+foia 14-5509 - report 2d - identified accused xi.xls,Orig_Recommended_Discipline,1980,17,float64
+foia 14-5509 - report 2d - identified accused xi.xls,Final_Finding,2270,6,object
+foia 14-5509 - report 2d - identified accused xi.xls,Final_Recommended_Discipline,1974,18,float64
+foia 14-5509 - report 2d - identified accused xi.xls,FOIA_Request_Number,2270,1,object
+foia 14-5509 - report 2d - identified accused xi.xls,Report_Produced_Date,2270,1,object
+foia 14-5509 - report 2e - identified accused xi.xls,CRID,2701,1546,int64
+foia 14-5509 - report 2e - identified accused xi.xls,Accused,2701,2088,object
+foia 14-5509 - report 2e - identified accused xi.xls,Accused_Gender,2701,2,object
+foia 14-5509 - report 2e - identified accused xi.xls,Accused_Race_Code,2701,6,object
+foia 14-5509 - report 2e - identified accused xi.xls,Date_of_Appt,2701,201,object
+foia 14-5509 - report 2e - identified accused xi.xls,Current_Unit,2701,81,float64
+foia 14-5509 - report 2e - identified accused xi.xls,Current_Rank,2686,8,object
+foia 14-5509 - report 2e - identified accused xi.xls,Star,2592,2005,float64
+foia 14-5509 - report 2e - identified accused xi.xls,Complaint_Category,2448,71,object
+foia 14-5509 - report 2e - identified accused xi.xls,Orig_Finding,2701,6,object
+foia 14-5509 - report 2e - identified accused xi.xls,Orig_Recommended_Discipline,2214,16,float64
+foia 14-5509 - report 2e - identified accused xi.xls,Final_Finding,2701,6,object
+foia 14-5509 - report 2e - identified accused xi.xls,Final_Recommended_Discipline,2210,20,float64
+foia 14-5509 - report 2e - identified accused xi.xls,FOIA_Request_Number,2701,1,object
+foia 14-5509 - report 2e - identified accused xi.xls,Report_Produced_Date,2701,1,object
+foia 14-5509 - report 2f - identified accused xi.xls,CRID,2038,1102,int64
+foia 14-5509 - report 2f - identified accused xi.xls,Accused,2038,1669,object
+foia 14-5509 - report 2f - identified accused xi.xls,Accused_Gender,2038,2,object
+foia 14-5509 - report 2f - identified accused xi.xls,Accused_Race_Code,2038,6,object
+foia 14-5509 - report 2f - identified accused xi.xls,Date_of_Appt,2038,196,object
+foia 14-5509 - report 2f - identified accused xi.xls,Current_Unit,2038,75,float64
+foia 14-5509 - report 2f - identified accused xi.xls,Current_Rank,2030,8,object
+foia 14-5509 - report 2f - identified accused xi.xls,Star,1995,1635,float64
+foia 14-5509 - report 2f - identified accused xi.xls,Complaint_Category,1772,61,object
+foia 14-5509 - report 2f - identified accused xi.xls,Orig_Finding,2038,6,object
+foia 14-5509 - report 2f - identified accused xi.xls,Orig_Recommended_Discipline,1668,13,float64
+foia 14-5509 - report 2f - identified accused xi.xls,Final_Finding,2038,6,object
+foia 14-5509 - report 2f - identified accused xi.xls,Final_Recommended_Discipline,1663,10,float64
+foia 14-5509 - report 2f - identified accused xi.xls,FOIA_Request_Number,2038,1,object
+foia 14-5509 - report 2f - identified accused xi.xls,Report_Produced_Date,2038,1,object
+foia 14-5509 - report 2g - identified accused xi.xls,CRID,2302,1270,int64
+foia 14-5509 - report 2g - identified accused xi.xls,Accused,2302,1830,object
+foia 14-5509 - report 2g - identified accused xi.xls,Accused_Gender,2302,2,object
+foia 14-5509 - report 2g - identified accused xi.xls,Accused_Race_Code,2302,6,object
+foia 14-5509 - report 2g - identified accused xi.xls,Date_of_Appt,2302,200,object
+foia 14-5509 - report 2g - identified accused xi.xls,Current_Unit,2302,79,float64
+foia 14-5509 - report 2g - identified accused xi.xls,Current_Rank,2291,9,object
+foia 14-5509 - report 2g - identified accused xi.xls,Star,2248,1790,float64
+foia 14-5509 - report 2g - identified accused xi.xls,Complaint_Category,1833,62,object
+foia 14-5509 - report 2g - identified accused xi.xls,Orig_Finding,2302,6,object
+foia 14-5509 - report 2g - identified accused xi.xls,Orig_Recommended_Discipline,1701,11,float64
+foia 14-5509 - report 2g - identified accused xi.xls,Final_Finding,2302,6,object
+foia 14-5509 - report 2g - identified accused xi.xls,Final_Recommended_Discipline,1698,8,float64
+foia 14-5509 - report 2g - identified accused xi.xls,FOIA_Request_Number,2302,1,object
+foia 14-5509 - report 2g - identified accused xi.xls,Report_Produced_Date,2302,1,object
+foia 14-5509 - report 2h - identified accused xi.xls,CRID,1206,719,int64
+foia 14-5509 - report 2h - identified accused xi.xls,Accused,1206,1047,object
+foia 14-5509 - report 2h - identified accused xi.xls,Accused_Gender,1206,2,object
+foia 14-5509 - report 2h - identified accused xi.xls,Accused_Race_Code,1206,6,object
+foia 14-5509 - report 2h - identified accused xi.xls,Date_of_Appt,1206,194,object
+foia 14-5509 - report 2h - identified accused xi.xls,Current_Unit,1206,67,float64
+foia 14-5509 - report 2h - identified accused xi.xls,Current_Rank,1201,8,object
+foia 14-5509 - report 2h - identified accused xi.xls,Star,1188,1036,float64
+foia 14-5509 - report 2h - identified accused xi.xls,Complaint_Category,617,39,object
+foia 14-5509 - report 2h - identified accused xi.xls,Orig_Finding,1206,6,object
+foia 14-5509 - report 2h - identified accused xi.xls,Orig_Recommended_Discipline,524,4,float64
+foia 14-5509 - report 2h - identified accused xi.xls,Final_Finding,1206,6,object
+foia 14-5509 - report 2h - identified accused xi.xls,Final_Recommended_Discipline,524,3,float64
+foia 14-5509 - report 2h - identified accused xi.xls,FOIA_Request_Number,1206,1,object
+foia 14-5509 - report 2h - identified accused xi.xls,Report_Produced_Date,1206,1,object
