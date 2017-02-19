@@ -3,7 +3,7 @@
 ###################
 *.RData
 .Rhistory
-*.ipynb
+##*.ipynb
 
 ############
 # packages #
