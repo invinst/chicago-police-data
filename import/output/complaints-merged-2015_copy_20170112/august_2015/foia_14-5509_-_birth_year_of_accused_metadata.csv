@@ -1,0 +1,5 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+FOIA 14-5509 - birth year of accused.xls,Accused_Full_Name,7392,7392,object
+FOIA 14-5509 - birth year of accused.xls,Year_of_Birth,7274,74,float64
+FOIA 14-5509 - birth year of accused.xls,FOIA_Request_Number,7392,1,object
+FOIA 14-5509 - birth year of accused.xls,Report_Produced_Date,7392,1,object

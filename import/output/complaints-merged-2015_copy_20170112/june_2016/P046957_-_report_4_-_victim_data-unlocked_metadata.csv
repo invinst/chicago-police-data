@@ -1,0 +1,7 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+P046957 - report 4 - victim data-unlocked.xlsx,CRID,7279,6271,int64
+P046957 - report 4 - victim data-unlocked.xlsx,Victim_Gender,7279,3,object
+P046957 - report 4 - victim data-unlocked.xlsx,Victim_Age,5889,4760,float64
+P046957 - report 4 - victim data-unlocked.xlsx,Victim_Race,7279,8,object
+P046957 - report 4 - victim data-unlocked.xlsx,FOIA_Request_Number,7279,1,object
+P046957 - report 4 - victim data-unlocked.xlsx,Report_Produced_Date,7279,1,object

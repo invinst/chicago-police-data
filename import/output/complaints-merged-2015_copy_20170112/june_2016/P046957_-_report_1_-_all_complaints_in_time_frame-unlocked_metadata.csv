@@ -1,0 +1,19 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,CRID,17052,16531,int64
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Beat,16878,287,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Location_Code,17050,23,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Location_Value,16646,20,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Address_of_Incident,17052,8805,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,City,17052,132,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,State,13493,19,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Zip,7752,130,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Incident_Date,17052,14029,datetime64[ns]
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Complaint_Date,17052,1489,datetime64[ns]
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Closed_Date,15202,947,datetime64[ns]
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Investigator_Full_Name,16278,1467,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Investigator_Assignment,16278,97,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Investigator_Rank,16278,23,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Investigator_Star,11742,1210,float64
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Investigator_Appt_Date,16228,229,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,FOIA_Request_Number,17052,1,object
+P046957 - report 1 - all complaints in time frame-unlocked.xlsx,Report_Produced_Date,17052,1,object

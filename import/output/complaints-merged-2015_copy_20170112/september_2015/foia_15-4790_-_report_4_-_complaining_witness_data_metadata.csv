@@ -1,0 +1,7 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+foia 15-4790 - report 4 - complaining witness data.xls,CRID,17198,16961,int64
+foia 15-4790 - report 4 - complaining witness data.xls,Witness_Gender,17198,3,object
+foia 15-4790 - report 4 - complaining witness data.xls,Witness_Age,15020,8733,object
+foia 15-4790 - report 4 - complaining witness data.xls,Witness_Race,17198,8,object
+foia 15-4790 - report 4 - complaining witness data.xls,FOIA_Request_Number,17198,1,object
+foia 15-4790 - report 4 - complaining witness data.xls,Report_Produced_Date,17198,1,object

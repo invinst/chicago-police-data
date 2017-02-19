@@ -1,0 +1,17 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+foia 15-4790 - report 2 - identified accused xi.xls,CRID,1069,691,int64
+foia 15-4790 - report 2 - identified accused xi.xls,Accused,1069,942,object
+foia 15-4790 - report 2 - identified accused xi.xls,Accused_Birth_Year,1069,41,float64
+foia 15-4790 - report 2 - identified accused xi.xls,Accused_Gender,1069,2,object
+foia 15-4790 - report 2 - identified accused xi.xls,Accused_Race_Code,1069,6,object
+foia 15-4790 - report 2 - identified accused xi.xls,Date_of_Appt,1069,194,object
+foia 15-4790 - report 2 - identified accused xi.xls,Current_Unit,1069,70,float64
+foia 15-4790 - report 2 - identified accused xi.xls,Current_Rank,1064,8,object
+foia 15-4790 - report 2 - identified accused xi.xls,Star,1043,920,float64
+foia 15-4790 - report 2 - identified accused xi.xls,Complaint_Category,574,45,object
+foia 15-4790 - report 2 - identified accused xi.xls,Orig_Finding,1069,6,object
+foia 15-4790 - report 2 - identified accused xi.xls,Orig_Recommended_Discipline,504,13,float64
+foia 15-4790 - report 2 - identified accused xi.xls,Final_Finding,1069,6,object
+foia 15-4790 - report 2 - identified accused xi.xls,Final_Recommended_Discipline,435,6,float64
+foia 15-4790 - report 2 - identified accused xi.xls,FOIA_Request_Number,1069,1,object
+foia 15-4790 - report 2 - identified accused xi.xls,Report_Produced_Date,1069,1,object

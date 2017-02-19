@@ -1,0 +1,7 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+IPRA Investigators' Info.xls,Investigator_Name,144,144,object
+IPRA Investigators' Info.xls,Investigator_Rank,144,29,object
+IPRA Investigators' Info.xls,Investigator_City_Hire_Date,142,118,object
+IPRA Investigators' Info.xls,Investigator_IPRA_Hire_Date,142,118,object
+IPRA Investigators' Info.xls,Investigator_Employment_Status,144,10,object
+IPRA Investigators' Info.xls,Investigator_Left_Date,66,61,object

@@ -1,0 +1,9 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,CRID,59585,32829,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_Witness_or_Witness,59585,2,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_Last_Name,18346,5884,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_First_Name,18346,1707,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Star,17137,9133,float64
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_Gender,41230,4,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_Birth_Year,41238,105,object
+NEW WITNESS FILE NOV 29 2016 - no emp number.csv,Officer_Race,41228,9,object
