@@ -1,0 +1,13 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+18A - 4 -  cpd witness(1).xls,CRID,131,45,int64
+18A - 4 -  cpd witness(1).xls,Officer_Witness,131,128,object
+18A - 4 -  cpd witness(1).xls,FOIA_Request_Number,131,1,object
+18A - 4 -  cpd witness(1).xls,Report_Produced_Date,131,1,object
+18b - 4 - cpd witness(1)Updated Info.xls,CRID,6,2,int64
+18b - 4 - cpd witness(1)Updated Info.xls,Officer_Witness,5,6,object
+18b - 4 - cpd witness(1)Updated Info.xls,FOIA_Request_Number,6,1,object
+18b - 4 - cpd witness(1)Updated Info.xls,Report_Produced_Date,6,1,object
+20A - 4 - cpd Witness(1).xls,CRID,47,32,int64
+20A - 4 - cpd Witness(1).xls,Officer_Witness,47,46,object
+20A - 4 - cpd Witness(1).xls,FOIA_Request_Number,47,1,object
+20A - 4 - cpd Witness(1).xls,Report_Produced_Date,47,1,object

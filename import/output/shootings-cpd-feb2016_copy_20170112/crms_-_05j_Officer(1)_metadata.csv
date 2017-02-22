@@ -1,0 +1,16 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+crms - 05j Officer(1).xls,CRID,9,8,int64
+crms - 05j Officer(1).xls,Officer,9,9,object
+crms - 05j Officer(1).xls,Star,8,9,float64
+crms - 05j Officer(1).xls,Gender,9,1,object
+crms - 05j Officer(1).xls,Race,9,3,object
+crms - 05j Officer(1).xls,Age,9,7,float64
+crms - 05j Officer(1).xls,Unit,9,8,float64
+crms - 05j Officer(1).xls,Position,9,1,object
+crms - 05j Officer(1).xls,Appointment_Date,9,9,object
+crms - 05j Officer(1).xls,Recommended_Finding,1,2,object
+crms - 05j Officer(1).xls,Final_Finding,4,4,object
+crms - 05j Officer(1).xls,Recommended_Action,1,2,object
+crms - 05j Officer(1).xls,Final_Action,3,3,object
+crms - 05j Officer(1).xls,FOIA_Request_Number,9,1,object
+crms - 05j Officer(1).xls,Report_Produced_Date,9,1,object

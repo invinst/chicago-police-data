@@ -1,5 +1,62 @@
-Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
-IPRA Investigators' Info.xls,CRID,61,61,float64
-IPRA Investigators' Info.xls,Investigator_Last_Name,61,59,object
-IPRA Investigators' Info.xls,Investigator_First_name,61,58,object
-IPRA Investigators' Info.xls,Investigator_Rank,61,7,object
+CRID,Investigator_Last_Name,Investigator_First_name,Investigator_Rank
+1.0,Fairley,Sharon,Chief Administrator
+4.0,Grba,Mark,Deputy Chief/Chief Investigator
+6.0,Westensee,Jay,Deputy Chief/Chief Investigator
+12.0,Querfurth,Patrick,Supervising Investigator
+13.0,Stoutenborough,Andrea,Coordinator of Investigations
+14.0,Olvera,Maria Elena,Supervising Investigator
+16.0,Dean,Bruce,Supervising Investigator
+21.0,Hitt,Mark,Supervising Investigator
+22.0,Serio,Alexis,Supervising Investigator
+26.0,Daun,Sherry,Supervising Investigator
+28.0,Hunt,Josh,Supervising Investigator
+105.0,Chico,Alice,Investigator III
+106.0,Kuykendoll,Anita,Investigator III
+107.0,Vazquez,Aurora,Investigator II
+108.0,Messenger,Veronica,Investigator III
+109.0,Goldston,Michael,Investigator III
+110.0,Wilson,Grace,Investigator III
+111.0,Cosey,Robert,Investigator III
+112.0,Webb,Maira,Investigator III
+113.0,Sanders,Erica,Investigator III
+114.0,Richmond,Johnna,Investigator II
+115.0,Anaele,Benedict,Investigator III
+116.0,Franko,Linda,Investigator II
+117.0,Lukas,James,Investigator III
+118.0,Soto,Roberto,Investigator III
+119.0,Jackson,Angela,Investigator II
+120.0,Lett,Kelvin,Investigator II
+122.0,White,LaKenya,Investigator II
+123.0,Lyons,Kristi,Investigator III
+124.0,Bowens,Darren,Investigator II
+125.0,Williams,Tiffany,Investigator II
+126.0,Reynolds,Kymberly,Investigator II
+127.0,Goodwin,Jeanne Alyse,Investigator II
+128.0,Delaney,Richard,Investigator II
+129.0,Killen,Brian,Investigator III
+130.0,Davis,Lakeisha,Investigator III
+131.0,Neal,Wilbert,Investigator III
+132.0,Carter,Shykela,Investigator III
+133.0,Kamalick,Dennis,Investigator III
+134.0,Sanchez,Jessica,Investigator III
+136.0,Kobel,Daniel,Investigator II
+137.0,Hayes,Shannon,Investigator III
+138.0,Davis,Theresa,Investigator II
+139.0,Thomas,Artra,Investigator II
+140.0,Hendricks,Ramona,Investigator II
+141.0,Jones,Vincent,Investigator II
+142.0,Nufio,Oscar,Investigator II
+149.0,Kalantzis,Thomas,Investigator II
+150.0,Sheets,Frank,Investigator II
+152.0,Oliveri,Caterina,Investigator II
+154.0,Neubeck,Daniel,Investigator II
+159.0,Morley,Chantall,Investigator II
+160.0,Jackson,Tyrone,Investigator II
+170.0,Abbruzzese,William,Investigator II
+172.0,Hill,Chantelle,Investigator I
+173.0,Mack,Gina,Investigator I
+174.0,Prieto,Dennis,Investigator II
+175.0,Clark,Tammy,Investigator II
+176.0,Salinas-Lopez,Luis,Investigator I
+177.0,Addington,Marc,Investigator I
+179.0,Pfeifer,Adam,Investigator I

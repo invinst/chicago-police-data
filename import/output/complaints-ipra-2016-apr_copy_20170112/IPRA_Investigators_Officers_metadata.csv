@@ -1,0 +1,5 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+IPRA Investigators' Info.xls,CRID,61,61,float64
+IPRA Investigators' Info.xls,Investigator_Last_Name,61,59,object
+IPRA Investigators' Info.xls,Investigator_First_name,61,58,object
+IPRA Investigators' Info.xls,Investigator_Rank,61,7,object
