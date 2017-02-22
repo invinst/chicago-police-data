@@ -1,0 +1,13 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+18A - 3 -  Involved Member(1).xls,CRID,149,77,int64
+18A - 3 -  Involved Member(1).xls,Involved_Officer,149,148,object
+18A - 3 -  Involved Member(1).xls,FOIA_Request_Number,149,1,object
+18A - 3 -  Involved Member(1).xls,Report_Produced_Date,149,1,object
+18b - 3 - Involved Member(1).xls,CRID,14,14,int64
+18b - 3 - Involved Member(1).xls,Involved_Officer,14,14,object
+18b - 3 - Involved Member(1).xls,FOIA_Request_Number,14,1,object
+18b - 3 - Involved Member(1).xls,Report_Produced_Date,14,1,object
+20A - 3 -  Involved Member(1).xls,CRID,398,287,int64
+20A - 3 -  Involved Member(1).xls,Involved_Officer,398,353,object
+20A - 3 -  Involved Member(1).xls,FOIA_Request_Number,398,1,object
+20A - 3 -  Involved Member(1).xls,Report_Produced_Date,398,1,object

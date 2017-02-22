@@ -1,0 +1,19 @@
+Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+stars for 18a - involved members(1).xls,Officer_Last_Name,158,137,object
+stars for 18a - involved members(1).xls,Officer_First_Name,158,102,object
+stars for 18a - involved members(1).xls,Star,158,143,int64
+stars for 18a - involved members(1).xls,Officer_Description,158,8,object
+stars for 18a - involved members(1).xls,FOIA_Request_Number,158,1,object
+stars for 18a - involved members(1).xls,Report_Produced_Date,158,1,object
+stars for 18b - involved members(1).xls,Officer_Last_Name,7,6,object
+stars for 18b - involved members(1).xls,Officer_First_Name,7,6,object
+stars for 18b - involved members(1).xls,Star,7,6,int64
+stars for 18b - involved members(1).xls,Officer_Description,7,3,object
+stars for 18b - involved members(1).xls,FOIA_Request_Number,7,1,object
+stars for 18b - involved members(1).xls,Report_Produced_Date,7,1,object
+stars for 20a - involved members(1).xls,Officer_Last_Name,362,301,object
+stars for 20a - involved members(1).xls,Officer_First_Name,362,200,object
+stars for 20a - involved members(1).xls,Star,362,330,int64
+stars for 20a - involved members(1).xls,Officer_Description,362,11,object
+stars for 20a - involved members(1).xls,FOIA_Request_Number,362,1,object
+stars for 20a - involved members(1).xls,Report_Produced_Date,362,1,object
