@@ -1,7 +1,0 @@
-Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
-foia 14-5509 - investigator data.xls,Investigator_Last_Name,18824,1201,object
-foia 14-5509 - investigator data.xls,Investigator_First_Name,18824,517,object
-foia 14-5509 - investigator data.xls,Current_Report,18824,90,int64
-foia 14-5509 - investigator data.xls,Current_Rank,18824,25,object
-foia 14-5509 - investigator data.xls,FOIA_Request_Number,18824,1,object
-foia 14-5509 - investigator data.xls,Report_Produced_Date,18824,1,object

@@ -1,9 +1,0 @@
-Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
-foia 15-4790 - report 3 - police officer witness data.xls,CRID,211,107,int64
-foia 15-4790 - report 3 - police officer witness data.xls,Officer_Witness,211,201,object
-foia 15-4790 - report 3 - police officer witness data.xls,Offier_Witness_Birth_Year,208,40,float64
-foia 15-4790 - report 3 - police officer witness data.xls,Officer_Witness_Gender,211,2,object
-foia 15-4790 - report 3 - police officer witness data.xls,Officer_Witness_Race,211,7,object
-foia 15-4790 - report 3 - police officer witness data.xls,Officer_Witness_Star,201,192,object
-foia 15-4790 - report 3 - police officer witness data.xls,FOIA_Request_Number,211,1,object
-foia 15-4790 - report 3 - police officer witness data.xls,Report_Produced_Date,211,1,object

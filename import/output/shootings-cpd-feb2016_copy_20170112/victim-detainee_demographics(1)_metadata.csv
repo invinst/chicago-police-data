@@ -1,7 +1,0 @@
-Original_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
-18a 18b 20a victim-detainee demographics(1).xls,CRID,673,344,int64
-18a 18b 20a victim-detainee demographics(1).xls,Detainee_Age,295,42,float64
-18a 18b 20a victim-detainee demographics(1).xls,Detainee_Gender,329,3,object
-18a 18b 20a victim-detainee demographics(1).xls,Detainee_Race,325,6,object
-18a 18b 20a victim-detainee demographics(1).xls,FOIA_Request_Number,673,1,object
-18a 18b 20a victim-detainee demographics(1).xls,Report_Produced_Date,673,1,object
