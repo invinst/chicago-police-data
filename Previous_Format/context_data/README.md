@@ -1,3 +1,5 @@
+See the [wiki page](https://github.com/invinst/chicago-police-data/wiki/Context-data). The information below should be migrated over.
+
 # Context Data
 
 Additional data files with context information.

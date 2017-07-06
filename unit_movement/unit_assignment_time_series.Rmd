@@ -1,0 +1,110 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+Load libraries.
+```{r}
+library(plyr)
+library(dplyr)
+library(compare)
+library(lubridate)
+```
+
+Read in data.
+```{r}
+# November 2016 FOIA
+i1 <- read.csv("~/Desktop/projects/chicago-police-data/Previous_Format/context_data/CPD Employees, one row per individual.csv")
+u1 <- read.csv("~/Desktop/projects/chicago-police-data/Previous_Format/context_data/CPD Employees, one row per unit assignment per officer.csv")
+
+# December 2016 FOIA
+i2 <- read.csv("/Users/gshrader/Desktop/projects/cpd/data/Context_data_from_Dec_2016/FOIA_P052263_11220_FOIA_P052263_AllSwornEmployees.csv")
+u2 <- read.csv("/Users/gshrader/Desktop/projects/cpd/data/Context_data_from_Dec_2016/FOIA_P052262_11221_FOIA_P052262_AllSwornEmployeesWithUOA.csv")
+```
+
+Make column names consistent among data sets.
+```{r}
+# rename new Officer file (i1) columns so they match old Officer file (u2) columns
+names(i2)[1:6] <- names(i1)[1:6]
+names(i2)[7] <- "APPOINTED_DATE"
+
+# make names of u2 same as corresponding names in u1
+u2 <- u2 %>% 
+  rename(LAST_NME = Last.Name,
+         FIRST_NME = First.Name,
+         SEX_CODE_CD = Gender,
+         RACE = Race,
+         APPOINTED_DATE = Date.of.Appointment,
+         CPD_UNIT_ASSIGNED_NO = Assigned.Unit.Num.,
+         EFFECTIVE_DATE = Start.Date,
+         END_DATE = End.Date,
+         DOBYEAR = Year.of.Birth)
+```
+
+Convert dates to date and correct the incorrect dates (off by 100 years).
+```{r}
+# convert the chosen vector to date of the appropriate format
+format_date <- function(x) {
+  x <- as.Date(x, format = "%d-%b-%y")
+  return(x) #I think this is not necessary!?
+}
+# function to convert a vector of incorrect dates to correct dates
+fix_dates <- function(x) {
+  year(x) <- ifelse(year(x) >2017,year(x) -100,year(x))
+  return(x)
+}
+# function to find a column that is a date
+get_date_cols <- function(df) {
+  cols <- names(df)[sapply(df,is.Date)]
+  return(cols)
+}
+# function to apply across an entire df # works
+fix_a_df <- function(df) {
+  df <- df %>% mutate_each(funs(format_date), ends_with("_DATE"))
+  cols <- get_date_cols(df)
+  df_fixed <- df %>% mutate_each_(funs(fix_dates),cols)
+  return(df_fixed)
+}
+
+i1 <- fix_a_df(i1) # works
+i2 <- fix_a_df(i2) # works
+u1 <- fix_a_df(u1) # works
+u2 <- fix_a_df(u2) # works
+```
+
+Find the minimum appointed date to determine the officer/date matrix.
+```{r}
+# write function to get min of min of complete cases for dates across date data set.
+min(u2$EFFECTIVE_DATE[complete.cases(u2$EFFECTIVE_DATE)]) # "1932-09-01"
+```
+
+Create a vector of dates from earliest date in data set to today.
+```{r}
+start_date <- as.Date("1932-09-01") # will need to grab from previous chunk (min date calc).
+end_date <- Sys.Date() # today's date in same/correct date format ("yyyy-mm-dd")
+dates_list <- as.Date(vector())
+
+while(start_date <=  end_date) {
+  dates_list <- c(dates_list, start_date)
+  start_date <- start_date+1
+}
+# covers 30961 days
+```
+
+Find each officer's unit assignment dates.
+```{r}
+# Option 1: create a 3-D array in which:
+
+# Dim 1 is date
+# Dim 2 is officer
+# Dim 3 is unit
+
+# so for a given date, I can see which officers were in which units True/False
+# or for a given unit, I can see which officers were there on what dates True/False
+# or for a given officer, I can see which units he/she was in on what dates True/False
+
+# The following is too expensive
+# ua <- array(FALSE, dim=c(length(dates_list), nrow(i2), length(unique(u2$CPD_UNIT_ASSIGNED_NO))))
+
+# Option 2: create a panel data set
+```
