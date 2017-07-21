@@ -1,0 +1,13 @@
+Original_Dataset,Output_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+../input/p046957 - report 5.1 - complainant (reporting party) data.xls,complainants.csv,CRID,8232,7966,int64
+../input/p046957 - report 5.1 - complainant (reporting party) data.xls,complainants.csv,Gender,8232,3,object
+../input/p046957 - report 5.1 - complainant (reporting party) data.xls,complainants.csv,Age,8232,5904,float64
+../input/p046957 - report 5.1 - complainant (reporting party) data.xls,complainants.csv,Race,8232,8,object
+../input/p046957 - report 5.2 - complainant (reporting party) data.xls,complainants.csv,CRID,19456,19093,int64
+../input/p046957 - report 5.2 - complainant (reporting party) data.xls,complainants.csv,Gender,19456,3,object
+../input/p046957 - report 5.2 - complainant (reporting party) data.xls,complainants.csv,Age,19456,10344,float64
+../input/p046957 - report 5.2 - complainant (reporting party) data.xls,complainants.csv,Race,19456,8,object
+../input/p046957 - report 5.3 - complainant (reporting party) data.xls,complainants.csv,CRID,13181,13009,int64
+../input/p046957 - report 5.3 - complainant (reporting party) data.xls,complainants.csv,Gender,13181,3,object
+../input/p046957 - report 5.3 - complainant (reporting party) data.xls,complainants.csv,Age,13181,7875,float64
+../input/p046957 - report 5.3 - complainant (reporting party) data.xls,complainants.csv,Race,13181,8,object

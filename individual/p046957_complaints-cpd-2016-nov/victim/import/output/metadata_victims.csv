@@ -1,0 +1,5 @@
+Original_Dataset,Output_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+../input/p046957 - report 4 - victim data.xls,victims.csv,CRID,16202,14011,int64
+../input/p046957 - report 4 - victim data.xls,victims.csv,Gender,16202,3,object
+../input/p046957 - report 4 - victim data.xls,victims.csv,Age,16202,9895,float64
+../input/p046957 - report 4 - victim data.xls,victims.csv,Race,16202,8,object

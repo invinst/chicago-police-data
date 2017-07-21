@@ -1,0 +1,170 @@
+.
+├── README.md
+├── individual
+│   ├── p046957_complaints-cpd-2016-nov
+│   │   ├── accused
+│   │   │   ├── assign-unique-ids
+│   │   │   │   ├── input
+│   │   │   │   │   └── accused.csv -> ../../clean/output/accused.csv
+│   │   │   │   ├── output
+│   │   │   │   │   ├── accused.csv
+│   │   │   │   │   └── accused_demo.csv
+│   │   │   │   └── src
+│   │   │   │       └── AUID.py
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   │   └── accused.csv -> ../../import/output/accused.csv
+│   │   │   │   ├── output
+│   │   │   │   │   └── accused.csv
+│   │   │   │   └── src
+│   │   │   │       └── clean.py
+│   │   │   ├── export
+│   │   │   └── import
+│   │   │       ├── input
+│   │   │       │   ├── p046957\ -\ report\ 2.1\ -\ identified\ accused.xls
+│   │   │       │   ├── p046957\ -\ report\ 2.2\ -\ identified\ accused.xls
+│   │   │       │   ├── p046957\ -\ report\ 2.3\ -\ identified\ accused.xls
+│   │   │       │   ├── p046957\ -\ report\ 2.4\ -\ identified\ accused.xls
+│   │   │       │   └── p046957\ -\ report\ 2.5\ -\ identified\ accused.xls
+│   │   │       ├── output
+│   │   │       │   ├── accused.csv
+│   │   │       │   └── metadata_accused.csv
+│   │   │       └── src
+│   │   │           └── import.py
+│   │   ├── complainant
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   │   └── complainants.csv -> ../../import/output/complainants.csv
+│   │   │   │   ├── output
+│   │   │   │   │   ├── accused.csv
+│   │   │   │   │   └── complainants.csv
+│   │   │   │   └── src
+│   │   │   │       └── clean.py
+│   │   │   ├── export
+│   │   │   └── import
+│   │   │       ├── input
+│   │   │       │   ├── p046957\ -\ report\ 5.1\ -\ complainant\ (reporting\ party)\ data.xls
+│   │   │       │   ├── p046957\ -\ report\ 5.2\ -\ complainant\ (reporting\ party)\ data.xls
+│   │   │       │   └── p046957\ -\ report\ 5.3\ -\ complainant\ (reporting\ party)\ data.xls
+│   │   │       ├── output
+│   │   │       │   ├── complainants.csv
+│   │   │       │   └── metadata_complainants.csv
+│   │   │       └── src
+│   │   │           └── import.py
+│   │   ├── complaints
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   │   └── complaints.csv -> ../../import/output/complaints.csv
+│   │   │   │   ├── output
+│   │   │   │   │   └── complaints.csv
+│   │   │   │   └── src
+│   │   │   │       └── clean.py
+│   │   │   ├── export
+│   │   │   └── import
+│   │   │       ├── input
+│   │   │       │   ├── p046957\ -\ report\ 1.1\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       │   ├── p046957\ -\ report\ 1.2\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       │   ├── p046957\ -\ report\ 1.3\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       │   ├── p046957\ -\ report\ 1.4\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       │   ├── p046957\ -\ report\ 1.5\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       │   └── p046957\ -\ report\ 1.6\ -\ all\ complaints\ in\ time\ frame.xls
+│   │   │       ├── output
+│   │   │       │   ├── complaints.csv
+│   │   │       │   ├── investigators.csv
+│   │   │       │   ├── metadata_complaints.csv
+│   │   │       │   └── metadata_investigators.csv
+│   │   │       └── src
+│   │   │           ├── import.py
+│   │   │           └── test-import.py
+│   │   ├── investigator
+│   │   │   ├── assign-unique-ids
+│   │   │   │   ├── input
+│   │   │   │   │   └── investigators.csv -> ../../clean/output/investigators.csv
+│   │   │   │   ├── output
+│   │   │   │   │   ├── investigators.csv
+│   │   │   │   │   └── investigators_demo.csv
+│   │   │   │   └── src
+│   │   │   │       └── AUID.py
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   │   └── investigators.csv -> ../../../complaints/import/output/investigators.csv
+│   │   │   │   ├── output
+│   │   │   │   │   └── investigators.csv
+│   │   │   │   └── src
+│   │   │   │       └── clean.py
+│   │   │   └── export
+│   │   ├── victim
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   │   └── victims.csv -> ../../import/output/victims.csv
+│   │   │   │   ├── output
+│   │   │   │   │   └── victims.csv
+│   │   │   │   └── src
+│   │   │   │       └── clean.py
+│   │   │   ├── export
+│   │   │   └── import
+│   │   │       ├── input
+│   │   │       │   └── p046957\ -\ report\ 4\ -\ victim\ data.xls
+│   │   │       ├── output
+│   │   │       │   ├── metadata_victims.csv
+│   │   │       │   └── victims.csv
+│   │   │       └── src
+│   │   │           └── import.py
+│   │   └── witness
+│   │       ├── assign-unique-ids
+│   │       │   ├── input
+│   │       │   │   └── witnesses.csv -> ../../clean/output/witnesses.csv
+│   │       │   ├── output
+│   │       │   │   ├── witnesses.csv
+│   │       │   │   └── witnesses_demo.csv
+│   │       │   └── src
+│   │       │       └── AUID.py
+│   │       ├── clean
+│   │       │   ├── input
+│   │       │   │   └── witnesses.csv -> ../../import/output/witnesses.csv
+│   │       │   ├── output
+│   │       │   │   ├── victims.csv
+│   │       │   │   └── witnesses.csv
+│   │       │   └── src
+│   │       │       └── clean.py
+│   │       ├── export
+│   │       └── import
+│   │           ├── input
+│   │           │   └── p046957\ -\ report\ 3\ -\ police\ officer\ witness\ data\ xi.xls
+│   │           ├── output
+│   │           │   ├── metadata_witnesses.csv
+│   │           │   └── witnesses.csv
+│   │           └── src
+│   │               └── import.py
+│   └── p046988_commendations-cpd-2016-may
+│       ├── assign-unique-ids
+│       │   ├── input
+│       │   ├── output
+│       │   └── src
+│       ├── clean
+│       │   ├── input
+│       │   ├── output
+│       │   └── src
+│       ├── docs
+│       │   ├── 10741-FOIA-P046988-AllSwornAwardsRev.zip
+│       │   └── FOIA\ Request\ P046988.pdf
+│       ├── export
+│       └── import
+│           ├── input
+│           │   └── 10741-FOIA-P046988-AllSwornAwardsRev.xlsx
+│           ├── output
+│           └── src
+├── merge
+├── tools
+│   ├── AUIDFunctions.py
+│   ├── CleaningFunctions.py
+│   ├── __pycache__
+│   │   ├── AUIDFunctions.cpython-36.pyc
+│   │   ├── CleaningFunctions.cpython-36.pyc
+│   │   ├── helperfunctions.cpython-36.pyc
+│   │   └── utils.cpython-36.pyc
+│   ├── helperfunctions.py
+│   └── utils.py
+└── tree.txt
+
+88 directories, 79 files

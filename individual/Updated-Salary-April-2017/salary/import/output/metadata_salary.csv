@@ -1,0 +1,193 @@
+Original_Dataset,Output_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Last.Name,12584,6807,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,First.Name,12584,2432,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Middle.Initial,9478,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Gender,12584,2,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Age.at.Hire,12450,36,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Title,12584,29,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Start.Date,12450,267,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,SPP.Date,10071,263,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Org.Hire.Date,12584,638,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Salary,12584,43,int64
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Pay.Grade,12584,13,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2013,salary.csv,Employee.Status,12584,5,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Last.Name,12548,6777,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,First.Name,12548,2425,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Middle.Initial,9247,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Gender,12548,2,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Age.at.Hire,12411,34,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Title,12548,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Start.Date,12411,268,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,SPP.Date,10086,264,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Org.Hire.Date,12548,624,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Salary,12548,61,int64
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Pay.Grade,12548,13,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2014,salary.csv,Employee.Status,12548,5,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Last.Name,12563,6790,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,First.Name,12563,2449,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Middle.Initial,8987,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Gender,12563,2,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Age.at.Hire,12386,32,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Title,12563,28,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Start.Date,12386,262,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,SPP.Date,10102,269,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Org.Hire.Date,12563,615,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Salary,12563,47,int64
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Pay.Grade,12563,13,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2015,salary.csv,Employee.Status,12563,5,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Last.Name,12794,6872,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,First.Name,12794,2508,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Middle.Initial,8850,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Gender,12794,2,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Age.at.Hire,12467,31,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Title,12794,28,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Start.Date,12467,263,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,SPP.Date,10292,276,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Org.Hire.Date,12794,618,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Salary,12794,66,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Pay.Grade,12794,13,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2016,salary.csv,Employee.Status,12794,5,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Last.Name,12267,6666,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,First.Name,12267,2487,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Middle.Initial,8304,27,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Gender,12267,2,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Age.at.Hire,11806,31,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Title,12267,28,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Start.Date,11806,255,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,SPP.Date,9923,266,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Org.Hire.Date,12267,599,datetime64[ns]
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Salary,12267,50,float64
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Pay.Grade,12267,13,object
+../input/FOIA Updated CPD Data -2013-2017.xls-2017,salary.csv,Employee.Status,12267,5,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Last.Name,13480,7246,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,First.Name,13480,2209,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Middle.Initial,10949,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Gender,13480,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Age.at.Hire,13100,50,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Title,13480,39,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Start.Date,13100,519,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,SPP.Date,10240,433,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Org.Hire.Date,13468,1096,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Salary,13480,42,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Pay.Grade,13480,20,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2002,salary.csv,Employee.Status,13480,4,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Last.Name,14360,7428,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,First.Name,14360,2268,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Middle.Initial,11668,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Gender,14360,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Age.at.Hire,13975,50,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Title,14360,39,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Start.Date,13975,523,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,SPP.Date,10949,455,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Org.Hire.Date,14343,1113,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Salary,14360,51,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Pay.Grade,14360,20,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2003,salary.csv,Employee.Status,14360,4,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Last.Name,14148,7389,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,First.Name,14148,2309,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Middle.Initial,11456,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Gender,14148,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Age.at.Hire,13833,49,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Title,14148,39,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Start.Date,13833,495,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,SPP.Date,10843,437,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Org.Hire.Date,14137,1044,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Salary,14148,50,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Pay.Grade,14148,20,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2004,salary.csv,Employee.Status,14148,4,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Last.Name,14097,7323,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,First.Name,14097,2357,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Middle.Initial,11382,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Gender,14097,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Age.at.Hire,13833,43,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Title,14097,39,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Start.Date,13833,456,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,SPP.Date,10678,395,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Org.Hire.Date,14090,958,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Salary,14097,93,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Pay.Grade,14097,20,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2005,salary.csv,Employee.Status,14097,4,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Last.Name,14137,7398,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,First.Name,14137,2444,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Middle.Initial,11414,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Gender,14137,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Age.at.Hire,13945,42,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Title,14137,36,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Start.Date,13945,434,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,SPP.Date,11046,370,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Org.Hire.Date,14134,893,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Salary,14137,60,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Pay.Grade,14137,19,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2006,salary.csv,Employee.Status,14137,4,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Last.Name,14111,7366,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,First.Name,14111,2464,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Middle.Initial,11384,27,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Gender,14111,2,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Age.at.Hire,13937,42,float64
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Title,14111,36,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Start.Date,13937,419,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,SPP.Date,10988,361,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Org.Hire.Date,14111,843,datetime64[ns]
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Salary,14111,59,int64
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Pay.Grade,14111,18,object
+../input/FOIA Updated CPD Data-2002-2007.xls-2007,salary.csv,Employee.Status,14111,5,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Last.Name,13789,7240,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,First.Name,13789,2444,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Middle.Initial,11132,27,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Gender,13789,2,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Age.at.Hire,13625,41,float64
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Title,13789,35,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Start.Date,13625,395,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,SPP.Date,10590,346,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Org.Hire.Date,13788,802,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Salary,13789,51,int64
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Pay.Grade,13789,16,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2008,salary.csv,Employee.Status,13789,5,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Last.Name,13278,7097,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,First.Name,13278,2428,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Middle.Initial,10716,27,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Gender,13278,2,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Age.at.Hire,13134,39,float64
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Title,13278,34,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Start.Date,13134,364,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,SPP.Date,10139,324,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Org.Hire.Date,13277,759,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Salary,13278,45,int64
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Pay.Grade,13278,15,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2009,salary.csv,Employee.Status,13278,5,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Last.Name,13133,7027,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,First.Name,13133,2420,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Middle.Initial,10596,27,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Gender,13133,2,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Age.at.Hire,12995,39,float64
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Title,13133,33,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Start.Date,12995,353,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,SPP.Date,10076,320,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Org.Hire.Date,13133,727,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Salary,13133,45,int64
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Pay.Grade,13133,15,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2010,salary.csv,Employee.Status,13133,5,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Last.Name,12613,6810,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,First.Name,12613,2386,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Middle.Initial,10160,27,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Gender,12613,2,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Age.at.Hire,12490,37,float64
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Title,12613,32,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Start.Date,12490,309,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,SPP.Date,9762,292,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Org.Hire.Date,12613,673,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Salary,12613,41,int64
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Pay.Grade,12613,15,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2011,salary.csv,Employee.Status,12613,5,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Last.Name,12631,6793,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,First.Name,12631,2408,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Middle.Initial,9868,27,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Gender,12631,2,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Age.at.Hire,12529,36,float64
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Title,12631,30,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Start.Date,12529,286,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,SPP.Date,9983,279,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Org.Hire.Date,12631,647,datetime64[ns]
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Salary,12631,42,int64
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Pay.Grade,12631,13,object
+../input/FOIA Updated CPD Data-2008-2012.xls-2012,salary.csv,Employee.Status,12631,5,object
