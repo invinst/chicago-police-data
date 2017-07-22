@@ -23,10 +23,10 @@ def CleanDates(df):
     df_cols = df.columns.values
     dt_df = pd.DataFrame()
     for col in df_cols:
-        col_suffix = col.split('.')[0]
-        dt_df[col_suffix + ".Date"] = pd.to_datetime(df[col]).dt.date
+        col_suffix = col.split('.')[:-1]
+        dt_df['.'.join(col_suffix + ["Date"])] = pd.to_datetime(df[col]).dt.date
         if 'time' in col:
-            dt_df[col_suffix + '.Time'] = pd.to_datetime(df[col]).dt.time
+            dt_df['.'.join(col_suffix + ["Time"])] = pd.to_datetime(df[col]).dt.time
     return dt_df
 
 def ExtractSuffixName(x):

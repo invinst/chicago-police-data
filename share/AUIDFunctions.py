@@ -6,9 +6,11 @@ def RemoveDuplicates(df, cols):
 def KeepDuplicates(df, cols):
     return df[df.duplicated(subset = cols, keep=False)].sort_values(cols)
 
-def AssignUniqueIDs(df, id_cols, need_cols= []):
-    dfu = df[id_cols].drop_duplicates(id_cols)
-    dfu['TID'] = pd.Series(range(1,len(dfu.index)+1))
+def AssignUniqueIDs(df, id_cols):
+    dfu = (df[id_cols]
+        .drop_duplicates()
+        .reset_index(drop=True))
+    dfu['TID'] = dfu.index + 1
     return df.merge(dfu, on = id_cols, how = 'left')
 
 def ModeAggregate(df, id_col, keep_cols):
