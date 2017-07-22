@@ -3,9 +3,6 @@ import sys
 import numpy as np
 import pandas as pd
 
-module_path = os.path.abspath(os.path.join('../../../../../tools/'))
-if module_path not in sys.path: sys.path.append(module_path)
-
 from CleaningFunctions import *
 
 input_path = "../input/"

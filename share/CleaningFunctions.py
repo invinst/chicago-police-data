@@ -1,6 +1,12 @@
 import pandas as pd
 import re
+import numpy as np
 
+def CleanInt(x, na_value = -999):
+    if np.isfinite(x):
+        return int(float(x))
+    else:
+        return na_value
 def CleanGender(g, gd = {'M':'MALE', 'F':'FEMALE', 'X':'UNKNOWN'}):
     if g in gd.values():
         return g
@@ -105,9 +111,7 @@ def CleanData(df, skip_cols = []):
         df['Race'] = df['Race'].apply(str.upper).apply(CleanRace)
     
     for col in [IC for IC in df_cols if IC in int_cols and IC not in skip_cols]:
-        # Doesn't work... not sure why
-        df[col] = pd.to_numeric(df[col], errors = 'coerce', downcast = 'integer')
-    
+        df[col] = df[col].map(CleanInt) 
     if [col for col in df_cols if 'Date' in col]:
         dt_df = df[[DC for DC in df_cols if 'Date' in  DC]]
         df = df[list(set(df.columns.values) - set(dt_df.columns.values))].join(CleanDates(dt_df))

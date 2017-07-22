@@ -1,11 +1,89 @@
 .
 ├── README.md
+├── __pycache__
+│   └── addnumbers.cpython-36.pyc
 ├── individual
+│   ├── 16-1105_all-sworm-employees
+│   │   ├── docs
+│   │   │   └── Kalven,\ 16-1105\ Responsive\ Letter.pdf
+│   │   └── unit-history
+│   │       ├── assign-unique-ids
+│   │       │   ├── input
+│   │       │   │   └── unit-history.csv
+│   │       │   ├── output
+│   │       │   └── src
+│   │       │       ├── AUID.py
+│   │       │       ├── AUIDFunctions.py
+│   │       │       ├── Unit-History-Columns.ipynb
+│   │       │       └── __pycache__
+│   │       │           └── AUIDFunctions.cpython-36.pyc
+│   │       ├── clean
+│   │       │   ├── input
+│   │       │   │   └── unit-history.csv
+│   │       │   ├── output
+│   │       │   │   └── unit-history.csv
+│   │       │   └── src
+│   │       │       ├── CleaningFunctions.py
+│   │       │       ├── Column_Dictionary.csv
+│   │       │       ├── __pycache__
+│   │       │       │   └── CleaningFunctions.cpython-36.pyc
+│   │       │       └── clean.py
+│   │       ├── export
+│   │       └── import
+│   │           ├── input
+│   │           │   └── Kalven\ 16-1105\ All\ Sworn\ Employees.xlsx
+│   │           ├── output
+│   │           │   ├── metadata_unit-history.csv
+│   │           │   └── unit-history.csv
+│   │           └── src
+│   │               ├── Column_Dictionary.csv
+│   │               ├── ImportFunctions.py
+│   │               ├── __pycache__
+│   │               │   └── ImportFunctions.cpython-36.pyc
+│   │               └── import.py
+│   ├── Updated-Salary-April-2017
+│   │   └── salary
+│   │       ├── assign-unique-ids
+│   │       │   ├── input
+│   │       │   │   └── salary.csv
+│   │       │   ├── output
+│   │       │   └── src
+│   │       │       ├── AUID.py
+│   │       │       ├── AUIDFunctions.py
+│   │       │       ├── Salary-Columns.ipynb
+│   │       │       └── __pycache__
+│   │       │           └── AUIDFunctions.cpython-36.pyc
+│   │       ├── clean
+│   │       │   ├── input
+│   │       │   │   └── salary.csv
+│   │       │   ├── output
+│   │       │   │   └── salary.csv
+│   │       │   └── src
+│   │       │       ├── CleaningFunctions.py
+│   │       │       ├── Column_Dictionary.csv
+│   │       │       ├── __pycache__
+│   │       │       │   └── CleaningFunctions.cpython-36.pyc
+│   │       │       └── clean.py
+│   │       ├── export
+│   │       └── import
+│   │           ├── input
+│   │           │   ├── FOIA\ Updated\ CPD\ Data\ -2013-2017.xls
+│   │           │   ├── FOIA\ Updated\ CPD\ Data-2002-2007.xls
+│   │           │   └── FOIA\ Updated\ CPD\ Data-2008-2012.xls
+│   │           ├── output
+│   │           │   ├── metadata_salary.csv
+│   │           │   └── salary.csv
+│   │           └── src
+│   │               ├── Column_Dictionary.csv
+│   │               ├── ImportFunctions.py
+│   │               ├── __pycache__
+│   │               │   └── ImportFunctions.cpython-36.pyc
+│   │               └── import.py
 │   ├── p046957_complaints-cpd-2016-nov
 │   │   ├── accused
 │   │   │   ├── assign-unique-ids
 │   │   │   │   ├── input
-│   │   │   │   │   └── accused.csv -> ../../clean/output/accused.csv
+│   │   │   │   │   └── accused.csv
 │   │   │   │   ├── output
 │   │   │   │   │   ├── accused.csv
 │   │   │   │   │   └── accused_demo.csv
@@ -13,7 +91,7 @@
 │   │   │   │       └── AUID.py
 │   │   │   ├── clean
 │   │   │   │   ├── input
-│   │   │   │   │   └── accused.csv -> ../../import/output/accused.csv
+│   │   │   │   │   └── accused.csv
 │   │   │   │   ├── output
 │   │   │   │   │   └── accused.csv
 │   │   │   │   └── src
@@ -30,11 +108,14 @@
 │   │   │       │   ├── accused.csv
 │   │   │       │   └── metadata_accused.csv
 │   │   │       └── src
+│   │   │           ├── ImportFunctions.py
+│   │   │           ├── __pycache__
+│   │   │           │   └── ImportFunctions.cpython-36.pyc
 │   │   │           └── import.py
 │   │   ├── complainant
 │   │   │   ├── clean
 │   │   │   │   ├── input
-│   │   │   │   │   └── complainants.csv -> ../../import/output/complainants.csv
+│   │   │   │   │   └── complainants.csv
 │   │   │   │   ├── output
 │   │   │   │   │   ├── accused.csv
 │   │   │   │   │   └── complainants.csv
@@ -50,11 +131,14 @@
 │   │   │       │   ├── complainants.csv
 │   │   │       │   └── metadata_complainants.csv
 │   │   │       └── src
+│   │   │           ├── ImportFunctions.py
+│   │   │           ├── __pycache__
+│   │   │           │   └── ImportFunctions.cpython-36.pyc
 │   │   │           └── import.py
 │   │   ├── complaints
 │   │   │   ├── clean
 │   │   │   │   ├── input
-│   │   │   │   │   └── complaints.csv -> ../../import/output/complaints.csv
+│   │   │   │   │   └── complaints.csv
 │   │   │   │   ├── output
 │   │   │   │   │   └── complaints.csv
 │   │   │   │   └── src
@@ -74,12 +158,14 @@
 │   │   │       │   ├── metadata_complaints.csv
 │   │   │       │   └── metadata_investigators.csv
 │   │   │       └── src
-│   │   │           ├── import.py
-│   │   │           └── test-import.py
+│   │   │           ├── ImportFunctions.py
+│   │   │           ├── __pycache__
+│   │   │           │   └── ImportFunctions.cpython-36.pyc
+│   │   │           └── import.py
 │   │   ├── investigator
 │   │   │   ├── assign-unique-ids
 │   │   │   │   ├── input
-│   │   │   │   │   └── investigators.csv -> ../../clean/output/investigators.csv
+│   │   │   │   │   └── investigators.csv
 │   │   │   │   ├── output
 │   │   │   │   │   ├── investigators.csv
 │   │   │   │   │   └── investigators_demo.csv
@@ -87,7 +173,7 @@
 │   │   │   │       └── AUID.py
 │   │   │   ├── clean
 │   │   │   │   ├── input
-│   │   │   │   │   └── investigators.csv -> ../../../complaints/import/output/investigators.csv
+│   │   │   │   │   └── investigators.csv
 │   │   │   │   ├── output
 │   │   │   │   │   └── investigators.csv
 │   │   │   │   └── src
@@ -96,7 +182,7 @@
 │   │   ├── victim
 │   │   │   ├── clean
 │   │   │   │   ├── input
-│   │   │   │   │   └── victims.csv -> ../../import/output/victims.csv
+│   │   │   │   │   └── victims.csv
 │   │   │   │   ├── output
 │   │   │   │   │   └── victims.csv
 │   │   │   │   └── src
@@ -109,11 +195,14 @@
 │   │   │       │   ├── metadata_victims.csv
 │   │   │       │   └── victims.csv
 │   │   │       └── src
+│   │   │           ├── ImportFunctions.py
+│   │   │           ├── __pycache__
+│   │   │           │   └── ImportFunctions.cpython-36.pyc
 │   │   │           └── import.py
 │   │   └── witness
 │   │       ├── assign-unique-ids
 │   │       │   ├── input
-│   │       │   │   └── witnesses.csv -> ../../clean/output/witnesses.csv
+│   │       │   │   └── witnesses.csv
 │   │       │   ├── output
 │   │       │   │   ├── witnesses.csv
 │   │       │   │   └── witnesses_demo.csv
@@ -121,7 +210,7 @@
 │   │       │       └── AUID.py
 │   │       ├── clean
 │   │       │   ├── input
-│   │       │   │   └── witnesses.csv -> ../../import/output/witnesses.csv
+│   │       │   │   └── witnesses.csv
 │   │       │   ├── output
 │   │       │   │   ├── victims.csv
 │   │       │   │   └── witnesses.csv
@@ -135,36 +224,83 @@
 │   │           │   ├── metadata_witnesses.csv
 │   │           │   └── witnesses.csv
 │   │           └── src
+│   │               ├── ImportFunctions.py
+│   │               ├── __pycache__
+│   │               │   └── ImportFunctions.cpython-36.pyc
 │   │               └── import.py
-│   └── p046988_commendations-cpd-2016-may
-│       ├── assign-unique-ids
-│       │   ├── input
-│       │   ├── output
-│       │   └── src
-│       ├── clean
-│       │   ├── input
-│       │   ├── output
-│       │   └── src
-│       ├── docs
-│       │   ├── 10741-FOIA-P046988-AllSwornAwardsRev.zip
-│       │   └── FOIA\ Request\ P046988.pdf
-│       ├── export
-│       └── import
-│           ├── input
-│           │   └── 10741-FOIA-P046988-AllSwornAwardsRev.xlsx
-│           ├── output
-│           └── src
-├── merge
-├── tools
+│   ├── p046988_commendations-cpd-2016-may
+│   │   ├── award-requests
+│   │   │   ├── assign-unique-ids
+│   │   │   │   ├── input
+│   │   │   │   ├── output
+│   │   │   │   └── src
+│   │   │   ├── clean
+│   │   │   │   ├── input
+│   │   │   │   ├── output
+│   │   │   │   └── src
+│   │   │   ├── export
+│   │   │   └── import
+│   │   │       ├── input
+│   │   │       │   └── 10741-FOIA-P046988-AllSwornAwardsRev.xlsx
+│   │   │       ├── output
+│   │   │       └── src
+│   │   └── docs
+│   │       ├── 10741-FOIA-P046988-AllSwornAwardsRev.zip
+│   │       └── FOIA\ Request\ P046988.pdf
+│   └── p050032_all-members-rank
+│       ├── all-members
+│       │   ├── assign-unique-ids
+│       │   │   ├── input
+│       │   │   │   └── all-members.csv
+│       │   │   ├── output
+│       │   │   │   ├── all-members.csv
+│       │   │   │   └── all-members_demo.csv
+│       │   │   └── src
+│       │   │       ├── AUID.py
+│       │   │       ├── All-Members-Columns.ipynb
+│       │   │       └── __pycache__
+│       │   │           └── AUIDFunctions.cpython-36.pyc
+│       │   ├── clean
+│       │   │   ├── input
+│       │   │   │   └── all-members.csv
+│       │   │   ├── output
+│       │   │   │   ├── all-members.csv
+│       │   │   │   └── all-members.csv.gz
+│       │   │   └── src
+│       │   │       ├── CleaningFunctions.py
+│       │   │       ├── Column_Dictionary.csv
+│       │   │       ├── Makefile
+│       │   │       ├── __pycache__
+│       │   │       │   └── CleaningFunctions.cpython-36.pyc
+│       │   │       └── clean.py
+│       │   ├── export
+│       │   │   ├── input
+│       │   │   ├── output
+│       │   │   └── src
+│       │   └── import
+│       │       ├── input
+│       │       ├── output
+│       │       │   ├── all-members.csv
+│       │       │   └── metadata_all-members.csv
+│       │       └── src
+│       │           ├── Column_Dictionary.csv
+│       │           ├── ImportFunctions.py
+│       │           ├── __pycache__
+│       │           │   └── ImportFunctions.cpython-36.pyc
+│       │           └── import.py
+│       └── docs
+│           └── P050032\ Responsive\ Letter.pdf
+├── share
 │   ├── AUIDFunctions.py
 │   ├── CleaningFunctions.py
+│   ├── Column_Dictionary.csv
+│   ├── ImportFunctions.py
 │   ├── __pycache__
 │   │   ├── AUIDFunctions.cpython-36.pyc
 │   │   ├── CleaningFunctions.cpython-36.pyc
 │   │   ├── helperfunctions.cpython-36.pyc
 │   │   └── utils.cpython-36.pyc
-│   ├── helperfunctions.py
 │   └── utils.py
 └── tree.txt
 
-88 directories, 79 files
+153 directories, 150 files

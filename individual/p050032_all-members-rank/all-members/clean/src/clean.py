@@ -1,7 +1,9 @@
 import pandas as pd
 import os
 from CleaningFunctions import *
-f = '../input/' + os.listdir('../input/')[0]
-df = pd.read_csv(f)
+import sys
+infile = sys.argv[1]
+outfile = sys.argv[-1]
+df = pd.read_csv(infile)
 df = CleanData(df)
-df.to_csv('../output/all-members.csv', index=False)
+df.to_csv(outfile, index=False)
