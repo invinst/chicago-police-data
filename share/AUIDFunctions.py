@@ -6,19 +6,17 @@ def RemoveDuplicates(df, cols):
 def KeepDuplicates(df, cols):
     return df[df.duplicated(subset = cols, keep=False)].sort_values(cols)
 
-def AssignUniqueIDs(df, id_cols):
+def AssignUniqueIDs(df, id_cols, uid):
     dfu = (df[id_cols]
         .drop_duplicates()
         .reset_index(drop=True))
     dfu['TID'] = dfu.index + 1
     return df.merge(dfu, on = id_cols, how = 'left')
 
-def ModeAggregate(df, id_col, keep_cols):
-    groups = df[[id_col] + keep_cols].groupby(id_col)
-    dfu = pd.concat(
-                [(g.agg(lambda x: x.value_counts(dropna=False).idxmax())
-                    .to_frame()
-                    .transpose())
-                for n,g in groups],
-                axis = 0)
-    return dfu
+def AggregateData(df, uid, id_cols = [], mode_cols = [], max_cols = [], time_dict = {}):
+    dfu = df[id_cols + mode_cols + max_cols].drop_duplicates()
+    dfu = AssignUniqueIDs(dfu, id_cols, uid)
+
+    uid_col = [uid]
+    df[uid_col + max_cols].group_by(uid_col, as_index=False)[max_cols].agg(max)
+
