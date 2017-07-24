@@ -3,6 +3,8 @@ import numpy as np
 import datetime
 import io
 import re
+in_opts = {'compression': 'gzip'}
+out_opts = {'index': False, 'compression': 'gzip'}
 
 def ReadMessy(path, add_skip=1):
     # add roll column (number)
