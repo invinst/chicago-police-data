@@ -12,10 +12,9 @@ input_path = "../input/"
 out_path = "../output/"
 
 df = pd.read_csv(input_path + "accused.csv")
-
-id_cols = ['First_Name', 'Last_Name', 'Suffix_Name', 'Appointed_Date', 'Birth_Year', 'Gender', 'Race']
+print(df.columns)
+id_cols = ['First.Name', 'Last.Name', 'Middle.Initial', 'Suffix.Name', 'Appointed.Date', 'Birth.Year', 'Gender', 'Race', "Current.Unit", "Current.Rank", "Star"]
 df = AssignUniqueIDs(df, id_cols)
 df.to_csv(out_path + 'accused.csv',index=False)
-keep_cols = ['Middle_Initial', 'Current_Unit', 'Current_Rank', 'Star']
-dfu = ModeAggregate(df, 'TID', keep_cols)
-dfu.merge(df[['TID'] + id_cols].drop_duplicates(), on='TID').to_csv(out_path + 'accused_demo.csv', index=False)
+dfu = ModeAggregate(df, 'TID',)
+dfu.merge(df[['TID'] + id_cols].drop_duplicates(), on='TID').to_csv(out_path + 'accused_demo.csv', index=False)'''
