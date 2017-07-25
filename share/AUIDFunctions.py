@@ -1,6 +1,7 @@
 import pandas as pd
 
-def RemoveDuplicates(df, cols):
+def RemoveDuplicates(df, cols=[]):
+    if not cols: cols = df.columns.tolist()
     return df[~ df.duplicated(subset = cols, keep=False)]
 
 def KeepDuplicates(df, cols):

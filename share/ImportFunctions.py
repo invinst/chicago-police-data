@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 import datetime
+import os
 import io
 import re
+
 in_opts = {'compression': 'gzip'}
 out_opts = {'index': False, 'compression': 'gzip'}
 

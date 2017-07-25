@@ -6,9 +6,7 @@
 .PHONY: all clean
 
 all:
-		src/import.py \
-		input/all-members.csv \
-		output/all-members.csv \
+	src/import.py
 	python $<
 
 clean: rm output/*	

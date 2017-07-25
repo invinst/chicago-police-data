@@ -1,0 +1,40 @@
+.
+├── assign-unique-ids
+│   ├── input
+│   │   └── unit-history.csv
+│   ├── output
+│   │   ├── unit-history.csv
+│   │   └── unit-history_demo.csv
+│   └── src
+│       ├── AUID.py
+│       ├── AUIDFunctions.py -> ../../../../../share/AUIDFunctions.py
+│       ├── Unit-History-Columns.ipynb
+│       └── __pycache__
+│           └── AUIDFunctions.cpython-36.pyc
+├── clean
+│   ├── input
+│   │   └── unit-history.csv
+│   ├── output
+│   │   └── unit-history.csv
+│   └── src
+│       ├── CleaningFunctions.py -> ../../../../../share/CleaningFunctions.py
+│       ├── Column_Dictionary.csv -> ../../../../../share/Column_Dictionary.csv
+│       ├── __pycache__
+│       │   └── CleaningFunctions.cpython-36.pyc
+│       └── clean.py
+├── export
+├── import
+│   ├── input
+│   │   └── Kalven\ 16-1105\ All\ Sworn\ Employees.xlsx
+│   ├── output
+│   │   ├── metadata_unit-history.csv.gz
+│   │   └── unit-history.csv.gz
+│   └── src
+│       ├── Column_Dictionary.csv -> ../../../../../share/Column_Dictionary.csv
+│       ├── ImportFunctions.py -> ../../../../../share/ImportFunctions.py
+│       ├── __pycache__
+│       │   └── ImportFunctions.cpython-36.pyc
+│       └── import.py
+└── minitree.txt
+
+16 directories, 21 files
