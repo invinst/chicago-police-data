@@ -38,3 +38,5 @@ Salary for reported year,Salary,Int
 Pay Grade Name,Pay.Grade,
 Employee Status,Employee.Status,
 Suffix.Name,Suffix.Name,Name
+Star,Star,Int
+Current.Unit,Current.Unit,Int
