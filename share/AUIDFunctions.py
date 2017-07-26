@@ -14,7 +14,7 @@ def AssignUniqueIDs(df, id_cols, uid):
     dfu[uid] = dfu.index + 1
     return df.merge(dfu, on = id_cols, how = 'left')
 
-def AggregateData(df, uid, id_cols = [], mode_cols = [], max_cols = [], time_dict = {}):
+def AggregateData(df, uid, id_cols = [], mode_cols = [], max_cols = [], current_cols = [], time_col = []):
     if uid not in df.columns:
         df = AssignUniqueIDs(df, id_cols, uid)
     
@@ -34,4 +34,16 @@ def AggregateData(df, uid, id_cols = [], mode_cols = [], max_cols = [], time_dic
     agg_df = agg_df.merge((mode_df
                             .groupby(uid_col, as_index=False)[mode_cols]
                             .agg(mode)'''
+    if current_cols and time_col:
+        df[time_col] = pd.to_datetime(df[time_col])
+        agg_df = agg_df.merge((df[uid_col + [time_col] + current_cols]
+                                .dropna(axis=0, subset=[time_col])
+                                .drop_duplicates()
+                                .sort_values(time_col, ascending = False)
+                                .drop(time_col, axis=1)
+                                .groupby(uid_col, as_index=False)[current_cols]
+                                .agg(lambda x: x.iloc[0])),
+                        on = uid,
+                        how = 'left')
+        agg_df.rename(columns = dict(zip(current_cols, ["Current" + tc for tc in current_cols])), inplace=True)
     return agg_df 
