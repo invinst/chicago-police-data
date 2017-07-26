@@ -1,4 +1,4 @@
-TID,First.Name,Last.Name,Middle.Initial,Suffix.Name,Appointed.Date,Current.Age,Gender,Race,Star1,Star2,Star3,Star4,Star5,Star6,Star7,Star8,Star9,Star10,CurrentUnit
+TID,First.Name,Last.Name,Middle.Initial,Suffix.Name,Appointed.Date,Current.Age,Gender,Race,Star1,Star2,Star3,Star4,Star5,Star6,Star7,Star8,Star9,Star10,Current.Unit
 1,JEFFERY,AARON,,,2005-09-26,44,MALE,WHITE,13001,-999,-999,-999,-999,-999,-999,-999,-999,-999,14.0
 2,KARINA,AARON,,,2005-09-26,35,FEMALE,HISPANIC,17545,13705,-999,-999,-999,-999,-999,-999,-999,-999,15.0
 3,DANIEL,ABATE,,,1970-06-15,74,MALE,WHITE,14535,3023,2628,-999,-999,-999,-999,-999,-999,-999,543.0

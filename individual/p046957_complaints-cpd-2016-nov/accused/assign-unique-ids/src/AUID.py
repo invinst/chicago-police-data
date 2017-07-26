@@ -17,4 +17,4 @@ id_cols = ['First.Name', 'Last.Name', 'Middle.Initial', 'Suffix.Name', 'Appointe
 df = AssignUniqueIDs(df, id_cols)
 df.to_csv(out_path + 'accused.csv',index=False)
 dfu = ModeAggregate(df, 'TID',)
-dfu.merge(df[['TID'] + id_cols].drop_duplicates(), on='TID').to_csv(out_path + 'accused_demo.csv', index=False)'''
+dfu.merge(df[['TID'] + id_cols].drop_duplicates(), on='TID').to_csv(out_path + 'accused_demo.csv', index=False)
