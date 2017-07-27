@@ -1,8 +1,0 @@
-Original_Dataset,Output_Dataset,Column_Name,Non_Null_Count,Unique_Count,Object_Type
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,CRID,27144,12239,int64
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Full.Name,27144,11287,object
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Gender,27144,2,object
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Race,27144,8,object
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Star,20023,7826,object
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Birth.Year,27144,70,float64
-../input/p046957 - report 3 - police officer witness data xi.xls,witnesses.csv,Appointed.Date,27143,408,datetime64[ns]
