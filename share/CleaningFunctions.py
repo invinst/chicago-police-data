@@ -3,7 +3,12 @@ import re
 import numpy as np
 
 def CleanInt(x, na_value = -999):
-    if np.isfinite(x):
+    if isinstance(x,str):
+        if re.match('[a-zA-Z]',x):
+            return na_value
+        else:
+            return int(float(x))
+    elif np.isfinite(x):
         return int(float(x))
     else:
         return na_value

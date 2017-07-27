@@ -20,7 +20,7 @@ for f in files:
                             .fillna(method='ffill')
                             .astype(int)))
     df = (df.drop("Number:", axis=1)
-            .dropna(thresh = len(df.columns.values)-1))
+            .dropna(thresh = 2))
     df.columns = ["CRID", "Full.Name", "Birth.Year", "Gender", "Race", "Appointed.Date", "Current.Unit", "Current.Rank", "Star","Complaint.Category", "Recommended.Finding", "Recommended.Discipline", "Final.Finding", "Final.Discipline"]
     
     data = (data
