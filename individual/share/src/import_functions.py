@@ -8,7 +8,7 @@ import re
 in_opts = {'compression': 'gzip'}
 out_opts = {'index': False, 'compression': 'gzip'}
 
-def read_p046957_files:(path, add_skip=1):
+def read_p046957_files(path, add_skip=1):
     df = pd.read_excel(path, rows=20)
     col_list = df.columns.tolist()
     # if [col if '\n' in col or len(col) > 40 for col in col_list]:
@@ -26,7 +26,7 @@ def read_p046957_files:(path, add_skip=1):
 
 def standardize_columns(cols):
     try:
-        col_df = pd.read_csv("../hand/column_dictionary.csv")
+        col_df = pd.read_csv("hand/column_dictionary.csv")
     except:
         print("Column dictionary not in directory.")
         col_df = pd.DataFrame()
