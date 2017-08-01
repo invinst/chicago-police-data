@@ -1,7 +1,10 @@
 import pandas as pd
-import os
-from CleaningFunctions import *
-f = '../input/' + os.listdir('../input/')[0]
-df = pd.read_csv(f)
-df = CleanData(df)
-df.to_csv('../output/unit-history.csv', index=False)
+
+from cleaning_functions import clean_data, input_opts, output_opts
+
+input_file = 'input/unit-history.csv.gz'
+output_file = 'output/unit-history.csv.gz'
+
+df = pd.read_csv(input_file, **input_opts)
+df = clean_data(df)
+df.to_csv(output_file, **output_opts)

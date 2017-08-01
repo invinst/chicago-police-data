@@ -5,8 +5,8 @@ import os
 import io
 import re
 
-in_opts = {'compression': 'gzip'}
-out_opts = {'index': False, 'compression': 'gzip'}
+input_opts = {'compression': 'gzip'}
+output_opts = {'index': False, 'compression': 'gzip'}
 
 def read_p046957_files(path, add_skip=1):
     df = pd.read_excel(path, rows=20)

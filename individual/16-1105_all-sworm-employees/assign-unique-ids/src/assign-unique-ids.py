@@ -1,7 +1,6 @@
-import pandas as pd
-import os
 from AUIDFunctions import *
 
+input_file = 
 f = '../input/' + os.listdir('../input/')[0]
 
 df = pd.read_csv(f)
