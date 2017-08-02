@@ -1,6 +1,7 @@
 import pandas as pd
 
-from AUIDFunctions import *
+from assign_unique_ids_functions import assign_unique_ids,\
+    aggregate_data, input_opts, output_opts
 
 input_file = "input/unit-history.csv.gz"
 output_file = 'output/unit-history.csv.gz'
@@ -19,5 +20,5 @@ df.to_csv(output_file, **output_opts)
 
 agg_df = aggregate_data(df, 'TID', id_cols,
                 max_cols=stars,
-                current_cols=['Unit'], time_col = 'Effective_Date')
+                current_cols = ['Unit'], time_col = 'Effective.Date')
 agg_df.to_csv(output_demo_file, **output_opts)
