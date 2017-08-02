@@ -5,12 +5,11 @@ import numpy as np
 input_opts = {'compression' : 'gzip'}
 output_opts = {'index' : False, 'compression' : 'gzip'}
 
-def list_diff(l1,l2):
-    return list(set(l1) - set(l2))
+def list_diff(l1, l2): return list(set(l1) - set(l2))
 
 def clean_int(x, na_value = -999):
-    if isinstance(x,str):
-        if re.match('[a-zA-Z]',x):
+    if isinstance(x, str):
+        if re.match('[a-zA-Z]', x):
             return na_value
         else:
             return int(float(x))
@@ -18,7 +17,8 @@ def clean_int(x, na_value = -999):
         return int(float(x))
     else:
         return na_value
-def clean_gender(x, gender_dict ={'M':'MALE', 'F':'FEMALE', 'X':'UNKNOWN'}):
+
+def clean_gender(x, gender_dict = {'M' : 'MALE', 'F' : 'FEMALE', 'X' : 'UNKNOWN'}):
     x = x.upper()
     if x in gender_dict.values():
         return x
@@ -37,9 +37,11 @@ def clean_dates(df):
     dt_df = pd.DataFrame()
     for col in df_cols:
         col_suffix = col.split('.')[:-1]
-        dt_df['.'.join(col_suffix + ["Date"])] = pd.to_datetime(df[col]).dt.date
+        dt_df['.'.join(col_suffix + ["Date"])] = \
+        pd.to_datetime(df[col]).dt.date
         if 'time' in col:
-            dt_df['.'.join(col_suffix + ["Time"])] = pd.to_datetime(df[col]).dt.time
+            dt_df['.'.join(col_suffix + ["Time"])] = \
+            pd.to_datetime(df[col]).dt.time
     return dt_df
 
 def extract_suffix_names(x):
@@ -49,7 +51,9 @@ def extract_suffix_names(x):
 
 def extract_middle_initial(x):
     xs = x.split(' ')
-    if len(xs) > 1 and len(xs[0]) == 1 and len(xs[1]) > 1:
+    if (len(xs) > 1 and
+        len(xs[0]) == 1 and
+        len(xs[1]) > 1):
         return xs[0]
     else:
         return ""
@@ -67,7 +71,7 @@ def clean_last_names(x):
 def clean_first_names(x):
     x = strip_names(x)
     mi = extract_middle_initial(x)
-    return [''.join(x.replace(mi+" ", "").split()), mi]
+    return [''.join(x.replace(mi + " ", "").split()), mi]
 
 def split_full_names(names, ln='Last.Name', fn='First.Name'):
     names.fillna(",", inplace=True)
