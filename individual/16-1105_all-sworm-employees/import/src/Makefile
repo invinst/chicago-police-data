@@ -4,7 +4,7 @@
 # individual/16-1105_all-sworn-members/import/src/Makefile
 
 .PHONY: all clean
-# Additional files creates: metadata_unit-history.csv.gz, unit-history.yaml
+# Additional files creates: import.log, import.yaml, metadata_unit-history.csv.gz
 
 all: \
 		output/unit-history.csv.gz
