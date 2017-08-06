@@ -4,9 +4,8 @@ input_opts = {'compression': 'gzip'}
 output_opts = {'index': False, 'compression': 'gzip'}
 
 def remove_duplicates(df, cols=[]):
-    if not cols:
-        cols = df.columns.tolist()
-    return df[~ df.duplicated(subset=cols, keep=False)]
+    if not cols: cols = df.columns.tolist()
+    return df[~df.duplicated(subset=cols, keep=False)]
 
 def keep_duplicates(df, cols):
     return df[df.duplicated(subset=cols, keep=False)].sort_values(cols)
@@ -15,7 +14,7 @@ def assign_unique_ids(df, uid, id_cols):
     dfu = df[id_cols].drop_duplicates()
     dfu.reset_index(drop=True, inplace=True)
     dfu[uid] = dfu.index + 1
-    return df.merge(dfu, on = id_cols, how = 'left')
+    return df.merge(dfu, on=id_cols, how='left')
 
 def max_aggregate(df, id_cols, max_cols):
     df = df.drop_duplicates()

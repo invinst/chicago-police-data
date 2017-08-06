@@ -1,17 +1,38 @@
-# Import necessary modules
 import pandas as pd
-# Import helperfunctions from symlinked file that is 'in' the current src/ directory
-from import_functions import standardize_columns, collect_metadata, output_opts
+import __main__
 
-# Get input and output files
-input_file = 'input/Kalven_16-1105_All_Sworn_Employees.xlsx'
-output_file = 'output/unit-history.csv.gz'
-output_metadata_file = "output/metadata_unit-history.csv.gz"
+from import_functions import standardize_columns, collect_metadata
+import setup
 
-# load the data
-df = pd.read_excel(input_file)
-# Do some stuff (importing, standardizing column names, cleaning, etc.)
+
+def get_setup():
+    ''' encapsulates args.
+        calls setup.do_setup() which returns constants and logger
+        constants contains args and a few often-useful bits in it
+        including constants.write_yamlvar()
+        logger is used to write logging messages
+    '''
+    script_path = __main__.__file__
+    args = {
+        'input_file': 'input/Kalven_16-1105_All_Sworn_Employees.xlsx',
+        'output_file': 'output/unit-history.csv.gz',
+        'metadata_file': 'output/metadata_unit-history.csv.gz'
+        }
+
+    assert args['input_file'].startswith('input/'),\
+        "input_file is malformed: {}".format(args['input_file'])
+    assert (args['output_file'].startswith('output/') and
+            args['output_file'].endswith('.csv.gz')),\
+        "output_file is malformed: {}".format(args['output_file'])
+
+    return setup.do_setup(script_path, args)
+
+
+cons, log = get_setup()
+
+df = pd.read_excel(cons.input_file)
 df.columns = standardize_columns(df.columns)
-# write it out, out_opts and in_opts are stored in the ImportFunctions (CleanFunctions, AUIDFunctions) module
-df.to_csv(output_file, **output_opts)
-collect_metadata(df, input_file, output_file).to_csv(output_metadata_file, **output_opts)
+df.to_csv(cons.output_file, **cons.csv_opts)
+
+meta_df = collect_metadata(df, cons.input_file, cons.output_file)
+meta_df.to_csv(cons.metadata_file, **cons.csv_opts)
