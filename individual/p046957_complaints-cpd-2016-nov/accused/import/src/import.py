@@ -55,8 +55,7 @@ for f in cons.input_files:
     cons.write_yamlvar("{}-FOIA_Request".format(f),
                        FOIA_request)
 
-    df['Number:'] = df['Number:'].fillna(method='ffill').astype(int)
-    df.insert(0, 'CRID', df['Number:'])
+    df.insert(0, 'CRID', df['Number:'].fillna(method='ffill').astype(int))
 
     df.drop('Number:', axis=1, inplace=True)
     df.dropna(thresh=2, inplace=True)

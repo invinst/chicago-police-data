@@ -22,13 +22,11 @@ def get_setup():
             'input/p046957_-_report_1.5_-_all_complaints_in_time_frame.xls',
             'input/p046957_-_report_1.6_-_all_complaints_in_time_frame.xls'
                        ],
-        'output_file': 'output/complaints.csv.gz',
-        'metadata_file': 'output/metadata_complaints.csv.gz',
+        'output_file': 'output/investigators.csv.gz',
+        'metadata_file': 'output/metadata_investigators.csv.gz',
         'column_names': [
-                         'CRID', 'Beat', 'Location.Code',
-                         'Address.Number', 'Street', 'Apartment.Number',
-                         'City.State', 'Incident.Datetime',
-                         'Complaint.Date', 'Closed.Date'
+                         'CRID', 'Full.Name', 'Assignment',
+                         'Rank', 'Current.Star', 'Appointed.Date'
                         ]
         }
 
@@ -44,6 +42,7 @@ def get_setup():
 
 cons, log = get_setup()
 
+
 data_df = pd.DataFrame()
 meta_df = pd.DataFrame()
 
@@ -57,9 +56,9 @@ for f in cons.input_files:
 
     df.insert(0, 'CRID', df['Number:'].fillna(method='ffill').astype(int))
 
-    df = df[df['Number:'].notnull()]
+    df = df[df['Number:'].isnull()]
     df = df.dropna(how='all', axis=(0, 1))
-    df = df.drop('Number:', axis=1)
+    df = df.drop('Beat:', axis=1)
 
     df.columns = cons.column_names
 
