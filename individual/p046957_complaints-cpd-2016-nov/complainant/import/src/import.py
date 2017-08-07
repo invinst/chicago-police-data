@@ -1,35 +1,67 @@
 import pandas as pd
-import numpy as np
-import os
-import sys
+import __main__
 
-from ImportFunctions import *
+from import_functions import read_p046957_file, collect_metadata
+import setup
 
-input_path = "../input/"
-out_path = "../output/"
-out_file = "complainants.csv"
 
-files = [input_path + f for f in os.listdir(input_path)]
+def get_setup():
+    ''' encapsulates args.
+        calls setup.do_setup() which returns constants and logger
+        constants contains args and a few often-useful bits in it
+        including constants.write_yamlvar()
+        logger is used to write logging messages
+    '''
+    script_path = __main__.__file__
+    args = {
+        'input_files': [
+        'input/p046957_-_report_5.1_-_complainant_(reporting_party)_data.xls',
+        'input/p046957_-_report_5.2_-_complainant_(reporting_party)_data.xls',
+        'input/p046957_-_report_5.3_-_complainant_(reporting_party)_data.xls'
+                       ],
+        'output_file': 'output/complainants.csv.gz',
+        'metadata_file': 'output/metadata_complainants.csv.gz',
+        'column_names': ['CRID', 'Gender', 'Age', 'Race']
+        }
 
-data = pd.DataFrame()
-metadata = pd.DataFrame()
+    assert all(input_file.startswith('input/')
+               for input_file in args['input_files']),\
+        "An input_file is malformed: {}".format(args['input_files'])
+    assert (args['output_file'].startswith('output/') and
+            args['output_file'].endswith('.csv.gz')),\
+        "output_file is malformed: {}".format(args['output_file'])
 
-for f in files:
-    df = ReadMessy(f)
-    df.insert(0, 'CRID', (df['Number']
-                            .fillna(method='ffill')
-                            .astype(int)))
-    df = (df
-            .dropna(thresh = len(df.columns.values)-1, axis=0)
-            .drop("Number", axis = 1))
-    df.columns = ["CRID", "Gender","Age", "Race"]
-    
-    data = (data
-            .append(df)
-            .reset_index(drop=True))
-    metadata = (metadata
-                .append(metadata_dataset(df, f, out_file))
-                .reset_index(drop=True))
+    return setup.do_setup(script_path, args)
 
-data.to_csv(out_path + out_file, index = False)
-metadata.to_csv(out_path + "metadata_" + out_file, index=False)
+
+cons, log = get_setup()
+
+data_df = pd.DataFrame()
+meta_df = pd.DataFrame()
+
+for f in cons.input_files:
+    df, report_produced_date, FOIA_request = read_p046957_file(f)
+
+    cons.write_yamlvar("{}-Report_Produced_Date".format(f),
+                       report_produced_date)
+    cons.write_yamlvar("{}-FOIA_Request".format(f),
+                       FOIA_request)
+
+    df.insert(0, 'CRID', df['Number'].fillna(method='ffill').astype(int))
+
+    df.drop('Number', axis=1, inplace=True) 
+    df.dropna(thresh=2, inplace=True)
+
+    df.columns = cons.column_names
+
+    data_df = (data_df
+               .append(df)
+               .reset_index(drop=True))
+    meta_df = (meta_df
+               .append(collect_metadata(df, f, cons.output_file))
+               .reset_index(drop=True))
+
+
+data_df.to_csv(cons.output_file, **cons.csv_opts)
+
+meta_df.to_csv(cons.metadata_file, **cons.csv_opts)

@@ -5,7 +5,8 @@ import io
 import re
 
 
-def read_p046957_file(path, add_skip=1):
+def read_p046957_file(path, original_crid_col,
+                      drop_col_val = (),add_skip=1):
     df = pd.read_excel(path, rows=20)
     col_list = df.columns.tolist()
     # if [col if '\n' in col or len(col) > 40 for col in col_list]:
@@ -21,6 +22,16 @@ def read_p046957_file(path, add_skip=1):
     df = (pd.read_excel(path, skiprows=skip)
             .dropna(how='all', axis=0)
             .dropna(how='all', axis=1))
+    df.insert(0, 'CRID',
+              (pd.to_numeric(df[original_crid_col],
+                             errors='coerce')
+               .fillna(method='ffill')
+               .astype(int)))
+
+    df.drop(original_crid_col, axis=1, inplace=True)
+    if drop_col_val:
+        df = df[df[drop_col_val[0]] != df[drop_col_val[1]]]
+    df.dropna(thresh=2, axis=0, inplace=True)
 
     return df, report_produced_date, FOIA_request
 
