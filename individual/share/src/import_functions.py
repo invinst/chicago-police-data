@@ -5,7 +5,7 @@ import io
 import re
 
 
-def read_p046957_files(path, add_skip=1):
+def read_p046957_file(path, add_skip=1):
     df = pd.read_excel(path, rows=20)
     col_list = df.columns.tolist()
     # if [col if '\n' in col or len(col) > 40 for col in col_list]:
@@ -22,7 +22,7 @@ def read_p046957_files(path, add_skip=1):
             .dropna(how='all', axis=0)
             .dropna(how='all', axis=1))
 
-    return df
+    return df, report_produced_date, FOIA_request
 
 
 def standardize_columns(cols):
