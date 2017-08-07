@@ -25,19 +25,25 @@ def clean_int(x, na_value=-999):
 
 
 def clean_gender(x):
-    x = x.upper()
-    if x in gender_dict.values():
-        return x
+    if isinstance(x, str):
+        x = x.upper()
+        if x in gender_dict.values():
+            return x
+        else:
+            return gender_dict[x]
     else:
-        return gender_dict[x]
+        return gender_dict['NAN']
 
 
 def clean_race(x):
-    x = x.upper()
-    if x in race_dict.values():
-        return x
+    if isinstance(x, str):
+        x = x.upper()
+        if x in race_dict.values():
+            return x
+        else:
+            return race_dict[x]
     else:
-        return race_dict[x]
+        return race_dict['NAN']
 
 
 def clean_dates(df):

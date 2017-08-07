@@ -1,7 +1,7 @@
 import pandas as pd
 import __main__
 
-from assign_unique_ids_functions import assign_unique_ids, aggregate_data
+from cleaning_functions import clean_data
 import setup
 
 
@@ -14,14 +14,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/unit-history.csv.gz',
-        'output_file': 'output/unit-history.csv.gz',
-        'output_demo_file': 'output/unit-history_demographics.csv.gz',
-        'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-                    "Appointed.Date", "Current.Age", "Gender", "Race"
-                   ],
-        'id': 'unit_history_ID'
+        'input_file': 'input/all-members.csv.gz',
+        'output_file': 'output/all-members.csv.gz'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -37,13 +31,5 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-
-stars = ["Star" + str(i) for i in range(1, 11)]
-
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df = clean_data(df)
 df.to_csv(cons.output_file, **cons.csv_opts)
-
-agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols=stars,
-                        current_cols=['Unit'], time_col='Effective.Date')
-agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

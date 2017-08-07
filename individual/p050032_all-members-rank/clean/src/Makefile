@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 # Authors:	Roman Rivera
-# individual/16-1105_all-sworn-members/clean/src/Makefile
+# individual/p050032_all-members-rank/clean/src/Makefile
 
 .PHONY: all clean
 # Additional files created: clean.log, clean.yaml
 
 all: \
-		output/unit-history.csv.gz
+		output/all-members.csv.gz
 
-output/unit-history.csv.gz: \
+output/all-members.csv.gz: \
 		src/clean.py \
-		input/unit-history.csv.gz
+		input/all-members.csv.gz
 	python $<
 
 
