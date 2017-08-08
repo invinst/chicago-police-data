@@ -14,17 +14,15 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/accused.csv.gz',
-        'output_file': 'output/accused.csv.gz',
-        'output_demo_file': 'output/accused_demographics.csv.gz',
+        'input_file': 'input/investigators.csv.gz',
+        'output_file': 'output/investigators.csv.gz',
+        'output_demo_file': 'output/investigators_demographics.csv.gz',
         'id_cols': [
-                    'First.Name', 'Last.Name', 'Suffix.Name',
-                    'Appointed.Date', 'Birth.Year', 'Gender', 'Race',
+                    'First.Name', 'Last.Name', 'Middle.Initial',
+                    'Suffix.Name', 'Appointed.Date',
+                    'Current.Rank', 'Current.Star'
                    ],
-        'id': 'accused_ID',
-        'max_cols': [
-                     'Middle.Initial', 'Current.Unit', 'Current.Star'
-                    ]
+        'id': 'investigators_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -44,6 +42,5 @@ df = pd.read_csv(cons.input_file)
 df = assign_unique_ids(df, cons.id, cons.id_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols=cons.max_cols)
+agg_df = aggregate_data(df, cons.id, cons.id_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
