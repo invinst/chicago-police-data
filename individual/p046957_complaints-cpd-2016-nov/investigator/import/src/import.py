@@ -46,19 +46,17 @@ cons, log = get_setup()
 data_df = pd.DataFrame()
 meta_df = pd.DataFrame()
 
-for f in cons.input_files:
-    df, report_produced_date, FOIA_request = read_p046957_file(f)
+for input_file in cons.input_files:
+    df, report_produced_date, FOIA_request = \
+                            read_p046957_file(input_file,
+                                              original_crid_col='Number:',
+                                              isnull='Number:',
+                                              drop_col='Beat:')
 
-    cons.write_yamlvar("{}-Report_Produced_Date".format(f),
+    cons.write_yamlvar("{}-Report_Produced_Date".format(input_file),
                        report_produced_date)
-    cons.write_yamlvar("{}-FOIA_Request".format(f),
+    cons.write_yamlvar("{}-FOIA_Request".format(input_file),
                        FOIA_request)
-
-    df.insert(0, 'CRID', df['Number:'].fillna(method='ffill').astype(int))
-
-    df = df[df['Number:'].isnull()]
-    df = df.dropna(how='all', axis=(0, 1))
-    df = df.drop('Beat:', axis=1)
 
     df.columns = cons.column_names
 
@@ -67,7 +65,7 @@ for f in cons.input_files:
                .reset_index(drop=True))
 
     meta_df = (meta_df
-               .append(collect_metadata(df, f, cons.output_file))
+               .append(collect_metadata(df, input_file, cons.output_file))
                .reset_index(drop=True))
 
 data_df.to_csv(cons.output_file, **cons.csv_opts)

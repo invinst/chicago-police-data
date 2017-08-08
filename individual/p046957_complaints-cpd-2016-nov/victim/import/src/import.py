@@ -31,27 +31,21 @@ def get_setup():
 
 cons, log = get_setup()
 
-data_df = pd.DataFrame()
-meta_df = pd.DataFrame()
 
-df, report_produced_date, FOIA_request = read_p046957_file(cons.input_file)
+data_df, report_produced_date, FOIA_request = \
+                        read_p046957_file(cons.input_file,
+                                          original_crid_col='Number',
+                                          drop_col_val=('Race Desc',
+                                                        'end of record'))
 
 cons.write_yamlvar("Report_Produced_Date", report_produced_date)
 cons.write_yamlvar("FOIA_Request", FOIA_request)
 
-df.insert(0, 'CRID', df['Number'].fillna(method='ffill').astype(int))
-df.drop('Number', axis=1, inplace=True)
-df = df.loc[df['Race Desc'] != 'end of record']
-df.dropna(thresh=2, inplace=True)
+data_df.columns = cons.column_names
 
-df.columns = cons.column_names
-
-data_df = (data_df
-           .append(df)
-           .reset_index(drop=True))
+data_df.reset_index(drop=True, inplace=True)
 data_df.to_csv(cons.output_file, **cons.csv_opts)
 
-meta_df = (meta_df
-           .append(collect_metadata(df, cons.input_file, cons.output_file))
+meta_df = (collect_metadata(data_df, cons.input_file, cons.output_file)
            .reset_index(drop=True))
 meta_df.to_csv(cons.metadata_file, **cons.csv_opts)

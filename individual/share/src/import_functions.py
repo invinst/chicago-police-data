@@ -5,12 +5,13 @@ import io
 import re
 
 
-def read_p046957_file(path, original_crid_col,
-                      drop_col_val = (),add_skip=1):
-    df = pd.read_excel(path, rows=20)
+def read_p046957_file(input_file, original_crid_col,
+                      notnull="", isnull="", drop_col="",
+                      drop_col_val=(), add_skip=1,
+                      original_crid_mixed=False):
+    df = pd.read_excel(input_file, rows=20)
+
     col_list = df.columns.tolist()
-    # if [col if '\n' in col or len(col) > 40 for col in col_list]:
-    #   metadata = True
     report_produced_date = [x for x in col_list
                             if isinstance(x, datetime.datetime)]
     col_list = [x for x in col_list if x not in report_produced_date]
@@ -19,19 +20,36 @@ def read_p046957_file(path, original_crid_col,
     skip = np.where(df.iloc[:, 0].str.contains('Number', na=False))[0][0] \
         + add_skip
 
-    df = (pd.read_excel(path, skiprows=skip)
-            .dropna(how='all', axis=0)
-            .dropna(how='all', axis=1))
+    df = pd.read_excel(input_file, skiprows=skip)
+
+    df = df.dropna(how='all', axis=(0, 1))
+
     df.insert(0, 'CRID',
               (pd.to_numeric(df[original_crid_col],
                              errors='coerce')
                .fillna(method='ffill')
                .astype(int)))
 
-    df.drop(original_crid_col, axis=1, inplace=True)
+    if notnull:
+        df = df[df[notnull].notnull()]
+
+    if isnull:
+        df = df[df[isnull].isnull()]
+
     if drop_col_val:
-        df = df[df[drop_col_val[0]] != df[drop_col_val[1]]]
-    df.dropna(thresh=2, axis=0, inplace=True)
+        df = df[df[drop_col_val[0]] != drop_col_val[1]]
+
+    if drop_col:
+        df.drop(drop_col, axis=1, inplace=True)
+
+    if original_crid_mixed:
+        df = df[df[original_crid_col] != df['CRID'].astype(str)]
+    else:
+        df.drop(original_crid_col, axis=1, inplace=True)
+
+    df.dropna(thresh=2, inplace=True)
+
+    df = df.dropna(how='all', axis=(0, 1))
 
     return df, report_produced_date, FOIA_request
 

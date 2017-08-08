@@ -14,7 +14,7 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': \
+        'input_file':
         'input/p046957_-_report_3_-_police_officer_witness_data_xi.xls',
         'output_file': 'output/witnesses.csv.gz',
         'metadata_file': 'output/metadata_witnesses.csv.gz',
@@ -35,21 +35,19 @@ def get_setup():
 
 cons, log = get_setup()
 
-df, report_produced_date, FOIA_request = read_p046957_file(cons.input_file,
-                                                           add_skip=0)
+df, report_produced_date, FOIA_request = \
+                    read_p046957_file(cons.input_file,
+                                      original_crid_col='Gender',
+                                      drop_col_val=('Race', 'end of record'),
+                                      original_crid_mixed=True,
+                                      add_skip=0)
 
 cons.write_yamlvar("Report_Produced_Date", report_produced_date)
 cons.write_yamlvar("FOIA_Request", FOIA_request)
 
-df.insert(0, 'CRID', 
-          (pd.to_numeric(df['Gender'], errors='coerce')
-          .fillna(method='ffill')
-          .astype(int)))
-df = df[df['Gender'] != df['CRID'].astype(str)]
-df.dropna(thresh=2, inplace=True)
-df.reset_index(drop=True, inplace=True)
-
 df.columns = cons.column_names
+
+df.reset_index(drop=True, inplace=True)
 
 df.to_csv(cons.output_file, **cons.csv_opts)
 
