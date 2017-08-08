@@ -25,8 +25,8 @@ def get_setup():
         'metadata_file': 'output/metadata_accused.csv.gz',
         'column_names': [
                         'CRID', 'Full.Name', 'Birth.Year', 'Gender', 'Race',
-                        'Appointed.Date', 'Current.Unit', 'Current.Star',
-                        'Current.Rank', 'Complaint.Category',
+                        'Appointed.Date', 'Current.Unit', 'Current.Rank',
+                        'Current.Star', 'Complaint.Category',
                         'Recommended.Finding', 'Recommended.Discipline',
                         'Final.Finding', 'Final.Discipline'
                         ]

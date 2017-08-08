@@ -14,10 +14,10 @@ def list_diff(l1, l2): return list(set(l1) - set(l2))
 
 def clean_int(x, na_value=-999):
     if isinstance(x, str):
-        if re.match('[a-zA-Z]', x):
-            return na_value
-        else:
+        if re.search('^[0-9,.]*$', x):
             return int(float(x))
+        else:
+            return na_value
     elif np.isfinite(x):
         return int(float(x))
     else:
@@ -94,11 +94,12 @@ def clean_first_names(x):
 
 
 def split_full_names(names, ln='Last.Name', fn='First.Name'):
-    names.fillna(",", inplace=True)
+    names = names.fillna(",")
     names = names.map(lambda x: x if re.search('[a-zA-Z]', x) else ",")
     names = names.map(lambda x: x.rsplit(',', 1))
-    return pd.DataFrame(names.values.tolist(),
-                        columns=[ln, fn])
+    names = pd.DataFrame(names.values.tolist(),
+                         columns=[ln, fn])
+    return names
 
 
 def split_names(names, main_name, sub_name, clean_func):

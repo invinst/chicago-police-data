@@ -40,3 +40,4 @@ Employee Status,Employee.Status,
 Suffix.Name,Suffix.Name,Name
 Star,Star,Int
 Current.Unit,Current.Unit,Int
+Current.Star,Current.Star,Int
