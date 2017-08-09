@@ -51,11 +51,22 @@ def clean_dates(df):
     dt_df = pd.DataFrame()
     for col in df_cols:
         col_suffix = col.split('.')[:-1]
-        dt_df['.'.join(col_suffix + ["Date"])] = \
+        try:
+            dt_df['.'.join(col_suffix + ["Date"])] = \
             pd.to_datetime(df[col]).dt.date
+        except:
+            print('Some errors in {}. Returned as NaT.'.format(col))
+            dt_df['.'.join(col_suffix + ["Date"])] = \
+            pd.to_datetime(df[col], errors='coerce').dt.date
+
         if 'time' in col:
-            dt_df['.'.join(col_suffix + ["Time"])] = \
+            try:
+                dt_df['.'.join(col_suffix + ["Time"])] = \
                 pd.to_datetime(df[col]).dt.time
+            except:
+                print('Some errors in {}. Returned as NaT.'.format(col))
+                dt_df['.'.join(col_suffix + ["Time"])] = \
+                pd.to_datetime(df[col], errors='coerce').dt.date
     return dt_df
 
 

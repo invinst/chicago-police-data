@@ -54,8 +54,8 @@ LAST_PROMOTION_DATE,Last.Promotion.Date,
 RESIGNATION_DATE,Resignation.Date,
 AWARD_TYPE,Award.Type,
 AWARD_REQUEST_DATE,Award.Request.Date,
-AWARD_ID,Award.ID,
-TRACKING_NO,Tracking.NO,
+AWARD_ID,Award.ID,Int
+TRACKING_NO,Tracking.NO,Int
 CURRENT_STATUS,Current.Status,
 REQUESTER,Requester.Full.Name,
 INCIDENT_START_DATE,Incident.Start.Date,
