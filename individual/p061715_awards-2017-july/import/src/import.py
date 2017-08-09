@@ -64,7 +64,8 @@ for input_file in cons.input_files:
                .reset_index(drop=True))
 
 assert total_rows == data_df.shape[0],\
-        print(total_rows, data_df.shape)
+        print(('Total Rows ({0}) must equal '
+               'appended rows ({1})').format(total_rows, data_df.shape[0]))
 
 data_df.to_csv(cons.output_file, **cons.csv_opts)
 
