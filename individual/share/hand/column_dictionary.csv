@@ -41,3 +41,6 @@ Suffix.Name,Suffix.Name,Name
 Star,Star,Int
 Current.Unit,Current.Unit,Int
 Current.Star,Current.Star,Int
+Start Date,Start.Date,
+End Date,End.Date,
+Assigned Unit Num.,Unit,
