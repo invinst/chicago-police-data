@@ -4,7 +4,7 @@ import pandas as pd
 def remove_duplicates(df, cols=[]):
     if not cols:
         cols = df.columns.tolist()
-    return df[~df.duplicated(subset=cols, keep=False)]
+    return df[~df.duplicated(subset=cols, keep=False)].sort_values(cols)
 
 
 def keep_duplicates(df, cols):
