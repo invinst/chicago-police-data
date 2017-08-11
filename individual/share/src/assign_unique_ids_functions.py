@@ -59,14 +59,15 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
                       on=id_cols + conflict_cols,
                       how='left')
 
-        assert df[df[uid].isnull()].shape[0] != 0,\
+        assert df[df[uid].isnull()].shape[0] == 0,\
             print('Some unique IDs are null')
-        assert max(df[uid]) != len(df[uid].drop_duplicates()),\
+        assert max(df[uid]) == len(df[uid].drop_duplicates()),\
             print('Unique IDs are not correctly scaled')
     else:
         dfu[uid] = dfu.index + 1
-        return df.merge(dfu, on=id_cols, how='left')
+        df = df.merge(dfu, on=id_cols, how='left')
 
+    return df
 
 def max_aggregate(df, id_cols, max_cols):
     df = df.drop_duplicates()

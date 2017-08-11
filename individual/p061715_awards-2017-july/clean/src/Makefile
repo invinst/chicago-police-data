@@ -4,7 +4,7 @@
 # individual/p061715_awards-2017-july/clean/src/Makefile
 
 .PHONY: all clean
-# Additional files created: clean.log, import.yaml 
+# Additional files created: clean.log, clean.yaml 
 
 all: \
 		output/awards.csv.gz
