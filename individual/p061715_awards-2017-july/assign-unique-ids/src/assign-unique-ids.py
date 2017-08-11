@@ -14,14 +14,18 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/all-sworn-units.csv.gz',
-        'output_file': 'output/all-sworn-units.csv.gz',
-        'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
+        'input_file': 'input/awards.csv.gz',
+        'output_file': 'output/awards.csv.gz',
+        'output_demo_file': 'output/awards_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-                    "Appointed.Date", "Birth.Year", "Gender", "Race"
+                    "First.Name", "Last.Name",
+                    "Appointed.Date", "Gender"
                    ],
-        'id': 'all_sworn_units_ID'
+        'conflict_cols': [
+                          'Middle.Initial', 'Birth.Year',
+                          'Current.Star', 'Resignation.Date'
+                         ],
+        'id': 'awards_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -38,15 +42,11 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-cons.write_yamlvar('Rows dropped due to no Unit',
-                   df[df['Unit'] == -999].shape[0])
+df = assign_unique_ids(df, cons.id,
+                       cons.id_cols, cons.conflict_cols)
 
-df = df[df['Unit'] != -999]
-print('Entries without units dropped')
-
-df = assign_unique_ids(df, cons.id, cons.id_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        current_cols=['Unit'], time_col='Start.Date')
+                        max_cols=cons.conflict_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
