@@ -69,6 +69,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
 
     return df
 
+
 def max_aggregate(df, id_cols, max_cols):
     df = df.drop_duplicates()
     df = df.groupby(id_cols, as_index=False)[max_cols]
