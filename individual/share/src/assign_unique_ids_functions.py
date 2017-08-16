@@ -90,16 +90,29 @@ def order_aggregate(df, id_cols,
 def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
+
+    from statistics import mode
+    import numpy as np
+
     uid_col = [uid]
     agg_df = df[uid_col + id_cols].drop_duplicates()
     agg_df.reset_index(drop=True, inplace=True)
 
-    if max_cols:
-        agg_df = agg_df.merge(
-                        max_aggregate(
-                            df[uid_col + max_cols],
-                            uid_col, max_cols),
-                        on=uid, how='left')
+    for col in mode_cols + max_cols:
+        dfu = df[[uid, col]].drop_duplicates().dropna()
+        kd_df = keep_duplicates(dfu, uid)
+
+        if kd_df.empty:
+            agg_df = agg_df.merge(dfu, on=uid, how='left')
+        else:
+            groups = kd_df.groupby(uid, as_index=False)
+
+            if col in mode_cols:
+                groups = groups.agg(mode)
+            if col in max_cols:
+                groups = groups.agg(np.nanmax)
+
+            agg_df = agg_df.merge(groups, on=uid, how='left')
 
     if current_cols and time_col:
         df[time_col] = pd.to_datetime(df[time_col])

@@ -44,5 +44,5 @@ df = assign_unique_ids(df, cons.id, cons.id_cols, cons.conflict_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols = cons.max_cols)
+                        max_cols=cons.max_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
