@@ -18,9 +18,10 @@ def get_setup():
         'output_file': 'output/all-sworn-units.csv.gz',
         'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
+                    "First.Name", "Last.Name", "Suffix.Name",
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
+        'conflict_cols': ['Middle.Initial'],
         'id': 'all_sworn_units_ID'
         }
 
@@ -38,13 +39,7 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-cons.write_yamlvar('Rows dropped due to no Unit',
-                   df[df['Unit'] == -999].shape[0])
-
-df = df[df['Unit'] != -999]
-print('Entries without units dropped')
-
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df = assign_unique_ids(df, cons.id, cons.id_cols, cons.conflict_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
