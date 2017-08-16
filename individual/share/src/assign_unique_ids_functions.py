@@ -91,8 +91,7 @@ def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
 
-    from statistics import mode
-    import numpy as np
+    from scipy import stats
 
     uid_col = [uid]
     agg_df = df[uid_col + id_cols].drop_duplicates()
@@ -101,6 +100,7 @@ def aggregate_data(df, uid, id_cols=[],
     for col in mode_cols + max_cols:
         dfu = df[[uid, col]].drop_duplicates().dropna()
         kd_df = keep_duplicates(dfu, uid)
+        dfu = dfu[~dfu[uid].isin(kd_df[uid])]
 
         if kd_df.empty:
             agg_df = agg_df.merge(dfu, on=uid, how='left')
@@ -108,10 +108,17 @@ def aggregate_data(df, uid, id_cols=[],
             groups = kd_df.groupby(uid, as_index=False)
 
             if col in mode_cols:
-                groups = groups.agg(mode)
+                print(col)
+                groups = [[k,
+                           stats.mode(g[col],
+                                      nan_policy='propagate').mode[0]]
+                          for k, g in groups]
+                groups = pd.DataFrame(groups, columns=[uid, col])
+
             if col in max_cols:
                 groups = groups.agg(np.nanmax)
 
+            groups = pd.concat([groups, dfu])
             agg_df = agg_df.merge(groups, on=uid, how='left')
 
     if current_cols and time_col:
