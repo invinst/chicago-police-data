@@ -21,6 +21,12 @@ def get_setup():
                     "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
                     "Appointed.Date", "Current.Age", "Gender", "Race"
                    ],
+        'max_cols': [
+                     'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
+                     'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
+                    ],
+        'current_cols': ['Unit'],
+        'time_col': 'Effective.Date',
         'id': 'unit_history_ID'
         }
 
@@ -38,12 +44,12 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-stars = ["Star" + str(i) for i in range(1, 11)]
 
 df = assign_unique_ids(df, cons.id, cons.id_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols=stars,
-                        current_cols=['Unit'], time_col='Effective.Date')
+                        max_cols=cons.max_cols,
+                        current_cols=cons.current_cols,
+                        time_col=cons.time_col)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

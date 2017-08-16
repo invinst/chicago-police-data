@@ -18,9 +18,11 @@ def get_setup():
         'output_file': 'output/all-members.csv.gz',
         'output_demo_file': 'output/all-members_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
+                    "First.Name", "Last.Name", "Suffix.Name",
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
+        'conflict_cols': ['Middle.Initial'],
+        'max_cols': ['Middle.Initial'],
         'id': 'all_members_ID'
         }
 
@@ -38,8 +40,8 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df = assign_unique_ids(df, cons.id, cons.id_cols, cons.conflict_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols)
+agg_df = aggregate_data(df, cons.id, cons.id_cols, max_cols=cons.max_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
