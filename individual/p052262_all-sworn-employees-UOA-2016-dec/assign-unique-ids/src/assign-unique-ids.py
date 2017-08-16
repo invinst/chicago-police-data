@@ -22,6 +22,9 @@ def get_setup():
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
         'conflict_cols': ['Middle.Initial'],
+        'max_cols': ['Middle.Initial'],
+        'current_cols': ['Unit'],
+        'time_col': 'Start.Date',
         'id': 'all_sworn_units_ID'
         }
 
@@ -43,5 +46,7 @@ df = assign_unique_ids(df, cons.id, cons.id_cols, cons.conflict_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        current_cols=['Unit'], time_col='Start.Date')
+                        max_cols=cons.max_cols,
+                        current_cols=cons.current_cols,
+                        time_col=cons.time_col)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
