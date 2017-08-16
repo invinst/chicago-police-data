@@ -32,6 +32,13 @@ cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file)
 df.columns = standardize_columns(df.columns)
+
+notes_df = df[df['First.Name'].isnull()]
+notes = '\n'.join(notes_df['Last.Name'].dropna())
+cons.write_yamlvar('Notes', notes)
+
+
+df = df[df['First.Name'].notnull()]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

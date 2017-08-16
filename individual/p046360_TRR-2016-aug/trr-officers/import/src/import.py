@@ -39,7 +39,6 @@ notes_df = pd.read_excel(cons.input_file, sheetname=cons.notes_sheet,
 notes = '\n'.join(notes_df.ix[notes_df[0].isin([cons.main_sheet,
                                                 cons.star_sheet]),
                               1].dropna())
-
 cons.write_yamlvar('Notes', notes)
 
 main_df = pd.read_excel(cons.input_file, sheetname=cons.main_sheet)
