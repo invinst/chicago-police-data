@@ -9,7 +9,8 @@ race_df = pd.read_csv('hand/race_dictionary.csv')
 race_dict = dict(zip(race_df.Original, race_df.Standard))
 
 
-def list_diff(l1, l2): return list(set(l1) - set(l2))
+def list_diff(l1, l2):
+    return list(set(l1) - set(l2))
 
 
 def clean_int(x, na_value=-999):
@@ -139,7 +140,6 @@ def clean_names(df):
         first = split_names(df['First.Name'],
                             'First.Name', 'Middle.Initial',
                             clean_first_names)
-
     name_df = last.join(first)
 
     if 'Middle.Initial' in df_cols:
@@ -156,6 +156,7 @@ def clean_names(df):
         name_df.ix[df['Suffix.Name'] != '', 'Suffix.Name'] = \
             df.ix[df['Suffix.Name'] != '', 'Suffix.Name']
 
+    name_df[name_df == ' '] = ''
     return name_df
 
 
