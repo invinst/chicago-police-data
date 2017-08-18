@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy import stats
 
 
 def remove_duplicates(df, cols=[]):
@@ -91,8 +92,6 @@ def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
 
-    from scipy import stats
-
     uid_col = [uid]
     agg_df = df[uid_col + id_cols].drop_duplicates()
     agg_df.reset_index(drop=True, inplace=True)
@@ -108,7 +107,7 @@ def aggregate_data(df, uid, id_cols=[],
             groups = kd_df.groupby(uid, as_index=False)
 
             if col in mode_cols:
-                print(col)
+                print('Mode Aggregating {} column'.format(col))
                 groups = [[k,
                            stats.mode(g[col],
                                       nan_policy='propagate').mode[0]]
@@ -116,6 +115,7 @@ def aggregate_data(df, uid, id_cols=[],
                 groups = pd.DataFrame(groups, columns=[uid, col])
 
             if col in max_cols:
+                print('Max Aggregating {} column'.format(col))
                 groups = groups.agg(np.nanmax)
 
             groups = pd.concat([groups, dfu])
