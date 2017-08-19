@@ -1,6 +1,7 @@
 import pandas as pd
 import __main__
 
+from cleaning_functions import clean_data
 import setup
 
 
@@ -13,16 +14,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/trr-officers.csv.gz',
-        'input_demo_file': 'input/trr-officers_demographics.csv.gz',
-        'output_file': 'output/trr-officers.csv.gz',
-        'output_demo_file': 'output/trr-officers_demographics.csv.gz',
-        'export_cols': [
-            'TRR.ID', 'Injured', 'Unit',
-            'In.Uniform', 'Unit.Detail',
-            'Duty.Status', 'Assigned.Beat'
-            ],
-        'id': 'trr_officers_ID'
+        'input_file': 'input/trr-subjects.csv.gz',
+        'output_file': 'output/trr-subjects.csv.gz'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -38,8 +31,5 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df = df[[cons.id] + cons.export_cols]
+df = clean_data(df)
 df.to_csv(cons.output_file, **cons.csv_opts)
-
-demo_df = pd.read_csv(cons.input_demo_file)
-demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
