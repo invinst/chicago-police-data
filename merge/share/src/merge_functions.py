@@ -172,3 +172,11 @@ def append_to_reference(sub_df, profile_df, ref_df,
             return (ref_df, ml[1], ml[2])
         else:
             return ref_df
+
+
+def remerge(df, link_df, uid_col, id_col):
+    rows = df.shape[0]
+    df = df.merge(link_df[[uid_col, id_col]],
+                  on=id_col, how='left')
+    assert(df.shape[0] == rows), print('Missing rows!')
+    return df

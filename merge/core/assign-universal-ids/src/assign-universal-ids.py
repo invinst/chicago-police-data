@@ -2,7 +2,7 @@ import pandas as pd
 import __main__
 
 from assign_unique_ids_functions import aggregate_data
-from merge_functions import append_to_reference, listdiff
+from merge_functions import append_to_reference, listdiff, remerge
 import setup
 
 
@@ -15,24 +15,42 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_files': [
+        'input_demo_files': [
             'input/all-sworn_demographics.csv.gz',
             'input/all-sworn-units_demographics.csv.gz',
             'input/all-members_demographics.csv.gz',
             'input/unit-history_demographics.csv.gz'
         ],
-        'output_file': 'output/officer-profiles.csv.gz',
+        'input_full_files': [
+            'input/all-sworn.csv.gz',
+            'input/all-sworn-units.csv.gz',
+            'input/all-members.csv.gz',
+            'input/unit-history.csv.gz'
+        ],
+
+        'output_files': [
+            'output/all-sworn.csv.gz',
+            'output/all-sworn-units.csv.gz',
+            'output/all-members.csv.gz',
+            'output/unit-history.csv.gz'
+        ],
+        'output_profile_file': 'output/officer-profiles.csv.gz',
         'output_reference_file': 'output/officer-reference.csv.gz',
         'universal_id': 'UID'
         }
 
-    assert all(input_file.startswith('input/') and
-               input_file.endswith('.csv.gz')
-               for input_file in args['input_files']),\
-        "An input_file is malformed: {}".format(args['input_files'])
-    assert (args['output_file'].startswith('output/') and
-            args['output_file'].endswith('.csv.gz')),\
-        "output_file is malformed: {}".format(args['output_file'])
+    assert all(input_demo_file.startswith('input/') and
+               input_demo_file.endswith('.csv.gz')
+               for input_demo_file in args['input_demo_files']),\
+        "An input_demo_file is malformed: {}".format(args['input_demo_files'])
+    assert all(input_full_file.startswith('input/') and
+               input_full_file.endswith('.csv.gz')
+               for input_full_file in args['input_full_files']),\
+        "An input_full_file is malformed: {}".format(args['input_full_files'])
+    assert all(output_file.startswith('output/') and
+               output_file.endswith('.csv.gz')
+               for output_file in args['output_files']),\
+        "An output_file is malformed: {}".format(args['output_files'])
 
     return setup.do_setup(script_path, args)
 
@@ -42,8 +60,10 @@ cons, log = get_setup()
 ref_df = pd.DataFrame()
 profile_df = pd.DataFrame()
 
-for input_file in cons.input_files:
-    sub_df = pd.read_csv(input_file)
+for idf, iff, of in zip(cons.input_demo_files,
+                        cons.input_full_files,
+                        cons.output_files):
+    sub_df = pd.read_csv(idf)
     ref_df = append_to_reference(sub_df=sub_df,
                                  profile_df=profile_df,
                                  ref_df=ref_df)
@@ -51,5 +71,12 @@ for input_file in cons.input_files:
                                 mode_cols=listdiff(ref_df.columns,
                                                    [cons.universal_id]))
 
-profile_df.to_csv(cons.output_file, **cons.csv_opts)
+    full_df = pd.read_csv(iff)
+    id_col = [col for col in full_df.columns
+              if col.endswith('_ID')][0]
+    full_df = remerge(full_df, profile_df,
+                      cons.universal_id, id_col)
+    full_df.to_csv(of, **cons.csv_opts)
+
+profile_df.to_csv(cons.output_profile_file, **cons.csv_opts)
 ref_df.to_csv(cons.output_reference_file, **cons.csv_opts)

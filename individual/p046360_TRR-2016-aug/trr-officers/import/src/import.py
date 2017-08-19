@@ -20,7 +20,13 @@ def get_setup():
         'main_sheet': 'Sheet1',
         'star_sheet': 'Star #',
         'notes_sheet': 'Notes',
-        'drop_column': 'SUBJECT_CB_NO'
+        'drop_column': 'SUBJECT_CB_NO',
+        'main_keep_columns': [
+            'TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR',
+            'PORACE', 'POAGE', 'APPOINTED_DATE', 'UNITASSG',
+            'UNITDETAIL', 'ASSGNBEAT', 'RANK', 'DUTYSTATUS',
+            'POINJURED', 'MEMBER_IN_UNIFORM'
+            ]
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -43,6 +49,7 @@ cons.write_yamlvar('Notes', notes)
 
 main_df = pd.read_excel(cons.input_file, sheetname=cons.main_sheet)
 main_df = main_df.drop(cons.drop_column, axis=1)
+main_df = main_df[cons.main_keep_columns]
 main_df.columns = standardize_columns(main_df.columns)
 
 star_df = pd.read_excel(cons.input_file, sheetname=cons.star_sheet)
