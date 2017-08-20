@@ -1,7 +1,6 @@
 import pandas as pd
 import __main__
 
-from assign_unique_ids_functions import assign_unique_ids, aggregate_data
 import setup
 
 
@@ -15,11 +14,12 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/investigators.csv.gz',
+        'input_demo_file': 'input/investigators_demographics.csv.gz',
         'output_file': 'output/investigators.csv.gz',
         'output_demo_file': 'output/investigators_demographics.csv.gz',
-        'id_cols': [
-                    'First.Name', 'Last.Name', 'Appointed.Date',
-                   ],
+        'export_cols': [
+            'CRID', 'Assignment', 'Current.Rank'
+            ],
         'id': 'investigators_ID'
         }
 
@@ -36,9 +36,8 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols)
-agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
+demo_df = pd.read_csv(cons.input_demo_file)
+demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)

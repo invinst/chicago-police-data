@@ -1,7 +1,6 @@
 import pandas as pd
 import __main__
 
-from assign_unique_ids_functions import assign_unique_ids, aggregate_data
 import setup
 
 
@@ -14,13 +13,13 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/investigators.csv.gz',
-        'output_file': 'output/investigators.csv.gz',
-        'output_demo_file': 'output/investigators_demographics.csv.gz',
-        'id_cols': [
-                    'First.Name', 'Last.Name', 'Appointed.Date',
-                   ],
-        'id': 'investigators_ID'
+        'input_file': 'input/witnesses.csv.gz',
+        'input_demo_file': 'input/witnesses_demographics.csv.gz',
+        'output_file': 'output/witnesses.csv.gz',
+        'output_demo_file': 'output/witnesses_demographics.csv.gz',
+        'export_cols': ['CRID'],
+        'id': 'witnesses_ID',
+        'notnull_col': 'First.Name'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -36,9 +35,15 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols)
-agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
+demo_df = pd.read_csv(cons.input_demo_file)
+initial_rows = demo_df.shape[0]
+demo_df = demo_df.dropna(subset=[cons.notnull_col])
+demo_df.reset_index(drop=True, inplace=True)
+dropped_row_count = initial_rows - demo_df.shape[0]
+print(('Dropping rows without {0} data.\n'
+      '{1} demographic rows dropped.').format(cons.notnull_col,
+                                              dropped_row_count))
+demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
