@@ -63,6 +63,7 @@ profile_df = pd.DataFrame()
 for idf, iff, of in zip(cons.input_demo_files,
                         cons.input_full_files,
                         cons.output_files):
+    print('File: {}'.format(iff))
     sub_df = pd.read_csv(idf)
     atr_dict = append_to_reference(sub_df=sub_df,
                                    profile_df=profile_df,
