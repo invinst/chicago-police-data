@@ -39,8 +39,17 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
+df['Rank.Number'] = df['Rank'].map(lambda x: x.split('-')[0]
+                                   if isinstance(x, str)
+                                   else 10000)
+df['Rank.Number'] = df['Rank.Number'].map(lambda x: int(x)
+                                          if x != 'UNK'
+                                          else 10000)
+drop_ids = df[df['Rank.Number'] < 9000][cons.id]
 df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 demo_df = pd.read_csv(cons.input_demo_file)
+demo_df = demo_df[~demo_df[cons.id].isin(drop_ids)]
+print('{} IDs dropped from demographic data'.format(len(drop_ids)))
 demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
