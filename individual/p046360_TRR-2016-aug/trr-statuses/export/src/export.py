@@ -42,4 +42,3 @@ df.to_csv(cons.output_file, **cons.csv_opts)
 
 demo_df = pd.read_csv(cons.input_demo_file)
 demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
-
