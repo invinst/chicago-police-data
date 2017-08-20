@@ -64,9 +64,21 @@ for idf, iff, of in zip(cons.input_demo_files,
                         cons.input_full_files,
                         cons.output_files):
     sub_df = pd.read_csv(idf)
-    ref_df = append_to_reference(sub_df=sub_df,
-                                 profile_df=profile_df,
-                                 ref_df=ref_df)
+    atr_dict = append_to_reference(sub_df=sub_df,
+                                   profile_df=profile_df,
+                                   ref_df=ref_df,
+                                   return_merge_report=True,
+                                   return_merge_list=True)
+
+    ref_df = atr_dict['ref']
+    cons.write_yamlvar('File added', idf)
+    cons.write_yamlvar('Officers Added',
+                       len(ref_df['UID']) - profile_df.shape[0])
+    if not profile_df.empty:
+        cons.write_yamlvar('Merge Report', atr_dict['MR'])
+        cons.write_yamlvar('Merge List',
+                           atr_dict['ML'].value_counts())
+
     profile_df = aggregate_data(ref_df, cons.universal_id,
                                 mode_cols=listdiff(ref_df.columns,
                                                    [cons.universal_id]))

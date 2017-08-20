@@ -65,31 +65,71 @@ def generate_on_lists(data_cols, base_lists):
     return merge_list
 
 
-def loop_merge(df1, df2, on_lists, keep_columns, return_unmatched=True):
+def generate_merge_report(total_merged,
+                          total_df1,
+                          total_df2,
+                          decimals=2):
+    unmerged_df1 = total_df1 - total_merged
+    unmerged_df2 = total_df2 - total_merged
+    prcnt_m_df1 = round(100 * total_merged / total_df1,
+                        decimals)
+    prcnt_m_df2 = round(100 * total_merged / total_df2,
+                        decimals)
+    prcnt_um_df1 = round(100 * unmerged_df1 / total_df1,
+                         decimals)
+    prcnt_um_df2 = round(100 * unmerged_df2 / total_df1,
+                         decimals)
+    return(('{0} Total Merged. '
+            '{1}% of DF1 and {2}% of DF2 Merged.\n'
+            '{3} Unmerged in DF1. '
+            '{4}% Unmerged.\n'
+            '{5} Unmerged in DF2. '
+            '{6}% Unmerged.').format(total_merged,
+                                     prcnt_m_df1,
+                                     prcnt_m_df2,
+                                     unmerged_df1,
+                                     prcnt_um_df1,
+                                     unmerged_df2,
+                                     prcnt_um_df2))
+
+
+def loop_merge(df1, df2, on_lists, keep_columns,
+               return_unmatched=True, return_merge_report=True):
     dfm = pd.DataFrame(columns=keep_columns + ['Match'])
+    df1_rows = df1.shape[0]
+    df2_rows = df2.shape[0]
     for mc in on_lists:
         df1t = remove_duplicates(df1[keep_columns[:1] + mc], mc)
         df2t = remove_duplicates(df2[keep_columns[1:] + mc], mc)
         dfmt = df1t.merge(df2t, on=mc, how='inner')
         if dfmt.shape[0] > 0:
-            print('******')
-            print(mc)
-            print(dfmt.shape[0])
-            print('******')
+            print(('{0} Matches on \n'
+                  '{1} columns').format(dfmt.shape[0],
+                                        mc))
             dfmt['Match'] = '-'.join(mc)
             dfm = dfm.append(dfmt[keep_columns +
                                   ['Match']].reset_index(drop=True))
             df1 = df1.loc[~df1[keep_columns[0]].isin(dfm[keep_columns[0]])]
             df2 = df2.loc[~df2[keep_columns[1]].isin(dfm[keep_columns[1]])]
-    print(dfm.shape[0], df1.shape[0], df2.shape[0])
+
+    merge_report = generate_merge_report(dfm.shape[0],
+                                         df1_rows,
+                                         df2_rows)
+    print(merge_report)
+
+    return_dict = {'merged': dfm.reset_index(drop=True)}
     if return_unmatched:
-        return (dfm.reset_index(drop=True), df1, df2)
-    else:
-        return dfm.reset_index(drop=True)
+        return_dict['UM1'] = df1
+        return_dict['UM2'] = df2
+    if return_merge_report:
+        return_dict['MR'] = merge_report
+
+    return return_dict
 
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   return_unmatched=True, name_changes=True):
+                   return_unmatched=True, name_changes=True,
+                   return_merge_report=True):
     df1 = df1.dropna(axis=1, how='all')
     df2 = df2.dropna(axis=1, how='all')
 
@@ -136,30 +176,39 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
                              keep_columns=keep_columns,
-                             return_unmatched=return_unmatched)
+                             return_unmatched=return_unmatched,
+                             return_merge_report=return_merge_report)
 
     return(merged_data)
 
 
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
-                        name_changes=True):
+                        name_changes=True, return_merge_report=True,
+                        return_merge_list=True):
+
+    return_dict = {'ref': None,
+                   'UM1': None,
+                   'UM2': None,
+                   'MR': None,
+                   'ML': None}
 
     if profile_df.empty:
         sub_df.insert(0, 'UID', sub_df.index + 1)
-        return sub_df
+        return_dict['ref'] = sub_df
     else:
         id_col = [col for col in sub_df.columns if col.endswith('_ID')][0]
         keep_columns = ['UID', id_col]
 
-        ml = merge_datasets(profile_df, sub_df,
-                            keep_columns=keep_columns,
-                            custom_matches=custom_matches,
-                            name_changes=name_changes)
+        md_dict = merge_datasets(profile_df, sub_df,
+                                 keep_columns=keep_columns,
+                                 custom_matches=custom_matches,
+                                 name_changes=name_changes,
+                                 return_merge_report=return_merge_report)
 
-        ref = pd.concat([ml[0][keep_columns],
-                        ml[1][[keep_columns[0]]],
-                        ml[2][[keep_columns[1]]]])[
+        ref = pd.concat([md_dict['merged'][keep_columns],
+                        md_dict['UM1'][[keep_columns[0]]],
+                        md_dict['UM2'][[keep_columns[1]]]])[
               keep_columns].reset_index(drop=True)
 
         ref = ref.sort_values('UID', na_position='last').reset_index(drop=True)
@@ -168,10 +217,16 @@ def append_to_reference(sub_df, profile_df, ref_df,
                               on=keep_columns[1], how='left')
         ref_df = pd.concat([ref_df, sub_df]).reset_index(drop=True)
 
+        return_dict['ref'] = ref_df
         if return_unmatched:
-            return (ref_df, ml[1], ml[2])
-        else:
-            return ref_df
+            return_dict['UM1'] = md_dict['UM1']
+            return_dict['UM2'] = md_dict['UM2']
+        if return_merge_report:
+            return_dict['MR'] = md_dict['MR']
+        if return_merge_list:
+            return_dict['ML'] = md_dict['merged']['Match']
+
+    return return_dict
 
 
 def remerge(df, link_df, uid_col, id_col):
