@@ -36,7 +36,8 @@ def keep_duplicates(df, cols):
     return df[df.duplicated(subset=cols, keep=False)].sort_values(cols)
 
 
-def add_columns(df, add_cols=["F4FN", "F4LN", "Current.Age", "BY_to_CA"]):
+def add_columns(df,
+                add_cols=["F4FN", "F4LN", "Current.Age", "BY_to_CA", "Stars"]):
     if "F4FN" in add_cols and "First.Name" in df.columns:
             df['F4FN'] = df['First.Name'].map(take_first_four)
     if "F4LN" in add_cols and 'Last.Name' in df.columns:
@@ -47,6 +48,11 @@ def add_columns(df, add_cols=["F4FN", "F4LN", "Current.Age", "BY_to_CA"]):
     if "BY_to_CA" in add_cols and "Birth.Year" in df.columns:
         df['Current.Age.p1'] = df['Birth.Year'].map(BY_to_CA)
         df['Current.Age.m1'] = df['Birth.Year'].map(BY_to_CA) - 1
+    if ('Stars' in add_cols and
+        'Current.Star' in df.columns and
+       'Star1' not in df.columns):
+        for i in range(1, 11):
+            df['Star{}'.format(i)] = df['Current.Star']
     return df
 
 
@@ -128,15 +134,16 @@ def loop_merge(df1, df2, on_lists, keep_columns,
 
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   return_unmatched=True, name_changes=True,
-                   return_merge_report=True):
+                   return_unmatched=True, name_changes=True, no_stars=False,
+                   return_merge_report=True, expand_stars=False):
     df1 = df1.dropna(axis=1, how='all')
     df2 = df2.dropna(axis=1, how='all')
+    add_cols = ['F4FN', 'F4LN']
 
     if "Birth.Year" not in intersect(df1.columns, df2.columns):
-        add_cols = ["F4FN", "F4LN", "BY_to_CA", "Current.Age"]
-    else:
-        add_cols = ["F4FN", "F4LN"]
+        add_cols.extend(["BY_to_CA", "Current.Age"])
+    if 'Star1' not in intersect(df1.columns, df2.columns) and expand_stars:
+        add_cols.append('Stars')
 
     df1 = add_columns(df1, add_cols)
     df2 = add_columns(df2, add_cols)
@@ -173,6 +180,12 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                                       if "Last.Name" not in ml])
         nc_lists = [nc_list for nc_list in nc_lists if len(nc_list) > 3]
         on_lists.extend(nc_lists)
+    if no_stars:
+        ns_lists = generate_on_lists(cols,
+                                     [ml for ml in base_lists
+                                      if 'Current.Star' not in ml])
+        ns_lists = [ns_list for ns_list in ns_lists if len(ns_list) > 3]
+        on_lists.extend(ns_lists)
 
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
@@ -185,8 +198,9 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
-                        name_changes=True, return_merge_report=True,
-                        return_merge_list=True):
+                        name_changes=True, no_stars=False,
+                        return_merge_report=True,
+                        return_merge_list=True, expand_stars=False):
 
     return_dict = {'ref': None,
                    'UM1': None,
@@ -205,7 +219,9 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  keep_columns=keep_columns,
                                  custom_matches=custom_matches,
                                  name_changes=name_changes,
-                                 return_merge_report=return_merge_report)
+                                 no_stars=no_stars,
+                                 return_merge_report=return_merge_report,
+                                 expand_stars=expand_stars)
 
         ref = pd.concat([md_dict['merged'][keep_columns],
                         md_dict['UM1'][[keep_columns[0]]],

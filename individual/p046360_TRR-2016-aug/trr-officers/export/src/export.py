@@ -39,7 +39,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-drop_ids = df[~df['Rank'].isin(cons.drop_ranks)][cons.id]
+drop_ids = df[df['Rank'].isin(cons.drop_ranks)][cons.id]
 df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
