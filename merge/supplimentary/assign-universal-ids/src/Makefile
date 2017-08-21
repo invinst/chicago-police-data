@@ -15,6 +15,8 @@ all: \
 
 output/officer-profiles.csv.gz: \
 		src/assign-universal-ids.py \
+		input/officer-profiles.csv.gz \
+		input/officer-reference.csv.gz \
                 input/accused_demographics.csv.gz \
                 input/accused.csv.gz \
                 input/witnesses_demographics.csv.gz \

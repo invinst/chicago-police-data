@@ -31,7 +31,11 @@ def get_setup():
             'input/trr-statuses.csv.gz',
             'input/awards.csv.gz'
         ],
-
+        'input_profile_file': 'input/officer-profiles.csv.gz',
+        'input_reference_file': 'input/officer-reference.csv.gz',
+        'custom_matches': [[], [],
+                           ['First.Name', 'Appointed.Date'],
+                           [], [], []],
         'output_files': [
             'output/accused.csv.gz',
             'output/witnesses.csv.gz',
@@ -63,17 +67,19 @@ def get_setup():
 
 cons, log = get_setup()
 
-ref_df = pd.DataFrame()
-profile_df = pd.DataFrame()
+ref_df = pd.read_csv(cons.input_reference_file)
+profile_df = pd.read_csv(cons.input_profile_file)
 
-for idf, iff, of in zip(cons.input_demo_files,
-                        cons.input_full_files,
-                        cons.output_files):
+for idf, iff, of, cm in zip(cons.input_demo_files,
+                            cons.input_full_files,
+                            cons.output_files,
+                            cons.custom_matches):
     print('File: {}'.format(iff))
     sub_df = pd.read_csv(idf)
     atr_dict = append_to_reference(sub_df=sub_df,
                                    profile_df=profile_df,
                                    ref_df=ref_df,
+                                   custom_matches=cm,
                                    return_merge_report=True,
                                    return_merge_list=True)
 

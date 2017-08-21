@@ -51,6 +51,7 @@ for input_file in cons.input_files:
                             read_p046957_file(input_file,
                                               original_crid_col='Number:',
                                               isnull='Number:',
+                                              notnull='Location Code:',
                                               drop_col='Beat:')
 
     cons.write_yamlvar("{}-Report_Produced_Date".format(input_file),

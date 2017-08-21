@@ -158,13 +158,14 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         ['Middle.Initial', ''],
         ['Gender', ''],
         ['Race', ''],
-        ['Suffix.Name', '']
+        ['Suffix.Name', ''],
+        ['Current.Unit', '']
     ]
 
     on_lists = generate_on_lists(cols, base_lists)
 
     if custom_matches:
-        on_lists.append(custom_matches)
+        on_lists.extend(custom_matches)
 
     if name_changes:
         nc_lists = generate_on_lists(cols,
