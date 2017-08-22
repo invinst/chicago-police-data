@@ -33,9 +33,17 @@ def get_setup():
         ],
         'input_profile_file': 'input/officer-profiles.csv.gz',
         'input_reference_file': 'input/officer-reference.csv.gz',
-        'custom_matches': [[], [],
-                           ['First.Name', 'Appointed.Date'],
-                           [], [], []],
+        'append_opts': [
+            {}, {},
+            {'custom_matches':
+             [['First.Name', 'Appointed.Date']]},
+            {'expand_stars': True,
+             'no_stars': True},
+            {'expand_stars': True,
+             'no_stars': True},
+            {'expand_stars': True,
+             'no_stars': True}
+        ],
         'output_files': [
             'output/accused.csv.gz',
             'output/witnesses.csv.gz',
@@ -70,18 +78,20 @@ cons, log = get_setup()
 ref_df = pd.read_csv(cons.input_reference_file)
 profile_df = pd.read_csv(cons.input_profile_file)
 
-for idf, iff, of, cm in zip(cons.input_demo_files,
-                            cons.input_full_files,
-                            cons.output_files,
-                            cons.custom_matches):
+for idf, iff, of, opts in zip(cons.input_demo_files,
+                              cons.input_full_files,
+                              cons.output_files,
+                              cons.append_opts):
+    if 'investigator' in iff:
+        break
     print('File: {}'.format(iff))
     sub_df = pd.read_csv(idf)
     atr_dict = append_to_reference(sub_df=sub_df,
                                    profile_df=profile_df,
                                    ref_df=ref_df,
-                                   custom_matches=cm,
                                    return_merge_report=True,
-                                   return_merge_list=True)
+                                   return_merge_list=True,
+                                   **opts)
 
     ref_df = atr_dict['ref']
     cons.write_yamlvar('File added', idf)

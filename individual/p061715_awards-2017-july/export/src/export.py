@@ -39,13 +39,15 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df['Rank.Number'] = df['Rank'].map(lambda x: x.split('-')[0]
-                                   if isinstance(x, str)
-                                   else 10000)
-df['Rank.Number'] = df['Rank.Number'].map(lambda x: int(x)
-                                          if x != 'UNK'
-                                          else 10000)
-drop_ids = df[df['Rank.Number'] < 9000][cons.id]
+keeplist = ['PO', 'P O', 'P.O', 'SERGEANT']
+droplist = ['LEGAL', 'AIDE', 'CLERK', 'POL ', 'DIR',
+            'SUPV', 'SUPT', 'MANAGER', 'TECH']
+keep_ids = df[df['Rank'].str.startswith('9', 'UNK')][
+              ((df['Rank'] == 'CHIEF') | (df['Rank'] == 'DEP CHIEF')) |
+              ((df['Rank'].str.contains('|'.join(keeplist))) &
+               (~df['Rank'].str.contains('|'.join(droplist))))][
+              cons.id].unique()
+drop_ids = list(set(df[cons.id]) - set(keep_ids))
 df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 

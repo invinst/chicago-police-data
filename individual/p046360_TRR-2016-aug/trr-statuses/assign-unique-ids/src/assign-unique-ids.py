@@ -21,6 +21,8 @@ def get_setup():
                     "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
                     "Appointed.Date", "Gender", "Race"
                    ],
+        'current_cols': ['Star'],
+        'time_col': 'Status.Date',
         'id': 'trr_statuses_ID'
         }
 
@@ -41,5 +43,7 @@ df = pd.read_csv(cons.input_file)
 df = assign_unique_ids(df, cons.id, cons.id_cols)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols)
+agg_df = aggregate_data(df, cons.id, cons.id_cols,
+                        current_cols=cons.current_cols,
+                        time_col=cons.time_col)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

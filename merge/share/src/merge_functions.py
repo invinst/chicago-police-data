@@ -99,7 +99,7 @@ def generate_merge_report(total_merged,
                                      prcnt_um_df2))
 
 
-def loop_merge(df1, df2, on_lists, keep_columns,
+def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
                return_unmatched=True, return_merge_report=True):
     dfm = pd.DataFrame(columns=keep_columns + ['Match'])
     df1_rows = df1.shape[0]
@@ -109,9 +109,10 @@ def loop_merge(df1, df2, on_lists, keep_columns,
         df2t = remove_duplicates(df2[keep_columns[1:] + mc], mc)
         dfmt = df1t.merge(df2t, on=mc, how='inner')
         if dfmt.shape[0] > 0:
-            print(('{0} Matches on \n'
-                  '{1} columns').format(dfmt.shape[0],
-                                        mc))
+            if print_merging:
+                print(('{0} Matches on \n'
+                       '{1} columns').format(dfmt.shape[0],
+                                             mc))
             dfmt['Match'] = '-'.join(mc)
             dfm = dfm.append(dfmt[keep_columns +
                                   ['Match']].reset_index(drop=True))
@@ -135,7 +136,8 @@ def loop_merge(df1, df2, on_lists, keep_columns,
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                    return_unmatched=True, name_changes=True, no_stars=False,
-                   return_merge_report=True, expand_stars=False):
+                   return_merge_report=True, expand_stars=False,
+                   print_merging=False):
     df1 = df1.dropna(axis=1, how='all')
     df2 = df2.dropna(axis=1, how='all')
     add_cols = ['F4FN', 'F4LN']
@@ -191,7 +193,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                              on_lists=on_lists,
                              keep_columns=keep_columns,
                              return_unmatched=return_unmatched,
-                             return_merge_report=return_merge_report)
+                             return_merge_report=return_merge_report,
+                             print_merging=print_merging)
 
     return(merged_data)
 
@@ -199,7 +202,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
                         name_changes=True, no_stars=False,
-                        return_merge_report=True,
+                        return_merge_report=True, print_merging=False,
                         return_merge_list=True, expand_stars=False):
 
     return_dict = {'ref': None,
@@ -221,7 +224,8 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  name_changes=name_changes,
                                  no_stars=no_stars,
                                  return_merge_report=return_merge_report,
-                                 expand_stars=expand_stars)
+                                 expand_stars=expand_stars,
+                                 print_merging=print_merging)
 
         ref = pd.concat([md_dict['merged'][keep_columns],
                         md_dict['UM1'][[keep_columns[0]]],

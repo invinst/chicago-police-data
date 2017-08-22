@@ -21,7 +21,8 @@ def get_setup():
             'TRR.ID', 'Rank', 'Star', 'Status',
             'Status.Time', 'Status.Date'
             ],
-        'id': 'trr_statuses_ID'
+        'id': 'trr_statuses_ID',
+        'notnull': 'Rank'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -37,8 +38,11 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
+drop_ids = df[df[cons.notnull].isnull()][cons.id].unique()
 df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 demo_df = pd.read_csv(cons.input_demo_file)
+demo_df = demo_df[~demo_df[cons.id].isin(drop_ids)]
+print('{} rows dropped. No ranks.'.format(len(drop_ids)))
 demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
