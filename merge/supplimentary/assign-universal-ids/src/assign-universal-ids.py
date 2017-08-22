@@ -17,7 +17,7 @@ def get_setup():
     args = {
         'input_demo_files': [
             'input/accused_demographics.csv.gz',
-            'input/witnesses_demographics.csv.gz',
+            # 'input/witnesses_demographics.csv.gz',
             'input/investigators_demographics.csv.gz',
             'input/trr-officers_demographics.csv.gz',
             'input/trr-statuses_demographics.csv.gz',
@@ -25,7 +25,7 @@ def get_setup():
         ],
         'input_full_files': [
             'input/accused.csv.gz',
-            'input/witnesses.csv.gz',
+            # 'input/witnesses.csv.gz',
             'input/investigators.csv.gz',
             'input/trr-officers.csv.gz',
             'input/trr-statuses.csv.gz',
@@ -34,19 +34,24 @@ def get_setup():
         'input_profile_file': 'input/officer-profiles.csv.gz',
         'input_reference_file': 'input/officer-reference.csv.gz',
         'append_opts': [
-            {}, {},
+            {'no_match_cols': ["Last.Name"]},
+            # {},
             {'custom_matches':
-             [['First.Name', 'Appointed.Date']]},
+             [['First.Name', 'Appointed.Date']],
+             'no_match_cols': ['Last.Name']},
             {'expand_stars': True,
-             'no_stars': True},
+             'no_match_cols': ['Last.Name',
+                               'Current.Star']},
             {'expand_stars': True,
-             'no_stars': True},
+             'no_match_cols': ['Last.Name',
+                               'Current.Star']},
             {'expand_stars': True,
-             'no_stars': True}
+             'no_match_cols': ['Last.Name',
+                               'Current.Star']},
         ],
         'output_files': [
             'output/accused.csv.gz',
-            'output/witnesses.csv.gz',
+            # 'output/witnesses.csv.gz',
             'output/investigators.csv.gz',
             'output/trr-officers.csv.gz',
             'output/trr-statuses.csv.gz',
@@ -82,8 +87,6 @@ for idf, iff, of, opts in zip(cons.input_demo_files,
                               cons.input_full_files,
                               cons.output_files,
                               cons.append_opts):
-    if 'investigator' in iff:
-        break
     print('File: {}'.format(iff))
     sub_df = pd.read_csv(idf)
     atr_dict = append_to_reference(sub_df=sub_df,

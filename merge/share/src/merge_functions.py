@@ -135,9 +135,9 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
 
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   return_unmatched=True, name_changes=True, no_stars=False,
-                   return_merge_report=True, expand_stars=False,
-                   print_merging=False):
+                   no_match_cols=[], min_match_length=4,
+                   expand_stars=False, return_unmatched=True,
+                   return_merge_report=True, print_merging=False):
     df1 = df1.dropna(axis=1, how='all')
     df2 = df2.dropna(axis=1, how='all')
     add_cols = ['F4FN', 'F4LN']
@@ -173,21 +173,16 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
     on_lists = generate_on_lists(cols, base_lists)
 
+    for nmc in no_match_cols:
+        nmc_lists = generate_on_lists(cols,
+                                      [ml for ml in base_lists
+                                       if nmc not in ml])
+        nmc_lists = [nmcl for nmcl in nmc_lists
+                     if len(nmcl) >= min_match_length]
+        on_lists.extend(nmc_lists)
+
     if custom_matches:
         on_lists.extend(custom_matches)
-
-    if name_changes:
-        nc_lists = generate_on_lists(cols,
-                                     [ml for ml in base_lists
-                                      if "Last.Name" not in ml])
-        nc_lists = [nc_list for nc_list in nc_lists if len(nc_list) > 3]
-        on_lists.extend(nc_lists)
-    if no_stars:
-        ns_lists = generate_on_lists(cols,
-                                     [ml for ml in base_lists
-                                      if 'Current.Star' not in ml])
-        ns_lists = [ns_list for ns_list in ns_lists if len(ns_list) > 3]
-        on_lists.extend(ns_lists)
 
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
@@ -201,7 +196,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
-                        name_changes=True, no_stars=False,
+                        min_match_length=4, no_match_cols=[],
                         return_merge_report=True, print_merging=False,
                         return_merge_list=True, expand_stars=False):
 
@@ -221,8 +216,8 @@ def append_to_reference(sub_df, profile_df, ref_df,
         md_dict = merge_datasets(profile_df, sub_df,
                                  keep_columns=keep_columns,
                                  custom_matches=custom_matches,
-                                 name_changes=name_changes,
-                                 no_stars=no_stars,
+                                 no_match_cols=no_match_cols,
+                                 min_match_length=min_match_length,
                                  return_merge_report=return_merge_report,
                                  expand_stars=expand_stars,
                                  print_merging=print_merging)
