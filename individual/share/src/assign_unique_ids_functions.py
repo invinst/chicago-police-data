@@ -1,21 +1,39 @@
+#!usr/bin/env python3
+# Authors:  Roman Rivera
+
+'''A script containing functions for
+assigning unique or universal ids and aggregating data
+'''
 import pandas as pd
 import numpy as np
 from scipy import stats
 
 
 def remove_duplicates(df, cols=[]):
+    ''' returns pandas dataframe
+        excluding rows that contain duplicate values
+        in the specified columns
+    '''
     if not cols:
         cols = df.columns.tolist()
     return df[~df.duplicated(subset=cols, keep=False)].sort_values(cols)
 
 
 def keep_duplicates(df, cols):
+    ''' returns pandas dataframe
+        including only rows that contain duplicate values
+        in specified columns
+    '''
     return df[df.duplicated(subset=cols, keep=False)].sort_values(cols)
 
 
 def resolve_conflicts(df, id_cols, conflict_cols,
                       uid, starting_uid,
                       temp_fillna=-9999):
+    ''' returns pandas dataframe
+        after checking for conflicting values in conflict_cols
+        and adding new unique ids if there are conflicts
+    '''
     out_df = pd.DataFrame()
 
     df.reset_index(drop=True, inplace=True)
@@ -46,6 +64,10 @@ def resolve_conflicts(df, id_cols, conflict_cols,
 
 
 def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
+    ''' returns pandas dataframe
+        with unique ids assigned to rows which share id_cols values
+        and lack conflicting information in the conflict_cols
+    '''
     dfu = df[id_cols + conflict_cols].drop_duplicates()
     dfu.reset_index(drop=True, inplace=True)
     if conflict_cols:
@@ -71,15 +93,17 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
     return df
 
 
-def max_aggregate(df, id_cols, max_cols):
-    df = df.drop_duplicates()
-    df = df.groupby(id_cols, as_index=False)[max_cols]
-    return df.agg(max)
-
-
 def order_aggregate(df, id_cols,
                     agg_cols, order_cols,
                     minimum=False):
+    ''' returns an aggregated pandas dataframe
+        after, in each group, specified by id_cols,
+        the agg_cols are ordered by the order_cols
+        and the agg_col value that corresponds with the
+        maximimum (or minimum) values in order_cols is selected.
+
+        for example: getting each officer's most recent star number
+    '''
     df = df.dropna(axis=0, subset=order_cols)
     df = df.drop_duplicates()
     df.sort_values(order_cols, ascending=minimum, inplace=True)
@@ -91,7 +115,14 @@ def order_aggregate(df, id_cols,
 def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
-
+    ''' returns an aggregated pandas dataframe
+        with one entry per specified uid (and id_cols combination)
+        columns specified for aggregation can be aggregated by
+        mode (finding most common value in a column for each uid),
+        max (finding largest value in a column for each uid),
+        or current (finding most recent value in the column
+        using order_aggregate and using a specified time_col for ordering)
+   '''
     uid_col = [uid]
     agg_df = df[uid_col + id_cols].drop_duplicates()
     agg_df.reset_index(drop=True, inplace=True)
