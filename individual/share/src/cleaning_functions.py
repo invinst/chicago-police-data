@@ -1,3 +1,6 @@
+#! usr/bin/env python3
+#
+# Author:   Roman Rivera
 import re
 import numpy as np
 import pandas as pd
