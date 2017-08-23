@@ -1,9 +1,16 @@
+#!usr/bin/env python3
+#
+# Authors: PB, RR
+
+'''functions to prepare scripts for logging and tracking constants'''
+
 import logging
 import sys
 from collections import namedtuple
 
 
 def get_basic_logger(name, script_path=None):
+    '''initialized a basic logger'''
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter(
