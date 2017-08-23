@@ -1,14 +1,31 @@
-import pandas as pd
-import numpy as np
+#!usr/bin/env python3
+#
+# Author:   Roman Rivera
+
+''' functions used in the import step'''
+
 import datetime
 import io
 import re
+import pandas as pd
+import numpy as np
 
 
 def read_p046957_file(input_file, original_crid_col,
                       notnull="", isnull="", drop_col="",
                       drop_col_val=(), add_skip=1,
                       original_crid_mixed=False):
+    ''' returns a pandas dataframe,
+        report produced data, and FOIA request number
+        after reading in an excel file
+        in the format of FOIA number 46957 (Nov. 2016 complaints)
+        collects report produced data, FOIA request number,
+        adds in a corrected CRID column due to row splitting,
+        and removes metadata in order to find the actual header row,
+        also removes null columns or data that doesn't pertain to
+        the correct specified criteria.
+    '''
+
     df = pd.read_excel(input_file, rows=20)
 
     col_list = df.columns.tolist()
@@ -32,13 +49,10 @@ def read_p046957_file(input_file, original_crid_col,
 
     if notnull:
         df = df[df[notnull].notnull()]
-
     if isnull:
         df = df[df[isnull].isnull()]
-
     if drop_col_val:
         df = df[df[drop_col_val[0]] != drop_col_val[1]]
-
     if drop_col:
         df.drop(drop_col, axis=1, inplace=True)
 
@@ -46,7 +60,6 @@ def read_p046957_file(input_file, original_crid_col,
         df = df[df[original_crid_col] != df['CRID'].astype(str)]
     else:
         df.drop(original_crid_col, axis=1, inplace=True)
-
     df.dropna(thresh=2, inplace=True)
 
     df = df.dropna(how='all', axis=(0, 1))
@@ -55,6 +68,11 @@ def read_p046957_file(input_file, original_crid_col,
 
 
 def standardize_columns(cols):
+    ''' returns a list of column names that are standardized
+        according to the column_dictionary file that
+        contains all potential column names (first column)
+        and their standardized values (second column)
+    '''
     try:
         col_df = pd.read_csv("hand/column_dictionary.csv")
     except:
@@ -68,6 +86,10 @@ def standardize_columns(cols):
 
 
 def collect_metadata(df, infile, outfile, notes=0):
+    ''' returns pandas dataframe of metadata about the input dataframe
+        this includes unique values and non null values in each column,
+        as well as the input and output file name, and any other notes
+    '''
     buf = io.StringIO()
     df.info(buf=buf)
     s = buf.getvalue()
