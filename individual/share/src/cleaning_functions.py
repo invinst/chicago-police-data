@@ -1,6 +1,9 @@
 #! usr/bin/env python3
 #
 # Author:   Roman Rivera
+
+'''functions used in the cleaning step'''
+
 import re
 import numpy as np
 import pandas as pd
@@ -13,10 +16,14 @@ race_dict = dict(zip(race_df.Original, race_df.Standard))
 
 
 def list_diff(l1, l2):
+    '''returns list after taking set difference of two lists'''
     return list(set(l1) - set(l2))
 
 
 def clean_int(x, na_value=-999):
+    '''returns an integer from an object if possible,
+       else returns an na_value
+    '''
     if isinstance(x, str):
         if re.search('^[0-9,.]*$', x):
             return int(float(x))
@@ -28,7 +35,10 @@ def clean_int(x, na_value=-999):
         return na_value
 
 
-def clean_gender(x):
+def standardize_gender(x):
+    '''returns a standardized gender string
+       by passing input string into gender reference dictionary
+    '''
     if isinstance(x, str):
         x = x.upper()
         if x in gender_dict.values():
@@ -39,7 +49,10 @@ def clean_gender(x):
         return gender_dict['NAN']
 
 
-def clean_race(x):
+def standardize_race(x):
+    '''returns a standardized race string
+       by passing input string into race reference dictionary
+    '''
     if isinstance(x, str):
         x = x.upper()
         if x in race_dict.values():
@@ -50,37 +63,43 @@ def clean_race(x):
         return race_dict['NAN']
 
 
-def clean_dates(df):
+def clean_date_df(df):
+    '''returns pandas dataframe of cleaned date and time columns
+       splits datetime columns into date and time,
+       ensures any errors are returned as null.
+    '''
     df_cols = df.columns.values
     dt_df = pd.DataFrame()
     for col in df_cols:
         col_suffix = col.split('.')[:-1]
         try:
             dt_df['.'.join(col_suffix + ["Date"])] = \
-            pd.to_datetime(df[col]).dt.date
+                pd.to_datetime(df[col]).dt.date
         except:
             print('Some errors in {}. Returned as NaT.'.format(col))
             dt_df['.'.join(col_suffix + ["Date"])] = \
-            pd.to_datetime(df[col], errors='coerce').dt.date
+                pd.to_datetime(df[col], errors='coerce').dt.date
 
         if 'time' in col:
             try:
                 dt_df['.'.join(col_suffix + ["Time"])] = \
-                pd.to_datetime(df[col]).dt.time
+                    pd.to_datetime(df[col]).dt.time
             except:
                 print('Some errors in {}. Returned as NaT.'.format(col))
                 dt_df['.'.join(col_suffix + ["Time"])] = \
-                pd.to_datetime(df[col], errors='coerce').dt.date
+                    pd.to_datetime(df[col], errors='coerce').dt.date
     return dt_df
 
 
 def extract_suffix_names(x):
+    '''returns the suffix name in a given string'''
     suffixes = ('II', 'III', 'IV', 'JR', 'SR')
     suffix = [w for w in x.split(" ") if w in suffixes]
     return suffix[0] if suffix else ""
 
 
 def extract_middle_initial(x):
+    '''returns the middle initial in a given string'''
     xs = x.split(' ')
     if (len(xs) > 1 and
             len(xs[0]) == 1 and
@@ -91,11 +110,17 @@ def extract_middle_initial(x):
 
 
 def strip_names(x):
+    '''returns string after
+       removing any redundant whitespace or punctuation from string
+    '''
     x = re.sub(r'[^\w\s]', '', x)
     return ' '.join(x.split())
 
 
 def clean_last_names(x):
+    '''returns list of two strings made from input string
+       after stripping string and separating suffix name
+    '''
     x = strip_names(x)
     suffix = extract_suffix_names(x)
     x = x.replace(suffix, "")
@@ -103,12 +128,18 @@ def clean_last_names(x):
 
 
 def clean_first_names(x):
+    '''returns list of two strings made from input string
+       after stripping string and separating middle initial
+    '''
     x = strip_names(x)
     mi = extract_middle_initial(x)
     return [''.join(x.replace(mi + " ", "").split()), mi]
 
 
 def split_full_names(names, ln='Last.Name', fn='First.Name'):
+    '''returns pandas dataframe of last and first name columns
+       made from splitting input pandas series of full names
+    '''
     names = names.fillna(",")
     names = names.map(lambda x: x if re.search('[a-zA-Z]', x) else ",")
     names = names.map(lambda x: x.rsplit(',', 1))
@@ -118,6 +149,10 @@ def split_full_names(names, ln='Last.Name', fn='First.Name'):
 
 
 def split_names(names, main_name, sub_name, clean_func):
+    ''' returns pandas dataframe of two columns
+        from a pandas series of names split into main and sub parts
+        the split depends on the input clean_func (clean_ first/last _names)
+    '''
     names = names.map(str.upper)
     names = names.map(clean_func)
     return pd.DataFrame(names.values.tolist(),
@@ -125,6 +160,7 @@ def split_names(names, main_name, sub_name, clean_func):
 
 
 def clean_names(df):
+    '''returns pandas dataframe of cleaned name columns'''
     df_cols = df.columns.values
     if ('Full.Name' in df_cols and
             'Last.Name' not in df_cols):
@@ -164,16 +200,19 @@ def clean_names(df):
 
 
 def clean_data(df, skip_cols=[]):
+    '''returns pandas dataframe with all relevant columns
+       cleaned in a standard format way
+    '''
     col_df = pd.read_csv('hand/column_dictionary.csv')
     name_cols = col_df.loc[col_df["Type"] == 'Name', 'Standard'].tolist()
     int_cols = col_df.loc[col_df["Type"] == 'Int', 'Standard'].tolist()
     df_cols = df.columns.values
 
     if 'Gender' in df_cols and 'Gender' not in skip_cols:
-        df['Gender'] = df['Gender'].map(clean_gender)
+        df['Gender'] = df['Gender'].map(standardize_gender)
 
     if 'Race' in df_cols and 'Race' not in skip_cols:
-        df['Race'] = df['Race'].map(clean_race)
+        df['Race'] = df['Race'].map(standardize_race)
 
     for col in [ic for ic in df_cols
                 if ic in int_cols and ic not in skip_cols]:
@@ -182,7 +221,7 @@ def clean_data(df, skip_cols=[]):
     if [col for col in df_cols if 'Date' in col]:
         dt_df = df[[dc for dc in df_cols if 'Date' in dc]]
         df = df[list_diff(df.columns,
-                dt_df.columns)].join(clean_dates(dt_df))
+                dt_df.columns)].join(clean_date_df(dt_df))
 
     if [col for col in df_cols if col in name_cols]:
         name_df = df[[col for col in df_cols if col in name_cols]]
