@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
 # Authors:	Roman Rivera
-# individual/Updated-Salary-April-2017/clean/src/Makefile
+# individual/Updated-Salary-April-2017/export/src/Makefile
 
 .PHONY: all clean
-# Additional files created: clean.log, clean.yaml
+# Additional files created: export.log, export.yaml
+# salary_demographics.csv.gz
 
 all: \
 		output/salary.csv.gz
 
 output/salary.csv.gz: \
-		src/clean.py \
+		src/export.py \
                 input/salary.csv.gz
 	python $<
 

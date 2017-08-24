@@ -9,6 +9,7 @@
 # accused.csv.gz, witnesses.csv.gz, investigators.csv.gz
 # trr-officers.csv.gz, trr-statuses.csv.gz
 # awards.csv.gz
+# salary.csv.gz
 
 all: \
 		output/officer-profiles.csv.gz
@@ -28,7 +29,9 @@ output/officer-profiles.csv.gz: \
                 input/trr-statuses_demographics.csv.gz \
                 input/trr-statuses.csv.gz \
                 input/awards_demographics.csv.gz \
-                input/awards.csv.gz 
+		input/awards.csv.gz \
+		input/salary_demographics.csv.gz \
+		input/salary.csv.gz
 	python $<
 
 

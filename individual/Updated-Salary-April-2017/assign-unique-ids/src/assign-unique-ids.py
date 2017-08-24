@@ -14,17 +14,18 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/accused.csv.gz',
-        'output_file': 'output/accused.csv.gz',
-        'output_demo_file': 'output/accused_demographics.csv.gz',
+        'input_file': 'input/salary.csv.gz',
+        'output_file': 'output/salary.csv.gz',
+        'output_demo_file': 'output/salary_demographics.csv.gz',
         'id_cols': [
-                    'First.Name', 'Last.Name', 'Suffix.Name',
-                    'Appointed.Date', 'Birth.Year', 'Gender', 'Race',
-                   ],
+            'First.Name', 'Last.Name', 'Middle.Initial', 'Suffix.Name',
+            'Gender', 'Salary', 'Age.at.Hire', 'Year'
+            ],
         'conflict_cols': [
-                     'Middle.Initial', 'Current.Unit', 'Current.Star'
-                    ],
-        'id': 'accused_ID',
+            'Start.Date', 'Org.Hire.Date'
+            ],
+        'id': 'salary_ID',
+        'sub_id': 'salary_year_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -41,10 +42,27 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-df = assign_unique_ids(df, cons.id, cons.id_cols,
-                       cons.conflict_cols)
-df.to_csv(cons.output_file, **cons.csv_opts)
+out_df = pd.DataFrame()
+agg_full_df = pd.DataFrame()
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols,
+for year in df['Year'].unique():
+    sub_df = df[df['Year'] == year]
+    sub_df = assign_unique_ids(sub_df, cons.sub_id,
+                               cons.id_cols, cons.conflict_cols)
+    sub_df[cons.sub_id] = sub_df[cons.sub_id] + year * 100000
+    out_df = out_df.append(sub_df)
+    tagg_df = aggregate_data(sub_df, cons.sub_id,
+                            cons.id_cols, max_cols=cons.conflict_cols)
+    agg_full_df = agg_full_df.append(tagg_df)
+
+uid_df = assign_unique_ids(agg_full_df, cons.id, cons.id_cols)
+out_df = out_df.merge(uid_df[[cons.id, cons.sub_id]],
+                      on=cons.sub_id, how='outer')
+assert out_df.shape[0] == df.shape[0],\
+        print('Remerged data does not match input dataset')
+
+out_df.to_csv(cons.output_file, **cons.csv_opts)
+
+agg_df = aggregate_data(out_df, cons.id, cons.id_cols,
                         max_cols=cons.conflict_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
