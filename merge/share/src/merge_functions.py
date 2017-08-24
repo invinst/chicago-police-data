@@ -91,11 +91,10 @@ def generate_on_lists(data_cols, base_lists):
             if '' in col_list:
                 merge_list.append('')
             merge_lists.append(sorted(merge_list, reverse=True))
-
     merge_lists = list(itertools.product(*reversed(merge_lists)))
     merge_lists = [[i for i in ml if i != ''] for ml in merge_lists]
 
-    return merge_list
+    return merge_lists
 
 
 def generate_merge_report(total_merged,
@@ -221,7 +220,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
     if custom_matches:
         on_lists.extend(custom_matches)
-
+    print(on_lists)
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
                              keep_columns=keep_columns,
