@@ -22,7 +22,7 @@ def get_setup():
             'input/trr-officers_demographics.csv.gz',
             'input/trr-statuses_demographics.csv.gz',
             'input/awards_demographics.csv.gz',
-            # 'input/salary_demographics.csv.gz'
+            'input/salary_demographics.csv.gz'
         ],
         'input_full_files': [
             'input/accused.csv.gz',
@@ -31,7 +31,7 @@ def get_setup():
             'input/trr-officers.csv.gz',
             'input/trr-statuses.csv.gz',
             'input/awards.csv.gz',
-            # 'input/salary.csv.gz'
+            'input/salary.csv.gz'
         ],
         'input_profile_file': 'input/officer-profiles.csv.gz',
         'input_reference_file': 'input/officer-reference.csv.gz',
@@ -50,7 +50,7 @@ def get_setup():
             {'expand_stars': True,
              'no_match_cols': ['Last.Name',
                                'Current.Star']},
-            # {}
+            {}
         ],
         'output_files': [
             'output/accused.csv.gz',
@@ -58,8 +58,7 @@ def get_setup():
             'output/investigators.csv.gz',
             'output/trr-officers.csv.gz',
             'output/trr-statuses.csv.gz',
-            'output/awards.csv.gz',
-            # 'output/salary.csv.gz'
+            'output/awards.csv.gz'
         ],
         'output_profile_file': 'output/officer-profiles.csv.gz',
         'output_reference_file': 'output/officer-reference.csv.gz',

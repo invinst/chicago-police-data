@@ -19,9 +19,13 @@ def get_setup():
         'output_demo_file': 'output/salary_demographics.csv.gz',
         'id_cols': [
             'First.Name', 'Last.Name', 'Middle.Initial', 'Suffix.Name',
-            'Gender', 'Salary', 'Age.at.Hire', 'Year'
+            'Gender', 'Age.at.Hire'
             ],
-        'conflict_cols': [
+        'sub_id_cols': [
+            'First.Name', 'Last.Name', 'Middle.Initial', 'Suffix.Name',
+            'Gender', 'Age.at.Hire', 'Salary', 'Year'
+            ],
+        'sub_conflict_cols': [
             'Start.Date', 'Org.Hire.Date'
             ],
         'id': 'salary_ID',
@@ -48,14 +52,17 @@ agg_full_df = pd.DataFrame()
 for year in df['Year'].unique():
     sub_df = df[df['Year'] == year]
     sub_df = assign_unique_ids(sub_df, cons.sub_id,
-                               cons.id_cols, cons.conflict_cols)
+                               cons.sub_id_cols,
+                               cons.sub_conflict_cols)
     sub_df[cons.sub_id] = sub_df[cons.sub_id] + year * 100000
     out_df = out_df.append(sub_df)
     tagg_df = aggregate_data(sub_df, cons.sub_id,
-                            cons.id_cols, max_cols=cons.conflict_cols)
+                             cons.sub_id_cols,
+                             max_cols=cons.sub_conflict_cols)
     agg_full_df = agg_full_df.append(tagg_df)
 
-uid_df = assign_unique_ids(agg_full_df, cons.id, cons.id_cols)
+uid_df = assign_unique_ids(agg_full_df, cons.id,
+                           id_cols=cons.id_cols + cons.sub_conflict_cols)
 out_df = out_df.merge(uid_df[[cons.id, cons.sub_id]],
                       on=cons.sub_id, how='outer')
 assert out_df.shape[0] == df.shape[0],\
@@ -63,6 +70,7 @@ assert out_df.shape[0] == df.shape[0],\
 
 out_df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(out_df, cons.id, cons.id_cols,
-                        max_cols=cons.conflict_cols)
+agg_df = aggregate_data(out_df, cons.id,
+                        id_cols=cons.id_cols,
+                        max_cols=cons.sub_conflict_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)
