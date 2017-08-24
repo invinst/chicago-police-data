@@ -220,7 +220,6 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
     if custom_matches:
         on_lists.extend(custom_matches)
-    print(on_lists)
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
                              keep_columns=keep_columns,
