@@ -2,7 +2,7 @@
 #
 # Author:   RR, TH
 
-''' functions used in the import step'''
+'''functions used in the import step'''
 
 import datetime
 import io
@@ -15,15 +15,15 @@ def read_p046957_file(input_file, original_crid_col,
                       notnull="", isnull="", drop_col="",
                       drop_col_val=(), add_skip=1,
                       original_crid_mixed=False):
-    ''' returns a pandas dataframe,
-        report produced data, and FOIA request number
-        after reading in an excel file
-        in the format of FOIA number 46957 (Nov. 2016 complaints)
-        collects report produced data, FOIA request number,
-        adds in a corrected CRID column due to row splitting,
-        and removes metadata in order to find the actual header row,
-        also removes null columns or data that doesn't pertain to
-        the correct specified criteria.
+    '''returns a pandas dataframe, datetime object, and string,
+
+       after reading an excel file
+       in the format of FOIA number 46957 (Nov. 2016 complaints)
+       collects report produced data, FOIA request number,
+       adds in a corrected CRID column due to row splitting,
+       and removes metadata in order to find the actual header row,
+       also removes null columns or data that doesn't pertain to
+       the correct specified criteria.
     '''
 
     df = pd.read_excel(input_file, rows=20)
@@ -68,19 +68,26 @@ def read_p046957_file(input_file, original_crid_col,
 
 
 def standardize_columns(cols):
-    ''' returns a list of column names that are standardized
+    ''' returns a list of standardized column names
+
         according to the column_dictionary file that
         contains all potential column names (first column)
         and their standardized values (second column)
     '''
     try:
+        # Try to read the reference file for converting column names
         col_df = pd.read_csv("hand/column_dictionary.csv")
     except:
         print("Column dictionary not in directory.")
         col_df = pd.DataFrame()
+    # If input cols are not a list, convert to list
     if not isinstance(cols, list):
         cols = cols.tolist()
+    # Generate dictionary by zipping together the dataframe's
+    # first (unstandadized columns) and second (standardized columns)
     col_dict = dict(zip(col_df.ix[:, 0], col_df.ix[:, 1]))
+    # Pass input cols into the standardizationd dictionary
+    # and return the standardized list
     new_cols = [col_dict[col] for col in cols]
     return new_cols
 
