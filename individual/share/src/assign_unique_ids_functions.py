@@ -184,72 +184,114 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
 def order_aggregate(df, id_cols,
                     agg_cols, order_cols,
                     minimum=False):
-    ''' returns an aggregated pandas dataframe
-        after, in each group, specified by id_cols,
-        the agg_cols are ordered by the order_cols
-        and the agg_col value that corresponds with the
-        maximimum (or minimum) values in order_cols is selected.
+    '''returns an aggregated pandas dataframe
+       after, in each group, specified by id_cols,
+       the agg_cols are ordered by the order_cols
+       and the agg_col value that corresponds with the
+       maximimum (or minimum) values in order_cols is selected.
 
-        for example: getting each officer's most recent star number
+       EX: order_aggregate(..., ['A'], ['B' ,'C'], ['D'])
+       A B C D     A B C
+       1 2 6 3     1 5 1
+       1 5 1 7  -> 2 2 1
+       1 3 3 1
+       2 3 4 NaN
+       2 2 1 2
     '''
+    # Drop rows that have NaN ordering values
     df = df.dropna(axis=0, subset=order_cols)
+    # Keep only unique rows
     df = df.drop_duplicates()
+    # Sort full dataset by the order_cols
     df.sort_values(order_cols, ascending=minimum, inplace=True)
+    # Drop the order cols columns
     df.drop(order_cols, axis=1, inplace=True)
+    # Group data by id_cols and select columns for aggregation
     df = df.groupby(id_cols, as_index=False)[agg_cols]
+    # Return aggregated data that takes the values
+    # at the top row in each group
     return df.agg(lambda x: x.iloc[0])
 
 
 def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
-    ''' returns an aggregated pandas dataframe
-        with one entry per specified uid (and id_cols combination)
-        columns specified for aggregation can be aggregated by
-        mode (finding most common value in a column for each uid),
-        max (finding largest value in a column for each uid),
-        or current (finding most recent value in the column
-        using order_aggregate and using a specified time_col for ordering)
-   '''
-    uid_col = [uid]
-    agg_df = df[uid_col + id_cols].drop_duplicates()
-    agg_df.reset_index(drop=True, inplace=True)
+    '''returns an aggregated pandas dataframe
+       with one entry per specified uid (and id_cols combination)
+       columns specified for aggregation can be aggregated by
+       mode (finding most common value in a column for each uid),
+       max (finding largest value in a column for each uid),
+       or current (finding most recent value in the column
+       using order_aggregate and using a specified time_col for ordering)
 
+       EX: aggregate_data(..., 'A', ['B'], ['C'], ['D'])
+       A B C D    A B C D
+       1 3 1 2    1 3 1 3
+       1 3 1 2 ->
+       1 3 1 0
+       1 3 5 3
+    '''
+    uid_col = [uid]  # Create list of specified uid
+    # Initialize agg_df by taking unique rows (uids and id_cols)
+    agg_df = df[uid_col + id_cols].drop_duplicates()
+    agg_df.reset_index(drop=True, inplace=True)  # Reset index
+
+    # Iterate over mode and max columns
     for col in mode_cols + max_cols:
-        dfu = df[[uid, col]].drop_duplicates().dropna()
+        # Initialize unique dataframe with uids and specified column only
+        dfu = df[[uid, col]].drop_duplicates()
+        # Drop any rows with missing data
+        dfu.dropna(axis=0, how='any', inplace=True)
+        # Initialize dataframe of duplicates
         kd_df = keep_duplicates(dfu, uid)
+        # Drop duplicate rows from dfu
         dfu = dfu[~dfu[uid].isin(kd_df[uid])]
 
+        # If duplciate dataframe is empty
         if kd_df.empty:
+            # No aggregation is neccessary on dfu since all values are unique
+            # Merge dfu back to agg_df
             agg_df = agg_df.merge(dfu, on=uid, how='left')
+        # If duplicate dataframe is not empty
         else:
+            # Group duplicate dataframe by uid
             groups = kd_df.groupby(uid, as_index=False)
-
+            # If col is specified in mode_cols
             if col in mode_cols:
                 print('Mode Aggregating {} column'.format(col))
+                # Use list comprehension to generate a list of
+                # two item lists: [uid, most common value in group]
                 groups = [[k,
                            stats.mode(g[col],
                                       nan_policy='propagate').mode[0]]
                           for k, g in groups]
+                # Recombine list of lists into dataframe
                 groups = pd.DataFrame(groups, columns=[uid, col])
 
+            # If col is specified in max_cols
             if col in max_cols:
                 print('Max Aggregating {} column'.format(col))
+                # Take max of each group, excluding NaNs
                 groups = groups.agg(np.nanmax)
 
-            groups = pd.concat([groups, dfu])
-            agg_df = agg_df.merge(groups, on=uid, how='left')
+            # Append groups to dfu and merge to agg_df on uid
+            agg_df = agg_df.merge(dfu.append(groups),
+                                  on=uid, how='left')
 
+    # If current_cols and time_col are specified
     if current_cols and time_col:
+        # Ensure that time_col is a pandas datetime object
         df[time_col] = pd.to_datetime(df[time_col])
-        agg_df = agg_df.merge(
-                    order_aggregate(
-                        df[uid_col + [time_col] + current_cols],
-                        uid_col, current_cols, [time_col]),
-                    on=uid, how='left')
-        agg_df.rename(columns=dict(
-                            zip(current_cols,
-                                ["Current." + tc for tc in current_cols])),
-                      inplace=True)
+        # Aggregate data by taking most recent (by time_col)
+        # occurence of the current_cols specified
+        oa_df = order_aggregate(df[uid_col + [time_col] + current_cols],
+                                uid_col, current_cols, [time_col]),
+        # Merge order aggregated data to agg_df on uid
+        agg_df = agg_df.merge(oa_df, on=uid, how='left')
+        # Now that the current_cols are 'current', the name must be changed
+        # Add the prefix 'Current' to the current_cols in agg_df
+        agg_df.columns = ['Current.' + col
+                          if col in current_cols else col
+                          for col in agg_df.columns]
 
     return agg_df
