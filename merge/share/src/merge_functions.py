@@ -6,6 +6,7 @@
 
 import itertools
 import pandas as pd
+from assign_unique_ids_functions import remove_duplicates
 
 
 def intersect(list1, list2):
@@ -33,22 +34,6 @@ def take_first_four(in_str):
     return in_str[:4]
 
 
-def remove_duplicates(df, cols=[]):
-    '''returns pandas dataframe keeping only rows
-       that do not have duplicated values in specified cols
-    '''
-    if not cols:
-        cols = df.columns.tolist()
-    return df[~df.duplicated(subset=cols, keep=False)].sort_values(cols)
-
-
-def keep_duplicates(df, cols):
-    '''returns pandas dataframe keeping only rows
-       that have duplicated values in specified cols
-    '''
-    return df[df.duplicated(subset=cols, keep=False)].sort_values(cols)
-
-
 def add_columns(df,
                 add_cols=["F4FN", "F4LN", "Current.Age", "BY_to_CA", "Stars"],
                 current_year=2016):
@@ -56,26 +41,39 @@ def add_columns(df,
        depending on the specified add_cols and the columns
        in the input dataframe.
     '''
+    # Add F(irst) 4 of F(irst)/L(ast) N(ame) columns
+    # if F4FN/F4LN and First./Last.Name in df columns
     if "F4FN" in add_cols and "First.Name" in df.columns:
         df['F4FN'] = df['First.Name'].map(take_first_four)
     if "F4LN" in add_cols and 'Last.Name' in df.columns:
         df['F4LN'] = df['Last.Name'].map(take_first_four)
 
+    # Since current age cannot be always matched based on birth year
+    # If Current.Age will be used for matching,
+    # Current.Age.p(lus)1 and Current.Age.m(inus)1 must be added
+    # If Current.Age is in the dataframe then both are equal to it
     if "Current.Age" in add_cols and "Current.Age" in df.columns:
         df['Current.Age.p1'] = df['Current.Age']
         df['Current.Age.m1'] = df['Current.Age']
-
+    # If BY_to_CA is specified and Birth.Year is a column
+    # Generate Current.Age.p/m1 by subtracting current_year from birth year
+    # and subtract 1 for the .m1 column
     if "BY_to_CA" in add_cols and "Birth.Year" in df.columns:
         df['Current.Age.p1'] = \
             df['Birth.Year'].map(lambda x: current_year - x)
         df['Current.Age.m1'] = \
             df['Birth.Year'].map(lambda x: current_year - x - 1)
 
+    # If Stars specified in add_cols and Current.Star in columns
+    # and Star1 (thus Star2-9) not in columns
+    # Then create Star1-10 columns all equal to Current.Star
     if ('Stars' in add_cols and
             'Current.Star' in df.columns and
             'Star1' not in df.columns):
         for i in range(1, 11):
             df['Star{}'.format(i)] = df['Current.Star']
+
+    # Return dataframe with relevant columns added
     return df
 
 
@@ -83,18 +81,32 @@ def generate_on_lists(data_cols, base_lists):
     '''returns list of lists composed of every possible combination
        of each value in the sub lists of base_lists, so long as those
        values are included in the data_cols
+       EX: generate_on_lists(['A1', 'A2', 'B1','B2','C2'],
+                             [['A1','A2', ''], ['B1', 'B2'], ['C1'])
+           -> [[],[], [], []]
     '''
+    # Initialize empty merge lists
     merge_lists = []
+    # Add empty string to data_cols as placeholder for non-necessary columns
+    data_cols.append('')
+    # Loop over lists in base_lists
     for col_list in base_lists:
-        if intersect(col_list, data_cols):
-            merge_list = intersect(col_list, data_cols)
-            if '' in col_list:
-                merge_list.append('')
+        # Initialize merge list as the intersection between
+        # col list (from base lists) and the data_cols
+        merge_list = intersect(col_list, data_cols)
+        # If merge_list is not empty
+        if merge_list:
+            # Append merge_list to merge_lists
             merge_lists.append(sorted(merge_list, reverse=True))
-    merge_lists = list(itertools.product(*reversed(merge_lists)))
-    merge_lists = [[i for i in ml if i != ''] for ml in merge_lists]
+    # Initialize on_lists by generating lists from all combinations
+    # of one element in each list in merge_lists
+    on_lists = list(itertools.product(*reversed(merge_lists)))
+    # '' was used as a placeholder for when a column is not always necessary
+    # Remove '' elements from lists in on_lists
+    on_lists = [[i for i in ol if i != ''] for ol in on_lists]
 
-    return merge_lists
+    # Return on_lists used for loop_merge
+    return on_lists
 
 
 def generate_merge_report(total_merged,
