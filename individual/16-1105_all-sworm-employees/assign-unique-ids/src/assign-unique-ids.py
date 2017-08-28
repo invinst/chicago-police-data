@@ -18,13 +18,13 @@ def get_setup():
         'output_file': 'output/unit-history.csv.gz',
         'output_demo_file': 'output/unit-history_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-                    "Appointed.Date", "Current.Age", "Gender", "Race"
-                   ],
+            "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
+            "Appointed.Date", "Current.Age", "Gender", "Race"
+            ],
         'max_cols': [
-                     'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-                     'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
-                    ],
+            'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
+            'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
+            ],
         'current_cols': ['Unit'],
         'time_col': 'Effective.Date',
         'id': 'unit_history_ID'

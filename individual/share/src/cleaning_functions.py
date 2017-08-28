@@ -22,7 +22,7 @@ def list_diff(l1, l2):
     return list(set(l1) - set(l2))
 
 
-def clean_int(x, na_value=-999):
+def clean_int(x, na_value=np.nan):
     '''returns an integer from an object if possible,
        else returns an na_value
     '''

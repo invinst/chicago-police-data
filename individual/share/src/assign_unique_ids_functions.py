@@ -285,7 +285,7 @@ def aggregate_data(df, uid, id_cols=[],
         # Aggregate data by taking most recent (by time_col)
         # occurence of the current_cols specified
         oa_df = order_aggregate(df[uid_col + [time_col] + current_cols],
-                                uid_col, current_cols, [time_col]),
+                                uid_col, current_cols, [time_col])
         # Merge order aggregated data to agg_df on uid
         agg_df = agg_df.merge(oa_df, on=uid, how='left')
         # Now that the current_cols are 'current', the name must be changed
