@@ -82,9 +82,8 @@ def resolve_conflicts(df, id_cols, conflict_cols,
         # Iterate over specified conflict_cols
         for col in conflict_cols:
             non_nan = group[col]    # Select column
-            # Drop temporary NaN values (-999 used in integer columns)
-            non_nan = non_nan[(non_nan != -999) &
-                              (non_nan != temp_fillna)]
+            # Drop temporary NaN values
+            non_nan = non_nan[non_nan != temp_fillna]
             # If there are more than 1 unique, non NaN, values in column
             if len(non_nan.unique()) > 1:
                 # Then add 1 to conflict counter

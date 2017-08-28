@@ -44,9 +44,16 @@ def add_columns(df,
     # Add F(irst) 4 of F(irst)/L(ast) N(ame) columns
     # if F4FN/F4LN and First./Last.Name in df columns
     if "F4FN" in add_cols and "First.Name" in df.columns:
-        df['F4FN'] = df['First.Name'].map(take_first_four)
+        df['F4FN'] = df['First.Name'].map(lambda x: x[:4])
     if "F4LN" in add_cols and 'Last.Name' in df.columns:
-        df['F4LN'] = df['Last.Name'].map(take_first_four)
+        df['F4LN'] = df['Last.Name'].map(lambda x: x[:4])
+
+    # Add F(irst) 2 of F(irst)/L(ast) N(ame) columns
+    # if F2FN/F2LN and First./Last.Name in df columns
+    if "F2FN" in add_cols and "First.Name" in df.columns:
+        df['F2FN'] = df['First.Name'].map(lambda x: x[:2])
+    if "F2LN" in add_cols and 'Last.Name' in df.columns:
+        df['F2LN'] = df['Last.Name'].map(lambda x: x[:2])
 
     # Since current age cannot be always matched based on birth year
     # If Current.Age will be used for matching,
@@ -203,7 +210,7 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                    no_match_cols=[], min_match_length=4,
-                   expand_stars=False, return_unmatched=True,
+                   expand_stars=False, F2=False, return_unmatched=True,
                    return_merge_report=True, print_merging=False):
     '''returns dictionary from loop_merge
        automates adding columns and merging list creation
@@ -222,7 +229,10 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         add_cols.extend(["BY_to_CA", "Current.Age"])
     if 'Star1' not in intersect(df1.columns, df2.columns) and expand_stars:
         add_cols.append('Stars')
-
+    if 'First.Name' in intersect(df1.columns, df2.columns) and F2:
+        add_cols.append('F2FN')
+    if 'Last.Name' in intersect(df1.columns, df2.columns) and F2:
+        add_cols.append('F2LN')
     # Add specified add_cols to both dataframes
     df1 = add_columns(df1, add_cols)
     df2 = add_columns(df2, add_cols)
@@ -243,8 +253,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     base_lists = [
         ['Current.Star', 'Star1', 'Star2', 'Star3', 'Star4',
          'Star5', 'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
-        ['First.Name', 'F4FN'],
-        ['Last.Name', 'F4LN'],
+        ['First.Name', 'F4FN', 'F2FN'],
+        ['Last.Name', 'F4LN', 'F2LN'],
         ['Appointed.Date'],
         ['Birth.Year', 'Current.Age', 'Current.Age.p1', 'Current.Age.m1', ''],
         ['Middle.Initial', ''],
@@ -296,7 +306,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
                         min_match_length=4, no_match_cols=[],
                         return_merge_report=True, print_merging=False,
-                        return_merge_list=True, expand_stars=False):
+                        return_merge_list=True, expand_stars=False, F2=False):
     '''returns dictionary including at least a pandas dataframe
        appends merged and unmerged results from merge_datasets
        on to the input ref_df
@@ -334,6 +344,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  min_match_length=min_match_length,
                                  return_merge_report=return_merge_report,
                                  expand_stars=expand_stars,
+                                 F2=F2,
                                  print_merging=print_merging)
 
         # Create a link_df of all merge and unmerged rows
