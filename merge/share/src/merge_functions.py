@@ -321,9 +321,12 @@ def append_to_reference(sub_df, profile_df, ref_df,
         return_dict['ref'] = sub_df
     # If profile_df and ref_df are not empty actually do merging
     else:
+        # Get id_col from sub_df (which will always end with _ID)
         id_col = [col for col in sub_df.columns if col.endswith('_ID')][0]
+        # Initialize keep_columns with UID first and id_col second
         keep_columns = ['UID', id_col]
 
+        # Run merge_datasets on profiles_df and sub_df
         md_dict = merge_datasets(profile_df, sub_df,
                                  keep_columns=keep_columns,
                                  custom_matches=custom_matches,
@@ -333,17 +336,26 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  expand_stars=expand_stars,
                                  print_merging=print_merging)
 
-        ref = pd.concat([md_dict['merged'][keep_columns],
-                        md_dict['UM1'][[keep_columns[0]]],
-                        md_dict['UM2'][[keep_columns[1]]]])[
+        # Create a link_df of all merge and unmerged rows
+        link_df = pd.concat([md_dict['merged'][keep_columns],
+                             md_dict['UM1'][[keep_columns[0]]],
+                             md_dict['UM2'][[keep_columns[1]]]])[
               keep_columns].reset_index(drop=True)
-
-        ref = ref.sort_values('UID', na_position='last').reset_index(drop=True)
-        ref['UID'] = ref.index + 1
-        sub_df = sub_df.merge(ref[unique([keep_columns[1], 'UID'])],
+        # Sort link_df by uid, with NaN uids (unmatched sub_df rows) last
+        link_df = link_df.sort_values('UID', na_position='last')
+        link_df.reset_index(drop=True, inplace=True)    # Reset index
+        # Reinitalize UID column equal to the index + 1
+        # All pre-existing UIDs will be preserved, new ones will be added
+        link_df['UID'] = link_df.index + 1
+        # Give sub_df UID column by merging link_df to it
+        sub_df = sub_df.merge(link_df[unique([keep_columns[1], 'UID'])],
                               on=keep_columns[1], how='left')
-        ref_df = pd.concat([ref_df, sub_df]).reset_index(drop=True)
+        # Add the data in sub_df at the end of the ref_df
+        # and reset index
+        ref_df = ref_df.append(sub_df).reset_index(drop=True)
 
+        # Start filling return_dict
+        # Regardless of arguments, append_to_reference always returns ref_df
         return_dict['ref'] = ref_df
         if return_unmatched:
             return_dict['UM1'] = md_dict['UM1']
