@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Authors:	Roman Rivera
-# individual/p050032_all-members-rank/clean/src/Makefile
+# individual/p050032_all-members-rank/assign-unique-ids/src/Makefile
 
 .PHONY: all clean
 # Additional files created:
