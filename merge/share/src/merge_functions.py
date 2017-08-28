@@ -145,35 +145,56 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
     '''returns a dictionary containing, at minimum, a pandas dataframe
        resulting from iterative merging of two dataframes
     '''
+    # Initialize match dataframe, used to store successful merges
     dfm = pd.DataFrame(columns=keep_columns + ['Match'])
+    # Store number of rows for input dataframes 1 and 2
     df1_rows = df1.shape[0]
     df2_rows = df2.shape[0]
+    # Iterate over lists of column names in on_lists
     for merge_cols in on_lists:
+        # Create temporary dataframes of df1 and df2
+        # Including only the relevant keep_column in each
+        # and the columns used for merging in this loop
+        # Remove all rows with duplicate merge_cols (see remove_duplicates)
+        # This ensures no double-merging on identical rows
         df1t = remove_duplicates(df1[keep_columns[:1] + merge_cols],
                                  merge_cols)
         df2t = remove_duplicates(df2[keep_columns[1:] + merge_cols],
                                  merge_cols)
+        # Create temporary match dataframe by merging df1t and df2t
+        # on merge_cols such that only unique matches are saved
         dfmt = df1t.merge(df2t, on=merge_cols, how='inner')
+        # If there are temporary matches
         if dfmt.shape[0] > 0:
+            # Print this round of merging if print_merging==True
             if print_merging:
                 print(('{0} Matches on \n'
                        '{1} columns').format(dfmt.shape[0],
                                              merge_cols))
+            # Store the merge columns as string
+            # in Match column of temporary match dataframe
             dfmt['Match'] = '-'.join(merge_cols)
+            # Update match dataframe by appending temporary match dataframe
             dfm = dfm.append(dfmt[keep_columns +
                                   ['Match']].reset_index(drop=True))
+            # Update df1 and df2 by removing successfully merged rows
             df1 = df1.loc[~df1[keep_columns[0]].isin(dfm[keep_columns[0]])]
             df2 = df2.loc[~df2[keep_columns[1]].isin(dfm[keep_columns[1]])]
 
+    # Generate summary of merging process
     merge_report = generate_merge_report(dfm.shape[0],
                                          df1_rows,
                                          df2_rows)
     print(merge_report)
 
+    # Initialize dictionary of return values with 'merged' data
     return_dict = {'merged': dfm.reset_index(drop=True)}
+    # If return_unmatched is True then return unmatched rows in
+    # df1 and df2 as UM1 and UM2, respectively.
     if return_unmatched:
         return_dict['UM1'] = df1
         return_dict['UM2'] = df2
+    # If return_merge_report is True then return merge report as MR
     if return_merge_report:
         return_dict['MR'] = merge_report
 
@@ -187,25 +208,38 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     '''returns dictionary from loop_merge
        automates adding columns and merging list creation
     '''
+    # Remove columns from df1 and df2 that are all NaN
     df1 = df1.dropna(axis=1, how='all')
     df2 = df2.dropna(axis=1, how='all')
-    add_cols = ['F4FN', 'F4LN']
 
+    add_cols = []   # Initialize add_cols
+    # Add specified columns to add_cols given set of conditions
+    if 'First.Name' in intersect(df1.columns, df2.columns):
+        add_cols.append('F4FN')
+    if 'Last.Name' in intersect(df1.columns, df2.columns):
+        add_cols.append('F4LN')
     if "Birth.Year" not in intersect(df1.columns, df2.columns):
         add_cols.extend(["BY_to_CA", "Current.Age"])
     if 'Star1' not in intersect(df1.columns, df2.columns) and expand_stars:
         add_cols.append('Stars')
 
+    # Add specified add_cols to both dataframes
     df1 = add_columns(df1, add_cols)
     df2 = add_columns(df2, add_cols)
 
+    # Collect columns in both df1 and df2
     cols = intersect(df1.columns, df2.columns)
 
-    df1 = df1[[col for col in df1.columns
-               if col in cols or col == keep_columns[0]]]
-    df2 = df2[[col for col in df2.columns
-               if col in cols or col == keep_columns[1]]]
+    # Keep columns in df1 and df2 either in keep_columns or in both dataframes
+    df1 = df1[keep_columns[:1] + cols]
+    df2 = df2[keep_columns[1:] + cols]
 
+    # Create list of lists:
+    # Each list contains a single 'type' of column which
+    # are listed in order from most to least important
+    # EX: Birth.Year is more reliable than Current.Age
+    # And the lists themselves are in order from most to least useful
+    # empty strings used as placeholder for non-crucial column 'types'
     base_lists = [
         ['Current.Star', 'Star1', 'Star2', 'Star3', 'Star4',
          'Star5', 'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
@@ -220,18 +254,33 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         ['Current.Unit', '']
     ]
 
+    # Generate on_lists from cols in both datasets and base_lists
     on_lists = generate_on_lists(cols, base_lists)
 
+    # Iterate over no_match_cols
+    # A no_match_col identifies a list in base_lists
+    # that should be dropped, an a new on_lists generated,
+    # which will be appended onto the original on_lists
     for nmc in no_match_cols:
+        # Generate on_lists with the base list that contains
+        # the specified nmc removed
         nmc_lists = generate_on_lists(cols,
                                       [ml for ml in base_lists
                                        if nmc not in ml])
+        # Ensure all generated no_match_col on_lists contain
+        # at least min_match_length items
         nmc_lists = [nmcl for nmcl in nmc_lists
                      if len(nmcl) >= min_match_length]
+        # Add the new on_lists to the original on_lists
         on_lists.extend(nmc_lists)
 
+    # If custom_matches are specified
     if custom_matches:
+        # Add custom_matches (list of lists) to end of on_lists
         on_lists.extend(custom_matches)
+
+    # Run loop_merge on prepared df1 and df1,
+    # merging on on_lists, etc.
     merged_data = loop_merge(df1, df2,
                              on_lists=on_lists,
                              keep_columns=keep_columns,
@@ -239,7 +288,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                              return_merge_report=return_merge_report,
                              print_merging=print_merging)
 
-    return(merged_data)
+    # Return results of loop_merge
+    return merged_data
 
 
 def append_to_reference(sub_df, profile_df, ref_df,
@@ -251,15 +301,25 @@ def append_to_reference(sub_df, profile_df, ref_df,
        appends merged and unmerged results from merge_datasets
        on to the input ref_df
     '''
+    # Initialize return_dict with None objects instead of values
     return_dict = {'ref': None,
                    'UM1': None,
                    'UM2': None,
                    'MR': None,
                    'ML': None}
 
-    if profile_df.empty:
+    # Reset indexes
+    profile_df.reset_index(drop=True, inplace=True)
+    sub_df.reset_index(drop=True, inplace=True)
+
+    # Check if profile_df or ref_df is empty
+    if profile_df.empty or ref_df.empty:
+        # If it is, then sub_df becomes profile_df and ref_df by default
+        # UID column is initialized equal to sub_df.index + 1
         sub_df.insert(0, 'UID', sub_df.index + 1)
+        # return sub_df as ref(erence) in return_dict
         return_dict['ref'] = sub_df
+    # If profile_df and ref_df are not empty actually do merging
     else:
         id_col = [col for col in sub_df.columns if col.endswith('_ID')][0]
         keep_columns = ['UID', id_col]
