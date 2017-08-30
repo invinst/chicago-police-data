@@ -209,7 +209,7 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
 
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   no_match_cols=[], min_match_length=4,
+                   no_match_cols=[], min_match_length=4, extend_base_lists=[],
                    expand_stars=False, F2=False, return_unmatched=True,
                    return_merge_report=True, print_merging=False):
     '''returns dictionary from loop_merge
@@ -263,7 +263,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         ['Suffix.Name', ''],
         ['Current.Unit', '']
     ]
-
+    if extend_base_lists:
+        base_lists.extend(extend_base_lists)
     # Generate on_lists from cols in both datasets and base_lists
     on_lists = generate_on_lists(cols, base_lists)
 
@@ -305,6 +306,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
                         min_match_length=4, no_match_cols=[],
+                        extend_base_lists=[],
                         return_merge_report=True, print_merging=False,
                         return_merge_list=True, expand_stars=False, F2=False):
     '''returns dictionary including at least a pandas dataframe
@@ -342,6 +344,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  custom_matches=custom_matches,
                                  no_match_cols=no_match_cols,
                                  min_match_length=min_match_length,
+                                 extend_base_lists=extend_base_lists,
                                  return_merge_report=return_merge_report,
                                  expand_stars=expand_stars,
                                  F2=F2,
