@@ -11,12 +11,7 @@ all: \
 
 output/awards.csv.gz: \
 		src/import.py \
-                input/Part_1.xlsx \
-                input/Part_2.xlsx \
-                input/Part_3.xlsx \
-                input/Part_4.xlsx \
-                input/Part_5.xlsx \
-                input/Part_6.xlsx
+                input/Awards_Data_(New_Copy).csv
 	python $<
 
 
