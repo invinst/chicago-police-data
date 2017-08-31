@@ -356,6 +356,8 @@ def clean_names(df):
 def clean_data(df, skip_cols=[]):
     '''returns pandas dataframe with all relevant columns
        cleaned in a standard format way
+       returns tuple if name columns are present
+       second item contains conflicting name dataframe
     '''
     # Load column reference file as dataframe
     col_df = pd.read_csv('hand/column_dictionary.csv')
@@ -418,5 +420,15 @@ def clean_data(df, skip_cols=[]):
         df = df[list_diff(df.columns,
                           name_cols)].join(cn_df)
 
-    # Return cleaned dataframe
-    return df, conflicts_df
+        # Print out conflicts dataframe
+        if conflicts_df.empty:
+            print('No middle initial/suffix name conflicts.')
+        else:
+            print('Conflicting middle initial/suffix name conflicts:')
+            print(conflicts_df)
+
+        # Return cleaned dataframe and conflicts df tuple
+        return df, conflicts_df
+    # If there are no name cols in data
+    else:
+        return df

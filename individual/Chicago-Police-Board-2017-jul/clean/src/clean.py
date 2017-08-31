@@ -41,5 +41,6 @@ df['CRID2'] = df['CRID'].map(lambda x: x.split(' & ')[1]
 df['CRID'] = df['CRID'].map(lambda x: x.split(' & ')[0]
                             if isinstance(x, str) else x)
 
-df = clean_data(df)
+df, conflicts_df = clean_data(df)
+cons.write_yamlvar('Conflicts', conflicts_df)
 df.to_csv(cons.output_file, **cons.csv_opts)
