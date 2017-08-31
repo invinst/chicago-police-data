@@ -189,7 +189,9 @@ def split_name(x, mi_pattern, suffixes):
     suff = extract_suffix_name(x, suffixes)
     # If suffix is not empty
     if suff:
-        x = x.replace(suff, '')  # Remove suffix from name
+        # Remove suffix from name
+        x = re.sub('(^{0}\s)|(\s{0}$)'.format(suff),
+                   '', x)
         # Remove white space from suffix
         suff = suff.replace(' ', '')
     # If name is empty after suffix removed
@@ -225,10 +227,10 @@ def clean_name_col(col):
         # Chooses suffixes to look for depending on column:
         # First Name columns probably do no contain V as a suffix
         # V may be mistaken as a middle initial
-        # But Last Name columns might contain V as a suffix
+        # But Last Name columns might contain V or I as a suffix
         suffixes = ['II', 'III', 'IV', 'JR', 'SR']
         if col_name == 'Last.Name':
-            suffixes.append('V')
+            suffixes.extend(['V', 'I'])
         # Return pandas dataframe created from list of lists
         # Comprised of first/last name, middle initial, suffix name
         # middle initial and suffix name elements are abbrivated
