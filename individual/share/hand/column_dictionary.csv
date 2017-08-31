@@ -145,7 +145,7 @@ Suspension Recommended,Recommended.Suspension,
 PtbId,PTB.ID,
 LastName,Last.Name,
 FirstName,First.Name,
-MiddleName,Middle.Name,
+MiddleName,Middle.Name,Name
 Race,Race,
 Name,Department.Name,
 Description,Position.Description,
