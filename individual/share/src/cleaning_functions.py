@@ -262,44 +262,82 @@ def clean_name_col(col):
         raise Exception('Uh.. what sort of names?')
 
 
-def compare_name_cols(df):
-    '''compares two column pandas dataframe
-       returns series of best values and list of conflicts
-    '''
-    conflicts = []  # Initialize conflicts list
-    out_list = []   # Initialize output list
-
-    # Loop over dataframe column
-    # i = index, m = main column, s = sub column
-    for i, m, s in df.itertuples():
-        # If main and sub are both non empty strings
-        if m and s:
-            # Add this index to the list of conflicts
-            conflicts.append(i)
-            # Add main value to output list
-            out_list.append(m)
-        # If one or neither is empty
+def compare_middle_initials(mi_df):
+    '''returns pandas dataframe and list of conflicts'''
+    output_list = []    # Initialize output list
+    conflict_indexes = []   # Initialize conflict index list
+    # Iterate over the the middle initial columns
+    # In order of importance any given middle initial column takes priority
+    # (or it is totally empty), then come middle initials found in first names
+    # And lastly middle initials found in last names (very rare)
+    for i, x, y, z in mi_df[['Middle.Initial', 'F_MI', 'L_MI']].itertuples():
+        # Initialize (unique) set of middle initials
+        mis = set((x, y, z))
+        # Remove all empty strings
+        mis.discard('')
+        # If the set is empty (all middle initials were empty)
+        if not mis:
+            # Add tuple of two  empty strings to output
+            output_list.append(('', ''))
+        # If there is only 1 real middle initial in columns
+        elif len(mis) == 1:
+            # Add first (only) middle initial and empty string to output
+            output_list.append((mis.pop(), ''))
+        # If there are two real middle initials
+        elif len(mis) == 2:
+            # Append both (since the values are in order of importance)
+            output_list.append((mis))
+        # Else (if there are 3 unique values)
         else:
-            # Add the max of the two to output list
-            out_list.append(max(m, s))
+            # Add this index to the conflict list
+            conflict_indexes.append(i)
+            # Add first and second middle initials to output
+            output_list.append((x, y))
 
-    if conflicts:
-        print(('{0} conflicts from {1} at indexes:'
-               '\n{2}').format(df.columns[0],
-                               df.columns[1],
-                               str(conflicts)))
+    # Return dataframe of first (primary) middle initials
+    # and secondary middle initials
+    # and list of conflict indexes
+    return (pd.DataFrame(output_list,
+                         columns=['Middle.Initial',
+                                  'Middle.Initial2']),
+            conflict_indexes)
 
-    # Return output list as series and conflict indexes
-    return (pd.Series(out_list), conflicts)
+
+def compare_suffix_names(sn_df):
+    '''returns pandas dataframe and list of conflicts'''
+    output_list = []    # Initialize output list
+    conflict_indexes = []   # Initialize conflict index list
+    # Iterate over the the suffix name columns
+    # In order of importance any given suffix name column takes priority
+    # (or it is totally empty), then come suffix names found in last names
+    # And lastly suffix names found in first names (rare)
+    for i, x, y, z in sn_df[['Suffix.Name', 'L_SN', 'F_SN']].itertuples():
+        # Initialize (unique) set of suffix names
+        sns = set((x, y, z))
+        # Remove all empty strings
+        sns.discard('')
+        # If the set is empty (all suffix names were empty)
+        if not sns:
+            # Add empty string to output
+            output_list.append('')
+        # If there is only 1 real suffix name in columns
+        elif len(sns) == 1:
+            output_list.append(sns.pop())
+        # If there are more than 1 unique suffixes
+        else:
+            # Add index to conflicts list
+            conflict_indexes.append(i)
+            # Append first element to output
+            output_list.append(sns.pop())
+    # Return pandas dataframe of 1 Suffix Name column
+    # and list of conflict indexes
+    return (pd.DataFrame(output_list,
+                         columns=['Suffix.Name']),
+            conflict_indexes)
 
 
 def clean_names(df):
     '''returns pandas dataframe of cleaned name columns'''
-    # Initialize all potential name columns
-    name_cols = ['First.Name', 'Last.Name',
-                 'Middle.Initial', 'Middle.Name',
-                 'Suffix.Name']
-
     df_cols = df.columns.values  # Store column names
     # If names are Full.Names
     if 'Full.Name' in df_cols:
@@ -334,25 +372,24 @@ def clean_names(df):
         # Insert middle initial column of empty strings
         cleaned_df.insert(0, 'Middle.Initial', '')
 
-    # Compare Middle Initial/Suffix Name column (either given or empty strings)
-    # To the middle initials/suffixes found in first(last) name columns
-    # Then compare those results to those found in last(first) name columns
-    # Continually storing the conflicts
-    conflicts = []
-    for mc, sc in zip(['Middle.Initial'] * 2 + ['Suffix.Name'] * 2,
-                      ['F_MI', 'L_MI', 'L_SN', 'F_SN']):
-        cleaned_df[mc], new_conflicts = compare_name_cols(cleaned_df[[mc, sc]])
-        conflicts.extend(new_conflicts)
+    # Create middle initial dataframe (Middle.Initial, Middle.Initial2)
+    # And collect indexes of conflicting middle initials
+    mi_df, mi_conflicts = compare_middle_initials(cleaned_df[['Middle.Initial',
+                                                              'F_MI', 'L_MI']])
+    # Create suffix name dataframe (Suffix.Name)
+    # And collect indexes of conflicting suffix names
+    sn_df, sn_conflicts = compare_suffix_names(cleaned_df[['Suffix.Name',
+                                                           'F_SN', 'L_SN']])
 
-    # Only keep columns specified in name_cols
-    cleaned_df = cleaned_df[intersect(cleaned_df.columns,
-                                      name_cols)]
+    # Identify name columns which exist in cleaned_df
+    name_cols = intersect(cleaned_df.columns,
+                          ['First.Name', 'Last.Name', 'Middle.Name'])
+    # Remove middle initial and suffix columns from cleaned dataframe
+    # Then joined cleaned dataframe to middle initial and suffix name dfs
+    cleaned_df = cleaned_df[name_cols].join(mi_df).join(sn_df)
 
-    # Fill any blank spaces with empty strings
-    cleaned_df[cleaned_df == ' '] = ''
-
-    # Return cleaned names dataframe
-    return cleaned_df, conflicts
+    # Return tuple of cleaned names dataframe and conflict indexes
+    return (cleaned_df, mi_conflicts + sn_conflicts)
 
 
 def clean_data(df, skip_cols=[]):
