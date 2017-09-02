@@ -13,12 +13,12 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/unit-history.csv.gz',
-        'input_demo_file': 'input/unit-history_demographics.csv.gz',
-        'output_file': 'output/unit-history.csv.gz',
-        'output_demo_file': 'output/unit-history_demographics.csv.gz',
+        'input_file': 'input/ase-units.csv.gz',
+        'input_demo_file': 'input/ase-units_demographics.csv.gz',
+        'output_file': 'output/ase-units.csv.gz',
+        'output_demo_file': 'output/ase-units_demographics.csv.gz',
         'export_cols': ['Unit', 'Effective.Date', 'End.Date'],
-        'id': 'unit_history_ID'
+        'id': 'ase-units_ID'
         }
 
     assert (args['input_file'].startswith('input/') and

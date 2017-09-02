@@ -4,10 +4,10 @@
 # individual/16-1105_all-sworn-members/import/src/Makefile
 
 .PHONY: all clean
-# Additional files created: import.log, import.yaml, metadata_unit-history.csv.gz
+# Additional files created: import.log, import.yaml, metadata_ase-units.csv.gz
 
 all: \
-		output/unit-history.csv.gz
+		output/ase-units.csv.gz
 
 output/unit-history.csv.gz: \
 		src/import.py \

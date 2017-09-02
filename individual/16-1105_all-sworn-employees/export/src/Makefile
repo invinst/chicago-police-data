@@ -5,15 +5,15 @@
 
 .PHONY: all clean
 # Additional files created: export.log, export.yaml,
-# unit-history_demographics.csv.gz
+# ase-units_demographics.csv.gz
 
 all: \
-		output/unit-history.csv.gz
+		output/ase-units.csv.gz
 
-output/unit-history.csv.gz: \
+output/ase-units.csv.gz: \
 		src/export.py \
-		input/unit-history.csv.gz \
-		input/unit-history_demographics.csv.gz
+		input/ase-units.csv.gz \
+		input/ase-units_demographics.csv.gz
 	python $<
 
 

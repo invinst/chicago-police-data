@@ -7,11 +7,11 @@
 # Additional files created: clean.log, clean.yaml
 
 all: \
-		output/unit-history.csv.gz
+		output/ase-units.csv.gz
 
-output/unit-history.csv.gz: \
+output/ase-units.csv.gz: \
 		src/clean.py \
-		input/unit-history.csv.gz
+		input/ase-units.csv.gz
 	python $<
 
 

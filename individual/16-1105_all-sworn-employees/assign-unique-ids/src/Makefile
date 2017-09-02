@@ -5,14 +5,14 @@
 
 .PHONY: all clean
 # Additional files created:
-# assign-unique-ids.log, assign-unique-ids.yaml, unit-history_demographics.csv.gz
+# assign-unique-ids.log, assign-unique-ids.yaml, ase-units_demographics.csv.gz
 
 all: \
-		output/unit-history.csv.gz
+		output/ase-units.csv.gz
 
-output/unit-history.csv.gz: \
+output/ase-units.csv.gz: \
 		src/assign-unique-ids.py \
-		input/unit-history.csv.gz
+		input/ase-units.csv.gz
 	python $<
 
 

@@ -15,8 +15,8 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/Kalven_16-1105_All_Sworn_Employees.xlsx',
-        'output_file': 'output/unit-history.csv.gz',
-        'metadata_file': 'output/metadata_unit-history.csv.gz'
+        'output_file': 'output/ase-units.csv.gz',
+        'metadata_file': 'output/metadata_ase-units.csv.gz'
         }
 
     assert args['input_file'].startswith('input/'),\

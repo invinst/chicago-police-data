@@ -14,8 +14,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/unit-history.csv.gz',
-        'output_file': 'output/unit-history.csv.gz'
+        'input_file': 'input/ase-units.csv.gz',
+        'output_file': 'output/ase-units.csv.gz'
         }
 
     assert (args['input_file'].startswith('input/') and
