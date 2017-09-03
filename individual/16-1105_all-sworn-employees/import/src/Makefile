@@ -9,7 +9,7 @@
 all: \
 		output/ase-units.csv.gz
 
-output/unit-history.csv.gz: \
+output/ase-units.csv.gz: \
 		src/import.py \
 		input/Kalven_16-1105_All_Sworn_Employees.xlsx
 	python $<

@@ -1,1 +1,1 @@
-../../../share/src/setup.py
+../../../../share/src/setup.py
