@@ -18,8 +18,11 @@ def get_setup():
         'output_file': 'output/investigators.csv.gz',
         'output_demo_file': 'output/investigators_demographics.csv.gz',
         'id_cols': [
-                    'First.Name', 'Last.Name', 'Appointed.Date',
-                   ],
+            'First.Name', 'Last.Name', 'Appointed.Date',
+            ],
+        'max_cols': [
+            'Current.Unit', 'Current.Star', 'Current.Rank'
+        ],
         'id': 'investigators_ID'
         }
 
@@ -41,5 +44,6 @@ df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
 cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-agg_df = aggregate_data(df, cons.id, cons.id_cols)
+agg_df = aggregate_data(df, cons.id, cons.id_cols,
+                        max_cols=cons.max_cols)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/investigators.csv.gz',
         'output_demo_file': 'output/investigators_demographics.csv.gz',
         'export_cols': [
-            'CRID', 'Assignment', 'Current.Rank'
+            'CRID', 'Current.Rank', 'Current.Unit'
             ],
         'id': 'investigators_ID',
         'keep_ranks': [

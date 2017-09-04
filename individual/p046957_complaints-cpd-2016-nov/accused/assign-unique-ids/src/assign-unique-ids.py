@@ -22,7 +22,8 @@ def get_setup():
                     'Appointed.Date', 'Birth.Year', 'Gender', 'Race',
                    ],
         'conflict_cols': [
-                     'Middle.Initial', 'Current.Unit', 'Current.Star'
+                     'Middle.Initial', 'Current.Unit',
+                     'Current.Star', 'Current.Rank'
                     ],
         'id': 'accused_ID',
         }

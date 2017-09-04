@@ -15,17 +15,21 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
+        'input_profile_file': 'input/officer-profiles.csv.gz',
+        'input_reference_file': 'input/officer-reference.csv.gz',
         'arg_dicts': [
             {
-                'input_demo_file': 'input/all-members_demographics.csv.gz',
-                'input_full_file': 'input/all-members.csv.gz',
-                'output_full_file': 'output/all-members.csv.gz',
-                'args': {}
+                'input_demo_file': 'input/all-sworn-units_demographics.csv.gz',
+                'input_full_file': 'input/all-sworn-units.csv.gz',
+                'output_full_file': 'output/all-sworn-units.csv.gz',
+                'args': {'no_match_cols': ['Last.Name'],
+                         'return_merge_report': True,
+                         'print_merging': True}
             },
             {
-                'input_demo_file': 'input/all-sworn_demographics.csv.gz',
-                'input_full_file': 'input/all-sworn.csv.gz',
-                'output_full_file': 'output/all-sworn.csv.gz',
+                'input_demo_file': 'input/ase-units_demographics.csv.gz',
+                'input_full_file': 'input/ase-units.csv.gz',
+                'output_full_file': 'output/ase-units.csv.gz',
                 'args': {'no_match_cols': ['Last.Name'],
                          'return_merge_report': True,
                          'print_merging': True}
@@ -36,6 +40,10 @@ def get_setup():
         'universal_id': 'UID'
         }
 
+    assert args['input_profile_file'] == 'input/officer-profiles.csv.gz',\
+        'Input profiles file is not correct.'
+    assert args['input_reference_file'] == 'input/officer-reference.csv.gz',\
+        'Input reference file is not correct.'
     assert args['output_profile_file'] == 'output/officer-profiles.csv.gz',\
         'Output profile file is not correct.'
     assert args['output_reference_file'] == 'output/officer-reference.csv.gz',\
@@ -46,8 +54,8 @@ def get_setup():
 
 cons, log = get_setup()
 
-ref_df = pd.DataFrame()
-profile_df = pd.DataFrame()
+ref_df = pd.read_csv(cons.input_reference_file)
+profile_df = pd.read_csv(cons.input_profile_file)
 
 for arg_dict in cons.arg_dicts:
     assert (arg_dict['input_full_file'].startswith('input/') and
@@ -59,7 +67,6 @@ for arg_dict in cons.arg_dicts:
             arg_dict['output_full_file'].endswith('.csv.gz')),\
         'A file does not start with .csv.gz'
 
-    print('File: {}'.format(arg_dict['input_full_file']))
     sub_df = pd.read_csv(arg_dict['input_demo_file'])
     atr_dict = append_to_reference(sub_df=sub_df,
                                    profile_df=profile_df,

@@ -25,7 +25,7 @@ def get_setup():
         'output_file': 'output/investigators.csv.gz',
         'metadata_file': 'output/metadata_investigators.csv.gz',
         'column_names': [
-                         'CRID', 'Full.Name', 'Assignment',
+                         'CRID', 'Full.Name', 'Current.Unit',
                          'Current.Rank', 'Current.Star', 'Appointed.Date'
                         ]
         }
