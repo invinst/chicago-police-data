@@ -23,7 +23,7 @@ def get_setup():
                    ],
         'current_cols': ['Star'],
         'time_col': 'Status.Date',
-        'id': 'trr_statuses_ID'
+        'id': 'trr-statuses_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -40,7 +40,8 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-df = assign_unique_ids(df, cons.id, cons.id_cols)
+df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
+cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,

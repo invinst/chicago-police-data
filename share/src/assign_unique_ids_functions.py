@@ -30,7 +30,7 @@ def remove_duplicates(df, cols=[]):
     return df[~df.duplicated(subset=cols, keep=False)].sort_values(cols)
 
 
-def keep_duplicates(df, cols):
+def keep_duplicates(df, cols=[]):
     '''returns pandas dataframe
        including only rows that contain duplicate values
        in specified columns
@@ -115,6 +115,18 @@ def resolve_conflicts(df, id_cols, conflict_cols,
     return out_df
 
 
+def generate_uid_report(full, unique, conflicts, resolved, uids):
+    return (('Total rows: {0}\n'
+             'Unique id + conflict rows: {1}\n'
+             'Conflict rows: {2}\n'
+             'Resolved conflcit UID count: {3}\n'
+             'Total unique ids: {4}\n').format(full,
+                                               unique,
+                                               conflicts,
+                                               resolved,
+                                               uids))
+
+
 def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
     '''returns pandas dataframe
        with unique ids assigned to rows which share id_cols values
@@ -133,11 +145,14 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
        5 3   NaN      5 3   NaN  5
        5 4   NaN      5 4   NaN  6
     '''
+    full_rows = df.shape[0]  # Store total row count
     # Create unique dataframe of relevant columns
     dfu = df[id_cols + conflict_cols].drop_duplicates()
     # Reset index on unique dataframe
     dfu.reset_index(drop=True, inplace=True)
-
+    unique_rows = dfu.shape[0]  # Store unique rows
+    conflict_rows = 0   # Initialize conflict rows
+    conflicts_resolved = 0  # Initialize conflicts resolved
     # If conflict columns are specified
     if conflict_cols:
         # Create a subset of the input dataframe with no duplicates
@@ -151,10 +166,15 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
         # But have different conflict_cols information
         # and reset the index
         kd_df = keep_duplicates(dfu, id_cols).reset_index(drop=True)
+        print(kd_df.head())
+        conflict_rows = kd_df.shape[0]  # Store conflict rows
         # Create resolved conflicts dataframe using resolve_conflict()
         # input the maximum uid from the rd_df as the starting_uid
         rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
                                   uid=uid, starting_uid=max(rd_df[uid]))
+        print(rc_df.head())
+        print(uid)
+        conflicts_resolved = len(rc_df[uid].unique())
         # Append resolved conflicts dataframe to remove duplicates dataframe
         # and merge the resulting dataframe to input dataframe
         # on id_cols and conflict_cols, thus giving input df uids
@@ -177,7 +197,16 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
     assert max(df[uid]) == len(df[uid].drop_duplicates()),\
         print('Unique IDs are not correctly scaled')
 
-    return df
+    uid_count = max(df[uid])    # Store number of uids
+    # Generate unique id report
+    uid_report = generate_uid_report(full_rows, unique_rows,
+                                     conflict_rows, conflicts_resolved,
+                                     uid_count)
+    # Print out unique id report
+    print(uid_report)
+
+    # Return dataframe and report
+    return df, uid_report
 
 
 def order_aggregate(df, id_cols,

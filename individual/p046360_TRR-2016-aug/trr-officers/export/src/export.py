@@ -22,7 +22,7 @@ def get_setup():
             'In.Uniform', 'Unit.Detail',
             'Duty.Status', 'Assigned.Beat'
             ],
-        'id': 'trr_officers_ID',
+        'id': 'trr-officers_ID',
         'drop_ranks': ['DETENTION AIDE']
         }
 

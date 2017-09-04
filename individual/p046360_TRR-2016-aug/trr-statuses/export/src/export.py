@@ -21,7 +21,7 @@ def get_setup():
             'TRR.ID', 'Rank', 'Star', 'Status',
             'Status.Time', 'Status.Date'
             ],
-        'id': 'trr_statuses_ID',
+        'id': 'trr-statuses_ID',
         'notnull': 'Rank'
         }
 

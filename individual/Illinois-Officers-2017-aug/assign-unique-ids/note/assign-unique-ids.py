@@ -14,17 +14,16 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/accused.csv.gz',
-        'output_file': 'output/accused.csv.gz',
-        'output_demo_file': 'output/accused_demographics.csv.gz',
+        'input_file': 'input/il-officers.csv.gz',
+        'output_file': 'output/il-officers.csv.gz',
+        'output_demo_file': 'output/il-officers_demographics.csv.gz',
         'id_cols': [
-                    'First.Name', 'Last.Name', 'Suffix.Name',
-                    'Appointed.Date', 'Birth.Year', 'Gender', 'Race',
-                   ],
-        'conflict_cols': [
-                     'Middle.Initial', 'Current.Unit', 'Current.Star'
-                    ],
-        'id': 'accused_ID',
+            "First.Name", "Last.Name", "Middle.Initial", 
+            "Suffix.Name", 'Middle.Name', 'Birth.Year', 
+            'Race', 'Appointed.Date', 'Resignation.Date'
+            "Appointed.Date", "Current.Age", "Gender", "Race"
+            ],
+        'id': 'il-officers_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -41,11 +40,14 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols,
-                       cons.conflict_cols)
+
+df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
 cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
+
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols=cons.conflict_cols)
+                        max_cols=cons.max_cols,
+                        current_cols=cons.current_cols,
+                        time_col=cons.time_col)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

@@ -21,11 +21,11 @@ def get_setup():
                     "First.Name", "Last.Name", "Suffix.Name",
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
-        'conflict_cols': ['Middle.Initial'],
-        'max_cols': ['Middle.Initial'],
+        'conflict_cols': ['Middle.Initial', 'Middle.Initial2'],
+        'max_cols': ['Middle.Initial', 'Middle.Initial2'],
         'current_cols': ['Unit'],
         'time_col': 'Start.Date',
-        'id': 'all_sworn_units_ID'
+        'id': 'all-sworn-units_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -42,7 +42,10 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-df = assign_unique_ids(df, cons.id, cons.id_cols, cons.conflict_cols)
+df, uid_report = assign_unique_ids(df, cons.id,
+                                   cons.id_cols,
+                                   cons.conflict_cols)
+cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,

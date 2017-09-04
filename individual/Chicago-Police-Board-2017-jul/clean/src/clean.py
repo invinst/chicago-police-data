@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import __main__
 
-from cleaning_functions import clean_data
+from clean_functions import clean_data
 
 import setup
 

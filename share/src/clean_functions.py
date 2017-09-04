@@ -452,6 +452,8 @@ def clean_data(df, skip_cols=[]):
         # input dataframe's selected name columns
         # and middle initial and suffix name conflicts
         cn_df, conflicts = clean_names(df[name_cols])
+        # Fill empty strings with NaN
+        cn_df[cn_df == ''] = np.nan
         # Create conflicts dataframe for output
         conflicts_df = df[name_cols].ix[conflicts]
         # Join input dataframe (minus name columns)
@@ -466,8 +468,20 @@ def clean_data(df, skip_cols=[]):
             print('Conflicting middle initial/suffix name conflicts:')
             print(conflicts_df)
 
+    df_cols = df.columns    # Store column names
+    # Drop columns that are completely missing values
+    df.dropna(axis=1, how='all', inplace=True)
+    # Store columns dropped due to all missing values
+    dropped_cols = list(set(df_cols) - set(df.columns))
+    # Print out columns dropped due to missing values
+    print(('Columns dropped due to '
+           'all missing values:\n {}').format(dropped_cols))
+
+    # If names were formatted
+    if name_cols:
         # Return cleaned dataframe and conflicts df tuple
         return df, conflicts_df
-    # If there are no name cols in data
+    # If names were not formatted
     else:
+        # Return just cleaned dataframe
         return df

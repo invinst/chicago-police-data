@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/all-sworn-units.csv.gz',
         'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
         'export_cols': ['Unit', 'Start.Date', 'End.Date'],
-        'id': 'all_sworn_units_ID'
+        'id': 'all-sworn-units_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
