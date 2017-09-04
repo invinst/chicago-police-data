@@ -286,7 +286,6 @@ def aggregate_data(df, uid, id_cols=[],
             groups = kd_df.groupby(uid, as_index=False)
             # If col is specified in mode_cols
             if col in mode_cols:
-                print('Mode Aggregating {} column'.format(col))
                 # Use list comprehension to generate a list of
                 # two item lists: [uid, most common value in group]
                 groups = [[k,
@@ -298,7 +297,6 @@ def aggregate_data(df, uid, id_cols=[],
 
             # If col is specified in max_cols
             if col in max_cols:
-                print('Max Aggregating {} column'.format(col))
                 # Take max of each group, excluding NaNs
                 groups = groups.agg(np.nanmax)
 
