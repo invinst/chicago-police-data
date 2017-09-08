@@ -241,6 +241,66 @@ def order_aggregate(df, id_cols,
     return df.agg(lambda x: x.iloc[0])
 
 
+def max_aggregate(df, uid, col):
+    '''returns 2 column pandas dataframe
+       with unique id being first column
+       and max of each uid's col values in second column
+    '''
+    # Initialize unique dataframe with uids and specified column only
+    df = df[[uid, col]].drop_duplicates()
+    # Drop any rows with missing data
+    df.dropna(axis=0, how='any', inplace=True)
+    # Initialize dataframe of duplicates
+    kd_df = keep_duplicates(df, uid)
+    # If duplciate dataframe is empty
+    if kd_df.empty:
+        # No aggregation is neccessary on dfu since all values are unique
+        return df  # Return unique dataframe
+    # If duplicate dataframe is not empty
+    else:
+        # Drop duplicate rows from df
+        df = df[~df[uid].isin(kd_df[uid])]
+        # Group duplicate dataframe by uid
+        groups = kd_df.groupby(uid, as_index=False)
+        # Take max of each group, excluding NaNs
+        groups = groups.agg(np.nanmax)
+        # Return unique uid data appended to aggregated uid data
+        df.append(groups)
+
+
+def mode_aggregate(df, uid, col):
+    '''returns 2 column pandas dataframe
+       with unique id being first column
+       and most common of each uid's col values in second column
+    '''
+    # Initialize dataframe for specifically this column
+    df = df[[uid, col]]
+    # Drop null values
+    df.dropna(axis=0, how='any', inplace=True)
+    # Initialize dataframe of uids which have multiple values
+    kd_df = keep_duplicates(df, uid)
+    # If duplicates dataframe is empty
+    if kd_df.empty:
+        # Aggregation is not neccessary since each uid only has one row
+        return df  # Return df
+    # If there are duplicates
+    else:
+        # Ensure dfc only contains rows with uids that only appear once
+        df = df[~df[uid].isin(kd_df[uid])]
+        # Group duplicate dataframe by uid
+        groups = kd_df.groupby(uid, as_index=False)
+        # If col is specified in mode_cols
+        # Use list comprehension to generate a list of
+        # two item lists: [uid, most common value in group]
+        groups = [[k,
+                   stats.mode(g[col], nan_policy='propagate').mode[0]]
+                  for k, g in groups]
+        # Recombine list of lists into dataframe
+        groups = pd.DataFrame(groups, columns=[uid, col])
+        # Return dataframe of unique uids appended to aggregated uid data
+        return df.append(groups)
+
+
 def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
                    current_cols=[], time_col=""):
@@ -264,45 +324,16 @@ def aggregate_data(df, uid, id_cols=[],
     agg_df = df[uid_col + id_cols].drop_duplicates()
     agg_df.reset_index(drop=True, inplace=True)  # Reset index
 
-    # Iterate over mode and max columns
-    for col in mode_cols + max_cols:
-        # Initialize unique dataframe with uids and specified column only
-        dfu = df[[uid, col]].drop_duplicates()
-        # Drop any rows with missing data
-        dfu.dropna(axis=0, how='any', inplace=True)
-        # Initialize dataframe of duplicates
-        kd_df = keep_duplicates(dfu, uid)
-        # Drop duplicate rows from dfu
-        dfu = dfu[~dfu[uid].isin(kd_df[uid])]
-
-        # If duplciate dataframe is empty
-        if kd_df.empty:
-            # No aggregation is neccessary on dfu since all values are unique
-            # Merge dfu back to agg_df
-            agg_df = agg_df.merge(dfu, on=uid, how='left')
-        # If duplicate dataframe is not empty
-        else:
-            # Group duplicate dataframe by uid
-            groups = kd_df.groupby(uid, as_index=False)
-            # If col is specified in mode_cols
-            if col in mode_cols:
-                # Use list comprehension to generate a list of
-                # two item lists: [uid, most common value in group]
-                groups = [[k,
-                           stats.mode(g[col],
-                                      nan_policy='propagate').mode[0]]
-                          for k, g in groups]
-                # Recombine list of lists into dataframe
-                groups = pd.DataFrame(groups, columns=[uid, col])
-
-            # If col is specified in max_cols
-            if col in max_cols:
-                # Take max of each group, excluding NaNs
-                groups = groups.agg(np.nanmax)
-
-            # Append groups to dfu and merge to agg_df on uid
-            agg_df = agg_df.merge(dfu.append(groups),
-                                  on=uid, how='left')
+    # Iterate over mode cols
+    for col in mode_cols:
+        # Merge mode_aggregated column to agg_df
+        agg_df = agg_df.merge(mode_aggregate(df[[uid, col]], uid, col),
+                              on=uid, how='left')
+    # Iterate over max cols
+    for col in max_cols:
+        # Merge max_aggregated column to agg_df
+        agg_df = agg_df.merge(max_aggregate(df[[uid, col]], uid, col),
+                              on=uid, how='left')
 
     # If current_cols and time_col are specified
     if current_cols and time_col:
