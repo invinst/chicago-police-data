@@ -18,9 +18,9 @@ def get_setup():
         'output_file': 'output/trr-officers.csv.gz',
         'output_demo_file': 'output/trr-officers_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-                    "Appointed.Date", "Gender", "Race", "Current.Star"
-                   ],
+            "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
+            "Appointed.Date", "Gender", "Race", "Current.Star"
+            ],
         'id': 'trr-officers_ID'
         }
 

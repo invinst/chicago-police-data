@@ -292,9 +292,7 @@ def mode_aggregate(df, uid, col):
         # If col is specified in mode_cols
         # Use list comprehension to generate a list of
         # two item lists: [uid, most common value in group]
-        groups = [[k,
-                   stats.mode(g[col], nan_policy='propagate').mode[0]]
-                  for k, g in groups]
+        groups = groups.aggregate(lambda x: stats.mode(x).mode[0])
         # Recombine list of lists into dataframe
         groups = pd.DataFrame(groups, columns=[uid, col])
         # Return dataframe of unique uids appended to aggregated uid data
