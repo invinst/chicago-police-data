@@ -36,15 +36,15 @@ def get_setup():
                          'return_merge_report': True,
                          'print_merging': False}
             },
-           # {
-           #     'input_demo_file': 'input/witnesses_demographics.csv.gz',
-           #     'input_full_file': 'input/witnesses.csv.gz',
-           #     'output_full_file': 'output/witnesses.csv.gz',
-           #     'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
-           #              'min_match_length': 3,
-           #              'return_merge_report': True,
-           #              'print_merging': True}
-           # }
+            # {
+            #     'input_demo_file': 'input/witnesses_demographics.csv.gz',
+            #     'input_full_file': 'input/witnesses.csv.gz',
+            #     'output_full_file': 'output/witnesses.csv.gz',
+            #     'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
+            #              'min_match_length': 3,
+            #              'return_merge_report': True,
+            #              'print_merging': True}
+            # }
         ],
         'output_profile_file': 'output/officer-profiles.csv.gz',
         'output_reference_file': 'output/officer-reference.csv.gz',
@@ -96,7 +96,6 @@ for arg_dict in cons.arg_dicts:
     profile_df = aggregate_data(ref_df, cons.universal_id,
                                 mode_cols=listdiff(ref_df.columns,
                                                    [cons.universal_id]))
-    print(profile_df.columns)
     full_df = pd.read_csv(arg_dict['input_full_file'])
     id_col = [col for col in full_df.columns
               if col.endswith('_ID')][0]
