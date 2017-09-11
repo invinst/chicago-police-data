@@ -265,7 +265,7 @@ def max_aggregate(df, uid, col):
         # Take max of each group, excluding NaNs
         groups = groups.agg(np.nanmax)
         # Return unique uid data appended to aggregated uid data
-        df.append(groups)
+        return df.append(groups)
 
 
 def mode_aggregate(df, uid, col):
