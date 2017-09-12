@@ -17,7 +17,7 @@ def get_setup():
         'input_demo_file': 'input/ase-units_demographics.csv.gz',
         'output_file': 'output/ase-units.csv.gz',
         'output_demo_file': 'output/ase-units_demographics.csv.gz',
-        'export_cols': ['Unit', 'Effective.Date', 'End.Date'],
+        'export_cols': ['Unit', 'Start.Date', 'End.Date'],
         'id': 'ase-units_ID'
         }
 

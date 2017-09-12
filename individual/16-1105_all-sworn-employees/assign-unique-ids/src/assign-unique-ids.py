@@ -26,7 +26,7 @@ def get_setup():
             'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
             ],
         'current_cols': ['Unit'],
-        'time_col': 'Effective.Date',
+        'time_col': 'Start.Date',
         'id': 'ase-units_ID'
         }
 
