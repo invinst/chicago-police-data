@@ -41,7 +41,9 @@ cons, log = get_setup()
 
 unit_df_list = [pd.read_csv(input_file)
                 for input_file in cons.input_unit_files]
+
 resignation_df = pd.read_csv(cons.input_resignation_file)
+resignation_df = resignation_df[[cons.uid_col, cons.resignation_col]]
 
 uh_df = combine_histories(unit_df_list,
                           resignation_df,
