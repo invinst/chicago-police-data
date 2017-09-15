@@ -95,27 +95,41 @@ def clean_date_df(df):
         # Store column suffix as list, removing .Date(time) ending
         # 'Org.Hire.Datetime' -> ['Org', 'Hire']
         col_suffix = col.split('.')[:-1]
+
+        # Initial date and time column names
+        date_name = '.'.join(col_suffix + ['Date'])
+        time_name = '.'.join(col_suffix + ['Time'])
         # Try to convert column to datetime
         # And create column in dt_df ending with .Date
         try:
-            dt_df['.'.join(col_suffix + ["Date"])] = \
+            dt_df[date_name] = \
                 pd.to_datetime(df[col], errors='raise').dt.date
         # If there were errors, notify the user,
         # And repeat above but with coercing errors to NaT
         except:
             print('Some errors in {}. Returned as NaT.'.format(col))
-            dt_df['.'.join(col_suffix + ["Date"])] = \
+            dt_df[date_name] = \
                 pd.to_datetime(df[col], errors='coerce').dt.date
+
+        # Ensure dates are not past the current date
+        today = pd.to_datetime('today').date()  # Get current date
+        # If date is after the current date, subtract 100 from the year
+        # Common problem where 01/01/55 -> 2055-01-01 when should be 1955
+        dt_df[date_name] = \
+            dt_df[date_name].map(lambda x:
+                                 x.replace(year=x.year-100)
+                                 if (pd.notnull(x) and x >= today)
+                                 else x)
 
         # If time is in column, repeat above
         # Except convert to time not date
         if 'time' in col:
             try:
-                dt_df['.'.join(col_suffix + ["Time"])] = \
+                dt_df[time_name] = \
                     pd.to_datetime(df[col]).dt.time
             except:
                 print('Some errors in {}. Returned as NaT.'.format(col))
-                dt_df['.'.join(col_suffix + ["Time"])] = \
+                dt_df[time_name] = \
                     pd.to_datetime(df[col], errors='coerce').dt.date
 
     # EX: df columns = ['Org.Hire.Datetime', 'Start.Date']
