@@ -15,8 +15,8 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/unit-history.csv.gz',
-        'output_file': 'output/daily-unit-panel.csv.gz',
-        'frequency': 'Day',
+        'output_file': 'output/monthly-unit-panel.csv.gz',
+        'frequency': 'Month',
         'max_date': '',
         'min_date': '2000-01-01',
         'uid_col': 'UID',
@@ -48,4 +48,4 @@ panel_df = history_to_panel(history_df,
                             start_col=cons.start_col,
                             end_col=cons.end_col)
 print('Shape of panel data: {}'.format(panel_df.shape))
-panel_df.to_csv(cons.output_file, chunksize=100000,**cons.csv_opts)
+panel_df.to_csv(cons.output_file, **cons.csv_opts)

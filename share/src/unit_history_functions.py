@@ -126,20 +126,12 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
                      unit_col='Unit', uid_col='UID'):
 
     # Replace start and end date columns with pandas datetime values
-    hist_df.replace(start_col,
-                    pd.to_datetime(hist_df[start_col]),
-                    inplace=True)
-    hist_df.replace(end_col,
-                    pd.to_datetime(hist_df[end_col]),
-                    inplace=True)
-
+    hist_df[start_col] = pd.to_datetime(hist_df[start_col])
+    hist_df[end_col] = pd.to_datetime(hist_df[end_col])
     # If there is a max_date specified
     if max_date:
-        # Convert max date to Timestamp
+        # Convert max date to datetime
         max_date = pd.to_datetime(max_date)
-        # Ensure max_date is a Timestamp
-        assert isinstance(max_date, pd.Timestamp),\
-            'max_date given is not a proper date'
     # If no max_date is given
     else:
         # Take max_date to be equal to the max start date
@@ -154,11 +146,8 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
 
     # If there is a min_date specified
     if min_date:
-        # Convert min date to Timestamp
+        # Convert min date to datetime then string
         min_date = pd.to_datetime(min_date)
-        # Ensure min_date is a Timestamp
-        assert isinstance(min_date, pd.Timestamp),\
-            'min_date given is not a proper date'
         # Drop rows with unit end date before minimum date
         hist_df = hist_df[hist_df[end_col] >= min_date]
 
@@ -171,12 +160,8 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
     freq = freq_dict[frequency]
 
     # Replace start and end cols with the first date of the given frequency
-    hist_df.replace(start_col,
-                    to_first_dates(hist_df[start_col], freq),
-                    inplace=True)
-    hist_df.replace(end_col,
-                    to_first_dates(hist_df[end_col], freq),
-                    inplace=True)
+    hist_df[start_col] = to_first_dates(hist_df[start_col], freq)
+    hist_df[end_col] = to_first_dates(hist_df[end_col], freq)
 
     # Assign rows with equal start and end dates to equal_df
     equal_df = hist_df[hist_df[start_col] == hist_df[end_col]].copy()
@@ -196,8 +181,8 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
     # and applying expand_history function to row
     # then concatenate resulting list of pandas dataframe
     panel_df = pd.concat([expand_history(r[start_col], r[end_col],
-                                       r[unit_col], r[uid_col],
-                                       freq)
+                                         r[unit_col], r[uid_col],
+                                         freq)
                           for i, r in hist_df.iterrows()])
     stop_time = time.time()  # Store stop time of generation
     # Print message indicating end of panel data generation and elapsed time
