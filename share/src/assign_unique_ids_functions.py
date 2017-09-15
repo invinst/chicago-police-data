@@ -166,14 +166,11 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
         # But have different conflict_cols information
         # and reset the index
         kd_df = keep_duplicates(dfu, id_cols).reset_index(drop=True)
-        print(kd_df.head())
         conflict_rows = kd_df.shape[0]  # Store conflict rows
         # Create resolved conflicts dataframe using resolve_conflict()
         # input the maximum uid from the rd_df as the starting_uid
         rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
                                   uid=uid, starting_uid=max(rd_df[uid]))
-        print(rc_df.head())
-        print(uid)
         conflicts_resolved = len(rc_df[uid].unique())
         # Append resolved conflicts dataframe to remove duplicates dataframe
         # and merge the resulting dataframe to input dataframe
