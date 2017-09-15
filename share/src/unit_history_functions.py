@@ -98,12 +98,12 @@ def to_first_dates(dates, delta_type):
     return dates
 
 
-def expand_times(sd, ed, unit, uid, freq):
+def expand_history(sd, ed, unit, uid, freq):
     '''returns pandas dataframe
        generates dates between start and end date at a given frequency
        and numbers the events, and includes unit and uid columns
 
-       EX: expand_times('2000-01-01', '2000-01-03', 10, 1, 'MS')
+       EX: expand_history('2000-01-01', '2000-01-03', 10, 1, 'MS')
            -> Date        Event Unit UID
               2000-01-01    1    10   1
               2000-01-02    0    10   1
@@ -181,10 +181,10 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
     # Assign rows with equal start and end dates to equal_df
     equal_df = hist_df[hist_df[start_col] == hist_df[end_col]].copy()
     equal_df['Event'] = 3   # Create Event column equal to 3
-    # Reorder columns to match those of expand_times output
+    # Reorder columns to match those of expand_history output
     equal_df = equal_df[[start_col, 'Event', unit_col, uid_col]]
     equal_df.drop_duplicates(inplace=True)  # Drop duplicate rows
-    # Rename start col to the frequency col to match expand_times output
+    # Rename start col to the frequency col to match expand_history output
     equal_df.rename(columns={start_col: frequency}, inplace=True)
 
     # Remove rows in hist_df in equal_df (start date not equal end date)
@@ -193,9 +193,9 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
     print('Generating panel data. May take a few minutes.')
     start_time = time.time()    # Store start time of generation
     # Iterate over rows in hist_df
-    # and applying expand_times function to row
+    # and applying expand_history function to row
     # then concatenate resulting list of pandas dataframe
-    panel_df = pd.concat([expand_times(r[start_col], r[end_col],
+    panel_df = pd.concat([expand_history(r[start_col], r[end_col],
                                        r[unit_col], r[uid_col],
                                        freq)
                           for i, r in hist_df.iterrows()])
