@@ -14,10 +14,16 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/cpd_employees-4-1-16.csv',
+        'input_file': 'input/P058155_-_Kiefer.xlsx',
         'output_file': 'output/cpd-employees.csv.gz',
         'metadata_file': 'output/metadata_cpd-employees.csv.gz',
-        'custom_columns': {'Unit': 'Current.Unit'}
+        'drop_column' : 'Star 10',
+        'custom_columns': {' ': 'Current.Unit',
+                           'Description': 'Rank',
+                           'Star 9': 'Star 10',
+                           'Star 8': 'Star 9',
+                           'Star 7': 'Star 8',
+                           'Star 6.1': 'Star 7'}
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -31,11 +37,12 @@ def get_setup():
 
 cons, log = get_setup()
 
-df = pd.read_csv(cons.input_file)
-df.columns = standardize_columns(df.columns)
+df = pd.read_excel(cons.input_file)
+del df[cons.drop_column]
 print(('Column names changed'
-      ' after standardization: {}').format(cons.custom_columns))
+      ' before standardization: {}').format(cons.custom_columns))
 df.rename(columns=cons.custom_columns, inplace=True)
+df.columns = standardize_columns(df.columns)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

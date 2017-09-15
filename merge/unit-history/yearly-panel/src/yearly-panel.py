@@ -15,7 +15,7 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/unit-history.csv.gz',
-        'output_file': 'output/monthly-unit-panel.csv.gz',
+        'output_file': 'output/yearly-unit-panel.csv.gz',
         'frequency': 'Year',
         'max_date': '',
         'min_date': '2000-01-01',
