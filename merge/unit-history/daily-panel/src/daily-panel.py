@@ -17,7 +17,7 @@ def get_setup():
         'input_file': 'input/unit-history.csv.gz',
         'output_file': 'output/daily-unit-panel.csv.gz',
         'max_date': '',
-        'min_date': ''
+        'min_date': '2000-01-01',
         'uid_col': 'UID',
         'unit_col': 'Unit',
         'start_col': 'Start.Date',
