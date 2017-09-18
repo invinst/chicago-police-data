@@ -6,7 +6,7 @@
 
 import itertools
 import pandas as pd
-from assign_unique_ids_functions import remove_duplicates
+from assign_unique_ids_functions import remove_duplicates, aggregate_data
 
 
 def intersect(list1, list2):
@@ -258,7 +258,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         ['Appointed.Date'],
         ['Birth.Year', 'Current.Age', 'Current.Age.p1', 'Current.Age.m1', ''],
         ['Middle.Initial', ''],
-        ['Middle.Initial2',''],
+        ['Middle.Initial2', ''],
         ['Gender', ''],
         ['Race', ''],
         ['Suffix.Name', ''],
@@ -381,6 +381,33 @@ def append_to_reference(sub_df, profile_df, ref_df,
             return_dict['ML'] = md_dict['merged']['Match']
 
     return return_dict
+
+
+def generate_profiles(ref, uid,
+                      column_order=[
+                        'First.Name', 'Last.Name',
+                        'Middle.Initial', 'Suffix.Name' 'Middle.Initial2',
+                        'Race', 'Gender', 'Birth.Year',
+                        'Appointed.Date', 'Resignation.Date', 'Current.Rank',
+                        'Current.Age', 'Current.Unit', 'Current.Star',
+                        'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
+                        'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
+                      mode_cols=[],
+                      max_cols=[]):
+
+    profiles = aggregate_data(ref, uid,
+                              mode_cols=mode_cols, max_cols=max_cols)
+    column_order.extend([col for col in profiles.columns
+                         if col.endswith('_ID')])
+    cols = intersect(column_order, profiles.columns)
+    profiles = profiles[cols]
+    count_df = pd.DataFrame(ref[uid].value_counts())
+    count_df['profile_count'] = count_df.index
+    profiles = profiles.merge(count_df, on='UID')
+    assert profiles.shape[0] == len(ref[uid].unique()),\
+        'Missing some UIDs'
+
+    return profiles
 
 
 def remerge(df, link_df, uid_col, id_col):
