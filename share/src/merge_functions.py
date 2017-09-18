@@ -385,28 +385,46 @@ def append_to_reference(sub_df, profile_df, ref_df,
 
 def generate_profiles(ref, uid,
                       column_order=[
-                        'First.Name', 'Last.Name',
-                        'Middle.Initial', 'Suffix.Name' 'Middle.Initial2',
-                        'Race', 'Gender', 'Birth.Year',
-                        'Appointed.Date', 'Resignation.Date', 'Current.Rank',
-                        'Current.Age', 'Current.Unit', 'Current.Star',
-                        'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-                        'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
+                            'First.Name', 'Last.Name',
+                            'Middle.Initial', 'Suffix.Name', 'Middle.Initial2',
+                            'Race', 'Gender', 'Birth.Year', 'Appointed.Date',
+                            'Resignation.Date', 'Current.Rank',
+                            'Current.Age', 'Current.Unit', 'Current.Star',
+                            'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
+                            'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
                       mode_cols=[],
                       max_cols=[]):
-
+    '''returns pandas dataframe
+       after aggregating data from the input reference dataframe
+       sorts columns by column order
+       and counts number of occurance of each officer in reference
+    '''
+    # Initialize profiles data by aggregating input ref data
     profiles = aggregate_data(ref, uid,
-                              mode_cols=mode_cols, max_cols=max_cols)
-    column_order.extend([col for col in profiles.columns
-                         if col.endswith('_ID')])
-    cols = intersect(column_order, profiles.columns)
-    profiles = profiles[cols]
+                              mode_cols=mode_cols,
+                              max_cols=max_cols)
+    # Initialize count_df, counting number of occurances by uid
     count_df = pd.DataFrame(ref[uid].value_counts())
-    count_df['profile_count'] = count_df.index
-    profiles = profiles.merge(count_df, on='UID')
+    # Rename column in count_df to profile_count
+    count_df.columns = ['profile_count']
+    # Create uid column equal to the index of count_df
+    count_df[uid] = count_df.index
+    # Merge count_df to the profiles dataframe on uid
+    profiles = profiles.merge(count_df, on=uid)
+    # Ensure no uids were excluded
     assert profiles.shape[0] == len(ref[uid].unique()),\
         'Missing some UIDs'
+    # Collect _ID cols from profiles
+    ID_cols = [col for col in profiles.columns
+               if col.endswith('_ID')]
+    # Reorder sort columns in profiles by column_order
+    cols = [col for col in column_order
+            if col in profiles.columns]
+    # Reorder profile columns with uid first, then core columns,
+    # then ID columns and ending with profile_count
+    profiles = profiles[[uid] + cols + ID_cols + ['profile_count']]
 
+    # Return profiles
     return profiles
 
 

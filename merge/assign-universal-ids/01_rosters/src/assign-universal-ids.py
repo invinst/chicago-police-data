@@ -1,8 +1,8 @@
 import pandas as pd
 import __main__
 
-from assign_unique_ids_functions import aggregate_data
-from merge_functions import append_to_reference, listdiff, remerge
+from merge_functions import append_to_reference, generate_profiles,\
+                            listdiff, remerge
 import setup
 
 

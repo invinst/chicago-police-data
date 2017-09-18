@@ -1,8 +1,8 @@
 import pandas as pd
 import __main__
 
-from assign_unique_ids_functions import aggregate_data
-from merge_functions import append_to_reference, listdiff, remerge
+from merge_functions import append_to_reference, generate_profiles,\
+                            listdiff, remerge
 import setup
 
 
@@ -82,9 +82,9 @@ for arg_dict in cons.arg_dicts:
         cons.write_yamlvar('Merge List',
                            atr_dict['ML'].value_counts())
 
-    profile_df = aggregate_data(ref_df, cons.universal_id,
-                                mode_cols=listdiff(ref_df.columns,
-                                                   [cons.universal_id]))
+    profile_df = generate_profiles(ref_df, cons.universal_id,
+                                   mode_cols=listdiff(ref_df.columns,
+                                                      [cons.universal_id]))
 
     full_df = pd.read_csv(arg_dict['input_full_file'])
     id_col = [col for col in full_df.columns
