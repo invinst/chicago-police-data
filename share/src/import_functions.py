@@ -26,7 +26,8 @@ def read_p046957_file(input_file, original_crid_col,
        the correct specified criteria.
     '''
 
-    df = pd.read_excel(input_file, rows=20)
+    df = pd.read_excel(input_file, rows=20,
+                       keep_default_na=False, na_values=[''])
 
     col_list = df.columns.tolist()
     report_produced_date = [x for x in col_list
@@ -37,7 +38,8 @@ def read_p046957_file(input_file, original_crid_col,
     skip = np.where(df.iloc[:, 0].str.contains('Number', na=False))[0][0] \
         + add_skip
 
-    df = pd.read_excel(input_file, skiprows=skip)
+    df = pd.read_excel(input_file, skiprows=skip,
+                       keep_default_na=False, na_values=[''])
 
     df = df.dropna(how='all', axis=(0, 1))
 

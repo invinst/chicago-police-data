@@ -56,9 +56,9 @@ for input_file in cons.input_files:
                        report_produced_date)
     cons.write_yamlvar("{}-FOIA_Request".format(input_file),
                        FOIA_request)
-
     df.columns = cons.column_names
-    print('Final.Finding and Recommended.Finding column values of NA changed to NAF')
+    print(('Final.Finding and Recommended.Finding'
+          'column values of NA changed to NAF'))
     df.loc[df['Final.Finding'] == 'NA', 'Final.Finding'] = 'NAF'
     df.loc[df['Recommended.Finding'] == 'NA', 'Recommended.Finding'] = 'NAF'
     data_df = (data_df
