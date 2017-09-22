@@ -19,10 +19,10 @@ def get_setup():
         'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
         'id_cols': [
                     "First.Name", "Last.Name", "Suffix.Name",
+                    "First.Name_NS", "Last.Name_NS",
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
         'conflict_cols': ['Middle.Initial', 'Middle.Initial2'],
-        'max_cols': ['Middle.Initial', 'Middle.Initial2'],
         'current_cols': ['Unit'],
         'time_col': 'Start.Date',
         'id': 'all-sworn-units_ID'
@@ -49,7 +49,7 @@ cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
-                        max_cols=cons.max_cols,
+                        max_cols=cons.conflict_cols,
                         current_cols=cons.current_cols,
                         time_col=cons.time_col)
 agg_df.to_csv(cons.output_demo_file, **cons.csv_opts)

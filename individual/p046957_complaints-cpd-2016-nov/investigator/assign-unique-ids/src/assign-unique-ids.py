@@ -19,6 +19,7 @@ def get_setup():
         'output_demo_file': 'output/investigators_demographics.csv.gz',
         'id_cols': [
             'First.Name', 'Last.Name', 'Appointed.Date',
+            'First.Name_NS', 'Last.Name_NS', 'Middle.Initial'
             ],
         'max_cols': [
             'Current.Unit', 'Current.Star', 'Current.Rank'

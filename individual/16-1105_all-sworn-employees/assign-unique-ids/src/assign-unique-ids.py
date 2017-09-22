@@ -18,8 +18,10 @@ def get_setup():
         'output_file': 'output/ase-units.csv.gz',
         'output_demo_file': 'output/ase-units_demographics.csv.gz',
         'id_cols': [
-            "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-            "Appointed.Date", "Current.Age", "Gender", "Race"
+            "First.Name", "Last.Name", "Middle.Initial",
+            'Middle.Initial2', "Suffix.Name", 'Current.Age',
+            "Appointed.Date", "Gender", "Race",
+            'First.Name_NS', 'Last.Name_NS'
             ],
         'max_cols': [
             'Star1', 'Star2', 'Star3', 'Star4', 'Star5',

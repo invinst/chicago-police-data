@@ -19,6 +19,7 @@ def get_setup():
         'output_demo_file': 'output/trr-statuses_demographics.csv.gz',
         'id_cols': [
                     "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
+                    "First.Name_NS", "Last.Name_NS", "Middle.Initial2",
                     "Appointed.Date", "Gender", "Race"
                    ],
         'current_cols': ['Star'],

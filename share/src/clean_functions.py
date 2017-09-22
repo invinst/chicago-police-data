@@ -137,12 +137,21 @@ def clean_date_df(df):
     return dt_df
 
 
-def strip_name(x):
+def full_strip_name(x):
     '''returns string after
        removing any redundant whitespace or punctuation from string
     '''
     x = re.sub(r'[^\w\s]', '', x)
     return ' '.join(x.split())
+
+
+def basic_strip_name(x):
+    '''returns string after
+       removing any redundant whitespace or period from string
+    '''
+    x = re.sub('\s\s+', ' ',
+               re.sub(r'^\s|\.|\,|\s$', '', x))
+    return x
 
 
 def split_full_names(names, ln='Last.Name', fn='First.Name'):
@@ -171,7 +180,7 @@ def extract_suffix_name(x, suffixes):
     return suffix[0] if suffix else ""
 
 
-def extract_middle_initial(x, mi_pattern):
+def extract_middle_initial(x, mi_pattern, suffixes):
     '''returns the middle initial in a given string'''
     # Search input name for middle initial based on regex pattern
     mi = re.search(mi_pattern, x)
@@ -179,12 +188,7 @@ def extract_middle_initial(x, mi_pattern):
     # And if the name is too short (Ex: A J, J R)
     # Otherwise mi is assigned as an empty string
     mi = mi.group() if mi and len(x) > 3 else ''
-    return mi
 
-
-def split_name(x, mi_pattern, suffixes):
-    # Extract middle initial
-    mi = extract_middle_initial(x, mi_pattern)
     # If middle initial is not empty
     # And name is not DE LA _ (middle initial is not valid)
     # And the identified middle initial is not in the suffixes
@@ -198,7 +202,14 @@ def split_name(x, mi_pattern, suffixes):
     else:
         # Assign middle initial as empty string
         mi = ''
+    return x, mi
 
+
+def split_name(x, mi_pattern, suffixes):
+    # Extract middle initial
+    x, mi = extract_middle_initial(x, mi_pattern, suffixes)
+    # Extract second middle initial
+    x, mi2 = extract_middle_initial(x, mi_pattern, suffixes)
     # Extract suffix name
     suff = extract_suffix_name(x, suffixes)
     # If suffix is not empty
@@ -214,18 +225,17 @@ def split_name(x, mi_pattern, suffixes):
         x = suff    # Re-assign suffix as name
         suff = ''   # Replace suffix with empty string
 
-    # Remove all empty space in name
-    x = x.replace(' ', '')
-
-    # Return list of cleaned name, middle initial, and suffix
-    return [x, mi, suff]
+    # Return list of fully stripped name (no spaces), middle initial,
+    # middle initial 2, suffix, and basic stripped name
+    return [full_strip_name(x).replace(' ', ''), mi,
+            mi2, suff, basic_strip_name(x)]
 
 
 def clean_name_col(col):
     # Store name of input column
     col_name = col.name
-    # Remove redundant spaces and punctuation
-    col = col.map(strip_name)
+    # Remove redundant spaces and periods
+    col = col.map(basic_strip_name)
     # Ensure string is in uppercase
     col = col.map(str.upper)
 
@@ -246,14 +256,18 @@ def clean_name_col(col):
         if col_name == 'Last.Name':
             suffixes.extend(['V', 'I'])
         # Return pandas dataframe created from list of lists
-        # Comprised of first/last name, middle initial, suffix name
-        # middle initial and suffix name elements are abbrivated
-        # And which column they came from is idenified by F/L
+        # Comprised of first/last name (with no separation - NS),
+        # middle initial, middle inital 2,
+        # suffix name, and first/last name (with spaces or dashes).
+        # Middle initial and suffix name elements are abbrivated
+        # and which column they came from is idenified by F/L
         return pd.DataFrame([split_name(x, mi_pattern, suffixes)
                              for x in col],
-                            columns=[col_name,
+                            columns=[col_name + '_NS',
                                      col_name[0] + '_MI',
-                                     col_name[0] + '_SN'])
+                                     col_name[0] + '_MI2',
+                                     col_name[0] + '_SN',
+                                     col_name])
 
     # Else if column is a middle name column
     elif col_name == 'Middle.Name':
@@ -281,12 +295,11 @@ def compare_middle_initials(mi_df):
     output_list = []    # Initialize output list
     conflict_indexes = []   # Initialize conflict index list
     # Iterate over the the middle initial columns
-    # In order of importance any given middle initial column takes priority
-    # (or it is totally empty), then come middle initials found in first names
-    # And lastly middle initials found in last names (very rare)
-    for i, x, y, z in mi_df[['Middle.Initial', 'F_MI', 'L_MI']].itertuples():
+    for i, v, w, x, y, z in mi_df[['Middle.Initial',
+                                   'F_MI', 'F_MI2',
+                                   'L_MI', 'L_MI2']].itertuples():
         # Initialize (unique) set of middle initials
-        mis = set((x, y, z))
+        mis = set((v, w, x, y, z))
         # Remove all empty strings
         mis.discard('')
         # If the set is empty (all middle initials were empty)
@@ -306,7 +319,7 @@ def compare_middle_initials(mi_df):
             # Add this index to the conflict list
             conflict_indexes.append(i)
             # Add first and second middle initials to output
-            output_list.append((x, y))
+            output_list.append(tuple(mis)[:2])
 
     # Return dataframe of first (primary) middle initials
     # and secondary middle initials
@@ -385,19 +398,20 @@ def clean_names(df):
     else:
         # Insert middle initial column of empty strings
         cleaned_df.insert(0, 'Middle.Initial', '')
-
     # Create middle initial dataframe (Middle.Initial, Middle.Initial2)
     # And collect indexes of conflicting middle initials
-    mi_df, mi_conflicts = compare_middle_initials(cleaned_df[['Middle.Initial',
-                                                              'F_MI', 'L_MI']])
+    mi_cols = ['Middle.Initial', 'F_MI', 'F_MI2', 'L_MI', 'L_MI2']
+    mi_df, mi_conflicts = compare_middle_initials(cleaned_df[mi_cols])
     # Create suffix name dataframe (Suffix.Name)
     # And collect indexes of conflicting suffix names
-    sn_df, sn_conflicts = compare_suffix_names(cleaned_df[['Suffix.Name',
-                                                           'F_SN', 'L_SN']])
+    sn_cols = ['Suffix.Name', 'F_SN', 'L_SN']
+    sn_df, sn_conflicts = compare_suffix_names(cleaned_df[sn_cols])
 
     # Identify name columns which exist in cleaned_df
     name_cols = intersect(cleaned_df.columns,
-                          ['First.Name', 'Last.Name', 'Middle.Name'])
+                          ['First.Name', 'Last.Name',
+                           'Last.Name_NS', 'First.Name_NS',
+                           'Middle.Name'])
     # Remove middle initial and suffix columns from cleaned dataframe
     # Then joined cleaned dataframe to middle initial and suffix name dfs
     cleaned_df = cleaned_df[name_cols].join(mi_df).join(sn_df)

@@ -19,7 +19,7 @@ def get_setup():
         'output_demo_file': 'output/trr-statuses_demographics.csv.gz',
         'export_cols': [
             'TRR.ID', 'Rank', 'Star', 'Status',
-            'Status.Time', 'Status.Date'
+            'Status.Time', 'Status.Date', 'Age'
             ],
         'id': 'trr-statuses_ID',
         'notnull': 'Rank'
