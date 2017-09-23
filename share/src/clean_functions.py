@@ -8,14 +8,6 @@ import re
 import numpy as np
 import pandas as pd
 
-# Load gender and race reference dataframe
-gender_df = pd.read_csv('hand/gender_dictionary.csv')
-race_df = pd.read_csv('hand/race_dictionary.csv')
-
-# Zip together reference dataframes into gender_ and race_ dictionaries
-gender_dict = dict(zip(gender_df.Original, gender_df.Standard))
-race_dict = dict(zip(race_df.Original, race_df.Standard))
-
 
 def list_diff(list1, list2):
     '''returns list after taking set difference of two lists'''
@@ -42,42 +34,6 @@ def clean_int(integer, na_value=np.nan):
         return int(float(integer))
     else:
         return na_value
-
-
-def standardize_gender(gender):
-    '''returns a standardized gender string
-       by passing input string into gender reference dictionary
-    '''
-    # Ensure input gender is string
-    if isinstance(gender, str):
-        gender = gender.upper()   # Change x to uppercase
-        # Check if x is already standardized
-        if gender in gender_dict.values():
-            return gender
-        # If not, pass x into gender dictionary for standardization
-        else:
-            return gender_dict[gender]
-    # If not a string return 'NAN'
-    else:
-        return gender_dict['NAN']
-
-
-def standardize_race(race):
-    '''returns a standardized race string
-       by passing input string into race reference dictionary
-    '''
-    # Ensure input race is string
-    if isinstance(race, str):
-        race = race.upper()   # Change race to uppercase
-        # Check if race is already standardized
-        if race in race_dict.values():
-            return race
-        # If not, pass race in race dictionary for standardization
-        else:
-            return race_dict[race]
-    # If not a string return 'NAN'
-    else:
-        return race_dict['NAN']
 
 
 def clean_date_df(df):
@@ -438,13 +394,28 @@ def clean_data(df, skip_cols=[]):
     # If input dataframe has a gender column
     # and it is not designated to be skipped
     if 'Gender' in df_cols and 'Gender' not in skip_cols:
+        # Load gender reference dataframe
+        gender_df = pd.read_csv('hand/gender_dictionary.csv')
+        # Zip together reference dataframes into gender_dictionary
+        gender_dict = dict(zip(gender_df.Original, gender_df.Standard))
         # Standardize the values in the gender column
-        df['Gender'] = df['Gender'].map(standardize_gender)
+        df['Gender'] = (df['Gender']
+                        .fillna('X')
+                        .str.upper()
+                        .replace(gender_dict))
+
     # If input dataframe has a race column
     # and it is not designated to be skipped
     if 'Race' in df_cols and 'Race' not in skip_cols:
+        # Load gender reference dataframe
+        race_df = pd.read_csv('hand/race_dictionary.csv')
+        # Zip together reference dataframes into race_dictionary
+        race_dict = dict(zip(race_df.Original, race_df.Standard))
         # Standardize the values in the race column
-        df['Race'] = df['Race'].map(standardize_race)
+        df['Race'] = (df['Race']
+                      .fillna('UNKNOWN')
+                      .str.upper()
+                      .replace(race_dict))
 
     # Loop over columns in input dataframe
     for col in [ic for ic in df_cols

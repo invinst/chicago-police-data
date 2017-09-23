@@ -19,6 +19,7 @@ def get_setup():
         'output_demo_file': 'output/awards_demographics.csv.gz',
         'id_cols': [
             "First.Name", "Last.Name",
+            "First.Name_NS", "Last.Name_NS",
             "Appointed.Date", "Gender"
             ],
         'conflict_cols': [

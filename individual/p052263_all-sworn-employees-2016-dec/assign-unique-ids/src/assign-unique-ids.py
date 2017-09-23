@@ -19,6 +19,7 @@ def get_setup():
         'output_demo_file': 'output/all-sworn_demographics.csv.gz',
         'id_cols': [
                     "First.Name", "Last.Name", "Suffix.Name",
+                    "First.Name_NS", "Last.Name_NS",
                     "Appointed.Date", "Birth.Year", "Gender", "Race"
                    ],
         'conflict_cols': ['Middle.Initial', 'Middle.Initial2'],
