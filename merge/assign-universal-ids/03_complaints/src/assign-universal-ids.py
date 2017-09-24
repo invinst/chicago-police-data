@@ -22,7 +22,7 @@ def get_setup():
                 'input_demo_file': 'input/accused_demographics.csv.gz',
                 'input_full_file': 'input/accused.csv.gz',
                 'output_full_file': 'output/accused.csv.gz',
-                'args': {'no_match_cols': ['Last.Name'],
+                'args': {'no_match_cols': ['Last.Name_NS'],
                          'return_merge_report': True,
                          'print_merging': False}
             },
@@ -30,7 +30,7 @@ def get_setup():
                 'input_demo_file': 'input/investigators_demographics.csv.gz',
                 'input_full_file': 'input/investigators.csv.gz',
                 'output_full_file': 'output/investigators.csv.gz',
-                'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
+                'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
                          'min_match_length': 3,
                          'return_merge_report': True,
@@ -40,7 +40,7 @@ def get_setup():
             #     'input_demo_file': 'input/witnesses_demographics.csv.gz',
             #     'input_full_file': 'input/witnesses.csv.gz',
             #     'output_full_file': 'output/witnesses.csv.gz',
-            #     'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
+            #     'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
             #              'min_match_length': 3,
             #              'return_merge_report': True,
             #              'print_merging': True}

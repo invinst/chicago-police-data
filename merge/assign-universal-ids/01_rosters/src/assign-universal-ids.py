@@ -26,7 +26,7 @@ def get_setup():
                 'input_demo_file': 'input/all-sworn_demographics.csv.gz',
                 'input_full_file': 'input/all-sworn.csv.gz',
                 'output_full_file': 'output/all-sworn.csv.gz',
-                'args': {'no_match_cols': ['Last.Name'],
+                'args': {'no_match_cols': ['Last.Name_NS'],
                          'return_merge_report': True,
                          'print_merging': True}
             }

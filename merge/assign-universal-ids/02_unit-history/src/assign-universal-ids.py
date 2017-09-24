@@ -22,7 +22,7 @@ def get_setup():
                 'input_demo_file': 'input/all-sworn-units_demographics.csv.gz',
                 'input_full_file': 'input/all-sworn-units.csv.gz',
                 'output_full_file': 'output/all-sworn-units.csv.gz',
-                'args': {'no_match_cols': ['Last.Name'],
+                'args': {'no_match_cols': ['Last.Name_NS'],
                          'return_merge_report': True,
                          'print_merging': True}
             },
@@ -30,7 +30,7 @@ def get_setup():
                 'input_demo_file': 'input/ase-units_demographics.csv.gz',
                 'input_full_file': 'input/ase-units.csv.gz',
                 'output_full_file': 'output/ase-units.csv.gz',
-                'args': {'no_match_cols': ['Last.Name'],
+                'args': {'no_match_cols': ['Last.Name_NS'],
                          'return_merge_report': True,
                          'print_merging': True}
             }

@@ -22,7 +22,7 @@ def get_setup():
                 'input_demo_file': 'input/trr-officers_demographics.csv.gz',
                 'input_full_file': 'input/trr-officers.csv.gz',
                 'output_full_file': 'output/trr-officers.csv.gz',
-                'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
+                'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
                          'return_merge_report': True,
                          'print_merging': True}
@@ -31,7 +31,7 @@ def get_setup():
                 'input_demo_file': 'input/trr-statuses_demographics.csv.gz',
                 'input_full_file': 'input/trr-statuses.csv.gz',
                 'output_full_file': 'output/trr-statuses.csv.gz',
-                'args': {'no_match_cols': ['Last.Name', 'Current.Star'],
+                'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
                          'return_merge_report': True,
                          'print_merging': True}

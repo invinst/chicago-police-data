@@ -42,18 +42,18 @@ def add_columns(df,
        in the input dataframe.
     '''
     # Add F(irst) 4 of F(irst)/L(ast) N(ame) columns
-    # if F4FN/F4LN and First./Last.Name in df columns
-    if "F4FN" in add_cols and "First.Name" in df.columns:
-        df['F4FN'] = df['First.Name'].map(lambda x: x[:4])
-    if "F4LN" in add_cols and 'Last.Name' in df.columns:
-        df['F4LN'] = df['Last.Name'].map(lambda x: x[:4])
+    # if F4FN/F4LN and First./Last.Name_NS in df columns
+    if "F4FN" in add_cols and "First.Name_NS" in df.columns:
+        df['F4FN'] = df['First.Name_NS'].map(lambda x: x[:4])
+    if "F4LN" in add_cols and 'Last.Name_NS' in df.columns:
+        df['F4LN'] = df['Last.Name_NS'].map(lambda x: x[:4])
 
     # Add F(irst) 2 of F(irst)/L(ast) N(ame) columns
-    # if F2FN/F2LN and First./Last.Name in df columns
-    if "F2FN" in add_cols and "First.Name" in df.columns:
-        df['F2FN'] = df['First.Name'].map(lambda x: x[:2])
-    if "F2LN" in add_cols and 'Last.Name' in df.columns:
-        df['F2LN'] = df['Last.Name'].map(lambda x: x[:2])
+    # if F2FN/F2LN and First./Last.Name_NS in df columns
+    if "F2FN" in add_cols and "First.Name_NS" in df.columns:
+        df['F2FN'] = df['First.Name_NS'].map(lambda x: x[:2])
+    if "F2LN" in add_cols and 'Last.Name_NS' in df.columns:
+        df['F2LN'] = df['Last.Name_NS'].map(lambda x: x[:2])
 
     # Since current age cannot be always matched based on birth year
     # If Current.Age will be used for matching,
@@ -221,17 +221,17 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 
     add_cols = []   # Initialize add_cols
     # Add specified columns to add_cols given set of conditions
-    if 'First.Name' in intersect(df1.columns, df2.columns):
+    if 'First.Name_NS' in intersect(df1.columns, df2.columns):
         add_cols.append('F4FN')
-    if 'Last.Name' in intersect(df1.columns, df2.columns):
+    if 'Last.Name_NS' in intersect(df1.columns, df2.columns):
         add_cols.append('F4LN')
     if "Birth.Year" not in intersect(df1.columns, df2.columns):
         add_cols.extend(["BY_to_CA", "Current.Age"])
     if 'Star1' not in intersect(df1.columns, df2.columns) and expand_stars:
         add_cols.append('Stars')
-    if 'First.Name' in intersect(df1.columns, df2.columns) and F2:
+    if 'First.Name_NS' in intersect(df1.columns, df2.columns) and F2:
         add_cols.append('F2FN')
-    if 'Last.Name' in intersect(df1.columns, df2.columns) and F2:
+    if 'Last.Name_NS' in intersect(df1.columns, df2.columns) and F2:
         add_cols.append('F2LN')
     # Add specified add_cols to both dataframes
     df1 = add_columns(df1, add_cols)
@@ -253,8 +253,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     base_lists = [
         ['Current.Star', 'Star1', 'Star2', 'Star3', 'Star4',
          'Star5', 'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
-        ['First.Name', 'F4FN', 'F2FN'],
-        ['Last.Name', 'F4LN', 'F2LN'],
+        ['First.Name_NS', 'F4FN', 'F2FN'],
+        ['Last.Name_NS', 'F4LN', 'F2LN'],
         ['Appointed.Date'],
         ['Birth.Year', 'Current.Age', 'Current.Age.p1', 'Current.Age.m1', ''],
         ['Middle.Initial', ''],
@@ -385,7 +385,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
 
 def generate_profiles(ref, uid,
                       column_order=[
-                            'First.Name', 'Last.Name',
+                            'First.Name_NS', 'Last.Name_NS',
                             'Middle.Initial', 'Suffix.Name', 'Middle.Initial2',
                             'Race', 'Gender', 'Birth.Year', 'Appointed.Date',
                             'Resignation.Date', 'Current.Rank',
