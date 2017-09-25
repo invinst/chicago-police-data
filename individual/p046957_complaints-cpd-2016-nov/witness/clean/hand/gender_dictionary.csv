@@ -1,8 +1,1 @@
-Original,Standard
-M,MALE
-F,FEMALE
-X,UNKNOWN
-NAN,UNKNOWN
-MALE,MALE
-FEMALE,FEMALE
-UNKNOWN,UNKNOWN
+../../../../../share/hand/gender_dictionary.csv

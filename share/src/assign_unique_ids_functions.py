@@ -223,19 +223,29 @@ def order_aggregate(df, id_cols,
        2 3 4 NaN
        2 2 1 2
     '''
-    # Drop rows that have NaN ordering values
-    df = df.dropna(axis=0, subset=order_cols)
-    # Keep only unique rows
-    df = df.drop_duplicates()
-    # Sort full dataset by the order_cols
-    df.sort_values(order_cols, ascending=minimum, inplace=True)
-    # Drop the order cols columns
-    df.drop(order_cols, axis=1, inplace=True)
-    # Group data by id_cols and select columns for aggregation
-    df = df.groupby(id_cols, as_index=False)[agg_cols]
-    # Return aggregated data that takes the values
-    # at the top row in each group
-    return df.agg(lambda x: x.iloc[0])
+    # Initialize ordered/aggregated df
+    oa_df = df[id_cols].drop_duplicates()
+    # Iterate over aggregate columns
+    for ac in agg_cols:
+        # Initialize ac_df of id_cols, order cols, and agg column
+        ac_df = df[id_cols + order_cols + [ac]]
+        # Drop rows that have any NaN values
+        ac_df = ac_df.dropna(axis=0, how='any')
+        # Keep only unique rows
+        ac_df = ac_df.drop_duplicates()
+        # Sort data by the order_cols
+        ac_df = ac_df.sort_values(order_cols, ascending=minimum)
+        # Drop the order cols columns
+        ac_df = ac_df.drop(order_cols, axis=1)
+        # Group data by id_cols
+        ac_df = ac_df.groupby(id_cols, as_index=False)
+        # Aggregate groups by taking first row
+        ac_df = ac_df.agg(lambda x: x.iloc[0])
+        # Merge aggregated column to ordered/aggregated df on id_cols
+        oa_df = oa_df.merge(ac_df, on=id_cols, how='outer')
+
+    # Return ordered and aggregated data
+    return oa_df
 
 
 def max_aggregate(df, uid, col):
@@ -342,7 +352,7 @@ def aggregate_data(df, uid, id_cols=[],
         agg_df = agg_df.merge(oa_df, on=uid, how='left')
         # Now that the current_cols are 'current', the name must be changed
         # Add the prefix 'Current' to the current_cols in agg_df
-        agg_df.columns = ['Current.' + col
+        agg_df.columns = ['Current.' + col.replace('Current.', '')
                           if col in current_cols else col
                           for col in agg_df.columns]
 
