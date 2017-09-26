@@ -5,7 +5,7 @@
 
 .PHONY: all clean
 # Additional files created: assign-universal-ids.log, assign-universal-ids.yaml,
-# all-members.csv.gz, all-sworn.csv.gz
+# all-members.csv.gz, cpd-employees.csv.gz
 # officer-reference.csv.gz
 
 all: \
@@ -15,8 +15,8 @@ output/officer-profiles.csv.gz: \
 		src/assign-universal-ids.py \
                 input/all-members_demographics.csv.gz \
                 input/all-members.csv.gz \
-                input/all-sworn_demographics.csv.gz \
-                input/all-sworn.csv.gz
+		input/cpd-employees_demographics.csv.gz \
+		input/cpd-employees.csv.gz
 	python $<
 
 

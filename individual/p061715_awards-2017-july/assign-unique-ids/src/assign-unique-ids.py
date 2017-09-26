@@ -20,7 +20,7 @@ def get_setup():
         'id_cols': [
             "First.Name", "Last.Name",
             "First.Name_NS", "Last.Name_NS",
-            "Appointed.Date", "Gender"
+            "Appointed.Date", "Gender", "Race"
             ],
         'conflict_cols': [
             'Middle.Initial', 'Middle.Initial2',

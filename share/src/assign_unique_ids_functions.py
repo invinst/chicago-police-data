@@ -308,21 +308,29 @@ def mode_aggregate(df, uid, col):
 
 def aggregate_data(df, uid, id_cols=[],
                    mode_cols=[], max_cols=[],
-                   current_cols=[], time_col=""):
+                   current_cols=[], time_col="",
+                   merge_cols=[], merge_on_cols=[]):
     '''returns an aggregated pandas dataframe
        with one entry per specified uid (and id_cols combination)
        columns specified for aggregation can be aggregated by
        mode (finding most common value in a column for each uid),
        max (finding largest value in a column for each uid),
        or current (finding most recent value in the column
-       using order_aggregate and using a specified time_col for ordering)
+       using order_aggregate and using a specified time_col for ordering).
+       The resulting data can have merge columns added to it by specifying
+       the merge_on_cols (which unique ids will automatically be added to)
+       such that the result of column aggregation can have information added.
 
-       EX: aggregate_data(..., 'A', ['B'], ['C'], ['D'])
-       A B C D    A B C D
-       1 3 1 2    1 3 1 3
-       1 3 1 2 ->
-       1 3 1 0
-       1 3 5 3
+       EX: aggregate_data(..., 'A', ['B'],
+                          ['C'], ['D'],
+                          [], [],
+                          ['E'],['C','D'])
+       A B C D E      A B C D E
+       7 3 1 2 'a'    7 3 1 3 'y'
+       7 3 1 2 'a' -> 3 4 2 0 'g'
+       7 3 1 0 'x'
+       7 3 5 3 'y'
+       3 4 2 0 'g'
     '''
     uid_col = [uid]  # Create list of specified uid
     # Initialize agg_df by taking unique rows (uids and id_cols)
@@ -356,4 +364,17 @@ def aggregate_data(df, uid, id_cols=[],
                           if col in current_cols else col
                           for col in agg_df.columns]
 
+    # If merge and merge_on cols are specified
+    if merge_cols and merge_on_cols:
+        # Ensure that the merge_on_cols exist in agg_df
+        assert set(merge_on_cols) < set(agg_df.columns),\
+            "Some merge_on_cols are not in the aggregated data"
+        # Initialize merge dataframe as unique rows containing
+        # uid, merge, and merge_on cols
+        merge_df = df[uid_col + merge_cols + merge_on_cols].drop_duplicates()
+        # Merge merge_df onto the agg_df on uid and merge_on_cols
+        agg_df = agg_df.merge(merge_df, on=uid_col +  merge_on_cols, how='left')
+        # Ensure no rows were lost or gained
+        assert agg_df.shape[0] == len(df[uid].unique()),\
+            "Some uids were gained or lost in merge cols step"
     return agg_df
