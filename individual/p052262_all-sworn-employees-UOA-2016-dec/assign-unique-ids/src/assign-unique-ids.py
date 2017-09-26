@@ -18,10 +18,10 @@ def get_setup():
         'output_file': 'output/all-sworn-units.csv.gz',
         'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Suffix.Name",
-                    "First.Name_NS", "Last.Name_NS",
-                    "Appointed.Date", "Birth.Year", "Gender", "Race"
-                   ],
+            "First.Name", "Last.Name", "Suffix.Name",
+            "First.Name_NS", "Last.Name_NS",
+            "Appointed.Date", "Birth.Year", "Gender", "Race"
+            ],
         'conflict_cols': ['Middle.Initial', 'Middle.Initial2'],
         'current_cols': ['Unit'],
         'time_col': 'Start.Date',
@@ -42,9 +42,24 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
+df["Specify"] = 0
+res1_units = [5.0, 602.0]
+df.loc[(df["First.Name"] == "ROBERT") &
+       (df["Last.Name"] == "SMITH") &
+       (df["Middle.Initial"] == "E") &
+       (df["Birth.Year"] == 1947) &
+       (df["Appointed.Date"] == "1971-02-22") &
+       (df["Unit"].isin(res1_units)),
+       "Specify"] = 1
+print(("Robert E Smith 1947 1971-02-22 in units {}"
+       " specified as singular individual.").format(res1_units))
+
 df, uid_report = assign_unique_ids(df, cons.id,
-                                   cons.id_cols,
+                                   cons.id_cols + ["Specify"],
                                    cons.conflict_cols)
+del df["Specify"]
+print(("Specify column used to manually distinguish individuals"
+       " created for AUID then dropped before aggregation"))
 cons.write_yamlvar('UID Report', uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 

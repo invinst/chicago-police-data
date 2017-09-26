@@ -35,8 +35,9 @@ def take_first_four(in_str):
 
 
 def add_columns(df,
-                add_cols=["F4FN", "F4LN", "Current.Age", "BY_to_CA", "Stars"],
-                current_year=2016):
+                add_cols=["F4FN", "F4LN", "Current.Age", "Min_Max_Star",
+                          "BY_to_CA", "Stars", "L4FN", "L4LN"],
+                current_age_from=2017):
     '''returns pandas dataframe with columns added on
        depending on the specified add_cols and the columns
        in the input dataframe.
@@ -55,6 +56,13 @@ def add_columns(df,
     if "F2LN" in add_cols and 'Last.Name_NS' in df.columns:
         df['F2LN'] = df['Last.Name_NS'].map(lambda x: x[:2])
 
+    # Add L(ast) 4 of F(irst)/L(ast) N(ame) columns
+    # if L4FN/L4LN and First./Last.Name_NS in df columns
+    if "L4FN" in add_cols and "First.Name_NS" in df.columns:
+        df['L4FN'] = df['First.Name_NS'].map(lambda x: x[-4:])
+    if "L4LN" in add_cols and 'Last.Name_NS' in df.columns:
+        df['L4LN'] = df['Last.Name_NS'].map(lambda x: x[-4:])
+
     # Since current age cannot be always matched based on birth year
     # If Current.Age will be used for matching,
     # Current.Age.p(lus)1 and Current.Age.m(inus)1 must be added
@@ -63,13 +71,23 @@ def add_columns(df,
         df['Current.Age.p1'] = df['Current.Age']
         df['Current.Age.m1'] = df['Current.Age']
     # If BY_to_CA is specified and Birth.Year is a column
-    # Generate Current.Age.p/m1 by subtracting current_year from birth year
+    # Generate Current.Age.p/m1 by subtracting current_age_from from birth year
     # and subtract 1 for the .m1 column
     if "BY_to_CA" in add_cols and "Birth.Year" in df.columns:
         df['Current.Age.p1'] = \
-            df['Birth.Year'].map(lambda x: current_year - x)
+            df['Birth.Year'].map(lambda x: current_age_from - x)
         df['Current.Age.m1'] = \
-            df['Birth.Year'].map(lambda x: current_year - x - 1)
+            df['Birth.Year'].map(lambda x: current_age_from - x - 1)
+
+    # If Min_Max_Star specified in add_cols and Star1-10 in columns
+    # Then create min/max star columns
+    if ('Min_Max_Star' in add_cols and
+            'Star1' in df.columns and
+            'Star10' in df.columns):
+        star_cols = ['Star' + str(i)
+                     for i in range(1, 11)]
+        df['Min.Star'] = df[star_cols].min(axis=1, skipna=True)
+        df['Max.Star'] = df[star_cols].max(axis=1, skipna=True)
 
     # If Stars specified in add_cols and Current.Star in columns
     # and Star1 (thus Star2-9) not in columns
@@ -84,10 +102,10 @@ def add_columns(df,
     return df
 
 
-def generate_on_lists(data_cols, base_lists):
+def generate_on_lists(data_cols, base_lists, drop_cols):
     '''returns list of lists composed of every possible combination
        of each value in the sub lists of base_lists, so long as those
-       values are included in the data_cols
+       values are included in the data_cols, and not in drop_cols
        EX: generate_on_lists(['A1', 'A2', 'B1','B2','C2'],
                              [['A1','A2', ''], ['B1', 'B2'], ['C1'])
            -> [[],[], [], []]
@@ -100,7 +118,9 @@ def generate_on_lists(data_cols, base_lists):
     for col_list in base_lists:
         # Initialize merge list as the intersection between
         # col list (from base lists) and the data_cols
-        merge_list = intersect(col_list, data_cols)
+        # and list difference from drop columns
+        merge_list = listdiff(intersect(col_list, data_cols),
+                              drop_cols)
         # If merge_list is not empty
         if merge_list:
             # Append merge_list to merge_lists
@@ -209,9 +229,12 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
 
 
 def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   no_match_cols=[], min_match_length=4, extend_base_lists=[],
-                   expand_stars=False, F2=False, return_unmatched=True,
-                   return_merge_report=True, print_merging=False):
+                   no_match_cols=[], min_match_length=4,
+                   extend_base_lists=[], drop_base_cols=[],
+                   current_age_from=2017,
+                   expand_stars=False, F2=False, L4=False,
+                   return_unmatched=True, return_merge_report=True,
+                   print_merging=False):
     '''returns dictionary from loop_merge
        automates adding columns and merging list creation
     '''
@@ -220,22 +243,30 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     df2 = df2.dropna(axis=1, how='all')
 
     add_cols = []   # Initialize add_cols
+    # Intersect df1 and df2 columns
+    df12_cols = intersect(df1.columns, df2.columns)
     # Add specified columns to add_cols given set of conditions
-    if 'First.Name_NS' in intersect(df1.columns, df2.columns):
+    if 'First.Name_NS' in df12_cols:
         add_cols.append('F4FN')
-    if 'Last.Name_NS' in intersect(df1.columns, df2.columns):
+    if 'Last.Name_NS' in df12_cols:
         add_cols.append('F4LN')
-    if "Birth.Year" not in intersect(df1.columns, df2.columns):
+    if "Birth.Year" not in df12_cols:
         add_cols.extend(["BY_to_CA", "Current.Age"])
-    if 'Star1' not in intersect(df1.columns, df2.columns) and expand_stars:
+    if 'Star1' not in df12_cols and expand_stars:
         add_cols.append('Stars')
-    if 'First.Name_NS' in intersect(df1.columns, df2.columns) and F2:
+    if 'Star1' in df12_cols and 'Star10' in df12_cols:
+        add_cols.append('Min_Max_Star')
+    if 'First.Name_NS' in df12_cols and F2:
         add_cols.append('F2FN')
-    if 'Last.Name_NS' in intersect(df1.columns, df2.columns) and F2:
+    if 'Last.Name_NS' in df12_cols and F2:
         add_cols.append('F2LN')
+    if 'First.Name_NS' in df12_cols and L4:
+        add_cols.append('L4FN')
+    if 'Last.Name_NS' in df12_cols and L4:
+        add_cols.append('L4LN')
     # Add specified add_cols to both dataframes
-    df1 = add_columns(df1, add_cols)
-    df2 = add_columns(df2, add_cols)
+    df1 = add_columns(df1, add_cols, current_age_from)
+    df2 = add_columns(df2, add_cols, current_age_from)
 
     # Collect columns in both df1 and df2
     cols = intersect(df1.columns, df2.columns)
@@ -251,8 +282,9 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     # And the lists themselves are in order from most to least useful
     # empty strings used as placeholder for non-crucial column 'types'
     base_lists = [
-        ['Current.Star', 'Star1', 'Star2', 'Star3', 'Star4',
-         'Star5', 'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
+        ['Current.Star', 'Min.Star', 'Max.Star',
+         'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
+         'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
         ['First.Name_NS', 'F4FN', 'F2FN'],
         ['Last.Name_NS', 'F4LN', 'F2LN'],
         ['Appointed.Date'],
@@ -267,7 +299,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     if extend_base_lists:
         base_lists.extend(extend_base_lists)
     # Generate on_lists from cols in both datasets and base_lists
-    on_lists = generate_on_lists(cols, base_lists)
+    on_lists = generate_on_lists(cols, base_lists, drop_base_cols)
 
     # Iterate over no_match_cols
     # A no_match_col identifies a list in base_lists
@@ -278,7 +310,8 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
         # the specified nmc removed
         nmc_lists = generate_on_lists(cols,
                                       [ml for ml in base_lists
-                                       if nmc not in ml])
+                                       if nmc not in ml],
+                                      drop_base_cols)
         # Ensure all generated no_match_col on_lists contain
         # at least min_match_length items
         nmc_lists = [nmcl for nmcl in nmc_lists
@@ -307,9 +340,10 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
 def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
                         min_match_length=4, no_match_cols=[],
-                        extend_base_lists=[],
+                        extend_base_lists=[], drop_base_cols=[],
                         return_merge_report=True, print_merging=False,
-                        return_merge_list=True, expand_stars=False, F2=False):
+                        return_merge_list=True, expand_stars=False,
+                        F2=False, L4=False, current_age_from=2017):
     '''returns dictionary including at least a pandas dataframe
        appends merged and unmerged results from merge_datasets
        on to the input ref_df
@@ -346,9 +380,12 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  no_match_cols=no_match_cols,
                                  min_match_length=min_match_length,
                                  extend_base_lists=extend_base_lists,
+                                 drop_base_cols=drop_base_cols,
                                  return_merge_report=return_merge_report,
                                  expand_stars=expand_stars,
                                  F2=F2,
+                                 L4=L4,
+                                 current_age_from=current_age_from,
                                  print_merging=print_merging)
 
         # Create a link_df of all merge and unmerged rows
