@@ -48,4 +48,5 @@ panel_df = history_to_panel(history_df,
                             start_col=cons.start_col,
                             end_col=cons.end_col)
 print('Shape of panel data: {}'.format(panel_df.shape))
-panel_df.to_csv(cons.output_file, chunksize=100000,**cons.csv_opts)
+print('Writing panel data. This may take a while.')
+panel_df.to_csv(cons.output_file, chunksize=100000, **cons.csv_opts)

@@ -430,7 +430,10 @@ def generate_profiles(ref, uid,
                             'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
                             'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
                       mode_cols=[],
-                      max_cols=[]):
+                      max_cols=[],
+                      current_cols=[],
+                      time_col='',
+                      include_IDs=True):
     '''returns pandas dataframe
        after aggregating data from the input reference dataframe
        sorts columns by column order
@@ -439,7 +442,9 @@ def generate_profiles(ref, uid,
     # Initialize profiles data by aggregating input ref data
     profiles = aggregate_data(ref, uid,
                               mode_cols=mode_cols,
-                              max_cols=max_cols)
+                              max_cols=max_cols,
+                              current_cols=current_cols,
+                              time_col=time_col)
     # Initialize count_df, counting number of occurances by uid
     count_df = pd.DataFrame(ref[uid].value_counts())
     # Rename column in count_df to profile_count
@@ -451,9 +456,14 @@ def generate_profiles(ref, uid,
     # Ensure no uids were excluded
     assert profiles.shape[0] == len(ref[uid].unique()),\
         'Missing some UIDs'
-    # Collect _ID cols from profiles
-    ID_cols = [col for col in profiles.columns
-               if col.endswith('_ID')]
+    # If include_IDs is specified as True
+    if include_IDs:
+        # Collect _ID cols from profiles
+        ID_cols = [col for col in profiles.columns
+                   if col.endswith('_ID')]
+    # If include_IDs is false
+    else:
+        ID_cols = []
     # Reorder sort columns in profiles by column_order
     cols = [col for col in column_order
             if col in profiles.columns]
