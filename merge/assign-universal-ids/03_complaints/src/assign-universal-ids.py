@@ -32,7 +32,7 @@ def get_setup():
                 'output_full_file': 'output/investigators.csv.gz',
                 'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
-                         'min_match_length': 3,
+                         'min_match_length': 4,
                          'return_merge_report': True,
                          'print_merging': False}
             },

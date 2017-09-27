@@ -24,6 +24,9 @@ def get_setup():
                 'output_full_file': 'output/trr-officers.csv.gz',
                 'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
+                         'custom_matches': [
+                             ["Appointed.Date", "Star1", "Gender"]
+                             ],
                          'return_merge_report': True,
                          'print_merging': True}
             },
@@ -33,6 +36,9 @@ def get_setup():
                 'output_full_file': 'output/trr-statuses.csv.gz',
                 'args': {'no_match_cols': ['Last.Name_NS', 'Current.Star'],
                          'expand_stars': True,
+                         'custom_matches': [
+                             ["Appointed.Date", "Star1", "Gender"]
+                             ],
                          'return_merge_report': True,
                          'print_merging': True}
             }

@@ -22,7 +22,12 @@ def get_setup():
                 'input_demo_file': 'input/all-sworn-units_demographics.csv.gz',
                 'input_full_file': 'input/all-sworn-units.csv.gz',
                 'output_full_file': 'output/all-sworn-units.csv.gz',
-                'args': {'no_match_cols': ['Last.Name_NS'],
+                'args': {'no_match_cols': ['Last.Name_NS', 'First.Name_NS'],
+                         'L4': True,
+                         'custom_matches': [
+                             ['L4FN', 'Birth.Year', 'Race', 'Gender',
+                              'Current.Unit', 'Appointed.Date']
+                         ],
                          'return_merge_report': True,
                          'print_merging': True}
             },
@@ -30,9 +35,21 @@ def get_setup():
                 'input_demo_file': 'input/ase-units_demographics.csv.gz',
                 'input_full_file': 'input/ase-units.csv.gz',
                 'output_full_file': 'output/ase-units.csv.gz',
-                'args': {'no_match_cols': ['Last.Name_NS'],
-                         'return_merge_report': True,
-                         'print_merging': True}
+                'args': {
+                    'no_match_cols': [
+                        'Last.Name_NS', 'Star1', 'First.Name_NS'
+                        ],
+                    'custom_matches': [
+                        ["First.Name_NS", "Appointed.Date", "Race",
+                         "Gender", "Current.Unit"],
+                        ["Appointed.Date", "Gender", "Star1",
+                         "Current.Age.p1", "Current.Unit"]
+                        ],
+                    'current_age_from': 2016,
+                    'drop_base_cols': ['Star' + str(i)
+                                       for i in range(2, 11)],
+                    'return_merge_report': True,
+                    'print_merging': True}
             }
         ],
         'output_profile_file': 'output/officer-profiles.csv.gz',
