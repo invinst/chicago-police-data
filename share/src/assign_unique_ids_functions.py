@@ -171,7 +171,13 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
         # input the maximum uid from the rd_df as the starting_uid
         rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
                                   uid=uid, starting_uid=max(rd_df[uid]))
-        conflicts_resolved = len(rc_df[uid].unique())
+
+        # Check if there are no conflicts
+        if rc_df.shape[0] == 0:
+            conflicts_resolved = 0
+        else:
+            # Assign conflicts resolved count to number of unique uids
+            conflicts_resolved = len(rc_df[uid].unique())
         # Append resolved conflicts dataframe to remove duplicates dataframe
         # and merge the resulting dataframe to input dataframe
         # on id_cols and conflict_cols, thus giving input df uids

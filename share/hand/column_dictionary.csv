@@ -30,11 +30,16 @@ STAR9,Star9,Int
 STAR10,Star10,Int
 MI,Middle.Initial,Name
 Age @ Hire,Age.at.Hire,Int
+AGE @ HIRE,Age.at.Hire,Int
 Title,Title,
 Start Date(9161),Start.Date,
+Start Date (9161),Start.Date,
+Start Date Present Position,SPP.Date,
 SPP,SPP.Date,
 Org Hire,Org.Hire.Date,
+Original Hire Date,Org.Hire.Date,
 Salary for reported year,Salary,Int
+Salary - Annual,Salary,Int
 Pay Grade Name,Pay.Grade,
 Employee Status,Employee.Status,
 Suffix.Name,Suffix.Name,Name
@@ -177,3 +182,9 @@ Star 7,Star7,
 Star 8,Star8,
 Star 9,Star9,
 Star 10,Star10,
+LOG_NO,CRID,
+COMPLAINT_DATE,Complaint.Datetime,
+CURRENT_STATUS_CMPL,Current.Status,
+CURRENT_CATEGORY,Complaint.Description,
+AGENCY_ASSIGNMENT,Agency.Assignment,
+IS_NOTIFICATION,Is.Notification,
