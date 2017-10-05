@@ -11,7 +11,9 @@ import pandas as pd
 
 
 def list_diff(list1, list2):
-    '''returns list after taking set difference of two lists'''
+    '''returns list after taking set difference of two lists
+    
+    '''
     return list(set(list1) - set(list2))
 
 
@@ -25,6 +27,19 @@ def clean_int(integer,
               na_value=np.nan):
     '''returns an integer from an object if possible,
        else returns an na_value
+
+       >>> clean_int("12.09")
+       12
+       >>> clean_int("ab21")
+       nan
+       >>> clean_int(20.0)
+       20
+       >>> clean_int(-267.12571)
+       -267
+       >>> clean_int(-9126, 100, 0)
+       nan
+       >>> clean_int("26.06", 100, 0)
+       26
     '''
     # Either get integer to int form or return na_value
     if isinstance(integer, str):
@@ -38,7 +53,6 @@ def clean_int(integer,
         integer = int(float(integer))
     else:
         return na_value
-
     # If upper and lower bounds are actually bounds
     # then correct integer properly
     if upper > lower and inclusive:
@@ -487,3 +501,8 @@ def clean_data(df, skip_cols=[]):
     else:
         # Return just cleaned dataframe
         return df
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
