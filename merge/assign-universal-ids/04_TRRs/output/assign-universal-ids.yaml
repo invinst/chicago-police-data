@@ -1,0 +1,77 @@
+# from src/assign-universal-ids.py
+File added: input/trr-officers_demographics.csv.gz
+Officers Added: 92727
+Merge Report: 10796 Total Merged. 33.26% of DF1 and 99.98% of DF2 Merged.
+21664 Unmerged in DF1. 66.74% Unmerged.
+2 Unmerged in DF2. 0.02% Unmerged.
+Merge List: Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                          6481
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star1           1610
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                          1534
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                           497
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2            306
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star4                           170
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3             72
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star5                            46
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star4             21
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star6                            12
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star5             11
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-First.Name_NS-Star1                           5
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS                                   4
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star7                             3
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-First.Name_NS-Star1                                          2
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star6              2
+Suffix.Name-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS                         2
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-First.Name_NS-Star2                                          2
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-F4LN-First.Name_NS-Star1                                     2
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Current.Star                      1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star7              1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-First.Name_NS-Star2                           1
+Appointed.Date-Star1-Gender                                                                                         1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Current.Star       1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                              1
+Suffix.Name-Race-Gender-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                                             1
+Suffix.Name-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                                  1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                              1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star9                             1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-F4LN-First.Name_NS-Star2                                     1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                              1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star10                            1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-F4LN-First.Name_NS-Star3                      1
+Name: Match, dtype: int64
+File added: input/trr-statuses_demographics.csv.gz
+Officers Added: 104197
+Merge Report: 11470 Total Merged. 35.33% of DF1 and 99.98% of DF2 Merged.
+20992 Unmerged in DF1. 64.67% Unmerged.
+2 Unmerged in DF2. 0.02% Unmerged.
+Merge List: Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                          6219
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                          1947
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star1           1573
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                           777
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2            369
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star4                           284
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3            118
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star5                            82
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star4             46
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star6                            13
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star5              8
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-First.Name_NS-Star1                           5
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star7                             5
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star6              4
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Current.Star       2
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-First.Name_NS-Star2                                          2
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-First.Name_NS-Star1                                          2
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star7              1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-F4LN-First.Name_NS-Star1                                     1
+Suffix.Name-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                                  1
+Appointed.Date-Star1-Gender                                                                                         1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                              1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                              1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-F4LN-First.Name_NS-Star4                      1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-F4LN-First.Name_NS-Star2                                     1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star8                             1
+Suffix.Name-Race-Gender-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                              1
+Suffix.Name-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS                                1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS-Star10                            1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS                    1
+Suffix.Name-Race-Gender-Middle.Initial2-Appointed.Date-Last.Name_NS-First.Name_NS                                   1
+Name: Match, dtype: int64

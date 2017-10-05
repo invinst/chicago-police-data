@@ -1,0 +1,21 @@
+# Standardization dictionaries according to file paths
+'16-1105_all-sworn-employees':
+    LAST_NME:              last_name
+    FIRST_NME:             first_name
+    SEX_CODE_CD:           gender
+    RACE:                  race
+    CURRAGE:               current_age
+    APPOINTED_DATE:        appointed_date
+    CPD_UNIT_ASSIGNED_NO:  unit
+    EFFECTIVE_DATE:        unit_start_date
+    END_DATE:              unit_end_date
+    STAR1:                 star1
+    STAR2:                 star2
+    STAR3:                 star3
+    STAR4:                 star4
+    STAR5:                 star5
+    STAR6:                 star6
+    STAR7:                 star7
+    STAR8:                 star8
+    STAR9:                 star9
+    STAR10:                star10

@@ -1,0 +1,7 @@
+# from src/assign-unique-ids.py
+UID Report: Total rows: 115987
+Unique id + conflict rows: 32010
+Conflict rows: 14
+Resolved conflcit UID count: 11
+Total unique ids: 32007
+

@@ -1,7 +1,7 @@
 import pandas as pd
 import __main__
 
-from import_functions import get_standard_columns, collect_metadata
+from import_functions import standardize_columns, collect_metadata
 import setup
 
 
@@ -14,10 +14,16 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/Kalven_16-1105_All_Sworn_Employees.xlsx',
-        'output_file': 'output/ase-units.csv.gz',
-        'metadata_file': 'output/metadata_ase-units.csv.gz',
-        'column_names_key': '16-1105_all-sworn-employees'
+        'input_file': 'input/P058155_-_Kiefer.xlsx',
+        'output_file': 'output/cpd-employees.csv.gz',
+        'metadata_file': 'output/metadata_cpd-employees.csv.gz',
+        'drop_column' : 'Star 10',
+        'custom_columns': {' ': 'Current.Unit',
+                           'Description': 'Rank',
+                           'Star 9': 'Star 10',
+                           'Star 8': 'Star 9',
+                           'Star 7': 'Star 8',
+                           'Star 6.1': 'Star 7'}
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -32,8 +38,11 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file)
-df.rename(columns=get_standard_columns(cons.column_names_key), inplace=True)
-print(df.head())
+del df[cons.drop_column]
+print(('Column names changed'
+      ' before standardization: {}').format(cons.custom_columns))
+df.rename(columns=cons.custom_columns, inplace=True)
+df.columns = standardize_columns(df.columns)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

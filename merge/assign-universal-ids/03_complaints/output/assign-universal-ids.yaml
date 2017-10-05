@@ -1,0 +1,55 @@
+# from src/assign-universal-ids.py
+File added: input/accused_demographics.csv.gz
+Officers Added: 78965
+Merge Report: 16018 Total Merged. 49.36% of DF1 and 99.98% of DF2 Merged.
+16432 Unmerged in DF1. 50.64% Unmerged.
+3 Unmerged in DF2. 0.02% Unmerged.
+Merge List: Current.Unit-Suffix.Name-Race-Gender-Middle.Initial2-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                   9342
+Suffix.Name-Race-Gender-Middle.Initial2-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                                2203
+Current.Unit-Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS    1454
+Current.Unit-Suffix.Name-Gender-Middle.Initial2-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                        1160
+Current.Unit-Suffix.Name-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS          967
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                  364
+Suffix.Name-Gender-Middle.Initial2-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                                      319
+Suffix.Name-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                       202
+Current.Unit-Suffix.Name-Race-Gender-Middle.Initial-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                       3
+Current.Unit-Suffix.Name-Gender-Middle.Initial2-Birth.Year-Appointed.Date-First.Name_NS                                        1
+Current.Unit-Suffix.Name-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-First.Name_NS                         1
+Current.Unit-Suffix.Name-Race-Gender-Birth.Year-Appointed.Date-Last.Name_NS-First.Name_NS                                      1
+Suffix.Name-Race-Gender-Middle.Initial2-Middle.Initial-Birth.Year-Appointed.Date-F4FN                                          1
+Name: Match, dtype: int64
+File added: input/investigators_demographics.csv.gz
+Officers Added: 81936
+Merge Report: 2967 Total Merged. 9.14% of DF1 and 99.76% of DF2 Merged.
+29486 Unmerged in DF1. 90.86% Unmerged.
+7 Unmerged in DF2. 0.24% Unmerged.
+Merge List: Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star9                   1132
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                    459
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                    317
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star9     218
+Appointed.Date-Last.Name_NS-First.Name_NS-Star9                                 159
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star4                    140
+Appointed.Date-Last.Name_NS-First.Name_NS-Star2                                  82
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2      70
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star1                     69
+Appointed.Date-Last.Name_NS-First.Name_NS-Star3                                  59
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3      48
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star5                     41
+Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star9                   40
+Appointed.Date-Last.Name_NS-First.Name_NS-Star4                                  29
+Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star2                   18
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star4      12
+Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star3                   11
+Appointed.Date-Last.Name_NS-First.Name_NS-Star5                                  11
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star1      10
+Appointed.Date-Last.Name_NS-First.Name_NS-Star1                                  10
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star6                      9
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star5       7
+Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star4                    4
+Current.Unit-Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star6       3
+Appointed.Date-Last.Name_NS-First.Name_NS-Star6                                   3
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Current.Star               3
+Current.Unit-Appointed.Date-Last.Name_NS-First.Name_NS-Star7                      1
+Middle.Initial-Appointed.Date-Last.Name_NS-First.Name_NS-Star5                    1
+Appointed.Date-Last.Name_NS-First.Name_NS-Current.Star                            1
+Name: Match, dtype: int64

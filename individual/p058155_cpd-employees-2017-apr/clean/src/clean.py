@@ -1,7 +1,7 @@
 import pandas as pd
 import __main__
 
-from import_functions import get_standard_columns, collect_metadata
+from clean_functions import clean_data
 import setup
 
 
@@ -14,13 +14,12 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/Kalven_16-1105_All_Sworn_Employees.xlsx',
-        'output_file': 'output/ase-units.csv.gz',
-        'metadata_file': 'output/metadata_ase-units.csv.gz',
-        'column_names_key': '16-1105_all-sworn-employees'
+        'input_file': 'input/cpd-employees.csv.gz',
+        'output_file': 'output/cpd-employees.csv.gz'
         }
 
-    assert args['input_file'].startswith('input/'),\
+    assert (args['input_file'].startswith('input/') and
+            args['input_file'].endswith('.csv.gz')),\
         "input_file is malformed: {}".format(args['input_file'])
     assert (args['output_file'].startswith('output/') and
             args['output_file'].endswith('.csv.gz')),\
@@ -31,10 +30,9 @@ def get_setup():
 
 cons, log = get_setup()
 
-df = pd.read_excel(cons.input_file)
-df.rename(columns=get_standard_columns(cons.column_names_key), inplace=True)
-print(df.head())
+df = pd.read_csv(cons.input_file)
+df, conflicts_df = clean_data(df)
+print('Current.Status column replaced: Y to 1, N to 0')
+df['Current.Status'].replace({'Y': 1, 'N': 0}, inplace=True)
+cons.write_yamlvar('Conflicts', conflicts_df)
 df.to_csv(cons.output_file, **cons.csv_opts)
-
-meta_df = collect_metadata(df, cons.input_file, cons.output_file)
-meta_df.to_csv(cons.metadata_file, **cons.csv_opts)
