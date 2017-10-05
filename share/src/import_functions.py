@@ -7,6 +7,7 @@
 import datetime
 import io
 import re
+import yaml
 import pandas as pd
 import numpy as np
 
@@ -69,29 +70,20 @@ def read_p046957_file(input_file, original_crid_col,
     return df, report_produced_date, FOIA_request
 
 
-def standardize_columns(cols):
-    ''' returns a list of standardized column names
-
-        according to the column_dictionary file that
-        contains all potential column names (first column)
-        and their standardized values (second column)
+def get_standard_columns(file_path_key):
+    ''' returns a dictionary of original and standard column names
     '''
-    try:
-        # Try to read the reference file for converting column names
-        col_df = pd.read_csv("hand/column_dictionary.csv")
-    except:
-        print("Column dictionary not in directory.")
-        col_df = pd.DataFrame()
-    # If input cols are not a list, convert to list
-    if not isinstance(cols, list):
-        cols = cols.tolist()
-    # Generate dictionary by zipping together the dataframe's
-    # first (unstandadized columns) and second (standardized columns)
-    col_dict = dict(zip(col_df.ix[:, 0], col_df.ix[:, 1]))
-    # Pass input cols into the standardizationd dictionary
-    # and return the standardized list
-    new_cols = [col_dict[col] for col in cols]
-    return new_cols
+    column_names_path = 'hand/column_names.yaml'
+    # Try to read the reference file for converting column names
+    with open(column_names_path) as file:
+        col_dict = yaml.load(file)
+
+    # Ensure that file path key is in col dict keys
+    assert file_path_key in col_dict.keys(),\
+    ('{0} is the file path key, but it is not in col_dict kets: {1}'
+     '').format(file_path_key, col_dict.keys())
+    # Return standardized columns
+    return col_dict[file_path_key]
 
 
 def collect_metadata(df, infile, outfile, notes=0):

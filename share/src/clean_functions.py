@@ -5,6 +5,7 @@
 '''functions used in the cleaning step'''
 
 import re
+import yaml
 import numpy as np
 import pandas as pd
 
@@ -19,21 +20,33 @@ def intersect(list1, list2):
     return list(set(list1) & set(list2))
 
 
-def clean_int(integer, na_value=np.nan):
+def clean_int(integer,
+              upper=0, lower=0, inclusive=True,
+              na_value=np.nan):
     '''returns an integer from an object if possible,
        else returns an na_value
     '''
+    # Either get integer to int form or return na_value
     if isinstance(integer, str):
         # Check to see if it the string may be a float
         if re.search('^[0-9,.]*$', integer):
-            return int(float(integer))
+            integer = int(float(integer))
         # If not, return na_value
         else:
             return na_value
     elif np.isfinite(integer):
-        return int(float(integer))
+        integer = int(float(integer))
     else:
         return na_value
+
+    # If upper and lower bounds are actually bounds
+    # then correct integer properly
+    if upper > lower and inclusive:
+        return integer if lower <= integer <= upper else na_value
+    elif upper > lower:
+        return integer if lower < integer < upper else na_value
+    else:
+        return integer
 
 
 def clean_date_df(df):
@@ -49,12 +62,12 @@ def clean_date_df(df):
     # Iterate over stored date(time) columns
     for col in df_cols:
         # Store column suffix as list, removing .Date(time) ending
-        # 'Org.Hire.Datetime' -> ['Org', 'Hire']
-        col_suffix = col.split('.')[:-1]
+        # 'Org_Hire_Datetime' -> ['Org', 'Hire']
+        col_suffix = col.split('_')[:-1]
 
         # Initial date and time column names
-        date_name = '.'.join(col_suffix + ['Date'])
-        time_name = '.'.join(col_suffix + ['Time'])
+        date_name = '_'.join(col_suffix + ['date'])
+        time_name = '_'.join(col_suffix + ['time'])
         # Try to convert column to datetime
         # And create column in dt_df ending with .Date
         try:
@@ -88,8 +101,8 @@ def clean_date_df(df):
                 dt_df[time_name] = \
                     pd.to_datetime(df[col], errors='coerce').dt.date
 
-    # EX: df columns = ['Org.Hire.Datetime', 'Start.Date']
-    #     dt_df columns = ['Org.Hire.Date', 'Org.Hire.Time', 'Start.Date']
+    # EX: df columns = ['Org_Hire_Datetime', 'Start_Date']
+    #     dt_df columns = ['Org_Hire_Date', 'Org_Hire_Time', 'Start_Date']
     return dt_df
 
 
@@ -246,6 +259,7 @@ def clean_name_col(col):
         raise Exception('Uh.. what sort of names?')
 
 
+# Is this necessary? and if it is, is there a better way of doing it?
 def compare_middle_initials(mi_df):
     '''returns pandas dataframe and list of conflicts'''
     output_list = []    # Initialize output list
@@ -331,6 +345,7 @@ def clean_names(df):
         name_df = df.fillna("")  # Fill NAs with empty strings
 
     # Split first name column into first name, middle initial, suffix
+    ## natural language processing for name parsing english
     fn_df = clean_name_col(name_df['First.Name'])
     # Split last name column into last name, middle initial, suffix
     ln_df = clean_name_col(name_df['Last.Name'])
@@ -382,69 +397,57 @@ def clean_data(df, skip_cols=[]):
        returns tuple if name columns are present
        second item contains conflicting name dataframe
     '''
-    # Load column reference file as dataframe
-    col_df = pd.read_csv('hand/column_dictionary.csv')
-    # Collect all potential Name columns in list
-    name_cols = col_df.loc[col_df["Type"] == 'Name', 'Standard'].tolist()
-    # Collect all potential Integer columns in list
-    int_cols = col_df.loc[col_df["Type"] == 'Int', 'Standard'].tolist()
+    # Initialize empty list for name columns
+    name_cols = []
+
+    # Load column reference yaml file as dictionary
+    with open('hand/column_types.yaml', 'r') as file:
+        col_dict = yaml.load(file)
+
+    # Loop over col_dict column names and types
+    for col_name, col_type in col_dict.items():
+        # If column is designated to be skipped, do nothing
+        if col_name in skip_cols:
+            pass
+
+        # If col_type is race or gender then format it using a race/gender_type
+        # yaml reference file in the hand/ directory
+        # and replace any values not in the dictionary with an empty string
+        elif col_type in ['race', 'gender']:
+            with open('hand/{}_types.yaml'.format(col_type), 'r') as file:
+                type_dict = yaml.load(file)
+            df[col_name] = df[col_name].str.upper().replace(type_dict)
+            df.loc[~df[col_name].isin(type_dict.values()), col_name] = ''
+
+        # If the col_type is a general int, then map clean_int onto it
+        elif col_type == 'int':
+            df[col_name] = df[col_name].map(clean_int)
+
+        # If col_type is age, then map a special case of clean_int onto it
+        # using a specified upper and lower bound
+        elif col_type == 'age':
+            def clean_age(age):
+                return (
+                    clean_int(age, upper=110, lower=1,
+                              inclusive=True)
+                       )
+            df[col_name] = df[col_name].map(clean_age)
+
+        # If col_type is name then append this column to the name_cols list
+        elif col_type == 'name':
+            name_cols.append(col_name)
+
+        # If col_type is date or datetime
+        elif col_type in ['date', 'datetime']:
+            cleaned_date_df = clean_date_df(df[[col_name]])
+            print(cleaned_date_df.head())
+            del df[col_name]
+            df = df.join(cleaned_date_df)
+            print(df.head())
     # Store input dataframe columns
     df_cols = df.columns.values
 
-    # If input dataframe has a gender column
-    # and it is not designated to be skipped
-    if 'Gender' in df_cols and 'Gender' not in skip_cols:
-        # Load gender reference dataframe
-        gender_df = pd.read_csv('hand/gender_dictionary.csv')
-        # Zip together reference dataframes into gender_dictionary
-        gender_dict = dict(zip(gender_df.Original, gender_df.Standard))
-        # Standardize the values in the gender column
-        df['Gender'] = (df['Gender']
-                        .fillna('X')
-                        .str.upper()
-                        .replace(gender_dict))
-
-    # If input dataframe has a race column
-    # and it is not designated to be skipped
-    if 'Race' in df_cols and 'Race' not in skip_cols:
-        # Load gender reference dataframe
-        race_df = pd.read_csv('hand/race_dictionary.csv')
-        # Zip together reference dataframes into race_dictionary
-        race_dict = dict(zip(race_df.Original, race_df.Standard))
-        # Standardize the values in the race column
-        df['Race'] = (df['Race']
-                      .fillna('UNKNOWN')
-                      .str.upper()
-                      .replace(race_dict))
-
-    # Loop over columns in input dataframe
-    for col in [ic for ic in df_cols
-                # If they are in the integer column list
-                # and not designated to be skipped
-                if ic in int_cols and ic not in skip_cols]:
-        # Clean the integer column values
-        df[col] = df[col].map(clean_int)
-
-    # Collect date(time) columns
-    datetime_cols = [col for col in df_cols
-                     # If Date in the column name
-                     # and column is not designated to be skipped
-                     if 'Date' in col and col not in skip_cols]
-    # If there are any date(time) columns
-    if datetime_cols:
-        # Create cleaned date dataframe from
-        # input dataframe's selected datetime columns
-        cd_df = clean_date_df(df[datetime_cols])
-        # Join input dataframe (minus datetime columns)
-        # and the cleaned date dataframe
-        df = df[list_diff(df.columns,
-                          datetime_cols)].join(cd_df)
-
-    # Collect name columns
-    name_cols = [col for col in df_cols
-                 # If column in name columns
-                 # and column is not designated to be skipped
-                 if col in name_cols and col not in skip_cols]
+    raise Exception
     # If there are any name columns
     if name_cols:
         # Create cleaned name dataframe from
