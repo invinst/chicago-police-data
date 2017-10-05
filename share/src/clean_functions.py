@@ -12,7 +12,6 @@ import pandas as pd
 
 def list_diff(list1, list2):
     '''returns list after taking set difference of two lists
-    
     '''
     return list(set(list1) - set(list2))
 
