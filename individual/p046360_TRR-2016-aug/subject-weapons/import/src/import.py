@@ -17,7 +17,8 @@ def get_setup():
         'input_file': 'input/10655-FOIA-P046360-TRRdata.xlsx',
         'output_file': 'output/subject-weapons.csv.gz',
         'metadata_file': 'output/metadata_subject-weapons.csv.gz',
-        'sheet': 'SubjectWeapons'
+        'sheet': 'SubjectWeapons',
+        'column_names_key': 'p046360_TRR-2016-aug/subject-weapons'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -32,8 +33,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
-df.columns = standardize_columns(df.columns)
-
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

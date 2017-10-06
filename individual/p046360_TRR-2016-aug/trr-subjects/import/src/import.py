@@ -18,13 +18,13 @@ def get_setup():
         'output_file': 'output/trr-subjects.csv.gz',
         'metadata_file': 'output/metadata_trr-subjects.csv.gz',
         'sheet': 'Sheet1',
-        'drop_column': 'SUBJECT_CB_NO',
         'keep_columns': [
             'TRR_REPORT_ID', 'SUBGNDR',
             'SUBRACE', 'SUBAGE', 'SUBYEARDOB',
             'SUBJECT_ARMED', 'SUBJECT_INJURED',
             'SUBJECT_ALLEGED_INJURY'
-            ]
+            ],
+         'column_names_key': 'p046360_TRR-2016-aug/trr-subjects'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -39,9 +39,9 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
-df = df.drop(cons.drop_column, axis=1)
 df = df[cons.keep_columns]
-df.columns = standardize_columns(df.columns)
+log.info('{} columns selected.'.format(cons.keep_columns))
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

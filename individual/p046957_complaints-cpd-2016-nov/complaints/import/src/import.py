@@ -21,15 +21,15 @@ def get_setup():
             'input/p046957_-_report_1.4_-_all_complaints_in_time_frame.xls',
             'input/p046957_-_report_1.5_-_all_complaints_in_time_frame.xls',
             'input/p046957_-_report_1.6_-_all_complaints_in_time_frame.xls'
-                       ],
+            ],
         'output_file': 'output/complaints.csv.gz',
         'metadata_file': 'output/metadata_complaints.csv.gz',
         'column_names': [
-                         'CRID', 'Beat', 'Location.Code',
-                         'Address.Number', 'Street', 'Apartment.Number',
-                         'City.State', 'Incident.Datetime',
-                         'Complaint.Date', 'Closed.Date'
-                        ]
+            'CR_ID', 'beat', 'location_code',
+            'address_number', 'street', 'apartment_number',
+            'city_state', 'incident_datetime',
+            'complaint_date', 'closed_date'
+           ]
         }
 
     assert all(input_file.startswith('input/')

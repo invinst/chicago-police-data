@@ -17,8 +17,7 @@ def get_setup():
         'input_file': 'input/Data_498.csv',
         'output_file': 'output/officer-complaints.csv.gz',
         'metadata_file': 'output/metadata_officer-complaints.csv.gz',
-        'column_names': {'CURRENT_STATUS' :'CURRENT_STATUS_CMPL',
-                         'ASSIGNMENT': 'AGENCY_ASSIGNMENT'}
+        'column_names_key': 'copa-498_officer-complaints-2017-sep'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -33,8 +32,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df.rename(columns=cons.column_names, inplace=True)
-df.columns = standardize_columns(df.columns)
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 
 df.to_csv(cons.output_file, **cons.csv_opts)
 

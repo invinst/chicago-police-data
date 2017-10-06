@@ -18,7 +18,8 @@ def get_setup():
         'output_file': 'output/trr-statuses.csv.gz',
         'metadata_file': 'output/metadata_trr-statuses.csv.gz',
         'sheet': 'Statuses_OtherMembers',
-        'note_sheet': 'Notes'
+        'note_sheet': 'Notes',
+        'column_names_key': 'p046360_TRR-2016-aug/trr-statuses'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -34,13 +35,13 @@ cons, log = get_setup()
 
 notes_df = pd.read_excel(cons.input_file, sheetname=cons.note_sheet,
                          header=None)
-notes = '\n'.join(notes_df.ix[notes_df[0] == cons.sheet, 1].dropna())
+notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet, 1].dropna())
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
-df.columns = standardize_columns(df.columns)
-df.rename(columns={'Current.Star': 'Star'}, inplace=True)
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 
 cons.write_yamlvar('Notes', notes)
+log.info('Notes written to cons: {}'.format(notes))
 
 df.to_csv(cons.output_file, **cons.csv_opts)
 

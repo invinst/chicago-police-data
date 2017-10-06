@@ -20,13 +20,14 @@ def get_setup():
         'main_sheet': 'Sheet1',
         'star_sheet': 'Star #',
         'notes_sheet': 'Notes',
-        'drop_column': 'SUBJECT_CB_NO',
         'main_keep_columns': [
             'TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR',
             'PORACE', 'POAGE', 'APPOINTED_DATE', 'UNITASSG',
             'UNITDETAIL', 'ASSGNBEAT', 'RANK', 'DUTYSTATUS',
             'POINJURED', 'MEMBER_IN_UNIFORM'
-            ]
+            ],
+        'main_column_names_key': 'p046360_TRR-2016-aug/trr-officers',
+        'star_column_names_key': 'p046360_TRR-2016-aug/Star #'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -46,14 +47,15 @@ notes = '\n'.join(notes_df.ix[notes_df[0].isin([cons.main_sheet,
                                                 cons.star_sheet]),
                               1].dropna())
 cons.write_yamlvar('Notes', notes)
+log.info('Notes written to cons: {}'.format(notes))
 
 main_df = pd.read_excel(cons.input_file, sheetname=cons.main_sheet)
-main_df = main_df.drop(cons.drop_column, axis=1)
 main_df = main_df[cons.main_keep_columns]
-main_df.columns = standardize_columns(main_df.columns)
+log.info('{} columns selected from main sheet.'.format(cons.main_keep_columns))
+main_df.columns = standardize_columns(main_df.columns, cons.main_column_names_key)
 
 star_df = pd.read_excel(cons.input_file, sheetname=cons.star_sheet)
-star_df.columns = standardize_columns(star_df.columns)
+star_df.columns = standardize_columns(star_df.columns,  cons.star_column_names_key)
 
 df = main_df.merge(star_df,
                    how='outer',

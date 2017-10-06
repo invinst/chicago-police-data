@@ -18,16 +18,17 @@ def get_setup():
         'output_file': 'output/trr-main.csv.gz',
         'metadata_file': 'output/metadata_trr-main.csv.gz',
         'sheet': 'Sheet1',
-        'drop_column': 'SUBJECT_CB_NO',
+        'drop_column': 'cb_no',
         'keep_columns': [
-            'TRR_REPORT_ID', 'RD_NO', 'CR_NO_OBTAINED',
+            'TRR_REPORT_ID', 'RD_NO', 'CR_NO_OBTAINED', 'SUBJECT_CB_NO',
             'EVENT_NO', 'BEAT', 'BLK', 'DIR', 'STN',
             'LOC', 'DTE', 'TMEMIL', 'INDOOR_OR_OUTDOOR',
             'LIGHTING_CONDITION', 'WEATHER_CONDITION',
             'NOTIFY_OEMC', 'NOTIFY_DIST_SERGEANT',
             'NOTIFY_OP_COMMAND', 'NOTIFY_DET_DIV',
             'NUMBER_OF_WEAPONS_DISCHARGED', 'PARTY_FIRED_FIRST'
-            ]
+            ],
+        'column_names_key': 'p046360_TRR-2016-aug/trr-main'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -42,10 +43,11 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
-df = df.drop(cons.drop_column, axis=1)
 df = df[cons.keep_columns]
-df.columns = standardize_columns(df.columns)
-
+log.info('{} columns selected.'.format(cons.keep_columns))
+df.columns = standardize_columns(df.columns, cons.column_names_key)
+del df[cons.drop_column]
+log.info('{} column dropped.'.format(cons.drop_column))
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

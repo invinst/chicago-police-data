@@ -1,4 +1,5 @@
 # Standardization dictionaries according to file paths
+
 '16-1105_all-sworn-employees':
     LAST_NME:              last_name
     FIRST_NME:             first_name
@@ -20,6 +21,7 @@
     STAR9:                 star9
     STAR10:                star10
 
+
 'p052262_all-sworn-employees-UOA-2016-dec':
     'Last Name':            last_name
     'First Name':           first_name
@@ -33,66 +35,78 @@
     'End Date':             unit_end_date
 
 
-'p046360_TRR-2016-aug/Sheet1':
-TRR_REPORT_ID
-RD_NO
-CR_NO_OBTAINED
-SUBJECT_CB_NO
-EVENT_NO
-BEAT
-BLK
-DIR
-STN
-LOC
-DTE
-TMEMIL
-INDOOR_OR_OUTDOOR
-LIGHTING_CONDITION
-WEATHER_CONDITION
-NOTIFY_OEMC
-NOTIFY_DIST_SERGEANT
-NOTIFY_OP_COMMAND
-NOTIFY_DET_DIV
-NUMBER_OF_WEAPONS_DISCHARGED
-PARTY_FIRED_FIRST
-POLAST
-POFIRST
-POGNDR
-PORACE
-POAGE
-APPOINTED_DATE
-UNITASSG
-UNITDETAIL
-ASSGNBEAT
-RANK
-DUTYSTATUS
-POINJURED
-MEMBER_IN_UNIFORM
-SUBGNDR
-SUBRACE
-SUBAGE
-SUBYEARDOB
-SUBJECT_ARMED
-SUBJECT_INJURED
-SUBJECT_ALLEGED_INJURY
+'p046360_TRR-2016-aug/trr-main':
+    TRR_REPORT_ID:                  TRR_ID
+    RD_NO:                          rd_no
+    CR_NO_OBTAINED:                 CR_ID
+    SUBJECT_CB_NO:                  cb_no
+    EVENT_NO:                       event_no
+    BEAT:                           beat
+    BLK:                            block
+    DIR:                            direction
+    STN:                            street
+    LOC:                            location
+    DTE:                            TRR_date
+    TMEMIL:                         TRR_time
+    INDOOR_OR_OUTDOOR:              indoor_or_outdoor
+    LIGHTING_CONDITION:             lighting_condition
+    WEATHER_CONDITION:              weather_condition
+    NOTIFY_OEMC:                    notify_OEMC
+    NOTIFY_DIST_SERGEANT:           notify_district_sergeant
+    NOTIFY_OP_COMMAND:              notify_OP_command
+    NOTIFY_DET_DIV:                 notify_DET_division
+    NUMBER_OF_WEAPONS_DISCHARGED:   number_of_weapons_discharged
+    PARTY_FIRED_FIRST:              party_fired_first
+
+
+'p046360_TRR-2016-aug/trr-officers':
+    TRR_REPORT_ID:      TRR_ID
+    POLAST:             last_name
+    POFIRST:            first_name
+    POGNDR:             gender
+    PORACE:             race
+    POAGE:              age
+    APPOINTED_DATE:     appointed_date
+    UNITASSG:           unit
+    UNITDETAIL:         unit_detail
+    ASSGNBEAT:          assigned_beat
+    RANK:               rank
+    DUTYSTATUS:         duty_status
+    POINJURED:          injured
+    MEMBER_IN_UNIFORM:  in_uniform
+
+
+'p046360_TRR-2016-aug/trr-subjects':
+    TRR_REPORT_ID:          TRR_ID
+    SUBGNDR:                gender
+    SUBRACE:                race
+    SUBAGE:                 age
+    SUBYEARDOB:             birth_year
+    SUBJECT_ARMED:          armed
+    SUBJECT_INJURED:        injured
+    SUBJECT_ALLEGED_INJURY: alleged_injury
+
 
 'p046360_TRR-2016-aug/Star #':
-    TRR_REPORT_ID
-    LAST_NME
-    FIRST_NME
-    CPD_STAR_NO
+    TRR_REPORT_ID:  TRR_ID
+    LAST_NME:       last_name
+    FIRST_NME:      first_name
+    CPD_STAR_NO:    current_star
 
-'p046360_TRR-2016-aug/Statuses_OtherMembers':
-TRR_REPORT_ID
-STATUS
-STATDATETIME
-FIRST_NME
-LAST_NME
-STAR
-RANK
-SEX MEMBERRACE
-MEMBERAGE
-APPOINTED_DATE
+
+'p046360_TRR-2016-aug/trr-statuses':
+    TRR_REPORT_ID:  TRR_ID
+    STATUS:         status
+    STATDATETIME:   stats_datetime
+    FIRST_NME:      first_name
+    LAST_NME:       last_name
+    STAR:           star
+    RANK:           rank
+    SEX:            gender
+    MEMBERRACE:     race
+    MEMBERAGE:      age
+    APPOINTED_DATE: appointed_date
+
 
 'p046360_TRR-2016-aug/actions-responses':
     TRR_REPORT_ID:      TRR_ID
@@ -101,12 +115,13 @@ APPOINTED_DATE
     ACTION:             action
     OTHERDESCR:         other_description
 
+
 'p046360_TRR-2016-aug/weapon-discharges':
     TRR_REPORT_ID:                  TRR_ID
     WEAPON_TYPE:                    weapon_type
     WEAPON_TYPE_DESCR:              weapon_type_description
     FIREARM_MAKE:                   firearm_make
-    FIREARM_MODE:                   firearm_model
+    FIREARM_MODEL:                  firearm_model
     FIREARM_BARREL_LENGTH:          firearm_barrel_length
     FIREARM_CALIBER:                firearm_caliber
     TOTAL_NUMBER_OF_SHOTS:          total_number_of_shots
@@ -121,14 +136,26 @@ APPOINTED_DATE
     OBJECT_STRUCK_OF_DISCHARGE:     object_struck_of_discharge
     DISCHARGE_POSITION:             discharge_position
 
+
 'p046360_TRR-2016-aug/charges':
     TRR_REPORT_ID:  TRR_ID
-    SUBJECT_CB_NO:  subject_cb_no
+    SUBJECT_CB_NO:  cb_no
     RD_NO:          rd_no
-    STATUTE DESCR:  statute_description
+    STATUTE:        statute
+    DESCR:          description
+
 
 'p046360_TRR-2016-aug/subject-weapons':
     TRR_REPORT_ID:      TRR_ID
     WEAPON_TYPE:        weapon_type
     FIREARM_CALIBER:    firearm_caliber
     WEAPON_DESCRIPTION: weapon_description
+
+
+'copa-498_officer-complaints-2017-sep':
+    LOG_NO:             CR_ID
+    COMPLAINT_DATE:     complaint_datetime
+    CURRENT_STATUS:     complaint_status
+    CURRENT_CATEGORY:   complaint_category
+    ASSIGNMENT:         agency_assignment
+    IS_NOTIFICATION:    is_notification
