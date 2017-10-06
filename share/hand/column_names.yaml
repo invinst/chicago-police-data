@@ -31,3 +31,104 @@
     'Assigned Unit Num.':   unit
     'Start Date':           unit_start_date
     'End Date':             unit_end_date
+
+
+'p046360_TRR-2016-aug/Sheet1':
+TRR_REPORT_ID
+RD_NO
+CR_NO_OBTAINED
+SUBJECT_CB_NO
+EVENT_NO
+BEAT
+BLK
+DIR
+STN
+LOC
+DTE
+TMEMIL
+INDOOR_OR_OUTDOOR
+LIGHTING_CONDITION
+WEATHER_CONDITION
+NOTIFY_OEMC
+NOTIFY_DIST_SERGEANT
+NOTIFY_OP_COMMAND
+NOTIFY_DET_DIV
+NUMBER_OF_WEAPONS_DISCHARGED
+PARTY_FIRED_FIRST
+POLAST
+POFIRST
+POGNDR
+PORACE
+POAGE
+APPOINTED_DATE
+UNITASSG
+UNITDETAIL
+ASSGNBEAT
+RANK
+DUTYSTATUS
+POINJURED
+MEMBER_IN_UNIFORM
+SUBGNDR
+SUBRACE
+SUBAGE
+SUBYEARDOB
+SUBJECT_ARMED
+SUBJECT_INJURED
+SUBJECT_ALLEGED_INJURY
+
+'p046360_TRR-2016-aug/Star #':
+    TRR_REPORT_ID
+    LAST_NME
+    FIRST_NME
+    CPD_STAR_NO
+
+'p046360_TRR-2016-aug/Statuses_OtherMembers':
+TRR_REPORT_ID
+STATUS
+STATDATETIME
+FIRST_NME
+LAST_NME
+STAR
+RANK
+SEX MEMBERRACE
+MEMBERAGE
+APPOINTED_DATE
+
+'p046360_TRR-2016-aug/actions-responses':
+    TRR_REPORT_ID:      TRR_ID
+    PERSON:             person
+    'Resistance Type':  resistance_type
+    ACTION:             action
+    OTHERDESCR:         other_description
+
+'p046360_TRR-2016-aug/weapon-discharges':
+    TRR_REPORT_ID:                  TRR_ID
+    WEAPON_TYPE:                    weapon_type
+    WEAPON_TYPE_DESCR:              weapon_type_description
+    FIREARM_MAKE:                   firearm_make
+    FIREARM_MODE:                   firearm_model
+    FIREARM_BARREL_LENGTH:          firearm_barrel_length
+    FIREARM_CALIBER:                firearm_caliber
+    TOTAL_NUMBER_OF_SHOTS:          total_number_of_shots
+    FIREARM_RELOADED:               firearm_reloaded
+    NUMBER_OF_CATDRIDGE_RELOADED:   number_of_catdridge_reloaded
+    HANDGUN_WORN_TYPE:              handgun_worn_type
+    HANDGUN_DRAWN_TYPE:             handgun_drawn_type
+    METHOD_USED_TO_RELOAD:          method_used_to_reload
+    SIGHT_USED:                     sight_used
+    PROTECTIVE_COVER_USED:          protective_cover_used
+    DISCHARGE_DISTANCE:             discharge_distance
+    OBJECT_STRUCK_OF_DISCHARGE:     object_struck_of_discharge
+    DISCHARGE_POSITION:             discharge_position
+
+'p046360_TRR-2016-aug/charges':
+    TRR_REPORT_ID:  TRR_ID
+    SUBJECT_CB_NO:  subject_cb_no
+    RD_NO:          rd_no
+    STATUTE DESCR:  statute_description
+
+'p046360_TRR-2016-aug/subject-weapons':
+    TRR_REPORT_ID:      TRR_ID
+    WEAPON_TYPE:        weapon_type
+    FIREARM_CALIBER:    firearm_caliber
+    WEAPON_DESCRIPTION: weapon_description

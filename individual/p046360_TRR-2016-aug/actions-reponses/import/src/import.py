@@ -17,7 +17,8 @@ def get_setup():
         'input_file': 'input/10655-FOIA-P046360-TRRdata.xlsx',
         'output_file': 'output/actions-responses.csv.gz',
         'metadata_file': 'output/metadata_actions-responses.csv.gz',
-        'sheet': 'ActionsResponses'
+        'sheet': 'ActionsResponses',
+        'column_names_key': 'p046360_TRR-2016-aug/actions-responses'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -33,7 +34,7 @@ cons, log = get_setup()
 
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
-df.columns = standardize_columns(df.columns)
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 
 df.to_csv(cons.output_file, **cons.csv_opts)
 

@@ -39,8 +39,6 @@ cons.write_yamlvar('Notes', notes)
 
 df = pd.read_excel(cons.input_file, sheetname=1)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
-log.info('column names standardized')
-
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)
