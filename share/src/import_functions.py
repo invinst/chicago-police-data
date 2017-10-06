@@ -70,7 +70,7 @@ def read_p046957_file(input_file, original_crid_col,
     return df, report_produced_date, FOIA_request
 
 
-def get_standard_columns(col_names, file_path_key):
+def standardize_columns(col_names, file_path_key):
     ''' returns a dictionary of original and standard column names
     '''
     column_names_path = 'hand/column_names.yaml'
@@ -80,12 +80,12 @@ def get_standard_columns(col_names, file_path_key):
 
     # Ensure that file path key is in col dict keys
     assert file_path_key in col_dict.keys(),\
-       ('{0} is the file path key, but it is not in col_dict kets: {1}'
-        '').format(file_path_key, col_dict.keys())
+        ('{0} is the file path key, but it is not in col_dict kets: {1}'
+         '').format(file_path_key, col_dict.keys())
     # Get file specific column name dictionary
     colname_dict = col_dict[file_path_key]
     # Return standardized columns
-
+    return [colname_dict[col_name] for col_name in col_names]
 
 
 def collect_metadata(df, infile, outfile, notes=0):

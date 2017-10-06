@@ -1,7 +1,7 @@
 import pandas as pd
 import __main__
 
-from import_functions import get_standard_columns, collect_metadata
+from import_functions import standardize_columns, collect_metadata
 import setup
 
 
@@ -32,8 +32,8 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file)
-df.rename(columns=get_standard_columns(cons.column_names_key), inplace=True)
-print(df.head())
+df.columns = standardize_columns(df.columns, cons.column_names_key)
+log.info("column names standardized")
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

@@ -19,3 +19,15 @@
     STAR8:                 star8
     STAR9:                 star9
     STAR10:                star10
+
+'p052262_all-sworn-employees-UOA-2016-dec':
+    'Last Name':            last_name
+    'First Name':           first_name
+    'Middle Initial':       middle_initial
+    Gender:                 gender
+    Race:                   race
+    'Year of Birth':        birth_year
+    'Date of Appointment':  appointed_date
+    'Assigned Unit Num.':   unit
+    'Start Date':           unit_start_date
+    'End Date':             unit_end_date

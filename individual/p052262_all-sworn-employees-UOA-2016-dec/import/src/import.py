@@ -17,7 +17,8 @@ def get_setup():
         'input_file':
         'input/FOIA_P052262_-_11221-FOIA-P052262-AllSwornEmployeesWithUOA.xlsx',
         'output_file': 'output/all-sworn-units.csv.gz',
-        'metadata_file': 'output/metadata_all-sworn-units.csv.gz'
+        'metadata_file': 'output/metadata_all-sworn-units.csv.gz',
+        'column_names_key': 'p052262_all-sworn-employees-UOA-2016-dec'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -33,10 +34,13 @@ cons, log = get_setup()
 
 notes_df = pd.read_excel(cons.input_file, sheetname=0)
 notes = '\n'.join(notes_df.ix[:, 0].dropna())
+log.info('metadata written to cons: {}'.format(notes))
 cons.write_yamlvar('Notes', notes)
 
 df = pd.read_excel(cons.input_file, sheetname=1)
-df.columns = standardize_columns(df.columns)
+df.columns = standardize_columns(df.columns, cons.column_names_key)
+log.info('column names standardized')
+
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)
