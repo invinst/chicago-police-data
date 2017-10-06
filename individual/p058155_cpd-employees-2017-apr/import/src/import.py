@@ -17,13 +17,8 @@ def get_setup():
         'input_file': 'input/P058155_-_Kiefer.xlsx',
         'output_file': 'output/cpd-employees.csv.gz',
         'metadata_file': 'output/metadata_cpd-employees.csv.gz',
-        'drop_column' : 'Star 10',
-        'custom_columns': {' ': 'Current.Unit',
-                           'Description': 'Rank',
-                           'Star 9': 'Star 10',
-                           'Star 8': 'Star 9',
-                           'Star 7': 'Star 8',
-                           'Star 6.1': 'Star 7'}
+        'drop_column': 'star11',
+        'column_names_key': 'p058155_cpd-employees-2017-apr'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -38,11 +33,10 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file)
+df.columns = standardize_columns(df.columns, cons.column_names_key)
 del df[cons.drop_column]
-print(('Column names changed'
-      ' before standardization: {}').format(cons.custom_columns))
-df.rename(columns=cons.custom_columns, inplace=True)
-df.columns = standardize_columns(df.columns)
+log.info('{} column dropped.'.format(cons.drop_column))
+
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

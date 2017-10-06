@@ -1,5 +1,32 @@
 # Standardization dictionaries according to file paths
 
+'p058155_cpd-employees-2017-apr':
+    'Last Name':                last_name
+    'First Name':               first_name
+    'Middle Initital':          middle_initial
+    Gender:                     gender
+    Race:                       race
+    'D.O.B.':                   birth_year
+    Age:                        age
+    'Status I':                 current_status
+    'Appointed Date':           appointed_date
+    'Employee Position Number': rank_no
+    Description:                rank
+    ' ':                        current_unit
+    'Unit Description':         unit_description
+    'Resignation Date':         resignation_date
+    'Star 1':                   star1
+    'Star 2':                   star2
+    'Star 3':                   star3
+    'Star 4':                   star4
+    'Star 5':                   star5
+    'Star 6':                   star6
+    'Star 6.1':                 star7
+    'Star 7':                   star8
+    'Star 8':                   star9
+    'Star 9':                   star10
+    'Star 10':                  star11
+
 '16-1105_all-sworn-employees':
     LAST_NME:              last_name
     FIRST_NME:             first_name
@@ -159,3 +186,25 @@
     CURRENT_CATEGORY:   complaint_category
     ASSIGNMENT:         agency_assignment
     IS_NOTIFICATION:    is_notification
+
+'p061715_awards-2017-jul':
+    LAST_NME:               last_name
+    FIRST_NME:              first_name
+    MIDDLE_INITIAL:         middle_initial
+    BIRTH_YEAR:             birth_year
+    GENDER:                 gender
+    RACE:                   race
+    STAR:                   star
+    APPOINTED_DATE:         appointed_date
+    RANK:                   rank
+    LAST_PROMOTION_DATE:    last_promotion_date
+    RESIGNATION_DATE:       resignation_date
+    PPS_AWARD_DETAIL_ID:    pps_award_detail_ID
+    AWARD_TYPE:             award_type
+    AWARD_REQUEST_DATE:     award_request_date
+    TRACKING_NO:            tracking_no
+    CURRENT_STATUS:         current_award_status
+    REQUESTER:              requester_full_name
+    INCIDENT_START_DATE:    award_incident_start_date
+    INCIDENT_END_DATE:      award_incident_end_date
+    CEREMONY_DATE:          ceremony_date

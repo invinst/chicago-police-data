@@ -52,7 +52,8 @@ for input_file in cons.input_files:
                                 read_p046957_file(input_file,
                                                   original_crid_col='Number:',
                                                   notnull='Number:')
-
+    log.info(('Processing {0} file, of FOIA number {1}, produced on {2}'
+              '').format(input_file, FOIA_request, report_produced_date))
     cons.write_yamlvar("{}-Report_Produced_Date".format(input_file),
                        report_produced_date)
     cons.write_yamlvar("{}-FOIA_Request".format(input_file),

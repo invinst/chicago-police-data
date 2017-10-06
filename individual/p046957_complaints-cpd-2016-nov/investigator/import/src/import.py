@@ -25,8 +25,8 @@ def get_setup():
         'output_file': 'output/investigators.csv.gz',
         'metadata_file': 'output/metadata_investigators.csv.gz',
         'column_names': [
-                         'CRID', 'Full.Name', 'Current.Unit',
-                         'Current.Rank', 'Current.Star', 'Appointed.Date'
+                         'CR_ID', 'full_name', 'current_unit',
+                         'current_rank', 'current_star', 'appointed_date'
                         ]
         }
 
@@ -53,7 +53,8 @@ for input_file in cons.input_files:
                                               isnull='Number:',
                                               notnull='Location Code:',
                                               drop_col='Beat:')
-
+    log.info(('Processing {0} file, of FOIA number {1}, produced on {2}'
+              '').format(input_file, FOIA_request, report_produced_date))
     cons.write_yamlvar("{}-Report_Produced_Date".format(input_file),
                        report_produced_date)
     cons.write_yamlvar("{}-FOIA_Request".format(input_file),

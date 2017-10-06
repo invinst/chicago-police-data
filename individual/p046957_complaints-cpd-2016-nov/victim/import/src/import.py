@@ -17,7 +17,7 @@ def get_setup():
         'input_file': 'input/p046957_-_report_4_-_victim_data.xls',
         'output_file': 'output/victims.csv.gz',
         'metadata_file': 'output/metadata_victims.csv.gz',
-        'column_names': ['CRID', 'Gender', 'Age', 'Race']
+        'column_names': ['CR_ID', 'gender', 'age', 'race']
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -37,7 +37,8 @@ data_df, report_produced_date, FOIA_request = \
                                           original_crid_col='Number',
                                           drop_col_val=('Race Desc',
                                                         'end of record'))
-
+log.info(('Processing {0} file, of FOIA number {1}, produced on {2}'
+          '').format(cons.input_file, FOIA_request, report_produced_date))
 cons.write_yamlvar("Report_Produced_Date", report_produced_date)
 cons.write_yamlvar("FOIA_Request", FOIA_request)
 
