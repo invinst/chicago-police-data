@@ -35,6 +35,8 @@ def clean_int(integer,
        20
        >>> clean_int("-267.12571")
        -267
+       >>> clean_int("-1246")
+       -1246
        >>> clean_int(-9126, 100, 0)
        nan
        >>> clean_int("26.06", 100, 0)
@@ -42,15 +44,24 @@ def clean_int(integer,
     '''
     # Either get integer to int form or return na_value
     if isinstance(integer, str):
-        # Check to see if it the string may be a float
-        try:
-            integer = int(float(integer))
-        except ValueError:
-            return na_value
+        if '.' in integer:
+            # Check to see if it the string may be a float
+            try:
+                integer = int(float(integer))
+            except ValueError:
+                return na_value
+        else:
+            try:
+                integer = int(integer)
+            except ValueError:
+                return na_value
+
     elif np.isfinite(integer):
         integer = int(float(integer))
+
     else:
         return na_value
+
     # If upper and lower bounds are actually bounds
     # then correct integer properly
     if upper > lower and inclusive:
