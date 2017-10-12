@@ -18,13 +18,13 @@ def get_setup():
         'output_file': 'output/awards.csv.gz',
         'output_demo_file': 'output/awards_demographics.csv.gz',
         'id_cols': [
-            "First.Name", "Last.Name",
-            "First.Name_NS", "Last.Name_NS",
-            "Appointed.Date", "Gender", "Race"
+            "first_name", "last_name",
+            "first_name_NS", "last_name_NS",
+            "appointed_date", "gender", "race"
             ],
         'conflict_cols': [
-            'Middle.Initial', 'Middle.Initial2',
-            'Birth.Year', 'Current.Star', 'Resignation.Date'
+            'middle_initial', 'middle_initial2',
+            'birth_year', 'current_star', 'resignation_date'
             ],
         'id': 'awards_ID'
         }
@@ -46,7 +46,7 @@ df = pd.read_csv(cons.input_file)
 df, uid_report = assign_unique_ids(df, cons.id,
                                    cons.id_cols,
                                    cons.conflict_cols)
-cons.write_yamlvar('UID Report', uid_report)
+log.info(uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,

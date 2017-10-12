@@ -18,9 +18,9 @@ def get_setup():
         'output_file': 'output/trr-officers.csv.gz',
         'output_demo_file': 'output/trr-officers_demographics.csv.gz',
         'export_cols': [
-            'TRR.ID', 'Injured', 'Unit',
-            'In.Uniform', 'Unit.Detail',
-            'Duty.Status', 'Assigned.Beat'
+            'TRR_ID', 'injured', 'unit',
+            'in_uniform', 'unit_detail',
+            'duty_status', 'assigned_beat'
             ],
         'id': 'trr-officers_ID',
         'drop_ranks': ['DETENTION AIDE']
@@ -39,7 +39,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-drop_ids = df[df['Rank'].isin(cons.drop_ranks)][cons.id]
+drop_ids = df[df['rank'].isin(cons.drop_ranks)][cons.id]
 df = df[[cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 

@@ -20,7 +20,7 @@ def get_setup():
             'input/p046957_-_report_2.3_-_identified_accused.xls',
             'input/p046957_-_report_2.4_-_identified_accused.xls',
             'input/p046957_-_report_2.5_-_identified_accused.xls'
-                       ],
+            ],
         'output_file': 'output/accused.csv.gz',
         'metadata_file': 'output/metadata_accused.csv.gz',
         'column_names': [
@@ -29,7 +29,7 @@ def get_setup():
             'current_star', 'complaint_category',
             'recommended_finding', 'recommended_discipline',
             'final_finding', 'final_discipline'
-                        ]
+            ]
         }
 
     assert all(input_file.startswith('input/')

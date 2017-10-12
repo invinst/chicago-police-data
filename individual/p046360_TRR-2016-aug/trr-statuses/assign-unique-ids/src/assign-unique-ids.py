@@ -18,12 +18,12 @@ def get_setup():
         'output_file': 'output/trr-statuses.csv.gz',
         'output_demo_file': 'output/trr-statuses_demographics.csv.gz',
         'id_cols': [
-                    "First.Name", "Last.Name", "Middle.Initial", "Suffix.Name",
-                    "First.Name_NS", "Last.Name_NS", "Middle.Initial2",
-                    "Appointed.Date", "Gender", "Race"
-                   ],
-        'current_cols': ['Star'],
-        'time_col': 'Status.Date',
+            "first_name", "last_name", "middle_initial", "suffix_name",
+            "first_name_NS", "last_name_NS", "middle_initial2",
+            "appointed_date", "gender", "race"
+            ],
+        'current_cols': ['star'],
+        'time_col': 'status_date',
         'id': 'trr-statuses_ID'
         }
 
@@ -42,7 +42,7 @@ cons, log = get_setup()
 df = pd.read_csv(cons.input_file)
 
 df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
-cons.write_yamlvar('UID Report', uid_report)
+log.info(uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,

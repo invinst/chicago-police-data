@@ -18,17 +18,17 @@ def get_setup():
         'output_file': 'output/ase-units.csv.gz',
         'output_demo_file': 'output/ase-units_demographics.csv.gz',
         'id_cols': [
-            "First.Name", "Last.Name", "Middle.Initial",
-            'Middle.Initial2', "Suffix.Name", 'Current.Age',
-            "Appointed.Date", "Gender", "Race",
-            'First.Name_NS', 'Last.Name_NS'
+            "first_name", "last_name", "middle_initial",
+            'middle_initial2', "suffix_name", 'current_age',
+            "appointed_date", "gender", "race",
+            'first_name_NS', 'last_name_NS'
             ],
         'max_cols': [
-            'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-            'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
+            'star1', 'star2', 'star3', 'star4', 'star5',
+            'star6', 'star7', 'star8', 'star9', 'star10'
             ],
-        'current_cols': ['Unit'],
-        'time_col': 'Start.Date',
+        'current_cols': ['unit'],
+        'time_col': 'unit_start_date',
         'id': 'ase-units_ID'
         }
 
@@ -47,9 +47,8 @@ cons, log = get_setup()
 df = pd.read_csv(cons.input_file)
 
 df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
-cons.write_yamlvar('UID Report', uid_report)
+log.info(uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
-
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,
                         max_cols=cons.max_cols,

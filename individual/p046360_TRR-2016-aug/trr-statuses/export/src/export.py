@@ -18,11 +18,11 @@ def get_setup():
         'output_file': 'output/trr-statuses.csv.gz',
         'output_demo_file': 'output/trr-statuses_demographics.csv.gz',
         'export_cols': [
-            'TRR.ID', 'Rank', 'Star', 'Status',
-            'Status.Time', 'Status.Date', 'Age'
+            'TRR_ID', 'rank', 'star', 'status',
+            'status_time', 'status_date', 'age'
             ],
         'id': 'trr-statuses_ID',
-        'notnull': 'Rank'
+        'notnull': 'rank'
         }
 
     assert (args['input_file'].startswith('input/') and

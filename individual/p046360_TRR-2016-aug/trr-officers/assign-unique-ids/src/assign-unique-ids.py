@@ -18,9 +18,9 @@ def get_setup():
         'output_file': 'output/trr-officers.csv.gz',
         'output_demo_file': 'output/trr-officers_demographics.csv.gz',
         'id_cols': [
-            "First.Name", "Last.Name", "First.Name_NS", "Last.Name_NS",
-            "Middle.Initial", 'Middle.Initial2', "Suffix.Name",
-            "Appointed.Date", "Gender", "Race", "Current.Star"
+            "first_name", "last_name", "first_name_NS", "last_name_NS",
+            "middle_initial", 'middle_initial2', "suffix_name",
+            "appointed_date", "gender", "race", "current_star"
             ],
         'id': 'trr-officers_ID'
         }
@@ -40,7 +40,7 @@ cons, log = get_setup()
 df = pd.read_csv(cons.input_file)
 
 df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols)
-cons.write_yamlvar('UID Report', uid_report)
+log.info(uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols)

@@ -18,10 +18,10 @@ def get_setup():
         'output_file': 'output/awards.csv.gz',
         'output_demo_file': 'output/awards_demographics.csv.gz',
         'export_cols': [
-            'Award.ID', 'Award.Type', 'Incident.Start.Date',
-            'Current.Award.Status', 'Award.Request.Date',
-            'Incident.End.Date', 'Rank', 'Last.Promotion.Date',
-            'Requester.Full.Name', 'Ceremony.Date', 'Tracking.NO'
+            'pps_award_detail_ID', 'award_type', 'award_start_date',
+            'current_award_status', 'award_request_date',
+            'award_end_date', 'rank', 'last_promotion_date',
+            'requester_full_name', 'ceremony_date', 'tracking_no'
             ],
         'id': 'awards_ID'
         }
@@ -42,10 +42,10 @@ df = pd.read_csv(cons.input_file)
 keeplist = ['PO', 'P O', 'P.O', 'SERGEANT']
 droplist = ['LEGAL', 'AIDE', 'CLERK', 'POL ', 'DIR',
             'SUPV', 'SUPT', 'MANAGER', 'TECH']
-keep_ids = df[df['Rank'].str.startswith('9', 'UNK')][
-              ((df['Rank'] == 'CHIEF') | (df['Rank'] == 'DEP CHIEF')) |
-              ((df['Rank'].str.contains('|'.join(keeplist))) &
-               (~df['Rank'].str.contains('|'.join(droplist))))][
+keep_ids = df[df['rank'].str.startswith('9', 'UNK')][
+              ((df['rank'] == 'CHIEF') | (df['rank'] == 'DEP CHIEF')) |
+              ((df['rank'].str.contains('|'.join(keeplist))) &
+               (~df['rank'].str.contains('|'.join(droplist))))][
               cons.id].unique()
 drop_ids = list(set(df[cons.id]) - set(keep_ids))
 df = df[[cons.id] + cons.export_cols]
@@ -53,5 +53,6 @@ df.to_csv(cons.output_file, **cons.csv_opts)
 
 demo_df = pd.read_csv(cons.input_demo_file)
 demo_df = demo_df[~demo_df[cons.id].isin(drop_ids)]
-print('{} IDs dropped from demographic data'.format(len(drop_ids)))
+log.info(('{} IDs dropped from demographic data due to non-officer ranks'
+          '').format(len(drop_ids)))
 demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)

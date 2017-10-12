@@ -31,8 +31,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df, conflicts_df = clean_data(df)
-print('Current.Status column replaced: Y to 1, N to 0')
-df['Current.Status'].replace({'Y': 1, 'N': 0}, inplace=True)
-cons.write_yamlvar('Conflicts', conflicts_df)
+df = clean_data(df)
+df['current_status'].replace({'Y': 1, 'N': 0}, inplace=True)
+log.info('current_status column replaced: Y to 1, N to 0')
 df.to_csv(cons.output_file, **cons.csv_opts)

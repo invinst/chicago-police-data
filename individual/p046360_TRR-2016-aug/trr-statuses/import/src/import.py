@@ -35,7 +35,8 @@ cons, log = get_setup()
 
 notes_df = pd.read_excel(cons.input_file, sheetname=cons.note_sheet,
                          header=None)
-notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet, 1].dropna())
+notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet,
+                              1].dropna())
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
 df.columns = standardize_columns(df.columns, cons.column_names_key)

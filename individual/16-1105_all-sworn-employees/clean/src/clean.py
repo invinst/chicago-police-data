@@ -31,6 +31,5 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df, conflicts_df = clean_data(df)
-cons.write_yamlvar('Conflicts', conflicts_df)
+df = clean_data(df)
 df.to_csv(cons.output_file, **cons.csv_opts)

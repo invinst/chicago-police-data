@@ -18,18 +18,18 @@ def get_setup():
         'output_file': 'output/cpd-employees.csv.gz',
         'output_demo_file': 'output/cpd-employees_demographics.csv.gz',
         'id_cols': [
-            "First.Name", "Last.Name", "First.Name_NS", "Last.Name_NS",
-            'Suffix.Name', "Appointed.Date", "Gender", "Race",
-            'Birth.Year', 'Current.Age', 'Resignation.Date'
+            "first_name", "last_name", "first_name_NS", "last_name_NS",
+            'suffix_name', "appointed_date", "gender", "race",
+            'birth_year', 'current_age', 'resignation_date'
             ],
         'conflict_cols': [
-            'Middle.Initial', 'Middle.Initial2',
-            'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-            'Star6', 'Star7', 'Star8', 'Star9', 'Star10'
+            'middle_initial', 'middle_initial2',
+            'star1', 'star2', 'star3', 'star4', 'star5',
+            'star6', 'star7', 'star8', 'star9', 'star10'
             ],
-        'max_cols': ['Current.Status', 'Current.Unit'],
-        'merge_cols': ['Unit.Description'],
-        'merge_on_cols': ['Current.Unit'],
+        'max_cols': ['current_status', 'current_unit'],
+        'merge_cols': ['unit_description'],
+        'merge_on_cols': ['current_unit'],
         'id': 'cpd-employees_ID'
         }
 
@@ -47,18 +47,18 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-po_df = df[df['First.Name'] == 'POLICE']
-print('{} hidden officers dropped from data'.format(po_df.shape[0]))
-print(('{} officer with no name dropped from data'
-       '').format(df[df['First.Name'].isnull()].shape[0]))
+po_df = df[df['first_name'] == 'POLICE']
+log.info('{} hidden officers dropped from data'.format(po_df.shape[0]))
+log.info(('{} officer with no name dropped from data'
+          '').format(df[df['first_name'].isnull()].shape[0]))
 
-df = df[(df['First.Name'].notnull()) &
-        (df['First.Name'] != 'POLICE')]
+df = df[(df['first_name'].notnull()) &
+        (df['first_name'] != 'POLICE')]
 
 df, uid_report = assign_unique_ids(df, cons.id, cons.id_cols,
                                    conflict_cols=cons.conflict_cols)
 
-cons.write_yamlvar('UID Report', uid_report)
+log.info(uid_report)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 agg_df = aggregate_data(df, cons.id, cons.id_cols,

@@ -303,8 +303,7 @@ def mode_aggregate(df, uid, col):
         # Group duplicate dataframe by uid
         groups = kd_df.groupby(uid, as_index=False)
         # If col is specified in mode_cols
-        # Use list comprehension to generate a list of
-        # two item lists: [uid, most common value in group]
+        # then aggregate groups by (first) most common value
         groups = groups.aggregate(lambda x: stats.mode(x).mode[0])
         # Recombine list of lists into dataframe
         groups = pd.DataFrame(groups, columns=[uid, col])
@@ -366,7 +365,7 @@ def aggregate_data(df, uid, id_cols=[],
         agg_df = agg_df.merge(oa_df, on=uid, how='left')
         # Now that the current_cols are 'current', the name must be changed
         # Add the prefix 'Current' to the current_cols in agg_df
-        agg_df.columns = ['Current.' + col.replace('Current.', '')
+        agg_df.columns = ['current.' + col.replace('current.', '')
                           if col in current_cols else col
                           for col in agg_df.columns]
 
@@ -379,7 +378,7 @@ def aggregate_data(df, uid, id_cols=[],
         # uid, merge, and merge_on cols
         merge_df = df[uid_col + merge_cols + merge_on_cols].drop_duplicates()
         # Merge merge_df onto the agg_df on uid and merge_on_cols
-        agg_df = agg_df.merge(merge_df, on=uid_col +  merge_on_cols, how='left')
+        agg_df = agg_df.merge(merge_df, on=uid_col + merge_on_cols, how='left')
         # Ensure no rows were lost or gained
         assert agg_df.shape[0] == len(df[uid].unique()),\
             "Some uids were gained or lost in merge cols step"

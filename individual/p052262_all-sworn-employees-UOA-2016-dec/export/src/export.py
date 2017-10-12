@@ -17,7 +17,7 @@ def get_setup():
         'input_demo_file': 'input/all-sworn-units_demographics.csv.gz',
         'output_file': 'output/all-sworn-units.csv.gz',
         'output_demo_file': 'output/all-sworn-units_demographics.csv.gz',
-        'export_cols': ['Unit', 'Start.Date', 'End.Date'],
+        'export_cols': ['unit', 'unit_start_date', 'unit_end_date'],
         'id': 'all-sworn-units_ID'
         }
 

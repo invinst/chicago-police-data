@@ -7,7 +7,7 @@
     Gender:                     gender
     Race:                       race
     'D.O.B.':                   birth_year
-    Age:                        age
+    Age:                        current_age
     'Status I':                 current_status
     'Appointed Date':           appointed_date
     'Employee Position Number': rank_no
@@ -124,7 +124,7 @@
 'p046360_TRR-2016-aug/trr-statuses':
     TRR_REPORT_ID:  TRR_ID
     STATUS:         status
-    STATDATETIME:   stats_datetime
+    STATDATETIME:   status_datetime
     FIRST_NME:      first_name
     LAST_NME:       last_name
     STAR:           star
@@ -194,7 +194,7 @@
     BIRTH_YEAR:             birth_year
     GENDER:                 gender
     RACE:                   race
-    STAR:                   star
+    STAR:                   current_star
     APPOINTED_DATE:         appointed_date
     RANK:                   rank
     LAST_PROMOTION_DATE:    last_promotion_date
@@ -205,6 +205,6 @@
     TRACKING_NO:            tracking_no
     CURRENT_STATUS:         current_award_status
     REQUESTER:              requester_full_name
-    INCIDENT_START_DATE:    award_incident_start_date
-    INCIDENT_END_DATE:      award_incident_end_date
+    INCIDENT_START_DATE:    award_start_date
+    INCIDENT_END_DATE:      award_end_date
     CEREMONY_DATE:          ceremony_date
