@@ -356,6 +356,7 @@ def compare_columns(df, colnames):
     ncols = len(colnames)
     for i, row in df.iterrows():
         x = list(filter(bool, row))
+        x = x if x else [np.nan]*ncols
         assert len(x) <= ncols, 'too many {}'.format(x)
         output_list.append(x)
     return pd.DataFrame(output_list, columns=colnames)
@@ -526,6 +527,7 @@ def clean_data(df, skip_cols=[]):
                           name_cols)].join(cn_df)
 
     df_cols = df.columns    # Store column names
+    df.replace('', np.nan, inplace=True)    # replace '' with nan
     # Drop columns that are completely missing values
     df.dropna(axis=1, how='all', inplace=True)
     # Store columns dropped due to all missing values

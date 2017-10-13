@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/investigators.csv.gz',
         'output_demo_file': 'output/investigators_demographics.csv.gz',
         'export_cols': [
-            'CRID', 'Current.Rank', 'Current.Unit'
+            'CR_ID', 'current_rank', 'current_unit'
             ],
         'id': 'investigators_ID',
         'keep_ranks': [
@@ -46,7 +46,7 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 df = df[[cons.id] + cons.export_cols]
-drop_ids = df[~df['Current.Rank'].isin(cons.keep_ranks)][cons.id].unique()
+drop_ids = df[~df['current_rank'].isin(cons.keep_ranks)][cons.id].unique()
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 demo_df = pd.read_csv(cons.input_demo_file)

@@ -15,9 +15,9 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_files': [
-        'input/p046957_-_report_5.1_-_complainant_(reporting_party)_data.xls',
-        'input/p046957_-_report_5.2_-_complainant_(reporting_party)_data.xls',
-        'input/p046957_-_report_5.3_-_complainant_(reporting_party)_data.xls'
+            'input/p046957_-_report_5.1_-_complainant_(reporting_party)_data.xls',
+            'input/p046957_-_report_5.2_-_complainant_(reporting_party)_data.xls',
+            'input/p046957_-_report_5.3_-_complainant_(reporting_party)_data.xls'
                        ],
         'output_file': 'output/complainants.csv.gz',
         'metadata_file': 'output/metadata_complainants.csv.gz',

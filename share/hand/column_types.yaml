@@ -14,12 +14,16 @@ TRR_date:               date
 award_request_date:     date
 award_start_date:       date
 award_end_date:         date
+complaint_date:         date
+closed_date:            date
 ceremony_date:          date
+incident_datetime:      datetime
 complaint_datetime:     datetime
 status_datetime:        datetime
 age:                    age
 current_age:            age
 unit:                   int
+current_unit:           int
 star:                   int
 star1:                  int
 star2:                  int

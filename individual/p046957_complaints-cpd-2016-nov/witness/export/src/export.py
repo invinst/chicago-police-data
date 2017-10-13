@@ -17,9 +17,9 @@ def get_setup():
         'input_demo_file': 'input/witnesses_demographics.csv.gz',
         'output_file': 'output/witnesses.csv.gz',
         'output_demo_file': 'output/witnesses_demographics.csv.gz',
-        'export_cols': ['CRID'],
+        'export_cols': ['CR_ID'],
         'id': 'witnesses_ID',
-        'notnull_col': ['First.Name', 'Appointed.Date']
+        'notnull_col': ['first_name', 'appointed_date']
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -44,7 +44,7 @@ demo_df = demo_df.dropna(subset=[cons.notnull_col],
                          how='any', axis=0)
 demo_df.reset_index(drop=True, inplace=True)
 dropped_row_count = initial_rows - demo_df.shape[0]
-print(('Dropping rows without any {0} data.\n'
-      '{1} demographic rows dropped.').format(cons.notnull_col,
-                                              dropped_row_count))
+log.info(('Dropping rows without any {0} data.\n'
+          '{1} demographic rows dropped.').format(cons.notnull_col,
+                                                  dropped_row_count))
 demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)

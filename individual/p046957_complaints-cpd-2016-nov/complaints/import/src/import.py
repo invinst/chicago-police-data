@@ -29,7 +29,7 @@ def get_setup():
             'address_number', 'street', 'apartment_number',
             'city_state', 'incident_datetime',
             'complaint_date', 'closed_date'
-           ]
+            ]
         }
 
     assert all(input_file.startswith('input/')

@@ -19,8 +19,8 @@ def get_setup():
         'output_file': 'output/witnesses.csv.gz',
         'metadata_file': 'output/metadata_witnesses.csv.gz',
         'column_names': [
-                         'CRID', 'Full.Name', 'Gender', 'Race',
-                         'Current.Star', 'Birth.Year', 'Appointed.Date'
+                         'CR_ID', 'full_name', 'gender', 'race',
+                         'current_star', 'birth_year', 'appointed_date'
                         ]
         }
 
@@ -41,14 +41,14 @@ df, report_produced_date, FOIA_request = \
                                       drop_col_val=('Race', 'end of record'),
                                       original_crid_mixed=True,
                                       add_skip=0)
-
+log.info(('Processing {0} file, of FOIA number {1}, produced on {2}'
+          '').format(cons.input_file, FOIA_request, report_produced_date))
 cons.write_yamlvar("Report_Produced_Date", report_produced_date)
 cons.write_yamlvar("FOIA_Request", FOIA_request)
 
 df.columns = cons.column_names
 
 df.reset_index(drop=True, inplace=True)
-
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = (collect_metadata(df, cons.input_file, cons.output_file)

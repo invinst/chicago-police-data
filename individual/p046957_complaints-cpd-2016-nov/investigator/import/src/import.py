@@ -21,13 +21,13 @@ def get_setup():
             'input/p046957_-_report_1.4_-_all_complaints_in_time_frame.xls',
             'input/p046957_-_report_1.5_-_all_complaints_in_time_frame.xls',
             'input/p046957_-_report_1.6_-_all_complaints_in_time_frame.xls'
-                       ],
+            ],
         'output_file': 'output/investigators.csv.gz',
         'metadata_file': 'output/metadata_investigators.csv.gz',
         'column_names': [
-                         'CR_ID', 'full_name', 'current_unit',
-                         'current_rank', 'current_star', 'appointed_date'
-                        ]
+            'CR_ID', 'full_name', 'current_unit',
+            'current_rank', 'current_star', 'appointed_date'
+            ]
         }
 
     assert all(input_file.startswith('input/')
