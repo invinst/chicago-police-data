@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/accused.csv.gz',
         'output_demo_file': 'output/accused_demographics.csv.gz',
         'export_cols': [
-            'CR_ID', 'complaint_category',
+            'cr_id', 'complaint_category',
             'recommended_discipline', 'final_discipline',
             'recommended_finding', 'final_finding'
             ],

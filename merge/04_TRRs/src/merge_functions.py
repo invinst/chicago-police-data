@@ -35,68 +35,68 @@ def take_first_four(in_str):
 
 
 def add_columns(df,
-                add_cols=["F4FN", "F4LN", "Current.Age", "Min_Max_Star",
-                          "BY_to_CA", "Stars", "L4FN", "L4LN"],
+                add_cols=["F4FN", "F4LN", "current_age", "min_max_star",
+                          "BY_to_CA", "stars", "L4FN", "L4LN"],
                 current_age_from=2017):
     '''returns pandas dataframe with columns added on
        depending on the specified add_cols and the columns
        in the input dataframe.
     '''
     # Add F(irst) 4 of F(irst)/L(ast) N(ame) columns
-    # if F4FN/F4LN and First./Last.Name_NS in df columns
-    if "F4FN" in add_cols and "First.Name_NS" in df.columns:
-        df['F4FN'] = df['First.Name_NS'].map(lambda x: x[:4])
-    if "F4LN" in add_cols and 'Last.Name_NS' in df.columns:
-        df['F4LN'] = df['Last.Name_NS'].map(lambda x: x[:4])
+    # if F4FN/F4LN and First./last_name_NS in df columns
+    if "F4FN" in add_cols and "first_name_NS" in df.columns:
+        df['F4FN'] = df['first_name_NS'].map(lambda x: x[:4])
+    if "F4LN" in add_cols and 'last_name_NS' in df.columns:
+        df['F4LN'] = df['last_name_NS'].map(lambda x: x[:4])
 
     # Add F(irst) 2 of F(irst)/L(ast) N(ame) columns
-    # if F2FN/F2LN and First./Last.Name_NS in df columns
-    if "F2FN" in add_cols and "First.Name_NS" in df.columns:
-        df['F2FN'] = df['First.Name_NS'].map(lambda x: x[:2])
-    if "F2LN" in add_cols and 'Last.Name_NS' in df.columns:
-        df['F2LN'] = df['Last.Name_NS'].map(lambda x: x[:2])
+    # if F2FN/F2LN and First./last_name_NS in df columns
+    if "F2FN" in add_cols and "first_name_NS" in df.columns:
+        df['F2FN'] = df['first_name_NS'].map(lambda x: x[:2])
+    if "F2LN" in add_cols and 'last_name_NS' in df.columns:
+        df['F2LN'] = df['last_name_NS'].map(lambda x: x[:2])
 
     # Add L(ast) 4 of F(irst)/L(ast) N(ame) columns
-    # if L4FN/L4LN and First./Last.Name_NS in df columns
-    if "L4FN" in add_cols and "First.Name_NS" in df.columns:
-        df['L4FN'] = df['First.Name_NS'].map(lambda x: x[-4:])
-    if "L4LN" in add_cols and 'Last.Name_NS' in df.columns:
-        df['L4LN'] = df['Last.Name_NS'].map(lambda x: x[-4:])
+    # if L4FN/L4LN and First./last_name_NS in df columns
+    if "L4FN" in add_cols and "first_name_NS" in df.columns:
+        df['L4FN'] = df['first_name_NS'].map(lambda x: x[-4:])
+    if "L4LN" in add_cols and 'last_name_NS' in df.columns:
+        df['L4LN'] = df['last_name_NS'].map(lambda x: x[-4:])
 
     # Since current age cannot be always matched based on birth year
     # If Current.Age will be used for matching,
     # Current.Age.p(lus)1 and Current.Age.m(inus)1 must be added
     # If Current.Age is in the dataframe then both are equal to it
-    if "Current.Age" in add_cols and "Current.Age" in df.columns:
-        df['Current.Age.p1'] = df['Current.Age']
-        df['Current.Age.m1'] = df['Current.Age']
+    if "current_age" in add_cols and "current_age" in df.columns:
+        df['current_age_p1'] = df['current_age']
+        df['current_age_m1'] = df['current_age']
     # If BY_to_CA is specified and Birth.Year is a column
     # Generate Current.Age.p/m1 by subtracting current_age_from from birth year
     # and subtract 1 for the .m1 column
-    if "BY_to_CA" in add_cols and "Birth.Year" in df.columns:
-        df['Current.Age.p1'] = \
-            df['Birth.Year'].map(lambda x: current_age_from - x)
-        df['Current.Age.m1'] = \
-            df['Birth.Year'].map(lambda x: current_age_from - x - 1)
+    if "BY_to_CA" in add_cols and "birth_year" in df.columns:
+        df['current_age_p1'] = \
+            df['birth_year'].map(lambda x: current_age_from - x)
+        df['current_age_m1'] = \
+            df['birth_year'].map(lambda x: current_age_from - x - 1)
 
     # If Min_Max_Star specified in add_cols and Star1-10 in columns
     # Then create min/max star columns
-    if ('Min_Max_Star' in add_cols and
-            'Star1' in df.columns and
-            'Star10' in df.columns):
-        star_cols = ['Star' + str(i)
+    if ('min_max_star' in add_cols and
+            'star1' in df.columns and
+            'star10' in df.columns):
+        star_cols = ['star' + str(i)
                      for i in range(1, 11)]
-        df['Min.Star'] = df[star_cols].min(axis=1, skipna=True)
-        df['Max.Star'] = df[star_cols].max(axis=1, skipna=True)
+        df['min_star'] = df[star_cols].min(axis=1, skipna=True)
+        df['max_star'] = df[star_cols].max(axis=1, skipna=True)
 
     # If Stars specified in add_cols and Current.Star in columns
     # and Star1 (thus Star2-9) not in columns
     # Then create Star1-10 columns all equal to Current.Star
-    if ('Stars' in add_cols and
-            'Current.Star' in df.columns and
-            'Star1' not in df.columns):
+    if ('stars' in add_cols and
+            'current_star' in df.columns and
+            'star1' not in df.columns):
         for i in range(1, 11):
-            df['Star{}'.format(i)] = df['Current.Star']
+            df['star{}'.format(i)] = df['current_star']
 
     # Return dataframe with relevant columns added
     return df
@@ -246,23 +246,23 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     # Intersect df1 and df2 columns
     df12_cols = intersect(df1.columns, df2.columns)
     # Add specified columns to add_cols given set of conditions
-    if 'First.Name_NS' in df12_cols:
+    if 'first_name_NS' in df12_cols:
         add_cols.append('F4FN')
-    if 'Last.Name_NS' in df12_cols:
+    if 'last_name_NS' in df12_cols:
         add_cols.append('F4LN')
-    if "Birth.Year" not in df12_cols:
-        add_cols.extend(["BY_to_CA", "Current.Age"])
-    if 'Star1' not in df12_cols and expand_stars:
-        add_cols.append('Stars')
-    if 'Star1' in df12_cols and 'Star10' in df12_cols:
-        add_cols.append('Min_Max_Star')
-    if 'First.Name_NS' in df12_cols and F2:
+    if "birth_year" not in df12_cols:
+        add_cols.extend(["BY_to_CA", "current_age"])
+    if 'star1' not in df12_cols and expand_stars:
+        add_cols.append('stars')
+    if 'star1' in df12_cols and 'star10' in df12_cols:
+        add_cols.append('min_max_star')
+    if 'first_name_NS' in df12_cols and F2:
         add_cols.append('F2FN')
-    if 'Last.Name_NS' in df12_cols and F2:
+    if 'last_name_NS' in df12_cols and F2:
         add_cols.append('F2LN')
-    if 'First.Name_NS' in df12_cols and L4:
+    if 'first_name_NS' in df12_cols and L4:
         add_cols.append('L4FN')
-    if 'Last.Name_NS' in df12_cols and L4:
+    if 'last_name_NS' in df12_cols and L4:
         add_cols.append('L4LN')
     # Add specified add_cols to both dataframes
     df1 = add_columns(df1, add_cols, current_age_from)
@@ -282,19 +282,19 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
     # And the lists themselves are in order from most to least useful
     # empty strings used as placeholder for non-crucial column 'types'
     base_lists = [
-        ['Current.Star', 'Min.Star', 'Max.Star',
-         'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-         'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
-        ['First.Name_NS', 'F4FN', 'F2FN'],
-        ['Last.Name_NS', 'F4LN', 'F2LN'],
-        ['Appointed.Date'],
-        ['Birth.Year', 'Current.Age', 'Current.Age.p1', 'Current.Age.m1', ''],
-        ['Middle.Initial', ''],
-        ['Middle.Initial2', ''],
-        ['Gender', ''],
-        ['Race', ''],
-        ['Suffix.Name', ''],
-        ['Current.Unit', '']
+        ['current_star', 'min_star', 'max_star',
+         'star1', 'star2', 'star3', 'star4', 'star5',
+         'star6', 'star7', 'star8', 'star9', 'star10'],
+        ['first_name_NS', 'F4FN', 'F2FN'],
+        ['last_name_NS', 'F4LN', 'F2LN'],
+        ['appointed_date'],
+        ['birth_year', 'current_age', 'current_age_p1', 'current_age_m1', ''],
+        ['middle_initial', ''],
+        ['middle_initial2', ''],
+        ['gender', ''],
+        ['race', ''],
+        ['suffix_name', ''],
+        ['current_unit', '']
     ]
     if extend_base_lists:
         base_lists.extend(extend_base_lists)
@@ -422,13 +422,13 @@ def append_to_reference(sub_df, profile_df, ref_df,
 
 def generate_profiles(ref, uid,
                       column_order=[
-                            'First.Name_NS', 'Last.Name_NS',
-                            'Middle.Initial', 'Suffix.Name', 'Middle.Initial2',
-                            'Race', 'Gender', 'Birth.Year', 'Appointed.Date',
-                            'Resignation.Date', 'Current.Rank',
-                            'Current.Age', 'Current.Unit', 'Current.Star',
-                            'Star1', 'Star2', 'Star3', 'Star4', 'Star5',
-                            'Star6', 'Star7', 'Star8', 'Star9', 'Star10'],
+                            'first_name_NS', 'last_name_NS',
+                            'middle_initial', 'suffix_name', 'middle_initial2',
+                            'race', 'gender', 'birth_year', 'appointed_date',
+                            'resignation_date', 'current_rank',
+                            'current_age', 'current_unit', 'current_star',
+                            'star1', 'star2', 'star3', 'star4', 'star5',
+                            'star6', 'star7', 'star8', 'star9', 'star10'],
                       mode_cols=[],
                       max_cols=[],
                       current_cols=[],

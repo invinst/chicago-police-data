@@ -4,7 +4,7 @@
 # merge/02_unit-history/src/Makefile
 
 .PHONY: all clean
-# Additional files created: assign-universal-ids.log, assign-universal-ids.yaml,
+# Additional files created: merge.log, merge.yaml,
 # ase-units.csv.gz, all-sworn-units.csv.gz
 # officer-reference.csv.gz
 

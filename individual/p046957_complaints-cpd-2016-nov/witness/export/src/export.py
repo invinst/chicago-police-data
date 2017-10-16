@@ -17,7 +17,7 @@ def get_setup():
         'input_demo_file': 'input/witnesses_demographics.csv.gz',
         'output_file': 'output/witnesses.csv.gz',
         'output_demo_file': 'output/witnesses_demographics.csv.gz',
-        'export_cols': ['CR_ID'],
+        'export_cols': ['cr_id'],
         'id': 'witnesses_ID',
         'notnull_col': ['first_name', 'appointed_date']
         }

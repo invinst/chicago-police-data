@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/trr-main.csv.gz',
         'metadata_file': 'output/metadata_trr-main.csv.gz',
         'sheet': 'Sheet1',
-        'drop_columns': ['cb_no', 'CR_ID'],
+        'drop_columns': ['cb_no', 'cr_id'],
         'keep_columns': [
             'TRR_REPORT_ID', 'RD_NO', 'CR_NO_OBTAINED', 'SUBJECT_CB_NO',
             'EVENT_NO', 'BEAT', 'BLK', 'DIR', 'STN',

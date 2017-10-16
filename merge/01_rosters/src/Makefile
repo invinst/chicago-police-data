@@ -4,7 +4,7 @@
 # merge/01_rosters/src/Makefile
 
 .PHONY: all clean
-# Additional files created: assign-universal-ids.log, assign-universal-ids.yaml,
+# Additional files created: merge.log, merge.yaml,
 # all-members.csv.gz, cpd-employees.csv.gz
 # officer-reference.csv.gz
 

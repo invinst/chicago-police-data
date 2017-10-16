@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/trr-officers.csv.gz',
         'output_demo_file': 'output/trr-officers_demographics.csv.gz',
         'export_cols': [
-            'TRR_ID', 'injured', 'unit',
+            'trr_id', 'injured', 'unit',
             'in_uniform', 'unit_detail',
             'duty_status', 'assigned_beat'
             ],

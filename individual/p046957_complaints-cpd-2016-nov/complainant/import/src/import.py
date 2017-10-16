@@ -21,7 +21,7 @@ def get_setup():
                        ],
         'output_file': 'output/complainants.csv.gz',
         'metadata_file': 'output/metadata_complainants.csv.gz',
-        'column_names': ['CR_ID', 'gender', 'age', 'race']
+        'column_names': ['cr_id', 'gender', 'age', 'race']
         }
 
     assert all(input_file.startswith('input/')

@@ -32,8 +32,8 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file, header=None)
-df.columns = ['CR_ID']
-log.info('Only column labeled CR_ID')
+df.columns = ['cr_id']
+log.info('Only column labeled cr_id')
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

@@ -365,7 +365,7 @@ def aggregate_data(df, uid, id_cols=[],
         agg_df = agg_df.merge(oa_df, on=uid, how='left')
         # Now that the current_cols are 'current', the name must be changed
         # Add the prefix 'Current' to the current_cols in agg_df
-        agg_df.columns = ['current.' + col.replace('current.', '')
+        agg_df.columns = ['current_' + col.replace('current_', '')
                           if col in current_cols else col
                           for col in agg_df.columns]
 

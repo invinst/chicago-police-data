@@ -1,0 +1,45 @@
+# from src/merge.py
+Merge List: current_unit-suffix_name-race-gender-middle_initial2-birth_year-appointed_date-last_name_NS-first_name_NS                   9341
+suffix_name-race-gender-middle_initial2-birth_year-appointed_date-last_name_NS-first_name_NS                                2203
+current_unit-suffix_name-race-gender-middle_initial2-middle_initial-birth_year-appointed_date-last_name_NS-first_name_NS    1455
+current_unit-suffix_name-gender-middle_initial2-birth_year-appointed_date-last_name_NS-first_name_NS                        1161
+current_unit-suffix_name-gender-middle_initial2-middle_initial-birth_year-appointed_date-last_name_NS-first_name_NS          966
+suffix_name-race-gender-middle_initial2-middle_initial-birth_year-appointed_date-last_name_NS-first_name_NS                  364
+suffix_name-gender-middle_initial2-birth_year-appointed_date-last_name_NS-first_name_NS                                      319
+suffix_name-gender-middle_initial2-middle_initial-birth_year-appointed_date-last_name_NS-first_name_NS                       202
+current_unit-suffix_name-race-gender-birth_year-appointed_date-last_name_NS-first_name_NS                                      3
+current_unit-suffix_name-gender-middle_initial2-birth_year-appointed_date-first_name_NS                                        1
+current_unit-suffix_name-gender-middle_initial-birth_year-appointed_date-last_name_NS-first_name_NS                            1
+suffix_name-race-gender-middle_initial2-middle_initial-birth_year-appointed_date-F4FN                                          1
+current_unit-suffix_name-gender-middle_initial2-middle_initial-birth_year-appointed_date-first_name_NS                         1
+Name: Match, dtype: int64
+Merge List: current_unit-appointed_date-last_name_NS-first_name_NS-star9                   1133
+current_unit-appointed_date-last_name_NS-first_name_NS-star2                    459
+current_unit-appointed_date-last_name_NS-first_name_NS-star3                    317
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star9     217
+appointed_date-last_name_NS-first_name_NS-star9                                 159
+current_unit-appointed_date-last_name_NS-first_name_NS-star4                    140
+appointed_date-last_name_NS-first_name_NS-star2                                  82
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star2      70
+current_unit-appointed_date-last_name_NS-first_name_NS-star1                     69
+appointed_date-last_name_NS-first_name_NS-star3                                  59
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star3      48
+current_unit-appointed_date-last_name_NS-first_name_NS-star5                     41
+middle_initial-appointed_date-last_name_NS-first_name_NS-star9                   40
+appointed_date-last_name_NS-first_name_NS-star4                                  29
+middle_initial-appointed_date-last_name_NS-first_name_NS-star2                   18
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star4      12
+appointed_date-last_name_NS-first_name_NS-star5                                  11
+middle_initial-appointed_date-last_name_NS-first_name_NS-star3                   11
+appointed_date-last_name_NS-first_name_NS-star1                                  10
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star1      10
+current_unit-appointed_date-last_name_NS-first_name_NS-star6                      9
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star5       7
+middle_initial-appointed_date-last_name_NS-first_name_NS-star4                    4
+appointed_date-last_name_NS-first_name_NS-star6                                   3
+current_unit-middle_initial-appointed_date-last_name_NS-first_name_NS-star6       3
+current_unit-appointed_date-last_name_NS-first_name_NS-current_star               3
+appointed_date-last_name_NS-first_name_NS-current_star                            1
+current_unit-appointed_date-last_name_NS-first_name_NS-star7                      1
+middle_initial-appointed_date-last_name_NS-first_name_NS-star5                    1
+Name: Match, dtype: int64

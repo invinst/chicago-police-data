@@ -5,7 +5,8 @@
 
 .PHONY: all clean
 # Additional files created: export.log, export.yaml,
-# investigators_demographics.csv.gz
+# investigators_demographics.csv.gz,
+# non-CPD_investigators_demographics.csv.gz
 
 all: \
 		output/investigators.csv.gz

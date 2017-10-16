@@ -19,37 +19,28 @@ def get_setup():
         'input_reference_file': 'input/officer-reference.csv.gz',
         'arg_dicts': [
             {
-                'input_demo_file': 'input/all-sworn-units_demographics.csv.gz',
-                'input_full_file': 'input/all-sworn-units.csv.gz',
-                'output_full_file': 'output/all-sworn-units.csv.gz',
-                'args': {'no_match_cols': ['last_name_NS', 'first_name_NS'],
-                         'L4': True,
+                'input_demo_file': 'input/trr-officers_demographics.csv.gz',
+                'input_full_file': 'input/trr-officers.csv.gz',
+                'output_full_file': 'output/trr-officers.csv.gz',
+                'args': {'no_match_cols': ['last_name_NS', 'current_star'],
+                         'expand_stars': True,
                          'custom_matches': [
-                             ['L4FN', 'birth_year', 'race', 'gender',
-                              'current_unit', 'appointed_date']
-                         ],
+                             ["appointed_date", "star1", "gender"]
+                             ],
                          'return_merge_report': True,
                          'print_merging': True}
             },
             {
-                'input_demo_file': 'input/ase-units_demographics.csv.gz',
-                'input_full_file': 'input/ase-units.csv.gz',
-                'output_full_file': 'output/ase-units.csv.gz',
-                'args': {
-                    'no_match_cols': [
-                        'last_name_NS', 'star1', 'first_name_NS'
-                        ],
-                    'custom_matches': [
-                        ["first_name_NS", "appointed_date", "race",
-                         "gender", "current_unit"],
-                        ["appointed_date", "gender", "star1",
-                         "current_age_p1", "current_unit"]
-                        ],
-                    'current_age_from': 2016,
-                    'drop_base_cols': ['star' + str(i)
-                                       for i in range(2, 11)],
-                    'return_merge_report': True,
-                    'print_merging': True}
+                'input_demo_file': 'input/trr-statuses_demographics.csv.gz',
+                'input_full_file': 'input/trr-statuses.csv.gz',
+                'output_full_file': 'output/trr-statuses.csv.gz',
+                'args': {'no_match_cols': ['last_name_NS', 'current_star'],
+                         'expand_stars': True,
+                         'custom_matches': [
+                             ["appointed_date", "star1", "gender"]
+                             ],
+                         'return_merge_report': True,
+                         'print_merging': True}
             }
         ],
         'output_profile_file': 'output/officer-profiles.csv.gz',
@@ -91,10 +82,9 @@ for arg_dict in cons.arg_dicts:
                                    **arg_dict['args'])
 
     ref_df = atr_dict['ref']
-    log.info('File added: {}'.format(arg_dict['input_demo_file']))
+    log.info('File Added: {}'.format(arg_dict['input_demo_file']))
     log.info(('Officers Added: {}'
               '').format(len(ref_df['UID']) - profile_df.shape[0]))
-
     if not profile_df.empty:
         log.info('Merge Report: {}'.format(atr_dict['MR']))
         cons.write_yamlvar('Merge List',

@@ -73,11 +73,12 @@ for arg_dict in cons.arg_dicts:
                                    **arg_dict['args'])
 
     ref_df = atr_dict['ref']
-    cons.write_yamlvar('File added', arg_dict['input_demo_file'])
-    cons.write_yamlvar('Officers Added',
-                       len(ref_df['UID']) - profile_df.shape[0])
+    log.info('File added: {}'.format(arg_dict['input_demo_file']))
+    log.info(('Officers Added: {}'
+              '').format(len(ref_df['UID']) - profile_df.shape[0]))
+
     if not profile_df.empty:
-        cons.write_yamlvar('Merge Report', atr_dict['MR'])
+        log.info('Merge Report: {}'.format(atr_dict['MR']))
         cons.write_yamlvar('Merge List',
                            atr_dict['ML'].value_counts())
 

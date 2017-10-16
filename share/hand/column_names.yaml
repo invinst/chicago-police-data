@@ -63,9 +63,9 @@
 
 
 'p046360_TRR-2016-aug/trr-main':
-    TRR_REPORT_ID:                  TRR_ID
+    TRR_REPORT_ID:                  trr_id
     RD_NO:                          rd_no
-    CR_NO_OBTAINED:                 CR_ID
+    CR_NO_OBTAINED:                 cr_id
     SUBJECT_CB_NO:                  cb_no
     EVENT_NO:                       event_no
     BEAT:                           beat
@@ -87,7 +87,7 @@
 
 
 'p046360_TRR-2016-aug/trr-officers':
-    TRR_REPORT_ID:      TRR_ID
+    TRR_REPORT_ID:      trr_id
     POLAST:             last_name
     POFIRST:            first_name
     POGNDR:             gender
@@ -104,7 +104,7 @@
 
 
 'p046360_TRR-2016-aug/trr-subjects':
-    TRR_REPORT_ID:          TRR_ID
+    TRR_REPORT_ID:          trr_id
     SUBGNDR:                gender
     SUBRACE:                race
     SUBAGE:                 age
@@ -115,14 +115,14 @@
 
 
 'p046360_TRR-2016-aug/Star #':
-    TRR_REPORT_ID:  TRR_ID
+    TRR_REPORT_ID:  trr_id
     LAST_NME:       last_name
     FIRST_NME:      first_name
     CPD_STAR_NO:    current_star
 
 
 'p046360_TRR-2016-aug/trr-statuses':
-    TRR_REPORT_ID:  TRR_ID
+    TRR_REPORT_ID:  trr_id
     STATUS:         status
     STATDATETIME:   status_datetime
     FIRST_NME:      first_name
@@ -136,7 +136,7 @@
 
 
 'p046360_TRR-2016-aug/actions-responses':
-    TRR_REPORT_ID:      TRR_ID
+    TRR_REPORT_ID:      trr_id
     PERSON:             person
     'Resistance Type':  resistance_type
     ACTION:             action
@@ -144,7 +144,7 @@
 
 
 'p046360_TRR-2016-aug/weapon-discharges':
-    TRR_REPORT_ID:                  TRR_ID
+    TRR_REPORT_ID:                  trr_id
     WEAPON_TYPE:                    weapon_type
     WEAPON_TYPE_DESCR:              weapon_type_description
     FIREARM_MAKE:                   firearm_make
@@ -165,7 +165,7 @@
 
 
 'p046360_TRR-2016-aug/charges':
-    TRR_REPORT_ID:  TRR_ID
+    TRR_REPORT_ID:  trr_id
     SUBJECT_CB_NO:  cb_no
     RD_NO:          rd_no
     STATUTE:        statute
@@ -173,14 +173,14 @@
 
 
 'p046360_TRR-2016-aug/subject-weapons':
-    TRR_REPORT_ID:      TRR_ID
+    TRR_REPORT_ID:      trr_id
     WEAPON_TYPE:        weapon_type
     FIREARM_CALIBER:    firearm_caliber
     WEAPON_DESCRIPTION: weapon_description
 
 
 'copa-498_officer-complaints-2017-sep':
-    LOG_NO:             CR_ID
+    LOG_NO:             cr_id
     COMPLAINT_DATE:     complaint_datetime
     CURRENT_STATUS:     complaint_status
     CURRENT_CATEGORY:   complaint_category
@@ -199,7 +199,7 @@
     RANK:                   rank
     LAST_PROMOTION_DATE:    last_promotion_date
     RESIGNATION_DATE:       resignation_date
-    PPS_AWARD_DETAIL_ID:    pps_award_detail_ID
+    PPS_AWARD_DETAIL_ID:    pps_award_detail_id
     AWARD_TYPE:             award_type
     AWARD_REQUEST_DATE:     award_request_date
     TRACKING_NO:            tracking_no

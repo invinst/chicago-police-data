@@ -1,4 +1,5 @@
 import pandas as pd
+import yaml
 import __main__
 
 from merge_functions import generate_profiles
@@ -15,27 +16,27 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/officer-reference.csv.gz',
-        'FOIA_file': 'hand/FOIA_dictionary.csv',
+        'FOIA_file': 'hand/FOIA_dates.yaml',
         'output_file': 'output/final-profiles.csv.gz',
         'universal_id': 'UID',
         'column_order': [
-            'First.Name', 'Last.Name',
-            'Middle.Initial', 'Middle.Initial2', 'Suffix.Name',
-            'Birth.Year', 'Race', 'Gender',
-            'Appointed.Date', 'Resignation.Date',
-            'Current.Status', 'Current.Age', 'Current.Star',
-            'Current.Unit', 'Current.Rank'
+            'first_name', 'last_name',
+            'middle_initial', 'middle_initial2', 'suffix_name',
+            'birth_year', 'race', 'gender',
+            'appointed_date', 'resignation_date',
+            'current_status', 'current_age', 'current_star',
+            'current_unit', 'current_rank'
             ],
-        'max_cols': ['Resignation.Date'],
+        'max_cols': ['resignation_date'],
         'current_cols': [
-            'Current.Star', 'Current.Age', 'Current.Unit',
-            'Current.Rank', 'Current.Status'
+            'current_star', 'current_age', 'current_unit',
+            'current_rank', 'current_status'
             ],
         'time_col': 'FOIA_date',
         'mode_cols': [
-            'First.Name', 'Last.Name', 'Middle.Initial',
-            'Middle.Initial2', 'Suffix.Name', 'Race', 'Gender',
-            'Birth.Year', 'Appointed.Date'
+            'first_name', 'last_name', 'middle_initial',
+            'middle_initial2', 'suffix_name', 'race', 'gender',
+            'birth_year', 'appointed_date'
             ]
         }
 
@@ -51,8 +52,8 @@ cons, log = get_setup()
 
 ref_df = pd.read_csv(cons.input_file)
 
-FOIA_dict = pd.read_csv(cons.FOIA_file)
-FOIA_dict = dict(zip(FOIA_dict.ID_name, FOIA_dict.FOIA_date))
+with open(cons.FOIA_file, 'r') as f:
+    FOIA_dict = yaml.load(f)
 for fid, fdate in FOIA_dict.items():
     if fid in ref_df.columns:
         ref_df.loc[ref_df[fid].notnull(), 'FOIA_date'] = fdate
@@ -67,5 +68,7 @@ profile_df = generate_profiles(ref_df, cons.universal_id,
                                time_col=cons.time_col,
                                column_order=cons.column_order,
                                include_IDs=False)
+
+log.info('Officer profile count: {}'.format(profile_df.shape[0]))
 
 profile_df.to_csv(cons.output_file, **cons.csv_opts)

@@ -25,7 +25,7 @@ def get_setup():
         'output_file': 'output/complaints.csv.gz',
         'metadata_file': 'output/metadata_complaints.csv.gz',
         'column_names': [
-            'CR_ID', 'beat', 'location_code',
+            'cr_id', 'beat', 'location_code',
             'address_number', 'street', 'apartment_number',
             'city_state', 'incident_datetime',
             'complaint_date', 'closed_date'

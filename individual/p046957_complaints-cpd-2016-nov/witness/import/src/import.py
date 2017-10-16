@@ -19,7 +19,7 @@ def get_setup():
         'output_file': 'output/witnesses.csv.gz',
         'metadata_file': 'output/metadata_witnesses.csv.gz',
         'column_names': [
-                         'CR_ID', 'full_name', 'gender', 'race',
+                         'cr_id', 'full_name', 'gender', 'race',
                          'current_star', 'birth_year', 'appointed_date'
                         ]
         }

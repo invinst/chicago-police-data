@@ -17,7 +17,7 @@ def get_setup():
         'input_file': 'input/p046957_-_report_4_-_victim_data.xls',
         'output_file': 'output/victims.csv.gz',
         'metadata_file': 'output/metadata_victims.csv.gz',
-        'column_names': ['CR_ID', 'gender', 'age', 'race']
+        'column_names': ['cr_id', 'gender', 'age', 'race']
         }
 
     assert args['input_file'].startswith('input/'),\

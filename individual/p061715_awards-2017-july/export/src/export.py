@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/awards.csv.gz',
         'output_demo_file': 'output/awards_demographics.csv.gz',
         'export_cols': [
-            'pps_award_detail_ID', 'award_type', 'award_start_date',
+            'pps_award_detail_id', 'award_type', 'award_start_date',
             'current_award_status', 'award_request_date',
             'award_end_date', 'rank', 'last_promotion_date',
             'requester_full_name', 'ceremony_date', 'tracking_no'

@@ -24,7 +24,7 @@ def get_setup():
         'output_file': 'output/accused.csv.gz',
         'metadata_file': 'output/metadata_accused.csv.gz',
         'column_names': [
-            'CR_ID', 'full_name', 'birth_year', 'gender', 'race',
+            'cr_id', 'full_name', 'birth_year', 'gender', 'race',
             'appointed_date', 'current_unit', 'current_rank',
             'current_star', 'complaint_category',
             'recommended_finding', 'recommended_discipline',
