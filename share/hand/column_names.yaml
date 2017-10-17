@@ -65,8 +65,6 @@
 'p046360_TRR-2016-aug/trr-main':
     TRR_REPORT_ID:                  trr_id
     RD_NO:                          rd_no
-    CR_NO_OBTAINED:                 cr_id
-    SUBJECT_CB_NO:                  cb_no
     EVENT_NO:                       event_no
     BEAT:                           beat
     BLK:                            block
@@ -166,7 +164,6 @@
 
 'p046360_TRR-2016-aug/charges':
     TRR_REPORT_ID:  trr_id
-    SUBJECT_CB_NO:  cb_no
     RD_NO:          rd_no
     STATUTE:        statute
     DESCR:          description
