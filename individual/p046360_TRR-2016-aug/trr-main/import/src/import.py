@@ -18,9 +18,8 @@ def get_setup():
         'output_file': 'output/trr-main.csv.gz',
         'metadata_file': 'output/metadata_trr-main.csv.gz',
         'sheet': 'Sheet1',
-        'drop_columns': ['cb_no', 'cr_id'],
         'keep_columns': [
-            'TRR_REPORT_ID', 'RD_NO', 'CR_NO_OBTAINED', 'SUBJECT_CB_NO',
+            'TRR_REPORT_ID', 'RD_NO',
             'EVENT_NO', 'BEAT', 'BLK', 'DIR', 'STN',
             'LOC', 'DTE', 'TMEMIL', 'INDOOR_OR_OUTDOOR',
             'LIGHTING_CONDITION', 'WEATHER_CONDITION',
@@ -46,8 +45,6 @@ df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
 df = df[cons.keep_columns]
 log.info('{} columns selected.'.format(cons.keep_columns))
 df.columns = standardize_columns(df.columns, cons.column_names_key)
-df = df.drop(cons.drop_columns, axis=1)
-log.info('{} columns dropped.'.format(cons.drop_columns))
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)

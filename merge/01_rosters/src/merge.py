@@ -1,8 +1,7 @@
 import pandas as pd
 import __main__
 
-from merge_functions import append_to_reference, generate_profiles,\
-                            listdiff, remerge
+from merge_functions import merge_process
 import setup
 
 
@@ -20,22 +19,9 @@ def get_setup():
                 'input_demo_file': 'input/cpd-employees_demographics.csv.gz',
                 'input_full_file': 'input/cpd-employees.csv.gz',
                 'output_full_file': 'output/cpd-employees.csv.gz',
+                'intrafile_id': 'cpd-employees_ID',
                 'args': {}
             }
-            # {
-            #     'input_demo_file': 'input/all-members_demographics.csv.gz',
-            #     'input_full_file': 'input/all-members.csv.gz',
-            #     'output_full_file': 'output/all-members.csv.gz',
-            #     'args': {}
-            # },
-            # {
-            #     'input_demo_file': 'input/all-sworn_demographics.csv.gz',
-            #     'input_full_file': 'input/all-sworn.csv.gz',
-            #     'output_full_file': 'output/all-sworn.csv.gz',
-            #     'args': {'no_match_cols': ['Last.Name_NS'],
-            #              'return_merge_report': True,
-            #              'print_merging': True}
-            # }
         ],
         'output_profile_file': 'output/officer-profiles.csv.gz',
         'output_reference_file': 'output/officer-reference.csv.gz',
@@ -63,34 +49,17 @@ for arg_dict in cons.arg_dicts:
     assert (arg_dict['input_full_file'].endswith('.csv.gz') and
             arg_dict['input_demo_file'].endswith('.csv.gz') and
             arg_dict['output_full_file'].endswith('.csv.gz')),\
-        'A file does not start with .csv.gz'
+        'A file does not end with .csv.gz'
 
-    print('File: {}'.format(arg_dict['input_full_file']))
-    sub_df = pd.read_csv(arg_dict['input_demo_file'])
-    atr_dict = append_to_reference(sub_df=sub_df,
-                                   profile_df=profile_df,
-                                   ref_df=ref_df,
-                                   **arg_dict['args'])
-
-    ref_df = atr_dict['ref']
-    log.info('File added: {}'.format(arg_dict['input_demo_file']))
-    log.info(('Officers Added: {}'
-              '').format(len(ref_df['UID']) - profile_df.shape[0]))
-
-    if not profile_df.empty:
-        log.info('Merge Report: {}'.format(atr_dict['MR']))
-        cons.write_yamlvar('Merge List',
-                           atr_dict['ML'].value_counts())
-
-    profile_df = generate_profiles(ref_df, cons.universal_id,
-                                   mode_cols=listdiff(ref_df.columns,
-                                                      [cons.universal_id]))
-
-    full_df = pd.read_csv(arg_dict['input_full_file'])
-    id_col = [col for col in full_df.columns
-              if col.endswith('_ID')][0]
-    full_df = remerge(full_df, profile_df,
-                      cons.universal_id, id_col)
+    ref_df, profile_df, full_df = \
+        merge_process(arg_dict['input_demo_file'],
+                      arg_dict['input_full_file'],
+                      ref_df,
+                      profile_df,
+                      args_dict=arg_dict['args'],
+                      log=log,
+                      intrafile_id=arg_dict['intrafile_id'],
+                      uid=cons.universal_id)
     full_df.to_csv(arg_dict['output_full_file'], **cons.csv_opts)
 
 profile_df.to_csv(cons.output_profile_file, **cons.csv_opts)

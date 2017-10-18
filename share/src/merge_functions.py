@@ -168,7 +168,7 @@ def generate_merge_report(total_merged,
 
 
 def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
-               return_unmatched=True, return_merge_report=True):
+               return_unmatched=True, merge_report=True):
     '''returns a dictionary containing, at minimum, a pandas dataframe
        resulting from iterative merging of two dataframes
     '''
@@ -212,7 +212,6 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
     merge_report = generate_merge_report(dfm.shape[0],
                                          df1_rows,
                                          df2_rows)
-    print(merge_report)
 
     # Initialize dictionary of return values with 'merged' data
     return_dict = {'merged': dfm.reset_index(drop=True)}
@@ -221,8 +220,8 @@ def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
     if return_unmatched:
         return_dict['UM1'] = df1
         return_dict['UM2'] = df2
-    # If return_merge_report is True then return merge report as MR
-    if return_merge_report:
+    # If merge_report is True then return merge report as MR
+    if merge_report:
         return_dict['MR'] = merge_report
 
     return return_dict
@@ -233,7 +232,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                    extend_base_lists=[], drop_base_cols=[],
                    current_age_from=2017,
                    expand_stars=False, F2=False, L4=False,
-                   return_unmatched=True, return_merge_report=True,
+                   return_unmatched=True, merge_report=True,
                    print_merging=False):
     '''returns dictionary from loop_merge
        automates adding columns and merging list creation
@@ -330,7 +329,7 @@ def merge_datasets(df1, df2, keep_columns, custom_matches=[],
                              on_lists=on_lists,
                              keep_columns=keep_columns,
                              return_unmatched=return_unmatched,
-                             return_merge_report=return_merge_report,
+                             merge_report=merge_report,
                              print_merging=print_merging)
 
     # Return results of loop_merge
@@ -341,7 +340,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
                         custom_matches=[], return_unmatched=False,
                         min_match_length=4, no_match_cols=[],
                         extend_base_lists=[], drop_base_cols=[],
-                        return_merge_report=True, print_merging=False,
+                        merge_report=True, print_merging=False,
                         return_merge_list=True, expand_stars=False,
                         F2=False, L4=False, current_age_from=2017):
     '''returns dictionary including at least a pandas dataframe
@@ -381,7 +380,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
                                  min_match_length=min_match_length,
                                  extend_base_lists=extend_base_lists,
                                  drop_base_cols=drop_base_cols,
-                                 return_merge_report=return_merge_report,
+                                 merge_report=merge_report,
                                  expand_stars=expand_stars,
                                  F2=F2,
                                  L4=L4,
@@ -412,7 +411,7 @@ def append_to_reference(sub_df, profile_df, ref_df,
         if return_unmatched:
             return_dict['UM1'] = md_dict['UM1']
             return_dict['UM2'] = md_dict['UM2']
-        if return_merge_report:
+        if merge_report:
             return_dict['MR'] = md_dict['MR']
         if return_merge_list:
             return_dict['ML'] = md_dict['merged']['Match']
@@ -484,3 +483,50 @@ def remerge(df, link_df, uid_col, id_col):
                   on=id_col, how='left')
     assert(df.shape[0] == rows), print('Missing rows!')
     return df
+
+
+def merge_process(input_demo_file, input_full_file,
+                  ref_df, profile_df,
+                  args_dict, log,
+                  intrafile_id, uid='UID'):
+    '''returns tuple of reference df, profile df, and full df with uids
+    '''
+    log.info(('Processing file: {} as demographics file.'
+              '').format(input_demo_file))
+    sub_df = pd.read_csv(input_demo_file)
+    atr_dict = append_to_reference(sub_df=sub_df,
+                                   profile_df=profile_df,
+                                   ref_df=ref_df,
+                                   **args_dict)
+    log.info('Append to reference complete.')
+    ref_df = atr_dict['ref']
+    log.info(('Officers Added: {}'
+              '').format(len(unique(ref_df[uid])) - profile_df.shape[0]))
+
+    if not profile_df.empty:
+        log.info('Merge Report: {}'.format(atr_dict['MR']))
+        log.info('Merge List: {}'.format(atr_dict['ML'].value_counts()))
+
+    log.info('Starting to generate_profiles.')
+    profile_df = generate_profiles(ref_df, uid,
+                                   mode_cols=listdiff(ref_df.columns,
+                                                      [uid]))
+    log.info('Finised generate_profiles.')
+
+    if input_full_file:
+        log.info('Starting remerge to {} data'.format(input_full_file))
+
+        full_df = pd.read_csv(input_full_file)
+        assert intrafile_id in full_df.columns,\
+            'No {} in input_full_file'.format(intrafile_id)
+
+        full_df = remerge(full_df, profile_df,
+                          uid, intrafile_id)
+        log.info('Finished remerge.')
+
+    else:
+        log.warning('Missing input_full_file. No remerging step.\n'
+                    'Will return an empty pandas dataframe instead of full_df')
+        full_df = pd.DataFrame()
+
+    return ref_df, profile_df, full_df

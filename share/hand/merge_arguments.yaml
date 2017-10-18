@@ -1,29 +1,27 @@
-# Arguments for merging files based on input file
+# Arguments for test merging files based on input file
 
 'cpd-employees':
     input_demo_file:    'input/cpd-employees_demographics.csv.gz'
-    input_full_file:    'input/cpd-employees.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'cpd-employees_ID'
     args:               {}
 
 'all-sworn-units':
     input_demo_file:    'input/all-sworn-units_demographics.csv.gz'
-    input_full_file:    'input/all-sworn-units.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'all-sworn-units_ID'
     args:               {
                             no_match_cols:  ['last_name_NS', 'first_name_NS'],
                             L4:             True,
-                            custom_matches: [
-                                                ['L4FN', 'birth_year',
-                                                 'gender', 'appointed_date'
-                                                 'current_unit', 'race']
-                                            ],
+                            custom_matches: [['L4FN', 'birth_year',
+                                               'gender', 'appointed_date'
+                                                'current_unit', 'race']],
                             merge_report:   True
                         }
 
 'ase-units':
     input_demo_file:    'input/ase-units_demographics.csv.gz'
-    input_full_file:    'input/ase-units.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'ase-units_ID'
     args:               {
                             no_match_cols:  ['last_name_NS', 'star1', 'first_name_NS'],
@@ -42,7 +40,7 @@
 
 'accused':
     input_demo_file:    'input/accused_demographics.csv.gz'
-    input_full_file:    'input/accused.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'accused_ID'
     args:               {
                             no_match_cols:  ['last_name_NS'],
@@ -51,7 +49,7 @@
 
 'investigators':
     input_demo_file:    'input/investigators_demographics.csv.gz'
-    input_full_file:    'input/investigators.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'investigators_ID'
     args:               {
                             no_match_cols:      ['last_name_NS', 'current_star'],
@@ -62,7 +60,7 @@
 
 'trr-officers':
     input_demo_file:    'input/trr-officers_demographics.csv.gz'
-    input_full_file:    'input/trr-officers.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'trr-officers_ID'
     args:               {
                             no_match_cols:      ['last_name_NS', 'current_star'],
@@ -75,7 +73,7 @@
                         }
 'trr-statuses':
     input_demo_file:    'input/trr-statuses_demographics.csv.gz'
-    input_full_file:    'input/trr-statuses.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'trr-statuses_ID'
     args:               {
                             no_match_cols:      ['last_name_NS', 'current_star'],
@@ -89,7 +87,7 @@
 
 'awards':
     input_demo_file:    'input/awards_demographics.csv.gz'
-    input_full_file:    'input/awards.csv.gz'
+    input_full_file:    ''
     intrafile_id:       'awards_ID'
     args:               {
                             no_match_cols:      ['last_name_NS', 'current_star',
