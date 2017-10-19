@@ -1,5 +1,1 @@
-# Standardization dictionary for gender types
-M:      MALE
-F:      FEMALE
-MALE:   MALE
-FEMALE: FEMALE
+../../../../share/hand/gender_types.yaml

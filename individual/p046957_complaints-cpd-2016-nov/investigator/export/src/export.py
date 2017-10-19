@@ -17,8 +17,6 @@ def get_setup():
         'input_demo_file': 'input/investigators_demographics.csv.gz',
         'output_file': 'output/investigators.csv.gz',
         'output_demo_file': 'output/investigators_demographics.csv.gz',
-        'output_non_CPD_demo_file':
-            'output/non-CPD_investigators_demographics.csv.gz',
         'export_cols': [
             'cr_id', 'first_name', 'last_name', 'middle_initial',
             'suffix_name', 'appointed_date', 'current_star',
@@ -57,10 +55,7 @@ demo_df = pd.read_csv(cons.input_demo_file)
 cpd_demo_df = demo_df[~demo_df[cons.id].isin(drop_ids)]
 non_cpd_demo_df = demo_df[demo_df[cons.id].isin(drop_ids)]
 
-log.info(('{0} rows dropped from {1}.\n'
-          'Dropped investigator demographics written in {2}.'
+log.info(('{0} rows dropped from {1}.'
           '').format(len(drop_ids),
-                     cons.output_demo_file,
-                     cons.output_non_CPD_demo_file))
+                     cons.output_demo_file))
 cpd_demo_df.to_csv(cons.output_demo_file, **cons.csv_opts)
-non_cpd_demo_df.to_csv(cons.output_non_CPD_demo_file, **cons.csv_opts)

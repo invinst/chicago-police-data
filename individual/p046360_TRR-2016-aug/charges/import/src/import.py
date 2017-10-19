@@ -18,7 +18,7 @@ def get_setup():
         'output_file': 'output/charges.csv.gz',
         'metadata_file': 'output/metadata_charges.csv.gz',
         'sheet': 'Charges',
-        'drop_column': 'cb_no',
+        'keep_columns': ["TRR_REPORT_ID", "RD_NO", "STATUTE", "DESCR"],
         'column_names_key': 'p046360_TRR-2016-aug/charges'
         }
 
@@ -35,9 +35,9 @@ cons, log = get_setup()
 
 
 df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
+df = df[cons.keep_columns]
+log.info("Keeping columns: {}".format(cons.keep_columns))
 df.columns = standardize_columns(df.columns, cons.column_names_key)
-del df[cons.drop_column]
-log.info('{} column dropped.'.format(cons.drop_column))
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 meta_df = collect_metadata(df, cons.input_file, cons.output_file)
