@@ -1,1 +1,20 @@
-../../../../../share/hand/race_types.yaml
+# Standardization dictionary for race types
+WHI:                        WHITE
+BLK:                        BLACK
+S:                          WHITE
+API:                        API
+I:                          OTHER
+WWH:                        HISPANIC
+'ASIAN/PACIFIC ISLANDER':   API
+'BLACK HISPANIC':           BLACK
+'WHITE HISPANIC':           HISPANIC
+'AMER IND/ALASKAN NATIVE':  'AMER IND/ALASKAN NATIVE'
+WBH:                        HISPANIC
+'ASIAN/ORIENTAL':           API
+'CAUCASIAN/WHITE':          WHITE
+'AFRICAN AMERICAN/BLACK':   BLACK
+'NATIVE AMERICAN':          'AMER IND/ALASKAN NATIVE'
+BLACK:                      BLACK
+WHITE:                      WHITE
+API:                        API
+OTHER:                      OTHER

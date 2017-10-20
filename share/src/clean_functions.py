@@ -122,7 +122,7 @@ def clean_date_df(df):
             except:
                 print('Some errors in {}. Returned as NaT.'.format(col))
                 dt_df[time_name] = \
-                    pd.to_datetime(df[col], errors='coerce').dt.date
+                    pd.to_datetime(df[col], errors='coerce').dt.time
 
     # EX: df columns = ['Org_Hire_Datetime', 'Start_Date']
     #     dt_df columns = ['Org_Hire_Date', 'Org_Hire_Time', 'Start_Date']
