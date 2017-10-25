@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''final-profiles generation script'''
+
 import pandas as pd
 import numpy as np
 import yaml

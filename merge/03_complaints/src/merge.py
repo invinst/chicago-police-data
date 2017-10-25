@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''merge script for complaint file(s)'''
+
 import pandas as pd
 import __main__
 
