@@ -1,0 +1,3 @@
+running src/export.py
+Dropping rows without any ['first_name', 'appointed_date'] data.
+605 demographic rows dropped.

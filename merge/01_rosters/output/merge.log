@@ -1,0 +1,8 @@
+running src/merge.py
+Processing file: input/cpd-employees_demographics.csv.gz as demographics file.
+Append to reference complete.
+Officers Added: 31790
+Starting to generate_profiles.
+Finised generate_profiles.
+Starting remerge to input/cpd-employees.csv.gz data
+Finished remerge.

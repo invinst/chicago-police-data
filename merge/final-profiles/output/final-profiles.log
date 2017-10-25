@@ -1,0 +1,3 @@
+running src/final-profiles.py
+Officer profile count: 32525
+73 officers in final profiles with NaN race changed to UNKNOWN

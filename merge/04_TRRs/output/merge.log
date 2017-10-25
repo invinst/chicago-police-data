@@ -1,0 +1,86 @@
+running src/merge.py
+Processing file: input/trr-officers_demographics.csv.gz as demographics file.
+Append to reference complete.
+Officers Added: 2
+Merge Report: 10796 Total Merged. 33.26% of DF1 and 99.98% of DF2 Merged.
+21664 Unmerged in DF1. 66.74% Unmerged.
+2 Unmerged in DF2. 0.02% Unmerged.
+Merge List: suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star1                          6481
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star1           1610
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star2                          1534
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star3                           497
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star2            306
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star4                           170
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star3             72
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star5                            46
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star4             21
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star6                            12
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star5             11
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-first_name_NS-star1                           5
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS                                   4
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star7                             3
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star6              2
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star1                              2
+suffix_name-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS                         2
+suffix_name-race-gender-middle_initial2-appointed_date-first_name_NS-star2                                          2
+suffix_name-race-gender-middle_initial2-appointed_date-F4LN-first_name_NS-star1                                     2
+suffix_name-race-gender-middle_initial2-appointed_date-first_name_NS-star1                                          2
+appointed_date-star1-gender                                                                                         1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-current_star       1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star7              1
+suffix_name-race-gender-middle_initial2-appointed_date-F4LN-first_name_NS-star2                                     1
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star3                              1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star9                             1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star10                            1
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star2                              1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-first_name_NS-star2                           1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-current_star                      1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-F4LN-first_name_NS-star3                      1
+suffix_name-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star1                                  1
+Name: Match, dtype: int64
+Starting to generate_profiles.
+Finised generate_profiles.
+Starting remerge to input/trr-officers.csv.gz data
+Finished remerge.
+Processing file: input/trr-statuses_demographics.csv.gz as demographics file.
+Append to reference complete.
+Officers Added: 2
+Merge Report: 11470 Total Merged. 35.33% of DF1 and 99.98% of DF2 Merged.
+20992 Unmerged in DF1. 64.67% Unmerged.
+2 Unmerged in DF2. 0.02% Unmerged.
+Merge List: suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star1                          6219
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star2                          1947
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star1           1572
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star3                           777
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star2            369
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star4                           284
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star3            118
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star5                            82
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star4             46
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star6                            13
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star5              8
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star7                             5
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-first_name_NS-star1                           5
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star6              4
+suffix_name-race-gender-middle_initial2-appointed_date-first_name_NS-star1                                          2
+suffix_name-race-gender-middle_initial2-appointed_date-first_name_NS-star2                                          2
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star1                              2
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-current_star       2
+suffix_name-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star1                                  1
+suffix_name-race-gender-middle_initial2-appointed_date-F4LN-first_name_NS-star2                                     1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS-star7              1
+appointed_date-star1-gender                                                                                         1
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star3                              1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS                    1
+suffix_name-middle_initial2-middle_initial-appointed_date-last_name_NS-first_name_NS                                1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star10                            1
+suffix_name-race-gender-middle_initial-appointed_date-last_name_NS-first_name_NS-star2                              1
+suffix_name-race-gender-middle_initial2-appointed_date-F4LN-first_name_NS-star1                                     1
+suffix_name-race-gender-middle_initial2-middle_initial-appointed_date-F4LN-first_name_NS-star4                      1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS                                   1
+suffix_name-race-gender-middle_initial2-appointed_date-last_name_NS-first_name_NS-star8                             1
+Name: Match, dtype: int64
+Starting to generate_profiles.
+Finised generate_profiles.
+Starting remerge to input/trr-statuses.csv.gz data
+Finished remerge.

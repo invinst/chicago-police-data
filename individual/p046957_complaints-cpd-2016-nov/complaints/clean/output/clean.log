@@ -1,0 +1,4 @@
+running src/clean.py
+beat column converted to positive integers.
+ Assumed that spaces between numbers in beats, e.x. 31 0 should be replaced with no space. "31 0" -> "310" in 4 places.
+903 originall NA. Now 903 now NA values.

@@ -1,0 +1,3 @@
+running src/import.py
+Notes written to cons: This list of star numbers is what would currently show if a TRR was retrieved.  It does not necessarily reflect the star number the Department member had at the time of the incident.
+['TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR', 'PORACE', 'POAGE', 'APPOINTED_DATE', 'UNITASSG', 'UNITDETAIL', 'ASSGNBEAT', 'RANK', 'DUTYSTATUS', 'POINJURED', 'MEMBER_IN_UNIFORM'] columns selected from main sheet.
