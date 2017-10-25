@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''functions used in unit history combination and panel data generation'''
+
 import time
 import pandas as pd
 import numpy as np

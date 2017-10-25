@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''export script for 16-1105_all-sworn-employees'''
+
 import pandas as pd
 import __main__
 

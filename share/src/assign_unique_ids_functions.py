@@ -1,10 +1,9 @@
 #!usr/bin/env python3
 #
-# Authors:  Roman Rivera
+# Author(s):  Roman Rivera
 
-'''A script containing functions for
-   assigning unique or universal ids and aggregating data
-'''
+'''script containing functions for assigning unique ids and aggregating data'''
+
 import pandas as pd
 import numpy as np
 from scipy import stats

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Authors:	Roman Rivera
+# Author(s):	Roman Rivera
 # individual/16-1105_all-sworn-members/import/src/Makefile
 
 .PHONY: all clean

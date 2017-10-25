@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author:   RR, TH
+# Author(s):   Roman Rivera, TH
 
 '''functions used in the import step'''
 

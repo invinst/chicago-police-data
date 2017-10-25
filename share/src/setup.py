@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Authors: PB, RR
+# Author(s): PB, RR
 
 '''functions to prepare scripts for logging and tracking constants'''
 

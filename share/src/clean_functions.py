@@ -1,8 +1,8 @@
-#! usr/bin/env python3
+#!usr/bin/env python3
 #
-# Author:   Roman Rivera
+# Author(s):   Roman Rivera
 
-'''functions used in the cleaning step'''
+'''functions used in the clean step'''
 
 import re
 import yaml

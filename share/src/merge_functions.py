@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author: Roman Rivera
+# Author(s): Roman Rivera
 
 '''functions used to merge datasets'''
 
