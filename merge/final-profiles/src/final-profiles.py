@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import yaml
 import __main__
 
@@ -25,12 +26,12 @@ def get_setup():
             'birth_year', 'race', 'gender',
             'appointed_date', 'resignation_date',
             'current_status', 'current_age', 'current_star',
-            'current_unit', 'current_rank'
+            'current_unit', 'current_unit_description', 'current_rank'
             ],
         'max_cols': ['resignation_date'],
         'current_cols': [
             'current_star', 'current_age', 'current_unit',
-            'current_rank', 'current_status'
+            'current_rank', 'current_status', 'unit_description'
             ],
         'time_col': 'FOIA_date',
         'mode_cols': [
@@ -60,7 +61,6 @@ for fid, fdate in FOIA_dict.items():
 
 assert ref_df[ref_df['FOIA_date'].isnull()].shape[0] == 0,\
     "Some IDs are missing FOIA dates"
-
 profile_df = generate_profiles(ref_df, cons.universal_id,
                                mode_cols=cons.mode_cols,
                                max_cols=cons.max_cols,
@@ -68,7 +68,9 @@ profile_df = generate_profiles(ref_df, cons.universal_id,
                                time_col=cons.time_col,
                                column_order=cons.column_order,
                                include_IDs=False)
-
 log.info('Officer profile count: {}'.format(profile_df.shape[0]))
+log.info(('{} officers in final profiles with NaN race changed to UNKNOWN'
+          '').format(profile_df[profile_df['race'].isnull()].shape[0]))
+profile_df['race'].fillna('UNKNOWN', inplace=True)
 
 profile_df.to_csv(cons.output_file, **cons.csv_opts)

@@ -11,7 +11,7 @@
     'Status I':                 current_status
     'Appointed Date':           appointed_date
     'Employee Position Number': rank_no
-    Description:                rank
+    Description:                current_rank
     ' ':                        current_unit
     'Unit Description':         unit_description
     'Resignation Date':         resignation_date

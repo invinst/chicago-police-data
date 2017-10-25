@@ -2,19 +2,18 @@
 WHI:                        WHITE
 BLK:                        BLACK
 S:                          WHITE
-API:                        API
-I:                          OTHER
+API:                        'ASIAN/PACIFIC ISLANDER'
+I:                          WHITE 
 WWH:                        HISPANIC
-'ASIAN/PACIFIC ISLANDER':   API
+'ASIAN/PACIFIC ISLANDER':   'ASIAN/PACIFIC ISLANDER'
 'BLACK HISPANIC':           BLACK
 'WHITE HISPANIC':           HISPANIC
-'AMER IND/ALASKAN NATIVE':  'AMER IND/ALASKAN NATIVE'
+'AMER IND/ALASKAN NATIVE':  'NATIVE AMERICAN/ALASKAN NATIVE'
 WBH:                        HISPANIC
-'ASIAN/ORIENTAL':           API
+'ASIAN/ORIENTAL':           'ASIAN/PACIFIC ISLANDER'
 'CAUCASIAN/WHITE':          WHITE
 'AFRICAN AMERICAN/BLACK':   BLACK
-'NATIVE AMERICAN':          'AMER IND/ALASKAN NATIVE'
+'NATIVE AMERICAN':          'NATIVE AMERICAN/ALASKAN NATIVE'
 BLACK:                      BLACK
 WHITE:                      WHITE
-API:                        API
-OTHER:                      OTHER
+API:                        'ASIAN/PACIFIC ISLANDER'

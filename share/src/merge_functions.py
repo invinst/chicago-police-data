@@ -424,14 +424,16 @@ def generate_profiles(ref, uid,
                             'first_name_NS', 'last_name_NS',
                             'middle_initial', 'suffix_name', 'middle_initial2',
                             'race', 'gender', 'birth_year', 'appointed_date',
-                            'resignation_date', 'current_rank',
-                            'current_age', 'current_unit', 'current_star',
+                            'resignation_date', 'current_rank', 'current_age',
+                            'current_unit', 'current_unit_description', 'current_star',
                             'star1', 'star2', 'star3', 'star4', 'star5',
                             'star6', 'star7', 'star8', 'star9', 'star10'],
                       mode_cols=[],
                       max_cols=[],
                       current_cols=[],
                       time_col='',
+                      merge_cols=[],
+                      merge_on_cols=[],
                       include_IDs=True):
     '''returns pandas dataframe
        after aggregating data from the input reference dataframe
@@ -443,7 +445,9 @@ def generate_profiles(ref, uid,
                               mode_cols=mode_cols,
                               max_cols=max_cols,
                               current_cols=current_cols,
-                              time_col=time_col)
+                              time_col=time_col,
+                              merge_cols=merge_cols,
+                              merge_on_cols=merge_on_cols)
     # Initialize count_df, counting number of occurances by uid
     count_df = pd.DataFrame(ref[uid].value_counts())
     # Rename column in count_df to profile_count

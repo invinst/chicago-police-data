@@ -20,7 +20,7 @@ def get_setup():
         'id_cols': [
             "first_name", "last_name", "first_name_NS", "last_name_NS",
             'suffix_name', "appointed_date", "gender", "race",
-            'birth_year', 'current_age', 'resignation_date'
+            'birth_year', 'current_age', 'resignation_date', 'current_rank'
             ],
         'conflict_cols': [
             'middle_initial', 'middle_initial2',

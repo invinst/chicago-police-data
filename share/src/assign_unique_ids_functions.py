@@ -3,7 +3,7 @@
 # Authors:  Roman Rivera
 
 '''A script containing functions for
-assigning unique or universal ids and aggregating data
+   assigning unique or universal ids and aggregating data
 '''
 import pandas as pd
 import numpy as np
@@ -15,11 +15,7 @@ def remove_duplicates(df, cols=[]):
 
        excluding rows that contain duplicate values
        in the specified columns
-       EX: remove_duplicates(..., cols = ['A', 'B'])
-        A B C     A B C
-        1 2 1     1 3 3
-        1 2 3 ->
-        1 3 3
+       see test_assign_unique_ids_functions
     '''
     # Check if cols is empty
     if not cols:
@@ -34,11 +30,7 @@ def keep_duplicates(df, cols=[]):
     '''returns pandas dataframe
        including only rows that contain duplicate values
        in specified columns
-       EX: keep_duplicates(..., cols = ['A', 'B'])
-           A B C     A B C
-           1 2 1     1 2 1
-           1 2 3 ->  1 2 3
-           1 3 3
+       see test_assign_unique_ids_functions
     '''
     # Check if cols is empty
     if not cols:
@@ -52,16 +44,10 @@ def keep_duplicates(df, cols=[]):
 def resolve_conflicts(df, id_cols, conflict_cols,
                       uid, starting_uid,
                       temp_fillna=-9999):
-    ''' returns pandas dataframe
-        after checking for conflicting values in conflict_cols
-        and adding new unique ids if there are conflicts
-        Ex: resolve_conflicts(..., id_cols = ['A'], conflict_cols=['B', 'C'],
-                              uid='ID', starting_uid=10)
-            A B   C        A B   C   ID
-            1 2   NaN      1 2   NaN 11
-            1 NaN 5    ->  1 NaN 5   11
-            2 3   NaN      2 3   NaN 12
-            2 4   NaN      2 4   NaN 13
+    '''returns pandas dataframe
+       after checking for conflicting values in conflict_cols
+       and adding new unique ids if there are conflicts
+       see test_assign_unique_ids_functions
     '''
     # Create out_df which will be returned
     out_df = pd.DataFrame()
@@ -132,18 +118,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[]):
        with unique ids assigned to rows which share id_cols values
        and lack conflicting information in the conflict_cols
        rows with conflicting conflict_cols will be at end of dataframe
-       EX: assign_unique_ids(..., 'ID', ['A'], ['B', 'C'])
-       A B   C        A B   C   ID
-       1 2   2        2 3   3    1
-       1 NaN NaN      3 4   1    2
-       1 2   NaN      3 4   1    2
-       2 3   3        1 2   2    3
-       3 4   1    ->  1 2   NaN  3
-       3 4   1        1 NaN NaN  3
-       4 2   NaN      4 2   NaN  4
-       4 NaN 5        4 NaN 5    4
-       5 3   NaN      5 3   NaN  5
-       5 4   NaN      5 4   NaN  6
+       see test_assign_unique_ids_functions
     '''
     full_rows = df.shape[0]  # Store total row count
     # Create unique dataframe of relevant columns
