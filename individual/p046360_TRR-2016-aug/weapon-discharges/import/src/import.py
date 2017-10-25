@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''import script for p046360_TRR-2016-aug/weapon-discharges'''
+
 import pandas as pd
 import __main__
 

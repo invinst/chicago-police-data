@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Riverq
+
+'''import script for p046360_TRR-2016-aug/trr-statuses'''
+
 import pandas as pd
 import __main__
 
