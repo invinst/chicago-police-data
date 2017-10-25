@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''export script for p052262_all-sworn-employees-UOA-2016-dec'''
+
 import pandas as pd
 import __main__
 
