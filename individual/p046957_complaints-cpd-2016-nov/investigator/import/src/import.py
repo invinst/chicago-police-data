@@ -1,3 +1,9 @@
+#!usr/bin/env python
+#
+# Author(s):    Roman Rivera
+
+'''import script for p046957_complaints-cpd-2016-nov/investigator'''
+
 import pandas as pd
 import __main__
 

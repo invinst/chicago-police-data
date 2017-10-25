@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''assign-unique-ids script for p046957_complaints-cpd-2016-nov/investigator'''
+
 import pandas as pd
 import __main__
 

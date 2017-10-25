@@ -1,3 +1,9 @@
+#!usr/bin/env python3
+#
+# Author(s):    Roman Rivera
+
+'''clean script for p046957_complaints-cpd-2016-nov/victim'''
+
 import pandas as pd
 import __main__
 
