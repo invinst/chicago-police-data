@@ -16,7 +16,7 @@ The original data and documents are all sourced directly from the Chicago Police
 
 ## If you are looking for the older folder setup:
 
-Check the Previous_Format folder. The current format is an attempt at being consistent with [Patrick Ball's talk on Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI)
+Check the [old_format](https://https://github.com/invinst/chicago-police-data/tree/old_format) branch. The current format is an attempt at being consistent with [Patrick Ball's talk on Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI)
 
 ### Using the data
 
