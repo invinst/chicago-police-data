@@ -1,3 +1,0 @@
-# from src/import.py
-Notes: Employees whose status changed from sworn to civilian cannot be retrieved electronically.
-Source: ClearDW; CPD_EMPLOYEES_MV, RACE_CODES, PPS_EMP_ASSIGNED_HISTORY_MV; Query on 12 October 2016.

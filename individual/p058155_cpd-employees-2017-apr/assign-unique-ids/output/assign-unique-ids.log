@@ -1,9 +1,0 @@
-running src/assign-unique-ids.py
-649 hidden officers dropped from data
-1 officer with no name dropped from data
-Total rows: 31796
-Unique id + conflict rows: 31796
-Conflict rows: 12
-Resolved conflcit UID count: 6
-Total unique ids: 31790
-
