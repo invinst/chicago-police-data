@@ -13,12 +13,15 @@ from assign_unique_ids_functions import keep_duplicates,\
 
 
 def combine_histories(uh_list, resignation_df,
-                      uid_col='UID', unit_col='Unit',
-                      start_col='Start.Date', end_col='End.Date',
-                      resignation_col='Resignation.Date'):
+                      uid_col='UID', unit_col='unit',
+                      start_col='unit_start_date',
+                      end_col='unit_end_date',
+                      resignation_col='resignation_date'):
     '''returns pandas dataframe
        containing unique unit movements for individuals,
        and removing/filling non-sensical data
+
+       see test_unit_history_functions for tests and details
     '''
     # Initialize empty pandas dataframe
     uh_df = pd.DataFrame()
@@ -86,7 +89,7 @@ def to_first_dates(dates, delta_type):
     '''returns array of dates
        all set to the beginning of the designated delta_type
 
-       EX: to_first_date(series('2011-01-20'), 'MS') = array('2011-01')
+       see test_unit_history_functions for tests and details
     '''
     # Initializes delta type dictionary
     dtype_dict = {'MS': 'M', 'AS': 'Y', 'D': 'D'}
@@ -115,21 +118,22 @@ def expand_history(sd, ed, unit, uid, freq):
               2000-01-02    0    10   1
               2000-01-03    2    10   1
     '''
-    outdict = {'Date': pd.date_range(start=sd,
+    outdict = {'date': pd.date_range(start=sd,
                                      end=ed,
                                      freq=freq)}
-    event = [0] * len(outdict['Date'])
+    event = [0] * len(outdict['date'])
     event[0] = 1
     event[-1] = 2
-    outdict['Event'] = event
-    outdict['Unit'] = unit
+    outdict['event'] = event
+    outdict['unit'] = unit
     outdict['UID'] = uid
     return pd.DataFrame(outdict)
 
 
 def history_to_panel(hist_df, frequency, max_date, min_date,
-                     start_col='Start.Date', end_col='End.Date',
-                     unit_col='Unit', uid_col='UID'):
+                     start_col='unit_start_date',
+                     end_col='unit_end_date',
+                     unit_col='unit', uid_col='UID'):
 
     # Replace start and end date columns with pandas datetime values
     hist_df[start_col] = pd.to_datetime(hist_df[start_col])
@@ -158,10 +162,10 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
         hist_df = hist_df[hist_df[end_col] >= min_date]
 
     # Initialize freq_dict
-    freq_dict = {'Month': 'MS', 'Day': 'D', 'Year': 'AS'}
+    freq_dict = {'month': 'MS', 'day': 'D', 'year': 'AS'}
     # Ensure the given frequency is in the frequency dictionary keys
     assert frequency in list(freq_dict.keys()),\
-        "freq must be 'Day', 'Month', or 'Year'"
+        "freq must be 'day', 'month', or 'year'"
     # Get freq for pandas date_range from freq_dict
     freq = freq_dict[frequency]
 
@@ -171,9 +175,9 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
 
     # Assign rows with equal start and end dates to equal_df
     equal_df = hist_df[hist_df[start_col] == hist_df[end_col]].copy()
-    equal_df['Event'] = 3   # Create Event column equal to 3
+    equal_df['event'] = 3   # Create Event column equal to 3
     # Reorder columns to match those of expand_history output
-    equal_df = equal_df[[start_col, 'Event', unit_col, uid_col]]
+    equal_df = equal_df[[start_col, 'event', unit_col, uid_col]]
     equal_df.drop_duplicates(inplace=True)  # Drop duplicate rows
     # Rename start col to the frequency col to match expand_history output
     equal_df.rename(columns={start_col: frequency}, inplace=True)
@@ -195,7 +199,7 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
     print(('Generating panel data took {} seconds.'
            '').format(round(stop_time-start_time, 2)))
     # Rename Date column to be the given frequency
-    panel_df.rename(columns={'Date': frequency}, inplace=True)
+    panel_df.rename(columns={'date': frequency}, inplace=True)
     # Append equal_df to end of generated panel data
     panel_df = panel_df.append(equal_df)
 
@@ -205,4 +209,4 @@ def history_to_panel(hist_df, frequency, max_date, min_date,
         panel_df = panel_df[panel_df[frequency] >= min_date]
 
     # Return panel_df
-    return panel_df
+    return panel_df.reset_index(drop=True)

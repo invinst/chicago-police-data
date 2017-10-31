@@ -70,7 +70,8 @@ def take_first_four(in_str):
 def add_columns(df,
                 add_cols=["F4FN", "F4LN", "current_age", "min_max_star",
                           "BY_to_CA", "stars", "L4FN", "L4LN"],
-                current_age_from=2017):
+                current_age_from=2017,
+                end_star=10):
     '''returns pandas dataframe with columns added on
        depending on the specified add_cols and the columns
        in the input dataframe.
@@ -130,7 +131,7 @@ def add_columns(df,
     if ('stars' in add_cols and
             'current_star' in df.columns and
             'star1' not in df.columns):
-        for i in range(1, 11):
+        for i in range(1, end_star+1):
             df['star{}'.format(i)] = df['current_star']
 
     # Return dataframe with relevant columns added
