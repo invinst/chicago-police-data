@@ -6,7 +6,7 @@ import sys
 import re
 
 class dropbox_handler:
-    def __init__(self):
+    def __init__(self,credentials):
         self.auth_token = credentials
         self.dbx = dropbox.Dropbox(self.auth_token)
 
