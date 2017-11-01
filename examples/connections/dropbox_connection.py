@@ -4,6 +4,7 @@ import tempfile
 import io
 import sys
 import re
+import pandas as pd
 
 class dropbox_handler:
     def __init__(self,credentials):
