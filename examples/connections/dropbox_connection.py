@@ -7,7 +7,7 @@ import re
 
 class dropbox_handler:
     def __init__(self):
-        self.auth_token = os.environ.get('DROPBOX_OAUTH_PASSWORD')
+        self.auth_token = credentials
         self.dbx = dropbox.Dropbox(self.auth_token)
 
     def list_files(self, dbx_path):

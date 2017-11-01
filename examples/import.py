@@ -4,18 +4,18 @@ from .connections.dropbox_connection import dropbox_handler
 import argparse
 
 client = civis.APIClient()
-dropbox = dropbox_handler()
 
 def init_args():
     """Init"""
     parser = argparse.ArgumentParser()
     parser.add_argument('--replace_existing', default=os.environ.get('REPLACE_EXISTING_FILES'))
-
+    parser.add_argument('--dropbox_credentials', default=os.environ.get('DROPBOX_OAUTH_PASSWORD'))
     return parser.parse_args()
 
 
-def import_files(replace_existing):
+def import_files(dropbox_credentials,replace_existing):
     ## paths where things are in dropbox
+    dropbox = dropbox_handler(dropbox_credentials)
     path = '/Data/Roman/Output'
     folders = ['awards','complaints','profiles','ranks','rosters','TRR','unit-history']
 
@@ -59,4 +59,4 @@ def import_files(replace_existing):
 
 if __name__=="__main__":
     ARGUMENTS = init_args()
-    import_files(ARGUMENTS.replace_existing)
+    import_files(ARGUMENTS.dropbox_credentials,ARGUMENTS.replace_existing)
