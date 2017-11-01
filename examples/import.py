@@ -2,6 +2,7 @@ import civis
 import pandas as pd
 from .connections.dropbox_connection import dropbox_handler
 import argparse
+import os
 
 client = civis.APIClient()
 
