@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author(s):   Roman Rivera, TH
+# Author(s):   RR, TH, GS
 
 '''functions used in the import step'''
 
@@ -16,16 +16,36 @@ def read_p046957_file(input_file, original_crid_col,
                       notnull="", isnull="", drop_col="",
                       drop_col_val=(), add_skip=1,
                       original_crid_mixed=False):
-    '''returns a pandas dataframe, datetime object, and string,
+    """Imports Excel file from FOIA p046957 (Nov 2016) and makes it usable
+       by dropping rows and columns when necessary and isolating metadata.
+       Returns a formatted dataframe, report produced datetime, and FOIA string
 
-       after reading an excel file
-       in the format of FOIA number 46957 (Nov. 2016 complaints)
-       collects report produced data, FOIA request number,
-       adds in a corrected CRID column due to row splitting,
-       and removes metadata in order to find the actual header row,
-       also removes null columns or data that doesn't pertain to
-       the correct specified criteria.
-    '''
+    Parameters
+    ----------
+    input_file : str
+        File path
+    original_crid_col: str
+        Name of column which holds cr_id information
+    notnull : str
+        Name of column from which rows with null values will be dropped
+    isnull : str
+        Name of column from which rows with null values will be kept
+    drop_col : str
+        Name of column to be dropped
+    drop_col_val : tuple (str, str/int/float/etc.)
+        Tuple of column name and value for which rows will be dropped
+    add_skip : int
+        Number of additional rows that should be skipped to avoid metadata
+    original_crid_mixed : bool
+        If original_crid_col is mixed with other data,
+        specifying True will drop rows containing non-crids
+
+    Returns
+    -------
+    out_df : pandas dataframe
+    report_produced_date : datetime
+    FOIA_request : str
+    """
 
     df = pd.read_excel(input_file, rows=20,
                        keep_default_na=False, na_values=[''])
@@ -65,14 +85,24 @@ def read_p046957_file(input_file, original_crid_col,
         df.drop(original_crid_col, axis=1, inplace=True)
     df.dropna(thresh=2, inplace=True)
 
-    df = df.dropna(how='all', axis=(0, 1))
+    out_df = df.dropna(how='all', axis=(0, 1))
 
-    return df, report_produced_date, FOIA_request
+    return out_df, report_produced_date, FOIA_request
 
 
 def standardize_columns(col_names, file_path_key):
-    ''' returns a dictionary of original and standard column names
-    '''
+    """Standardizes input col_names by using column_names.yaml file's
+       specified column name changes, determined by file_path_key.
+    Parameters
+    ----------
+    col_names : list
+    file_path_key : str
+        Key that specifies column_names.yaml file specific column name changes
+
+    Returns
+    -------
+    standard_cols : list
+    """
     column_names_path = 'hand/column_names.yaml'
     # Try to read the reference file for converting column names
     with open(column_names_path) as file:
@@ -84,15 +114,31 @@ def standardize_columns(col_names, file_path_key):
          '').format(file_path_key, col_dict.keys())
     # Get file specific column name dictionary
     colname_dict = col_dict[file_path_key]
+    standard_cols = [colname_dict[col_name] for col_name in col_names]
     # Return standardized columns
-    return [colname_dict[col_name] for col_name in col_names]
+    return standard_cols
 
 
 def collect_metadata(df, infile, outfile, notes=0):
-    ''' returns pandas dataframe of metadata about the input dataframe
-        this includes unique values and non null values in each column,
-        as well as the input and output file name, and any other notes
-    '''
+    """Assembles metadata on input dataframe into a metadata dataframe,
+       includes unique values and non null values in each column,
+       as well as the input and output file name, and specificed notes column
+
+    Parameters
+    ----------
+    df : pandas dataframe
+    infile : str
+        File name that df was initially read from
+    outfile : str
+        File name that df will be written to
+    notes : pandas series
+        Pandas series of notes to be added as a 'Notes' column
+        if not a pandas series, no column will be created
+
+    Returns
+    -------
+    metadata_df : pandas dataframe
+    """
     buf = io.StringIO()
     df.info(buf=buf)
     s = buf.getvalue()
