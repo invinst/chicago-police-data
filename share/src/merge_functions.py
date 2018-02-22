@@ -1,594 +1,544 @@
 #!usr/bin/env python3
 #
-# Author(s): Roman Rivera
+# Author(s): Roman Rivera (Invisible Institute)
 
 '''functions used to merge datasets'''
 
+from collections import OrderedDict
+import re
+import copy
 import itertools
 import pandas as pd
-from assign_unique_ids_functions import remove_duplicates, aggregate_data
-
-
-def unique(duplist):
-    '''returns list of unique items in list while maintaining order
-
-    >>> unique([3,2,1,3,2,1,1,2,1,1])
-    [3, 2, 1]
-    >>> unique([])
-    []
-    '''
-    uniques = []
-    for i in duplist:
-        if i not in uniques:
-            uniques.append(i)
-    return uniques
-
-
-def intersect(list1, list2):
-    '''returns list of unique intersection between two lists
-
-    >>> intersect(['A', 3, 3, 4, 'D'], ['D', 'B', 99, 3, 'A', 'A'])
-    ['A', 3, 'D']
-    >>> intersect([1,2,3], [4,5,6])
-    []
-    '''
-    return [i for i in unique(list1) if i in list2]
-
-
-def listdiff(list1, list2):
-    '''returns list of unique items in first list but not in second list
-
-    >>> listdiff([1, 2, 2, 3, 1, 2, 3], [3, 2, 14, 5, 6])
-    [1]
-    >>> listdiff([], [1,2,3])
-    []
-    '''
-    return [i for i in unique(list1) if i not in list2]
-
-
-def union(list1, list2):
-    '''returns list of unique items in both lists
-
-    >>> union([1, 2, 2, 3, 4, 3], [6, 2, 3, 1, 9])
-    [1, 2, 3, 4, 6, 9]
-    '''
-
-    return unique(list1 + list2)
-
-
-def take_first_four(in_str):
-    '''returns first 4 characters in string
-
-    >>> take_first_four('abcde')
-    'abcd'
-    >>> take_first_four('a')
-    'a'
-    '''
-    return in_str[:4]
-
-
-def add_columns(df,
-                add_cols=["F4FN", "F4LN", "current_age", "min_max_star",
-                          "BY_to_CA", "stars", "L4FN", "L4LN"],
-                current_age_from=2017,
-                end_star=10):
-    '''returns pandas dataframe with columns added on
-       depending on the specified add_cols and the columns
-       in the input dataframe.
-
-       see test_merge_functions.py for tests and details
-    '''
-    # Add F(irst) 4 of F(irst)/L(ast) N(ame) columns
-    # if F4FN/F4LN and First./last_name_NS in df columns
-    if "F4FN" in add_cols and "first_name_NS" in df.columns:
-        df['F4FN'] = df['first_name_NS'].map(lambda x: x[:4])
-    if "F4LN" in add_cols and 'last_name_NS' in df.columns:
-        df['F4LN'] = df['last_name_NS'].map(lambda x: x[:4])
-
-    # Add F(irst) 2 of F(irst)/L(ast) N(ame) columns
-    # if F2FN/F2LN and First./last_name_NS in df columns
-    if "F2FN" in add_cols and "first_name_NS" in df.columns:
-        df['F2FN'] = df['first_name_NS'].map(lambda x: x[:2])
-    if "F2LN" in add_cols and 'last_name_NS' in df.columns:
-        df['F2LN'] = df['last_name_NS'].map(lambda x: x[:2])
-
-    # Add L(ast) 4 of F(irst)/L(ast) N(ame) columns
-    # if L4FN/L4LN and First./last_name_NS in df columns
-    if "L4FN" in add_cols and "first_name_NS" in df.columns:
-        df['L4FN'] = df['first_name_NS'].map(lambda x: x[-4:])
-    if "L4LN" in add_cols and 'last_name_NS' in df.columns:
-        df['L4LN'] = df['last_name_NS'].map(lambda x: x[-4:])
-
-    # Since current age cannot be always matched based on birth year
-    # If Current.Age will be used for matching,
-    # Current.Age.p(lus)1 and Current.Age.m(inus)1 must be added
-    # If Current.Age is in the dataframe then both are equal to it
-    if "current_age" in add_cols and "current_age" in df.columns:
-        df['current_age_p1'] = df['current_age']
-        df['current_age_m1'] = df['current_age']
-    # If BY_to_CA is specified and Birth.Year is a column
-    # Generate Current.Age.p/m1 by subtracting current_age_from from birth year
-    # and subtract 1 for the .m1 column
-    if "BY_to_CA" in add_cols and "birth_year" in df.columns:
-        df['current_age_p1'] = \
-            df['birth_year'].map(lambda x: current_age_from - x)
-        df['current_age_m1'] = \
-            df['birth_year'].map(lambda x: current_age_from - x - 1)
-
-    # If Min_Max_Star specified in add_cols and Star1-10 in columns
-    # Then create min/max star columns
-    if ('min_max_star' in add_cols and
-            'star1' in df.columns and
-            'star10' in df.columns):
-        star_cols = ['star' + str(i)
-                     for i in range(1, 11)]
-        df['min_star'] = df[star_cols].min(axis=1, skipna=True)
-        df['max_star'] = df[star_cols].max(axis=1, skipna=True)
-
-    # If Stars specified in add_cols and Current.Star in columns
-    # and Star1 (thus Star2-9) not in columns
-    # Then create Star1-10 columns all equal to Current.Star
-    if ('stars' in add_cols and
-            'current_star' in df.columns and
-            'star1' not in df.columns):
-        for i in range(1, end_star+1):
-            df['star{}'.format(i)] = df['current_star']
-
-    # Return dataframe with relevant columns added
-    return df
-
-
-def generate_on_lists(data_cols, base_lists, drop_cols):
-    '''returns list of lists composed of every possible combination
-       of each value in the sub lists of base_lists, so long as those
-       values are included in the data_cols, and not in drop_cols
-
-       see test_merge_functions.py for tests and details
-       EX: generate_on_lists(['A1', 'A2', 'B1','B2','C2'],
-                             [['A1','A2', ''], ['B1', 'B2'], ['C1'])
-           -> [[],[], [], []]
-    '''
-    # Initialize empty merge lists
-    merge_lists = []
-    # Add empty string to data_cols as placeholder for non-necessary columns
-    data_cols.append('')
-    # Loop over lists in base_lists
-    for col_list in base_lists:
-        # Initialize merge list as the intersection between
-        # col list (from base lists) and the data_cols
-        # and list difference from drop columns
-        merge_list = listdiff(intersect(col_list, data_cols),
-                              drop_cols)
-        # If merge_list is not empty
-        if merge_list:
-            # Append merge_list to merge_lists
-            merge_lists.append(sorted(merge_list, reverse=True))
-    # Initialize on_lists by generating lists from all combinations
-    # of one element in each list in merge_lists
-    on_lists = list(itertools.product(*reversed(merge_lists)))
-    # '' was used as a placeholder for when a column is not always necessary
-    # Remove '' elements from lists in on_lists
-    on_lists = [[i for i in ol if i != ''] for ol in on_lists]
-
-    # Return on_lists used for loop_merge
-    return on_lists
-
-
-def generate_merge_report(total_merged,
-                          total_df1,
-                          total_df2,
-                          decimals=2):
-    '''returns formatted string listing details about
-       output of a merge between two datasets
-    '''
-    unmerged_df1 = total_df1 - total_merged
-    unmerged_df2 = total_df2 - total_merged
-    prcnt_m_df1 = round(100 * total_merged / total_df1,
-                        decimals)
-    prcnt_m_df2 = round(100 * total_merged / total_df2,
-                        decimals)
-    prcnt_um_df1 = round(100 * unmerged_df1 / total_df1,
-                         decimals)
-    prcnt_um_df2 = round(100 * unmerged_df2 / total_df2,
-                         decimals)
-    return(('{0} Total Merged. '
-            '{1}% of DF1 and {2}% of DF2 Merged.\n'
-            '{3} Unmerged in DF1. '
-            '{4}% Unmerged.\n'
-            '{5} Unmerged in DF2. '
-            '{6}% Unmerged.').format(total_merged,
-                                     prcnt_m_df1,
-                                     prcnt_m_df2,
-                                     unmerged_df1,
-                                     prcnt_um_df1,
-                                     unmerged_df2,
-                                     prcnt_um_df2))
-
-
-def loop_merge(df1, df2, on_lists, keep_columns, print_merging=False,
-               return_unmatched=True, merge_report=True):
-    '''returns a dictionary containing, at minimum, a pandas dataframe
-       resulting from iterative merging of two dataframes
-
-       see test_merge_functions.py for tests and details
-    '''
-    # Initialize match dataframe, used to store successful merges
-    dfm = pd.DataFrame(columns=keep_columns + ['Match'])
-    # Store number of rows for input dataframes 1 and 2
-    df1_rows = df1.shape[0]
-    df2_rows = df2.shape[0]
-    # Iterate over lists of column names in on_lists
-    for merge_cols in on_lists:
-        # Create temporary dataframes of df1 and df2
-        # Including only the relevant keep_column in each
-        # and the columns used for merging in this loop
-        # Remove all rows with duplicate merge_cols (see remove_duplicates)
-        # This ensures no double-merging on identical rows
-        df1t = remove_duplicates(df1[keep_columns[:1] + merge_cols],
-                                 merge_cols)
-        df2t = remove_duplicates(df2[keep_columns[1:] + merge_cols],
-                                 merge_cols)
-        # Create temporary match dataframe by merging df1t and df2t
-        # on merge_cols such that only unique matches are saved
-        dfmt = df1t.merge(df2t, on=merge_cols, how='inner')
-        # If there are temporary matches
-        if dfmt.shape[0] > 0:
-            # Print this round of merging if print_merging==True
-            if print_merging:
-                print(('{0} Matches on \n'
-                       '{1} columns').format(dfmt.shape[0],
-                                             merge_cols))
-            # Store the merge columns as string
-            # in Match column of temporary match dataframe
-            dfmt['Match'] = '-'.join(merge_cols)
-            # Update match dataframe by appending temporary match dataframe
-            dfm = dfm.append(dfmt[keep_columns +
-                                  ['Match']].reset_index(drop=True))
-            # Update df1 and df2 by removing successfully merged rows
-            df1 = df1.loc[~df1[keep_columns[0]].isin(dfm[keep_columns[0]])]
-            df2 = df2.loc[~df2[keep_columns[1]].isin(dfm[keep_columns[1]])]
-
-    # Generate summary of merging process
-    merge_report = generate_merge_report(dfm.shape[0],
-                                         df1_rows,
-                                         df2_rows)
-
-    # Initialize dictionary of return values with 'merged' data
-    return_dict = {'merged': dfm.reset_index(drop=True)}
-    # If return_unmatched is True then return unmatched rows in
-    # df1 and df2 as UM1 and UM2, respectively.
-    if return_unmatched:
-        return_dict['UM1'] = df1
-        return_dict['UM2'] = df2
-    # If merge_report is True then return merge report as MR
-    if merge_report:
-        return_dict['MR'] = merge_report
-
-    return return_dict
-
-
-def merge_datasets(df1, df2, keep_columns, custom_matches=[],
-                   no_match_cols=[], min_match_length=4,
-                   extend_base_lists=[], drop_base_cols=[],
-                   current_age_from=2017,
-                   expand_stars=False, F2=False, L4=False,
-                   return_unmatched=True, merge_report=True,
-                   print_merging=False):
-    '''returns dictionary from loop_merge
-       automates adding columns and merging list creation
-
-       see test_merge_functions.py for tests and details
-    '''
-    # Remove columns from df1 and df2 that are all NaN
-    df1 = df1.dropna(axis=1, how='all')
-    df2 = df2.dropna(axis=1, how='all')
-
-    add_cols = []   # Initialize add_cols
-    # Intersect df1 and df2 columns
-    df12_cols = intersect(df1.columns, df2.columns)
-    # Add specified columns to add_cols given set of conditions
-    if 'first_name_NS' in df12_cols:
-        add_cols.append('F4FN')
-    if 'last_name_NS' in df12_cols:
-        add_cols.append('F4LN')
-    if "birth_year" not in df12_cols:
-        add_cols.extend(["BY_to_CA", "current_age"])
-    if 'star1' not in df12_cols and expand_stars:
-        add_cols.append('stars')
-    if 'star1' in df12_cols and 'star10' in df12_cols:
-        add_cols.append('min_max_star')
-    if 'first_name_NS' in df12_cols and F2:
-        add_cols.append('F2FN')
-    if 'last_name_NS' in df12_cols and F2:
-        add_cols.append('F2LN')
-    if 'first_name_NS' in df12_cols and L4:
-        add_cols.append('L4FN')
-    if 'last_name_NS' in df12_cols and L4:
-        add_cols.append('L4LN')
-    # Add specified add_cols to both dataframes
-    df1 = add_columns(df1, add_cols, current_age_from)
-    df2 = add_columns(df2, add_cols, current_age_from)
-
-    # Collect columns in both df1 and df2
-    cols = intersect(df1.columns, df2.columns)
-
-    # Keep columns in df1 and df2 either in keep_columns or in both dataframes
-    df1 = df1[keep_columns[:1] + cols]
-    df2 = df2[keep_columns[1:] + cols]
-
-    # Create list of lists:
-    # Each list contains a single 'type' of column which
-    # are listed in order from most to least important
-    # EX: Birth.Year is more reliable than Current.Age
-    # And the lists themselves are in order from most to least useful
-    # empty strings used as placeholder for non-crucial column 'types'
-    base_lists = [
-        ['current_star', 'min_star', 'max_star',
-         'star1', 'star2', 'star3', 'star4', 'star5',
-         'star6', 'star7', 'star8', 'star9', 'star10'],
-        ['first_name_NS', 'F4FN', 'F2FN'],
-        ['last_name_NS', 'F4LN', 'F2LN'],
-        ['appointed_date'],
-        ['birth_year', 'current_age', 'current_age_p1', 'current_age_m1', ''],
-        ['middle_initial', ''],
-        ['middle_initial2', ''],
-        ['gender', ''],
-        ['race', ''],
-        ['suffix_name', ''],
-        ['current_unit', '']
-    ]
-    if extend_base_lists:
-        base_lists.extend(extend_base_lists)
-    # Generate on_lists from cols in both datasets and base_lists
-    on_lists = generate_on_lists(cols, base_lists, drop_base_cols)
-
-    # Iterate over no_match_cols
-    # A no_match_col identifies a list in base_lists
-    # that should be dropped, an a new on_lists generated,
-    # which will be appended onto the original on_lists
-    for nmc in no_match_cols:
-        # Generate on_lists with the base list that contains
-        # the specified nmc removed
-        nmc_lists = generate_on_lists(cols,
-                                      [ml for ml in base_lists
-                                       if nmc not in ml],
-                                      drop_base_cols)
-        # Ensure all generated no_match_col on_lists contain
-        # at least min_match_length items
-        nmc_lists = [nmcl for nmcl in nmc_lists
-                     if len(nmcl) >= min_match_length]
-        # Add the new on_lists to the original on_lists
-        on_lists.extend(nmc_lists)
-
-    # If custom_matches are specified
-    if custom_matches:
-        # Add custom_matches (list of lists) to end of on_lists
-        on_lists.extend(custom_matches)
-
-    # Run loop_merge on prepared df1 and df1,
-    # merging on on_lists, etc.
-    merged_data = loop_merge(df1, df2,
-                             on_lists=on_lists,
-                             keep_columns=keep_columns,
-                             return_unmatched=return_unmatched,
-                             merge_report=merge_report,
-                             print_merging=print_merging)
-
-    # Return results of loop_merge
-    return merged_data
-
-
-def append_to_reference(sub_df, profile_df, ref_df,
-                        custom_matches=[], return_unmatched=False,
-                        min_match_length=4, no_match_cols=[],
-                        extend_base_lists=[], drop_base_cols=[],
-                        merge_report=True, print_merging=False,
-                        return_merge_list=True, expand_stars=False,
-                        F2=False, L4=False, current_age_from=2017):
-    '''returns dictionary including at least a pandas dataframe
-       appends merged and unmerged results from merge_datasets
-       on to the input ref_df
-
-       see test_merge_functions.py for tests and details
-    '''
-    # Initialize return_dict with None objects instead of values
-    return_dict = {'ref': None,
-                   'UM1': None,
-                   'UM2': None,
-                   'MR': None,
-                   'ML': None}
-
-    # Reset indexes
-    profile_df.reset_index(drop=True, inplace=True)
-    sub_df.reset_index(drop=True, inplace=True)
-
-    # Check if profile_df or ref_df is empty
-    if profile_df.empty or ref_df.empty:
-        # If it is, then sub_df becomes profile_df and ref_df by default
-        # UID column is initialized equal to sub_df.index + 1
-        sub_df.insert(0, 'UID', sub_df.index + 1)
-        # return sub_df as ref(erence) in return_dict
-        return_dict['ref'] = sub_df
-    # If profile_df and ref_df are not empty actually do merging
-    else:
-        # Get id_col from sub_df (which will always end with _ID)
-        id_col = [col for col in sub_df.columns if col.endswith('_ID')][0]
-        # Initialize keep_columns with UID first and id_col second
-        keep_columns = ['UID', id_col]
-
-        # Run merge_datasets on profiles_df and sub_df
-        md_dict = merge_datasets(profile_df, sub_df,
-                                 keep_columns=keep_columns,
-                                 custom_matches=custom_matches,
-                                 no_match_cols=no_match_cols,
-                                 min_match_length=min_match_length,
-                                 extend_base_lists=extend_base_lists,
-                                 drop_base_cols=drop_base_cols,
-                                 merge_report=merge_report,
-                                 expand_stars=expand_stars,
-                                 F2=F2,
-                                 L4=L4,
-                                 current_age_from=current_age_from,
-                                 print_merging=print_merging)
-
-        # Create a link_df of all merge and unmerged rows
-        link_df = pd.concat([md_dict['merged'][keep_columns],
-                             md_dict['UM1'][[keep_columns[0]]],
-                             md_dict['UM2'][[keep_columns[1]]]])[
-              keep_columns].reset_index(drop=True)
-        # Sort link_df by uid, with NaN uids (unmatched sub_df rows) last
-        link_df = link_df.sort_values('UID', na_position='last')
-        link_df.reset_index(drop=True, inplace=True)    # Reset index
-        # Reinitalize UID column equal to the index + 1
-        # All pre-existing UIDs will be preserved, new ones will be added
-        link_df['UID'] = link_df.index + 1
-        # Give sub_df UID column by merging link_df to it
-        sub_df = sub_df.merge(link_df[unique([keep_columns[1], 'UID'])],
-                              on=keep_columns[1], how='left')
-        # Add the data in sub_df at the end of the ref_df
-        # and reset index
-        ref_df = ref_df.append(sub_df).reset_index(drop=True)
-
-        # Start filling return_dict
-        # Regardless of arguments, append_to_reference always returns ref_df
-        return_dict['ref'] = ref_df
-        if return_unmatched:
-            return_dict['UM1'] = md_dict['UM1']
-            return_dict['UM2'] = md_dict['UM2']
-        if merge_report:
-            return_dict['MR'] = md_dict['MR']
-        if return_merge_list:
-            return_dict['ML'] = md_dict['merged']['Match']
-
-    return return_dict
-
-
-def generate_profiles(ref, uid,
-                      column_order=[
-                            'first_name_NS', 'last_name_NS',
-                            'middle_initial', 'suffix_name', 'middle_initial2',
-                            'race', 'gender', 'birth_year', 'appointed_date',
-                            'resignation_date', 'current_rank', 'current_age',
-                            'current_unit', 'current_unit_description', 'current_star',
-                            'star1', 'star2', 'star3', 'star4', 'star5',
-                            'star6', 'star7', 'star8', 'star9', 'star10'],
-                      mode_cols=[],
-                      max_cols=[],
-                      current_cols=[],
-                      time_col='',
-                      merge_cols=[],
-                      merge_on_cols=[],
-                      include_IDs=True):
-    '''returns pandas dataframe
-       after aggregating data from the input reference dataframe
-       sorts columns by column order
-       and counts number of occurance of each officer in reference
-
-       see test_merge_functions.py for tests and details
-    '''
-    # Initialize profiles data by aggregating input ref data
-    profiles = aggregate_data(ref, uid,
-                              mode_cols=mode_cols,
-                              max_cols=max_cols,
-                              current_cols=current_cols,
-                              time_col=time_col,
-                              merge_cols=merge_cols,
-                              merge_on_cols=merge_on_cols)
-    # Initialize count_df, counting number of occurances by uid
-    count_df = pd.DataFrame(ref[uid].value_counts())
-    # Rename column in count_df to profile_count
-    count_df.columns = ['profile_count']
-    # Create uid column equal to the index of count_df
-    count_df[uid] = count_df.index
-    # Merge count_df to the profiles dataframe on uid
-    profiles = profiles.merge(count_df, on=uid)
-    # Ensure no uids were excluded
-    assert profiles.shape[0] == len(ref[uid].unique()),\
-        'Missing some UIDs'
-    # If include_IDs is specified as True
-    if include_IDs:
-        # Collect _ID cols from profiles
-        ID_cols = [col for col in profiles.columns
-                   if col.endswith('_ID')]
-    # If include_IDs is false
-    else:
-        ID_cols = []
-    # Reorder sort columns in profiles by column_order
-    cols = [col for col in column_order
-            if col in profiles.columns]
-    # Reorder profile columns with uid first, then core columns,
-    # then ID columns and ending with profile_count
-    profiles = profiles[[uid] + cols + ID_cols + ['profile_count']]
-
-    # Return profiles
-    return profiles
-
-
-def remerge(df, link_df, uid_col, id_col):
-    '''returns pandas dataframe after merging new unique ids
-       taken from a link_df
-
-       see test_merge_functions.py for tests and details
-    '''
-    rows = df.shape[0]
-    df = df.merge(link_df[[uid_col, id_col]],
-                  on=id_col, how='left')
-    assert(df.shape[0] == rows), print('Missing rows!')
-    return df
-
-
-def merge_process(input_demo_file, input_full_file,
-                  ref_df, profile_df,
-                  args_dict, log,
-                  intrafile_id, uid='UID'):
-    '''returns tuple of reference df, profile df, and full df with uids
-    '''
-    log.info(('Processing file: {} as demographics file.'
-              '').format(input_demo_file))
-    sub_df = pd.read_csv(input_demo_file)
-    atr_dict = append_to_reference(sub_df=sub_df,
-                                   profile_df=profile_df,
-                                   ref_df=ref_df,
-                                   **args_dict)
-    log.info('Append to reference complete.')
-    ref_df = atr_dict['ref']
-    log.info(('Officers Added: {}'
-              '').format(len(unique(ref_df[uid])) - profile_df.shape[0]))
-
-    if not profile_df.empty:
-        log.info('Merge Report: {}'.format(atr_dict['MR']))
-        log.info('Merge List: {}'.format(atr_dict['ML'].value_counts()))
-
-    log.info('Starting to generate_profiles.')
-    profile_df = generate_profiles(ref_df, uid,
-                                   mode_cols=listdiff(ref_df.columns,
-                                                      [uid]))
-    log.info('Finised generate_profiles.')
-
-    if input_full_file:
-        log.info('Starting remerge to {} data'.format(input_full_file))
-
-        full_df = pd.read_csv(input_full_file)
-        assert intrafile_id in full_df.columns,\
-            'No {} in input_full_file'.format(intrafile_id)
-
-        full_df = remerge(full_df, profile_df,
-                          uid, intrafile_id)
-        log.info('Finished remerge.')
-
-    else:
-        log.warning('Missing input_full_file. No remerging step.\n'
-                    'Will return an empty pandas dataframe instead of full_df')
-        full_df = pd.DataFrame()
-
-    return ref_df, profile_df, full_df
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
-    doctest.run_docstring_examples(unique, globals())
-    doctest.run_docstring_examples(intersect, globals())
-    doctest.run_docstring_examples(listdiff, globals())
-    doctest.run_docstring_examples(union, globals())
-    doctest.run_docstring_examples(take_first_four, globals())
+import numpy as np
+
+from general_utils import remove_duplicates, keep_duplicates, \
+                          reshape_data, fill_data,\
+                          list_intersect, list_diff, list_union
+
+np.seterr(divide='ignore')
+pd.options.display.max_rows = 99
+pd.options.display.max_columns = 99
+
+
+class ReferenceData:
+    def __init__(self, data_df, uid, log, data_id=None, starting_uid=1):
+        """Creates reference data which can continually absorb other data sets
+
+        Creates a reference data object, which holds a reference DataFrame that
+        contains unique ids for all observations determined to be from the same
+        officer. This data is used to match against other data sets and absorb
+        the information of both matched and unmatched observations.
+
+        Supplementary (sup) data sets can be added using add_sup_data() method,
+        then merged to the reference data with loop_merge(),
+        and the reference data can be updated based on matched and unmatched
+        data using append_to_reference().
+        A file containing the same intra-file IDs as the sup data can be
+        given the uids using remerge_to_file().
+
+        Parameters
+        ----------
+        data_df : pandas DataFrame
+            Initial data set used to match other data sets against
+        uid : str
+            Name of Unique ID column used to identify individuals
+        log : logging object
+        data_id : str
+            Name of intra-file ID column in initial input data
+        starting_uid : int
+            Starting value for uids
+        """
+        self.log = log
+
+        if uid not in data_df:
+            assert (data_id and data_id in data_df.columns), "Need data_id"
+            self.log.info('Creating reference data from file'
+                          'with intrafile ID: %s', data_id)
+            ref_df = self.prepare_data(data_df, data_id)
+            uid_df = ref_df[[data_id]]\
+                .drop_duplicates()\
+                .sort_values(data_id)\
+                .reset_index(drop=True)
+            uid_df[uid] = uid_df.index + starting_uid
+            self.ref_df = ref_df.merge(uid_df, on=data_id, how='left')\
+                .sort_values(uid)\
+                .reset_index(drop=True)
+        else:
+            self.log.info('Loading reference data with '
+                          '%d rows and %d universal IDs',
+                          data_df.shape[0], data_df[uid].nunique())
+            self.ref_df = data_df
+
+        self.uid = uid
+        self.sup_id = data_id
+
+    def prepare_data(self, df, df_id,
+                     add_cols=None, fill_cols=None):
+        """Prepares dataframe for merging
+
+        Parameters
+        ----------
+        df : pandas DataFrame
+        df_id : str
+            Name of unique identifier in df
+        add_cols : list
+            List of column names for columns to be added in add_columns()
+        fill_cols : list
+            List of columns to be selected for fill_data()
+
+        Returns
+        ----------
+        df : pandas DataFrame
+        """
+        rows = df.shape[0]
+        if 'merge' in df.columns:
+            df = df[df['merge'] == 1].drop('merge', axis=1)
+            self.log.info('%d rows dropped due to merge!=1. %d rows remaining',
+                          rows - df.shape[0], df.shape[0])
+            rows = df.shape[0]
+        if 'star1' in df.columns:
+            df = reshape_data(df, 'star', df_id)
+            self.log.info('Data reshaped wide (%d rows) '
+                          'to long (%d rows) by star columns',
+                          rows, df.shape[0])
+        if 'current_star' in df.columns and 'star' not in df.columns:
+            df['star'] = df['current_star']
+
+        if isinstance(fill_cols, list):
+            self.log.info('Beginning fill_data() on ref_df for %s columns'
+                          ' by %s, with initial rows = %d',
+                          fill_cols, self.uid, df.shape[0])
+            df = fill_data(df[[self.uid] + fill_cols], self.uid)
+            self.log.info('fill_data() complete, final rows = %d', df.shape[0])
+
+        if add_cols:
+            from_year = (int(df_id.split('_')[2][:4])
+                         if df_id != self.uid else 2017)
+            df = self.add_columns(df, df_id, add_cols, from_year)
+        return df
+
+    def add_columns(self, df, df_id, add_cols, from_year):
+        """Adds columns to dataframe
+
+        Parameters
+        ----------
+        df : pandas DataFrame
+        df_id : str
+        add_cols : list
+            List of columns to be added (or dict)
+        from_year : int
+            Year of data's original production (for calculating current ages)
+
+        Returns
+        ----------
+        df : pandas DataFrame
+        """
+        for add_col in add_cols:
+            if (isinstance(add_col, dict) and
+                    add_col['id'] in [df_id, '']):
+                self.log.info('Adding column by executing \n%s\n'
+                              'to data with ID = %s', add_col['exec'], df_id)
+                assert not any(cond in add_col['exec']
+                               for cond in ['import', 'exec', 'eval'])
+                exec(add_col['exec'])
+
+            if isinstance(add_col, str):
+                if re.search("[F|L][0-9][F|L]N", add_col):
+                    use_col = 'first_name_NS' if add_col[2] == 'F'\
+                               else 'last_name_NS'
+                    start, end = (0, int(add_col[1])) if add_col[0] == 'F'\
+                                 else (-int(add_col[1]), None)
+                    df[add_col] = df[use_col].map(lambda x: x[start:end])
+                if add_col == 'current_age' and "current_age" in df.columns:
+                    df['current_age_p1'] = df['current_age'] + (2017-from_year)
+                    df['current_age_m1'] = df['current_age'] + (2017-from_year)
+                    df.drop('current_age', axis=1, inplace=True)
+                if add_col == 'BY_to_CA' and 'birth_year' in df.columns:
+                    df['current_age_p1'] = 2017 - df['birth_year']
+                    df['current_age_m1'] = 2016 - df['birth_year']
+                self.log.info('Adding column [%s] to data with ID = %s',
+                              add_col, df_id)
+        return df
+
+    def generate_on_lists(self, data_cols, custom_merges, base_OD_edits):
+        """Generates list of lists on which ref and sup data can be merged
+
+        Filters self.base_OD values by data_cols, and generates each possible
+        combination of the column names remaining in base_lists.
+        Then custom_merges are added to the end of the generated on_lists.
+
+        Parameters
+        ----------
+        data_cols : list
+            List of columns that appear in both ref and sup data
+        custom_merges : list (of lists)
+        base_OD_edits : OrderedDict
+
+        Returns
+        ----------
+        on_lists : list
+            List of lists (or dicts), used as 'on' arguments in loop_merge()
+        """
+        merge_lists = []
+        data_cols.append('')
+        base_OD_edits = (base_OD_edits
+                         if isinstance(base_OD_edits, OrderedDict)
+                         else OrderedDict(base_OD_edits))
+        for k, v in base_OD_edits.items():
+            self.base_OD[k] = v
+        filtered_base_lists = [list_intersect(col_list, data_cols)
+                               for col_list in self.base_OD.values()]
+
+        if filtered_base_lists == []:
+            return custom_merges
+        else:
+            filtered_base_lists = [fbl for fbl in filtered_base_lists if fbl]
+            on_lists = list(itertools.product(*filtered_base_lists))
+            on_lists = [[i for i in ol if i]
+                        for ol in on_lists]
+            on_lists.extend(custom_merges)
+            return on_lists
+
+    def log_merge_report(self, total_merged, total_ref, total_sup):
+        """logs formatted report of merging process as info
+
+        Parameters
+        ----------
+        total_merged : int
+            Total number of unique merged pairs
+        total_ref : int
+            Total number of unique uids in ref
+        total_sup : int
+            Total number of unique intra-file ids in sup
+        """
+        unmerged_ref = total_ref - total_merged
+        unmerged_sup = total_sup - total_merged
+        prcnt_m_ref = round(100 * total_merged / total_ref, 2)
+        prcnt_m_sup = round(100 * total_merged / total_sup, 2)
+        prcnt_um_ref = round(100 * unmerged_ref / total_ref, 2)
+        prcnt_um_sup = round(100 * unmerged_sup / total_sup, 2)
+        merge_report = ('Merge Report:\n'
+                        '{0} Total Merged. {1}% of ref and {2}% of sup Merged.'
+                        '\n{3} Unmerged in ref. {4}% Unmerged.\n'
+                        '{5} Unmerged in sup. {6}% Unmerged.'
+                        '').format(total_merged, prcnt_m_ref, prcnt_m_sup,
+                                   unmerged_ref, prcnt_um_ref,
+                                   unmerged_sup, prcnt_um_sup)
+        self.log.info(merge_report)
+
+    def add_sup_data(
+            self, sup_df, add_cols,
+            base_OD=OrderedDict([
+                ('star', ['star', '']),
+                ('first_name', ['first_name_NS', 'F4FN']),
+                ('last_name', ['last_name_NS', 'F4LN']),
+                ('appointed_date', ['appointed_date']),
+                ('birth_year', ['birth_year', 'current_age', '']),
+                ('middle_initial', ['middle_initial', '']),
+                ('middle_initial2', ['middle_initial2', '']),
+                ('gender', ['gender', '']),
+                ('race', ['race', '']),
+                ('suffix_name', ['suffix_name', '']),
+                ('current_unit', ['current_unit', ''])]),
+            fill_cols=None):
+        """Adds and prepares supplementary (sup) data to ReferenceData object
+
+        Adds supplementary data to ReferenceData object.
+        Prepares sup_df for appending to reference.
+        Creates/prepares both ref_um and sup_um (unmerged) data
+        with added columns in prepratation for loop_merge()
+
+        Parameters
+        ----------
+        sup_df : pandas DataFrame
+        add_cols : list
+            List of columns/codes to be added to both ref_um and sup_um
+        base_OD : OrderedDict
+        fill_cols : list
+            columns used for fill_data
+
+        Returns
+        ----------
+        self
+        """
+        self.sup_id = [i for i in sup_df.columns if i.endswith('_ID')][0]
+        self.base_OD = (base_OD if isinstance(base_OD, OrderedDict)
+                        else OrderedDict(base_OD))
+        self.log.info('Adding file with intrafile ID: %s', self.sup_id)
+        self.sup_df = self.prepare_data(sup_df, self.sup_id)
+        if (("birth_year" not in
+             list_intersect(self.ref_df.columns, self.sup_df.columns))
+                and ('current_age' in
+                     list_union(self.ref_df.columns, self.sup_df.columns))):
+            add_cols.extend(["BY_to_CA", "current_age"])
+        self.ref_um = self.prepare_data(self.ref_df.copy(), self.uid, add_cols,
+                                        fill_cols=fill_cols)
+        self.sup_um = self.prepare_data(self.sup_df.copy(), self.sup_id, add_cols)
+        return self
+
+    def loop_merge(
+            self, custom_merges=[], verbose=True, one_to_one=True,
+            base_OD_edits=OrderedDict()):
+        """Performs iterative pairwise joins to produce dataframe of merges
+
+        Loops over on_lists to iteratively merge ref_um and sup_um, continually
+        removing unique ids in sup_um (and ref_um if one_to_one=True) that
+        were successfully merged.
+
+        Parameters
+        ----------
+        custom_merges : list (of lists or dicts)
+            List of user entered custom merge lists
+        verbose : bool
+            If True successful merges are printed
+        one_to_one : bool
+            If True assumes sup_um is successfully deduplicated and uids are
+            dropped from ref_um after successful merges
+            If False uids are not dropped from ref_um after successful merges
+        base_OD_edits : OrderedDict
+            Ordereddict of alterations to base_OD (preserving initial order)
+        Returns
+        ----------
+        self
+        """
+        intersect_cols = list_diff(list_intersect(self.ref_um.columns,
+                                                  self.sup_um.columns),
+                                   [self.uid, self.sup_id])
+        self.ref_um = self.ref_um[[self.uid] +
+                                  intersect_cols].drop_duplicates()
+        self.sup_um = self.sup_um[[self.sup_id] +
+                                  intersect_cols].drop_duplicates()
+
+        ref_ids = self.ref_um[self.uid].nunique()
+        sup_ids = self.sup_um[self.sup_id].nunique()
+        multi = self.sup_um[self.sup_id].size > sup_ids
+
+        self.on_lists = self.generate_on_lists(intersect_cols, custom_merges,
+                                               base_OD_edits)
+        self.id_cols = [self.uid, self.sup_id]
+        self.merged_df = pd.DataFrame(columns=self.id_cols + ['matched_on'])
+        self.log.info('Beginning loop_merge.')
+        for merge_cols in self.on_lists:
+            assert len(merge_cols) > 0
+            reft = self.ref_um
+            supt = self.sup_um
+            if isinstance(merge_cols, dict):
+                reft = reft.query(merge_cols['query'])
+                supt = supt.query(merge_cols['query'])
+                merge_cols = merge_cols['cols']
+            reft = remove_duplicates(reft[[self.uid] +
+                                          merge_cols].dropna(how='any'),
+                                     merge_cols, True)
+            if one_to_one:
+                supt = remove_duplicates(supt[[self.sup_id] +
+                                              merge_cols].dropna(how='any'),
+                                         merge_cols, True)
+            else:
+                supt = supt[[self.sup_id] + merge_cols].dropna(how='any')
+            mergedt = reft.merge(supt,
+                                 on=merge_cols, how='inner')[self.id_cols]
+            if multi:
+                mergedt = mergedt.drop_duplicates()
+            if mergedt.shape[0] > 0:
+                if verbose:
+                    print('%d Matches on \n %s columns'
+                          %(mergedt.shape[0], merge_cols))
+                mergedt['matched_on'] = '-'.join(merge_cols)
+                self.merged_df = self.merged_df\
+                    .append(mergedt[self.id_cols + ['matched_on']])\
+                    .reset_index(drop=True)
+                if one_to_one:
+                    self.ref_um = self.ref_um.loc[
+                        ~self.ref_um[self.uid].isin(self.merged_df[self.uid])
+                        ]
+                self.sup_um = self.sup_um.loc[
+                    ~self.sup_um[self.sup_id].isin(self.merged_df[self.sup_id])
+                    ]
+        self.merged_df.reset_index(drop=True, inplace=True)
+        self.log_merge_report(self.merged_df.shape[0], ref_ids, sup_ids)
+        self.log.info('\n%s', self.merged_df['matched_on'].value_counts())
+        if one_to_one:
+            kds = keep_duplicates(self.merged_df, [self.uid])
+            assert kds.empty,\
+                print('Same UID matched to multiple sup_ids %s'
+                      '\n Ref: %s \n Sup: %s'
+                      % (kds,
+                         self.ref_df[
+                            self.ref_df[self.uid].isin(kds[self.uid])
+                            ].sort_values(self.uid),
+                         self.sup_df[
+                            self.sup_df[self.sup_id].isin(kds[self.sup_id])
+                            ].sort_values(self.sup_id)))
+        kds = keep_duplicates(self.merged_df, [self.sup_id])
+        assert kds.empty,\
+            print('Same sup_id matched to multiple UIDs %s\nRef: %s\nSup: %s'
+                  % (kds,
+                     self.ref_df[
+                        self.ref_df[self.uid].isin(kds[self.uid])
+                        ].sort_values(self.uid),
+                     self.sup_df[
+                        self.sup_df[self.sup_id].isin(kds[self.sup_id])
+                        ].sort_values(self.sup_id)))
+
+        return self
+
+    def append_to_reference(self, keep_sup_um=True, drop_cols=[]):
+        """Appends supplementary data to reference data, by appending both
+        merged sup_df, and appending and assigning new uids to sup_um
+
+        Parameters
+        ----------
+        keep_sup_um : bool
+        drop_cols : list
+            List of columns to drop when appending sup_df to ref_df
+
+        Returns
+        ----------
+        self
+        """
+        link_df = pd.concat([self.merged_df[self.id_cols],
+                             self.ref_um[[self.uid]].drop_duplicates()])
+
+        if keep_sup_um and not self.sup_um.empty:
+            sup_link = self.sup_um[[self.sup_id]]\
+                .drop_duplicates()\
+                .reset_index(drop=True)
+            sup_link[self.uid] = sup_link.index + max(link_df[self.uid]) + 1
+            assert max(sup_link[self.uid]) - min(link_df[self.uid]) + 1 == \
+                (link_df[self.uid].nunique() +
+                 self.sup_um[self.sup_id].nunique()),\
+                'Link DF + sup_link wrong size.'
+
+            link_df = link_df.append(sup_link)\
+                .sort_values(self.uid)\
+                .reset_index(drop=True)
+
+        self.sup_df = self.sup_df.merge(
+            link_df[self.id_cols], on=self.sup_id, how='left')
+        self.ref_df = self.ref_df\
+            .append(self.sup_df.drop(drop_cols, axis=1))\
+            .dropna(subset=[self.uid], axis=0, how='any')\
+            .reset_index(drop=True)
+        assert max(self.ref_df[self.uid]) - min(self.ref_df[self.uid]) + 1 == \
+            self.ref_df[self.uid].nunique(),\
+            'Missing some uids'
+        self.ref_df[self.id_cols] = self.ref_df[self.id_cols]\
+            .apply(pd.to_numeric)
+        return self
+
+    def remerge_to_file(self, input_path, output_path, csv_opts):
+        """Merges sup_df (with uids) to input_path, writes data to output_path
+
+        Parameters
+        ----------
+        input_path : str
+            Path of input file (csv)
+        output_path : str
+            Path of output file (csv)
+        csv_opts : dict
+            Dictionary of pandas .to_csv options
+
+        Returns
+        ----------
+        self
+        """
+        full_df = pd.read_csv(input_path)
+        rows = full_df.shape[0]
+        link_df = self.ref_df[[self.uid, self.sup_id]].drop_duplicates()
+        full_df = full_df.merge(
+            link_df, on=self.sup_id, how='left')
+        assert full_df.shape[0] == rows, 'Missing rows!'
+        full_df.to_csv(output_path, **csv_opts)
+        return self
+
+    def write_reference(self, output_path, csv_opts):
+        """Writes reference (ref_df) to output_path
+
+        Parameters
+        ----------
+        output_path : str
+            Path of output file (csv)
+        csv_opts : dict
+            Dictionary of pandas .to_csv options
+
+        Returns
+        ----------
+        self
+        """
+        self.ref_df.to_csv(output_path, **csv_opts)
+        return self
+
+
+    def generate_foia_dates(self):
+        """Generates column of FOIA dates based on _ID columns
+
+        Returns
+        ----------
+        self
+        """
+        id_cols = [col for col in self.ref_df.columns if col.endswith("_ID")]
+        for idc in id_cols:
+            fd = idc.split('_')[2] + "-01"
+            assert len(fd.split('-')) == 3, print(fd)
+            if 'foia_date' in self.ref_df.columns:
+                assert self.ref_df[
+                    (self.ref_df[idc].notnull() &
+                     self.ref_df['foia_date'].notnull())
+                    ].empty, "Overlapping IDs"
+
+            self.ref_df.loc[self.ref_df[idc].notnull(),
+                            'foia_date'] = fd
+        return self
+
+    def final_profiles(
+            self, aggregate_data_args, output_path='',
+            column_order=[], csv_opts={}, include_IDs=True):
+        """Generates unique profiles from reference data and writes to csv
+
+        Parameters
+        ----------
+        aggregate_data_args : dict
+            Dictionary of arguments for aggregate_data
+        column_order : list
+            List of columns in specified order
+        output_path : str
+        csv_opts : dict
+        include_IDs : bool
+            If True, keep ID columns, if False drop them
+
+        Returns
+        ----------
+        self
+        """
+
+        from assign_unique_ids_functions import aggregate_data
+        self.generate_foia_dates()
+        profiles = aggregate_data(self.ref_df, self.uid,
+                                  **aggregate_data_args)
+        count_df = pd.DataFrame(
+            self.ref_df[
+                [col for col in self.ref_df.columns
+                 if col.endswith("_ID") or col == self.uid]
+                ].drop_duplicates()[self.uid].value_counts())
+        count_df.columns = ['profile_count']
+        count_df[self.uid] = count_df.index
+        profiles = profiles.merge(count_df, on=self.uid)
+        assert profiles.shape[0] == self.ref_df[self.uid].nunique(),\
+            print(profiles.shape[0], self.ref_df[self.uid].nunique())
+
+        if include_IDs:
+            ID_cols = [col for col in profiles.columns if col.endswith('_ID')]
+        else:
+            ID_cols = []
+
+        if column_order:
+            cols = [col for col in column_order if col in profiles.columns]
+
+        profiles = profiles[[self.uid] + cols + ID_cols + ['profile_count']]
+        self.log.info('Officer profile count: {}'.format(profiles.shape[0]))
+
+        if output_path:
+            profiles.to_csv(output_path, **csv_opts)
+        else:
+            self.profiles = profiles
+        return self
