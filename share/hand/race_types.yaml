@@ -1,0 +1,26 @@
+# Standardization dictionary for race types
+WHI:                        WHITE
+BLK:                        BLACK
+S:                          WHITE
+API:                        'ASIAN/PACIFIC ISLANDER'
+I:                          WHITE 
+WWH:                        HISPANIC
+'ASIAN/PACIFIC ISLANDER':   'ASIAN/PACIFIC ISLANDER'
+'BLACK HISPANIC':           BLACK
+'WHITE HISPANIC':           HISPANIC
+'AMER IND/ALASKAN NATIVE':  'NATIVE AMERICAN/ALASKAN NATIVE'
+WBH:                        HISPANIC
+'ASIAN/ORIENTAL':           'ASIAN/PACIFIC ISLANDER'
+'CAUCASIAN/WHITE':          WHITE
+'AFRICAN AMERICAN/BLACK':   BLACK
+'NATIVE AMERICAN':          'NATIVE AMERICAN/ALASKAN NATIVE'
+BLACK:                      BLACK
+WHITE:                      WHITE
+API:                        'ASIAN/PACIFIC ISLANDER'
+N:                          BLACK
+X:                          X
+S:                          HISPANIC
+B:                          BLACK
+O:                          'ASIAN/PACIFIC ISLANDER'
+A:                          'ASIAN/PACIFIC ISLANDER'
+I:                          WHITE
