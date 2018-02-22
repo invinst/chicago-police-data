@@ -1,206 +1,50 @@
 #! usr/bin/env python3
 #
-# Author:   Roman Rivera
+# Author:   Roman Rivera (Invisible Institute)
 
 '''pytest functions in clean_functions that require teardown/setup'''
 
 import pytest
 import pandas as pd
 import numpy as np
-import clean_functions
+import logging
+from general_utils import *
 
+from clean_functions import clean_data
+log = logging.getLogger('test')
 
-def test_clean_dates_datetimes():
-    '''test clean_dates for datetimes'''
-    input_df = pd.DataFrame({
-        'test_datetime': ['2000-01-01 00:00:00',
-                          '1992-04-07 44:44:12',
-                          '2045-01-01 03:00:00',
-                          '1854-09-21 01:01:01',
-                          '2045-01-01 03:00:00',
-                          '07/21/54 00:00:00']})
-    output_df = pd.DataFrame(
-        {
-            'test_date': pd.to_datetime(pd.Series(
-                ['2000-01-01',
-                 '1992-04-07',
-                 '1945-01-01',
-                 '1854-09-21',
-                 '1945-01-01',
-                 '1954-07-21'])).dt.date,
-            'test_time': pd.to_datetime(pd.Series(
-                ['00:00:00',
-                 np.nan,
-                 '03:00:00',
-                 '01:01:01',
-                 '03:00:00',
-                 '00:00:00'])).dt.time
-        }
-    )
-    results = clean_functions.clean_dates(input_df)
-    assert results.equals(output_df)
-
-
-def test_clean_dates_dates():
-    '''test clean_dates for dates'''
-    input_df = pd.DataFrame({
-        'test_date': ['2000-01-01',
-                      '1992-04-07',
-                      '1854-09-21',
-                      '2045-01-01',
-                      '07/21/54']})
-    output_df = pd.DataFrame(
-        {
-            'test_date': pd.to_datetime(pd.Series(
-                ['2000-01-01',
-                 '1992-04-07',
-                 '1854-09-21',
-                 '1945-01-01',
-                 '1954-07-21'])).dt.date
-        }
-    )
-    results = clean_functions.clean_dates(input_df)
-    assert results.equals(output_df)
-
-
-def test_split_full_names():
-    '''test splite_full_names'''
-    input_series = pd.Series([np.nan,
-                              '----',
-                              'Jones, JR, Bob',
-                              'Smith Jr, Susan J'])
-    output_df = pd.DataFrame({
-        'last_name': ['', '', 'Jones, JR', 'Smith Jr'],
-        'first_name': ['', '', ' Bob', ' Susan J']
-        }, columns=['last_name', 'first_name'])
-    results = clean_functions.split_full_names(input_series)
-    assert results.equals(output_df)
-
-
-def test_clean_name_col_first_name():
-    '''test clean_name_col on for first_name series'''
-    input_series = pd.Series(['DE ANDRE',
-                              'BOB D',
-                              'A RICHARD  A JR',
-                              'KIM-TOY',
-                              'JO ANN',
-                              'J T',
-                              'ABDUL-AZIZ',
-                              'MARCELLUS. H',
-                              'ERIN  E M',
-                              'J EDGAR',
-                              'GEORGE H W'],
-                             name='first_name')
-
-    output_df = pd.DataFrame(
-        {'first_name_NS': ['DEANDRE', 'BOB', 'ARICHARD', 'KIMTOY',
-                           'JOANN', 'JT', 'ABDULAZIZ', 'MARCELLUS',
-                           'ERIN', 'JEDGAR', 'GEORGE'],
-         'f_MI': ['', 'D', 'A', '', '', '', '', 'H', 'E', '', 'H'],
-         'f_MI2': ['', '', '', '', '', '', '', '', 'M', '', 'W'],
-         'f_SN': ['', '', 'JR', '', '', '', '', '', '', '', ''],
-         'first_name': ['DE ANDRE', 'BOB', 'A RICHARD', 'KIM-TOY',
-                        'JO ANN', 'J T', 'ABDUL-AZIZ', 'MARCELLUS',
-                        'ERIN', 'J EDGAR', 'GEORGE']},
-        columns=['first_name_NS', 'f_MI', 'f_MI2', 'f_SN', 'first_name'])
-    results = clean_functions.clean_name_col(input_series)
-    assert results.equals(output_df)
-
-
-def test_clean_name_col_last_name():
-    '''test clean_name_col on for last_name series'''
-    input_series = pd.Series(['DE LA O',
-                              'JONES V',
-                              'LUQUE-ROSALES',
-                              'MC CARTHY',
-                              'O BRIEN',
-                              'SADOWSKY, JR',
-                              'NORWOOD II',
-                              'BURKE JR J',
-                              'VON KONDRAT',
-                              'HOOVER',
-                              'BUSH'],
-                             name='last_name')
-    output_df = pd.DataFrame(
-        {'last_name_NS': ['DELAO', 'JONES', 'LUQUEROSALES', 'MCCARTHY',
-                          'OBRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
-                          'VONKONDRAT', 'HOOVER', 'BUSH'],
-         'l_MI': ['', '', '', '', '', '', '', 'J', '', '', ''],
-         'l_MI2': ['', '', '', '', '', '', '', '', '', '', ''],
-         'l_SN': ['', 'V', '', '', '', 'JR', 'II', 'JR', '', '', ''],
-         'last_name': ['DE LA O', 'JONES', 'LUQUE-ROSALES', 'MC CARTHY',
-                       'O BRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
-                       'VON KONDRAT', 'HOOVER', 'BUSH']},
-        columns=['last_name_NS', 'l_MI', 'l_MI2', 'l_SN', 'last_name'])
-
-    results = clean_functions.clean_name_col(input_series)
-    assert results.equals(output_df)
-
-
-def test_compare_columns_middle_initials():
-    '''test compare_columns for middle initial dataframes'''
+def test_clean_data():
+    '''tests clean_data'''
     input_df = pd.DataFrame(
-        {'f_MI': ['J', 'D', '', '', '', ''],
-         'f_MI2': ['', '', 'H', '', '', ''],
-         'l_MI': ['T', '', 'W', 'A', '', ''],
-         'l_MI2': ['', 'V', '', 'L', '', 'G']},
-        columns=['f_MI', 'f_MI2', 'l_MI', 'l_MI2'])
-    input_colnames = ['middle_initial', 'middle_initial2']
+       {'first_name' : ['j edgar','Dylan ., JR', 'Mary sue E. M.', 'nAtAsha',''],
+        'last_name' : ['Hoover., iii','Smith F', 'Jones V', "O.'brien-jenkins IV", np.nan],
+        'middle_initial' : ['A', 'B', np.nan, 'C', 'D'],
+        'incident_datetime' : ['9999-99-99 12:12', '2016-01-21', '2015-12-52 100:100', '2016-01-12 02:54', '07/21/16 10:59'],
+        'trr_date' : ['200-12-12', '2000-12-12', '1921-01-01', '2016-12-01', '07/21/21'],
+        'trr_time' : [1212, "00", 9876, "23:12", 109],
+        'age' : [120, -999, 0, 21, "hi"],
+        'race' : ['N', 'wbh', 'naTIVE AMericaN', 'black hispanic',  'I'],
+        'gender' : ['mALE', 'm', 'NONE', 'FEMALE', np.nan]
+        })
 
     output_df = pd.DataFrame(
-        {'middle_initial': ['J', 'D', 'H', 'A', np.nan, 'G'],
-         'middle_initial2': ['T', 'V', 'W', 'L', np.nan, None]})
+       {'first_name' : ['J EDGAR','DYLAN', 'MARY SUE', 'NATASHA',np.nan],
+        'last_name' : ['HOOVER','SMITH', 'JONES', "O'BRIEN-JENKINS", np.nan],
+        'first_name_NS' : ['JEDGAR','DYLAN', 'MARYSUE', 'NATASHA',np.nan],
+        'last_name_NS' : ['HOOVER','SMITH', 'JONES', 'OBRIENJENKINS', np.nan],
+        'middle_initial' : ['A', 'B', 'E', 'C', 'D'],
+        'middle_initial2' : [np.nan, 'F', 'M', np.nan, np.nan],
+        'suffix_name' : ['III', 'JR', 'V', 'IV', np.nan],
+        'incident_date' : pd.to_datetime(pd.Series([np.nan, '2016-01-21', np.nan, '2016-01-12', '2016-07-21'])).dt.date,
+        'incident_time' : pd.to_datetime(pd.Series(['12:12:00', '00:00:00', np.nan, '02:54:00', '10:59:00'])).dt.time,
+        'trr_date' : pd.to_datetime(pd.Series([np.nan, '2000-12-12', '1921-01-01', '2016-12-01', '1921-07-21'])).dt.date,
+        'trr_time' : pd.to_datetime(pd.Series(['12:12:00', '00:00:00', np.nan, '23:12:00', '01:09:00'])).dt.time,
+        'age' : [np.nan, np.nan, np.nan, 21, np.nan],
+        'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
+        'gender' : ['MALE', 'MALE', '', 'FEMALE', '']
+        })
+    results = clean_data(input_df, log)
+    assert set(results.columns) == set(output_df.columns)
+    assert results.equals(output_df[results.columns])
 
-    results = clean_functions.compare_columns(input_df, input_colnames)
-    assert results.equals(output_df)
-
-def test_compare_columns_suffix_name():
-    '''test compare_columns for suffix name dataframes'''
-    input_df = pd.DataFrame(
-        {'f_SN': ['JR', 'V', '', '', '', ''],
-         'l_SN': ['', '', 'I', 'SR', 'IV', '']},
-        columns=['f_SN', 'l_SN'])
-    input_colnames = ['suffix_name']
-
-    output_df = pd.DataFrame(
-        {'suffix_name': ['JR', 'V', 'I', 'SR', 'IV', np.nan]})
-
-    results = clean_functions.compare_columns(input_df, input_colnames)
-    assert results.equals(output_df)
-
-
-def  test_clean_names():
-    '''test clean_names'''
-    input_df = pd.DataFrame(
-        {'first_name': ['DE ANDRE', 'BOB D', 'A RICHARD  A', 'KIM-TOY',
-                        'JO ANN', 'J T', 'ABDUL-AZIZ', 'MARCELLUS. H',
-                        'ERIN  E M', 'J EDGAR', 'GEORGE H W'],
-         'last_name': ['DE LA O', 'JONES V', 'LUQUE-ROSALES', 'MC CARTHY',
-                       'O BRIEN', 'SADOWSKY, JR', 'NORWOOD II', 'BURKE JR J',
-                       'VON KONDRAT', 'HOOVER', 'BUSH']})
-
-    output_df = pd.DataFrame(
-        {'first_name': ['DE ANDRE', 'BOB', 'A RICHARD', 'KIM-TOY',
-                        'JO ANN', 'J T', 'ABDUL-AZIZ', 'MARCELLUS',
-                        'ERIN', 'J EDGAR', 'GEORGE'],
-         'middle_initial': ['', 'D', 'A', '', '', '', '', 'H', 'E', '', 'H'],
-         'middle_initial2': ['', '', '', '', '', '', '', 'J', 'M', '', 'W'],
-         'suffix_name': ['', 'V', '', '', '', 'JR', 'II', 'JR', '', '', ''],
-         'last_name': ['DE LA O', 'JONES', 'LUQUE-ROSALES', 'MC CARTHY',
-                       'O BRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
-                       'VON KONDRAT', 'HOOVER', 'BUSH'],
-         'first_name_NS': ['DEANDRE', 'BOB', 'ARICHARD', 'KIMTOY',
-                           'JOANN', 'JT', 'ABDULAZIZ', 'MARCELLUS',
-                           'ERIN', 'JEDGAR', 'GEORGE'],
-         'last_name_NS': ['DELAO', 'JONES', 'LUQUEROSALES', 'MCCARTHY',
-                          'OBRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
-                          'VONKONDRAT', 'HOOVER', 'BUSH']},
-        columns=['last_name', 'last_name_NS',
-                 'first_name', 'first_name_NS',
-                 'middle_initial', 'middle_initial2', 'suffix_name'])
-
-    results = clean_functions.clean_names(input_df)
-
-    assert sorted(results.columns) == sorted(output_df.columns)
-    for col in results.columns:
-        assert results[col].equals(output_df[col])
+test_clean_data()

@@ -1,8 +1,8 @@
 #! usr/bin/env python3
 #
-# Author:   Roman Rivera
+# Author:   Roman Rivera (Invisible Institute)
 
-'''pytest functions in clean_functions that require teardown/setup'''
+'''pytest functions in assign_unique_ids_functions that require teardown/setup'''
 
 import pytest
 import pandas as pd
@@ -10,83 +10,49 @@ import numpy as np
 import assign_unique_ids_functions
 
 
-def test_remove_duplicates():
-    '''test remove_duplicates'''
-    input_df = pd.DataFrame(
-        {'A': [1, 1, 1, 1],
-         'B': [2, 2, 3, 4],
-         'C': [1, 3, 1, 3]})
-    output_df = pd.DataFrame(
-        {'A': [1, 1],
-         'B': [3, 4],
-         'C': [1, 3]},
-        index=[2, 3])
-
-    results = assign_unique_ids_functions.remove_duplicates(input_df,
-                                                            ['A', 'B'])
-    assert results.equals(output_df)
-
-
-def test_keep_duplicates():
-    '''test keep_duplicates'''
-    input_df = pd.DataFrame(
-        {'A': [1, 1, 1, 1],
-         'B': [2, 2, 3, 4],
-         'C': [1, 3, 1, 3]})
-    output_df = pd.DataFrame(
-        {'A': [1, 1],
-         'B': [2, 2],
-         'C': [1, 3]},
-        index=[0, 1])
-
-    results = assign_unique_ids_functions.keep_duplicates(input_df,
-                                                          ['A', 'B'])
-    assert results.equals(output_df)
-
-
 def test_resolve_conflicts():
     '''test resolve_conflicts'''
     input_df = pd.DataFrame(
-        {'A': [1, 1, 2, 2],
-         'B': [2, np.nan, 3, 4],
-         'C': [np.nan, 5, np.nan, np.nan]})
+        {'A': [1, 1, 2, 2,2],
+         'B': [2, np.nan, 3, 4,4],
+         'C': [np.nan, 5, np.nan, np.nan, 1]})
     input_args = {'id_cols': ['A'],
                   'conflict_cols': ['B', 'C'],
                   'uid': 'ID',
-                  'starting_uid': 10}
-
+                  'start_uid': 10}
     output_df = pd.DataFrame(
-        {'ID': [11, 11, 12, 13],
-         'A': [1, 1, 2, 2],
-         'B': [2, np.nan, 3, 4],
-         'C': [np.nan, 5, np.nan, np.nan]},
+        {'ID': [11, 11, 12, 13, 13],
+         'A': [1, 1, 2, 2, 2],
+         'B': [2, np.nan, 3, 4, 4],
+         'C': [np.nan, 5, np.nan, np.nan, 1]},
         columns=['ID', 'A', 'B', 'C'],
-        index=[0, 1, 0, 1])
+        index=[0, 1, 0, 0, 1])
 
     results = assign_unique_ids_functions.resolve_conflicts(input_df,
                                                             **input_args)
-    assert results.equals(output_df)
 
+    assert results[0].equals(output_df)
+    assert results[1] == 13
 
 def test_assign_unique_ids():
     '''test assign_unique_ids
        does not test report generation
     '''
     input_df = pd.DataFrame(
-        {'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5],
-         'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4],
-         'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan]})
-    input_args = {'uid': 'ID', 'id_cols': ['A'], 'conflict_cols': ['B', 'C']}
+        {'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5, 5],
+         'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4, 4],
+         'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan, np.nan]})
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C'], 'log' : False}
 
     output_df = pd.DataFrame(
-        {'ID': [3, 3, 3, 1, 2, 2, 4, 4, 5, 6],
-         'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5],
-         'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4],
-         'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan]})
+        {'ID': [3, 3, 3, 1, 2, 2, 4, 4, 5, 6, 6],
+         'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5, 5],
+         'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4, 4],
+         'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan, np.nan]})
 
     results = assign_unique_ids_functions.assign_unique_ids(input_df,
                                                             **input_args)
-    results = results[0]
     assert results.equals(output_df)
 
 
@@ -133,7 +99,7 @@ def test_mode_aggregate():
 
     input_df = pd.DataFrame(
         {'A': [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3],
-         'B': [5, np.nan, np.nan, np.nan, 5, 1, 'E', 'F', 'F', 'E', np.nan]})
+         'B': [5, np.nan, np.nan, np.nan, 5, 1, 'F', 'E', 'F', 'E', np.nan]})
     input_args = {'uid': 'A',
                   'col': 'B'}
     output_df = pd.DataFrame(
@@ -167,7 +133,7 @@ def test_aggregate_data():
                   'time_col': 'date_of_age_obs',
                   'merge_cols': ['max_names'],
                   'merge_on_cols': ['max']}
- 
+
     output_df = pd.DataFrame(
         {'uid': [1, 4, 99],
          'ID': ['A', 'B', 'C'],
