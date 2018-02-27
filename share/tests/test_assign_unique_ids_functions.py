@@ -34,6 +34,32 @@ def test_resolve_conflicts():
     assert results[0].equals(output_df)
     assert results[1] == 13
 
+def test_resolve_conflicts_bad():
+    '''test resolve_conflicts poor performance'''
+    input_df = pd.DataFrame({
+        'A' : [1,1,1,1],
+        'B' : [1, np.nan, np.nan, 2],
+        'C' : [1, 1, np.nan,2],
+        'D' : [1, np.nan, 1, np.nan]})
+    input_args = {'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C', 'D'],
+                  'uid': 'ID',
+                  'start_uid': 0}
+    output_df = pd.DataFrame(
+        {'ID': [1, 2, 3, 4],
+         'A' : [1,1,1,1],
+         'B' : [1, np.nan, np.nan, 2],
+         'C' : [1, 1, np.nan,2],
+         'D' : [1, np.nan, 1, np.nan]},
+        columns=['ID', 'A', 'B', 'C', 'D'],
+        index=[0, 1, 2, 3])
+
+    results = assign_unique_ids_functions.resolve_conflicts(input_df,
+                                                            **input_args)
+    assert results[0].equals(output_df)
+    assert results[1] == 4
+
+
 def test_assign_unique_ids():
     '''test assign_unique_ids
        does not test report generation
