@@ -240,17 +240,18 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
     for group in cc:
         ccl.extend(list(zip([starting_gid]*len(group), group)))
         starting_gid+=1
-    node_df = pd.DataFrame(ccl, columns=['gid', 'node'])
+    node_df = pd.DataFrame(ccl, columns=[gid, 'node'])
     out_df = pd.DataFrame()
     df.insert(0, 'ROWID', df.index)
     # Iterate over temporary columns and merge back group ids using 'nodes'
     for col in temp_cols:
         mdf = df[['ROWID', col]].merge(node_df, left_on=col,
                                         right_on='node', how='inner')
-        out_df = out_df.append(mdf[['ROWID', 'gid']])
+        out_df = out_df.append(mdf[['ROWID', gid]])
         df = df.drop(col, axis=1)
     out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')
     return out_df.drop('ROWID', axis=1)
+
 
 def reshape_data(df, reshape_col, id_col):
     """Reshapes dataframe from wide to long for a single columns
