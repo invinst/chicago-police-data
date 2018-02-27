@@ -118,3 +118,30 @@ def test_fill_data():
          'E' : [10.0, 50.0, 20.0, 20.0, 20.0, 20.0, 2.0]})
     results = general_utils.fill_data(input_df, **input_args)
     assert results.equals(output_df)
+
+
+def test_union_group():
+    '''test union_group'''
+    input_df = pd.DataFrame([
+        (1,1,1),
+        (1,2,1),
+        (np.nan,4,1),
+        (4,4,np.nan),
+        (np.nan, np.nan, 10),
+        (0,0,10),
+        (9,10,np.nan)],
+        columns=['A','B','C'])
+    input_args = {'gid' : 'gid', 'cols' : ['A', 'B', 'C']}
+
+    output_df = pd.DataFrame([
+        (1,1,1,1),
+        (1,1,2,1),
+        (1,np.nan,4,1),
+        (1,4,4,np.nan),
+        (2,np.nan, np.nan, 10),
+        (2,0,0,10),
+        (3,9,10,np.nan)],
+        columns = ['A', 'B', 'C','gid'])
+
+    results = general_utils.union_group(input_df, **input_args)
+    assert results.equals(output_df)

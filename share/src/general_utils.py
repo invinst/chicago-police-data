@@ -179,6 +179,78 @@ def keep_conflicts(dup_df, cols=[], all_dups=True):
 
     return conflicts_df
 
+def union_group(df, gid, cols, sep = '__', starting_gid=1):
+    """Adds group id (gid) numbers to data based on multiple columns
+    By taking the union of rows which contain an overlapping
+    set of values in each columns as collecting duplicates of specified
+    columns does not include columns that may be missing values.
+    This is similar to creating a network where edges connect values between
+    columns in the same row and identifying rows by connected component.
+    (ex. looking at dates:
+     (A) 7/6/1993,  (B) 11/19/1930, and  (C) 7/21/1930
+     would be in the same group as (A) shares 7 as the month with (C)
+     and  (B) shares 1930 as the year with (C),
+     while (D) 6/20/1931 has a separate group since it has no element
+     in common with any of (A), (B), or (C), despite (A) having a 6 in it,
+     this is for the day field while (D) has 6 in the month field)
+
+    Parameters
+    ----------
+    df : pandas DataFrame
+    gid : str
+    cols : list
+        Column names to be used for identifying groups
+    sep : str
+        Separator for temporary values
+    starting_gid : int
+
+    Returns
+    -------
+    out_df : pandas DataFrame
+    """
+    import networkx as nx
+
+    all_vals = set()
+    temp_cols = []
+    # Create temporary columns to ensure no overlapping of values between columns
+    for col in cols:
+        df.loc[df[col].notnull(),'temp_'+col] =\
+            df.loc[df[col].notnull(), col].map(lambda x: col + sep + str(x))
+
+        assert not all_vals & set(df['temp_'+col].dropna())
+        all_vals.update(set(df['temp_'+col].dropna()))
+        temp_cols.append('temp_'+col)
+
+    # Generate edge list of connections between column values by row
+    el = []
+    for i,r in df[temp_cols].drop_duplicates().iterrows():
+        vals = r.dropna().tolist()
+        if len(vals) > 1:
+            els = list(itertools.combinations(vals,2))
+            el.extend(els)
+        else:
+            el.append((vals[0], vals[0]))
+    # Collect edgelist into list of connected components
+    cc = nx.connected_components(
+            nx.from_pandas_dataframe(
+                pd.DataFrame(el, columns=['H', 'T']),
+                'H','T'))
+    # Turn column values into list of 'nodes' with group ids
+    ccl = []
+    for group in cc:
+        ccl.extend(list(zip([starting_gid]*len(group), group)))
+        starting_gid+=1
+    node_df = pd.DataFrame(ccl, columns=['gid', 'node'])
+    out_df = pd.DataFrame()
+    df.insert(0, 'ROWID', df.index)
+    # Iterate over temporary columns and merge back group ids using 'nodes'
+    for col in temp_cols:
+        mdf = df[['ROWID', col]].merge(node_df, left_on=col,
+                                        right_on='node', how='inner')
+        out_df = out_df.append(mdf[['ROWID', 'gid']])
+        df = df.drop(col, axis=1)
+    out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')
+    return out_df.drop('ROWID', axis=1)
 
 def reshape_data(df, reshape_col, id_col):
     """Reshapes dataframe from wide to long for a single columns
