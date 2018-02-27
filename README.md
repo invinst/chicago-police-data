@@ -1,49 +1,80 @@
-# Chicago Police Incidents Data
+# Chicago Police Data
 
 ## What is this?
 
-This is a living repository of public data about Chicago’s police officers and their interactions with the public, maintained by the Invisible Institute and the ChiHackNight community. The datasets stores in this repository describe  deal with several different forms of data covering shootings, use of force, complaints of misconduct and their investigations. Most was released in response to FOIA requests by the Invisible Institute and its partners.
-
-This repository also serves as a hub to facilitate the Chicago community's efforts to use these data to serve as a common body of evidence to better understand the activities of the Chicago Police Department.
-
-Be sure to look into the `context_data` folder as its contents will help you to understand the full picture. It includes awards, commendations, promotions, crisis intervention trainings, and demographic details for all officers, and their unit assignments over time. More specific details about the transactional datasets here are detailed at the end.
+This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time.
 
 ## Where did it come from?
 
-The original data and documents are all sourced directly from the Chicago Police Department (CPD), the Independent Police Review Authority (IPRA), or the City of Chicago. The raw files were released pursuant to [Freedom of Information Act (FOIA)](https://www.wikiwand.com/en/Freedom_of_Information_Act_(United_States)) requests made by the Invisible Institute and its partners. Scraped data from the [IPRA data portal](http://portal.iprachicago.org/) is also included.
+The datasets and documents are all sourced originally from the Chicago Police Department (CPD), Civilian Office of Police Accountability (COPA), the Independent Police Review Authority (IPRA), or the City of Chicago. Most of these datasets were released in response to FOIA requests submitted by the Invisible Institute and its partners. Some information was also extracted from public web sites, for example, the [COPA Case Portal](http://www.chicagocopa.org/data-cases/case-portal/), [published reports](http://www.chicagocopa.org/news-publications/publications/) on the COPA web site, and the [City of Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/COPA-Cases-Summary/mft5-nfa8).
 
-[Read more about the process on the repository wiki.](https://github.com/invinst/chicago-police-data/wiki/Data-Sources)
+# Using the data
 
-## If you are looking for the older folder setup:
+This repo aims to be consistent with [Patrick Ball’s Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI). For a detailed layout of the folder structure and data processing workflow, see [Workflow](#workflow).
 
-Check the [old_format](https://https://github.com/invinst/chicago-police-data/tree/old_format) branch. The current format is an attempt at being consistent with [Patrick Ball's talk on Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI)
+Please join us here. Ask questions and share your own work. We have collected these datasets in this repository so that everyone can analyze and investigate police accountability in Chicago using a common body of evidence. If you would like to start a new project using our data, we encourage you to create a [new ticket](https://github.com/invinst/chicago-police-data/issues/new) and use the yellow "independent project" label to [collaborate with others](https://github.com/invinst/chicago-police-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22) here on GitHub.
 
-### Using the data
-
-This repository exists so that the public can use the data in the interest of police accountability. Feel free to explore and ask questions and share your work.
-
-You are welcome to contribute to existing research and analysis projects, posted on the repository's [Issue Tracker under the "independent projects" label](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22). If you would like to start a new project, we encourage you to create your own [new ticket](https://github.com/invinst/shootings-data/issues/new) (use the yellow "independent project" label) to collaborate with others.
-
-### Contributing to this repository
+## Contributing to this repository
 
 We want your help.
 
-Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/shootings-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see where help is needed.
+Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/chicago-police-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see where help is needed.
 
-If you come across a problem with the repository, you can open a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the red "repo issue" label.
+If you discover a problem in this repo or if you find something that is inadequately explained, please open a [new ticket](https://github.com/invinst/chicago-police-data/issues/new) in the issue tracker and use the red "repo issue" label.
 
-You are welcome to join our community and chat with us (the repo maintainers) via Slack: https://invisibleinstitute.signup.team/ -- please join us in the #data channel.
+## I have a question
 
-### I have a question
+If you have a question about the information in this repo, where it comes from, or anything else related, open up a [new ticket](https://github.com/invinst/chicago-police-data/issues/new) in the tracker and use the purple "question" label.
 
-If you have a question about the data, where the data comes from, or anything else related, open up a [new ticket](https://github.com/invinst/shootings-data/issues/new) in the tracker and use the purple "question" label.
+# Workflow
 
-## Overview of the datasets
+The central goal of this repository is to make our data processing workflow transparent, reproducible, and auditable. While some output information may be redacted or removed from final publishing due to privacy concerns, the code will remain in this public repository so that the full process is in public view.
 
-* **shootings-cpd-feb2016/** and **shootings-ipra-may2016/** -- records of shooting incidents obtained by the same FOIA request made to CPD and IPRA, respectively.
-* **complaints-cpd-june2016/** and **complaints-ipra-apr2016/** -- records of complaints against officers obtained by the same FOIA request made to CPD and IPRA, respectively.
-* **cpdb_complaints-cpd/** -- records of complaints against officers that are currently in the database used by Citizens Police Data Project
-* **open_investigations-ipra-portal/** -- open cases under investigation by IPRA made available on their data portal since June 3, 2016. The data has been scraped into machine-friendly formats to facilitate analysis.
-* **context/** -- additional datasets to supplement analyses, including definitions of incident category codes and lists of CPD employees.
+There are two main data processing directories in this repository are [individual/](###individual/) and [merge/](###merge/). Additionally, the [share/](###share/) directory contains files used across multiple tasks. The [frozen/](###frozen/) directory contains raw data and documents.
 
-[Read more about the available datasets in the Wiki.](https://github.com/invinst/shootings-data/wiki/Distinct-Datasets-Available)
+## Naming Conventions
+
+Data files and directories which are related to a single FOIA or subset of a FOIA (including individual/, merge/, and frozen/ directories) follow a simple naming format: [data description]\_[data start year - data end year]\_[data received year - data received month]\_[FOIA number] (FOIA numbers are only included in directory names).
+
+For example: the directory named individual/complaints-accused\_2000-2016\_2016-11\_p046957/ contains the data processing workflow for accused officers in complaints data, from 2000 to 2016, and this FOIA (number p046957) was received in November of 2016. As multiple types of complaint information came from the same FOIA, there are other directories with similar names, such as individual/complaints-victims\_2000-2016\_2016-11\_p046957/ which refers to the same data but only covers information about victims.
+
+If some information is nonexistent or irrelevant (for example, the unit history dataset has no explicit “start year”), then that part will be left blank.
+
+## Task Folders
+
+The lowest level of directories in both individual/ and merge/ trees contain input/, output/, src/, and sometimes hand/ directories.
+
+* **input**/ contains the data files that will be used for the current task. Tasks often take the previous tasks output as input.
+* **src**/ contains all scripts used in the task: the helper functions, the task specific script (ex: if the task directory is clean/ then the main script will be clean.py), and the makefile (always named Makefile) which runs the task.
+* **output**/ contains all files created in the task, which may include the processed input files, .log files, and .yaml files.
+* **hand**/ contains reference files that are commonly shared between tasks and FOIAs, which may be needed for standardizing race, gender, column names.
+
+### individual/
+
+In **individual**/, there are multiple directories named according to their FOIA number and the month of receipt (if applicable) and the topic and date rage of the data. For some of these FOIAs (for example, the complaint and TRR data), there are multiple types of data contained in a single FOIA. The data description for these is complaints-[specific data] and TRR-[specific data]. The workflow goes as follows: import/ -> clean/ -> assign-unique-ids/ (if there are identifiable individuals) -> export/.
+
+* **import**/ takes the data in whatever format it has been received in (.csv, .xlsx, etc.), does minor formatting, standardizes column names, and collects initial metadata. Then it writes the data to a .csv.gz file.
+* **clean**/ pushes the imported data through various cleaning functions that will standardize names, race, genders, columns that must be integers or dates, etc.
+* **assign-unique-ids**/ identifies unique individuals with intra-file identification numbers based on file-specific characteristics. Two files will be written, one \_profiles file which contains one row per unique individual with all relevant demographic information and unique intra-file id, and another file identical to the ingested cleaned data with the addition of intra-file unique identifiers.
+* **export**/ performs any final processing and exporting of the dataset that is needed. This may involve identifying individuals for merging from the \_profiles file before it is to be used in the merging process, or removing redundant columns from the main dataset.
+
+### merge/
+
+In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of these tasks are to produce officer-reference.csv.gz files (a collection of \_profiles files appended to each other with UIDs) into officer-reference.csv.gz (used to compare potentially differing information about the same officer in different files).
+
+Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step.
+
+The `final-profiles` only takes in the officer-reference file from the last merge, and outputs a condensed profiles file that contains the "best" profile for every individual.
+
+`generate_TRR_flags` does not utilize any officer information, but rather generates columns in the main TRR data set using information aggregated from weapon-discharge data and actions-response data.
+
+
+### share/
+
+share/ contains three sub-directories: src/ , hand/ , and tests/.
+
+* **src**/ contains all helper functions/scripts that are used across multiple datasets or tasks, generally starting with the task to which they are relevant (merge\_functions.py or clean\_functions.py), or utils scripts that contain auxiliary helper functions (clean\_name\_utils.py or general\_utils.py). The file setup.py is used in all main scripts, regardless of dataset or task, because it initializes a logger and yaml file to store important information and it initializes namedtuples for all of the variables used in the main script.
+
+* **hand**/ contains all reference data that is used across multiple datasets or tasks, generally stored in .yaml files. column\_names.yaml contains file specific column name standardization data for the import/ step, and column\_types.yaml stores the types of specific columns designated for cleaning in the clean/ step.
+
+* **tests**/ contains pytest files with the format test_[file from src/].py and a hand/ directory (for cleaning tests).
