@@ -8,12 +8,12 @@ The [Invisible Institute](https://invisible.institute/introduction) maintains th
 
 ## What can I find in here?
 
-Data ready for download can be found in [/data](https://github.com/invinst/chicago-police-data/tree/master/data) zipped up for your convenience.
+Data ready for download can be found in [data/](https://github.com/invinst/chicago-police-data/tree/master/data) zipped up for your convenience.
 * cleaned_data contains all our core datasets after the cleaning process
 * matched_data contains all our core datasets matched to unique IDs for each officer (see [Workflow](#workflow))
 * complaints_nov2016 contains only the raw complaints dataset as it was originally produced in response to our FOIA request.
 
-FOIA response letters can be found in [/foia](https://github.com/invinst/chicago-police-data/tree/master/foia)
+FOIA response letters can be found in [foia/](https://github.com/invinst/chicago-police-data/tree/master/foia)
 
 ### Complaints
 
