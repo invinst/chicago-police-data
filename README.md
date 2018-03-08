@@ -10,11 +10,11 @@ The [Invisible Institute](https://invisible.institute/introduction) maintains th
 
 ### Complaints
 
-This dataset covers complaints about Chicago Police officers between 2000 and mid-2016 as well as the outcomes of those complaints. The data includes complaints made by civilians, which comprise the bulk of the entries, as well as complaints made by other officers. Some were investigated by CPD’s Bureau of Internal Affairs. Others were investigated by a succession of civilian review agencies (OPS, then IPRA, now COPA).
+This dataset lists complaints about Chicago Police officers between 2000 and mid-2016 as well as the outcomes of those complaints. The data includes complaints made by civilians, which comprise the bulk of the records, as well as complaints made by other officers. Some were investigated by CPD’s Bureau of Internal Affairs. Others were investigated by a succession of civilian review agencies (formerly OPS, then IPRA, now COPA). The names of the officers accused are included.
 
 ### Awards
 
-This dataset covers Chicago Police awards data between 2005 and mid-2017. The Chicago Police lists current types of awards in their department directives. The data includes awards that have been requested but are still in process, awards that were rejected, and awards to non-police employees of the CPD, in addition to awards given to sworn Chicago police officers.
+This dataset lists Chicago Police awards between 2005 and mid-2017. The Chicago Police publishes a list of current types of awards in their department directives [here](http://directives.chicagopolice.org/directives/data/a7a57bf0-12d101cb-ad612-d102-2b6676509a070b87.html) and describes the process [here](http://directives.chicagopolice.org/directives/data/a7a57bf0-12cad953-0e212-cada-aafce1abc7fcf520.html). The data includes awards that have been requested but are still in process, awards that were rejected, and awards to non-police employees of the CPD, in addition to awards given to sworn Chicago police officers.
 
 ### Salary
 
@@ -22,7 +22,7 @@ This dataset includes salary data for Chicago Police employees by year, spanning
 
 ### Unit History
 
-This file tracks the unit assignments of Chicago Police officers over time. The data includes entries dating back to the 1940s, though more recent data appears to be more reliable. Each row includes an officer’s name and date of appointment, plus the units they are leaving and joining. A list of unit numbers and their respective names can be found here.
+This dataset tracks the unit assignments of Chicago Police officers over time. The data includes entries dating back to the 1940s, though more recent data appears to be more reliable. Each row includes an officer’s name and date of appointment, plus the units they are leaving and joining. A list of unit numbers and their respective names can be found here.
 
 ### Matching Officers
 
