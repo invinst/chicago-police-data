@@ -2,11 +2,18 @@
 
 ## What is this?
 
-This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time. 
+This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time.
 
 The [Invisible Institute](https://invisible.institute/introduction) maintains this repo and uses these datasets to inform [CPDP.co](https://beta.cpdp.co) and @CPDPbot.
 
 ## What can I find in here?
+
+Data ready for download can be found in [/data](https://github.com/invinst/chicago-police-data/tree/master/data) zipped up for your convenience.
+* cleaned_data contains all our core datasets after the cleaning process
+* matched_data contains all our core datasets matched to unique IDs for each officer (see [Workflow](#workflow))
+* complaints_nov2016 contains only the raw complaints dataset as it was originally produced in response to our FOIA request.
+
+FOIA response letters can be found in [/foia](https://github.com/invinst/chicago-police-data/tree/master/foia)
 
 ### Complaints
 
@@ -34,7 +41,7 @@ The datasets and documents are all sourced originally from the Chicago Police De
 
 # Using the data
 
-This repo aims to be consistent with [Patrick Ball’s Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI). 
+This repo aims to be consistent with [Patrick Ball’s Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI).
 For a detailed layout of the folder structure and data processing workflow, see [Workflow](#workflow).
 
 Please join us here. Ask questions and share your own work. We have collected these datasets in this repository so that everyone can analyze and investigate police accountability in Chicago using a common body of evidence. If you would like to start a new project using our data, we encourage you to create a [new ticket](https://github.com/invinst/chicago-police-data/issues/new) and use the yellow "independent project" label to [collaborate with others](https://github.com/invinst/chicago-police-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22) here on GitHub.
