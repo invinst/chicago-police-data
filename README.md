@@ -2,7 +2,9 @@
 
 ## What is this?
 
-This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time. The [Invisible Institute](https://invisible.institute/introduction) maintains this repo and uses these datasets to inform [CPDP.co](https://beta.cpdp.co) and @CPDPbot.
+This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time. 
+
+The [Invisible Institute](https://invisible.institute/introduction) maintains this repo and uses these datasets to inform [CPDP.co](https://beta.cpdp.co) and @CPDPbot.
 
 ## What can I find in here?
 
