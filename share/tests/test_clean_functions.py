@@ -8,6 +8,7 @@ import pytest
 import pandas as pd
 import numpy as np
 import logging
+import copy
 from general_utils import *
 
 from clean_functions import clean_data
@@ -26,7 +27,7 @@ def test_clean_data():
         'race' : ['N', 'wbh', 'naTIVE AMericaN', 'black hispanic',  'I'],
         'gender' : ['mALE', 'm', 'NONE', 'FEMALE', np.nan]
         })
-
+    orig_input_df = copy.deepcopy(input_df)
     output_df = pd.DataFrame(
        {'first_name' : ['J EDGAR','DYLAN', 'MARY SUE', 'NATASHA',np.nan],
         'last_name' : ['HOOVER','SMITH', 'JONES', "O'BRIEN-JENKINS", np.nan],
@@ -46,5 +47,4 @@ def test_clean_data():
     results = clean_data(input_df, log)
     assert set(results.columns) == set(output_df.columns)
     assert results.equals(output_df[results.columns])
-
-test_clean_data()
+    assert orig_input_df.equals(input_df)

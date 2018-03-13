@@ -66,15 +66,16 @@ def collapse_data(full_df, temp_id='TempID'):
                     .copy()
                     .reset_index(drop=True))
     collapsed_df.insert(0, temp_id, collapsed_df.index)
-    full_df = full_df.merge(collapsed_df, on=cols, how='inner')
-    full_df.drop(cols, axis=1, inplace=True)
+    stored_df = full_df.merge(collapsed_df, on=cols, how='inner')
+    stored_df.drop(cols, axis=1, inplace=True)
+    del full_df['Index']
     del collapsed_df[temp_id]
-    return collapsed_df, full_df
+    return collapsed_df, stored_df
 
 
 def expand_data(collapsed_df, stored_df, temp_id='TempID'):
     """Expandas collapsed dataframe based on index and stored_df
-       returning full dataframe ordered in the same way as pre-collapsed_data
+       returning full dataframe with same indicies as pre-collapsed
     Parameters
     ----------
     collapsed_df : pandas DataFrame
@@ -87,16 +88,17 @@ def expand_data(collapsed_df, stored_df, temp_id='TempID'):
     Returns
     -------
     full_df : pandas DataFrame
-        Row order will be identical to full_df input in collapse_data()
+        Indexes will be identical to full_df input in collapse_data()
     """
     collapsed_df.insert(0, temp_id, collapsed_df.index)
     stored_df = stored_df.merge(collapsed_df, on=temp_id, how='inner')
-    del stored_df[temp_id]
-    stored_df = (stored_df
-                 .sort_values('Index')
-                 .reset_index(drop=True)
-                 .drop('Index', axis=1))
-    return stored_df
+    del collapsed_df[temp_id]
+    full_df = stored_df\
+        .sort_values('Index')\
+        .set_index('Index')\
+        .drop(temp_id, axis=1)
+    del full_df.index.name
+    return full_df
 
 
 def remove_duplicates(dup_df, cols=[], unique=False):
@@ -248,9 +250,12 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
         mdf = df[['ROWID', col]].merge(node_df, left_on=col,
                                         right_on='node', how='inner')
         out_df = out_df.append(mdf[['ROWID', gid]])
-        df = df.drop(col, axis=1)
-    out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')
-    return out_df.drop('ROWID', axis=1)
+        df.drop(col, axis=1, inplace=True)
+    out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')\
+        .drop('ROWID', axis=1)
+    df.drop('ROWID', axis=1, inplace=True)
+
+    return out_df
 
 
 def reshape_data(df, reshape_col, id_col):

@@ -8,6 +8,8 @@ import pytest
 import pandas as pd
 import numpy as np
 import assign_unique_ids_functions
+import copy
+pd.options.mode.chained_assignment = None
 
 
 def test_resolve_conflicts():
@@ -16,49 +18,45 @@ def test_resolve_conflicts():
         {'A': [1, 1, 2, 2,2],
          'B': [2, np.nan, 3, 4,4],
          'C': [np.nan, 5, np.nan, np.nan, 1]})
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'id_cols': ['A'],
                   'conflict_cols': ['B', 'C'],
                   'uid': 'ID',
                   'start_uid': 10}
     output_df = pd.DataFrame(
-        {'ID': [11, 11, 12, 13, 13],
+        {'ID': [10, 10, 11, 12, 12],
          'A': [1, 1, 2, 2, 2],
          'B': [2, np.nan, 3, 4, 4],
          'C': [np.nan, 5, np.nan, np.nan, 1]},
-        columns=['ID', 'A', 'B', 'C'],
-        index=[0, 1, 0, 0, 1])
+        columns=['A', 'B', 'C', 'ID'])
 
-    results = assign_unique_ids_functions.resolve_conflicts(input_df,
-                                                            **input_args)
+    results = assign_unique_ids_functions.resolve_conflicts(input_df,**input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
-    assert results[0].equals(output_df)
-    assert results[1] == 13
 
-def test_resolve_conflicts_bad():
-    '''test resolve_conflicts poor performance'''
-    input_df = pd.DataFrame({
-        'A' : [1,1,1,1],
-        'B' : [1, np.nan, np.nan, 2],
-        'C' : [1, 1, np.nan,2],
-        'D' : [1, np.nan, 1, np.nan]})
+def test_resolve_conflicts_unresolved():
+    '''test resolve_conflicts with unresolved conflicts'''
+    input_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1,1],
+         'B': [2, np.nan, 3, 4,np.nan],
+         'C': [4, 4, 5, 5, 5]})
+    orig_input_df = copy.deepcopy(input_df)
+
     input_args = {'id_cols': ['A'],
-                  'conflict_cols': ['B', 'C', 'D'],
+                  'conflict_cols': ['B', 'C'],
                   'uid': 'ID',
-                  'start_uid': 0}
+                  'start_uid': 1}
     output_df = pd.DataFrame(
-        {'ID': [1, 2, 3, 4],
-         'A' : [1,1,1,1],
-         'B' : [1, np.nan, np.nan, 2],
-         'C' : [1, 1, np.nan,2],
-         'D' : [1, np.nan, 1, np.nan]},
-        columns=['ID', 'A', 'B', 'C', 'D'],
-        index=[0, 1, 2, 3])
+        {'A': [1, 1, 1, 1,1],
+         'B': [2, np.nan, 3, 4,np.nan],
+         'C': [4, 4, 5, 5, 5],
+         'ID': [1, 1, np.nan, np.nan, np.nan]},
+        columns=['A', 'B', 'C', 'ID'])
 
-    results = assign_unique_ids_functions.resolve_conflicts(input_df,
-                                                            **input_args)
-    assert results[0].equals(output_df)
-    assert results[1] == 4
-
+    results = assign_unique_ids_functions.resolve_conflicts(input_df,**input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
 def test_assign_unique_ids():
     '''test assign_unique_ids
@@ -68,6 +66,7 @@ def test_assign_unique_ids():
         {'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5, 5],
          'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4, 4],
          'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan, np.nan]})
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'uid': 'ID', 'id_cols': ['A'],
                   'conflict_cols': ['B', 'C'], 'log' : False}
 
@@ -77,10 +76,80 @@ def test_assign_unique_ids():
          'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4, 4],
          'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan, np.nan]})
 
-    results = assign_unique_ids_functions.assign_unique_ids(input_df,
-                                                            **input_args)
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
     assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
+
+def test_assign_unique_ids_unresolved_distinct():
+    '''test assign_unique_ids with unresolved_policy = 'distinct'
+       does not test report generation
+    '''
+    input_df = pd.DataFrame(
+        {'A': [1, 1, 1, 2, 2, 2, 2],
+         'B': [2, np.nan, 2, 3, 4, 4, 4],
+         'C': [2, np.nan, np.nan, 1, 1, np.nan, 2]})
+    orig_input_df = copy.deepcopy(input_df)
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C'], 'log' : False,
+                  'unresolved_policy' : 'distinct'}
+
+    output_df = pd.DataFrame(
+        {'A': [1, 1, 1, 2, 2, 2, 2],
+         'B': [2, np.nan, 2, 3, 4, 4, 4],
+         'C': [2, np.nan, np.nan, 1, 1, np.nan, 2],
+         'ID': [1.0, 1.0, 1.0, 2.0, 3.0, 4.0, 5.0]})
+
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
+
+
+def test_assign_unique_ids_unresolved_same():
+    '''test assign_unique_ids with unresolved_policy = 'same'
+       does not test report generation
+    '''
+    input_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2, 2, 2, 3],
+         'B': [2, np.nan, 3, 2, 3, 4, 4, 4, 3],
+         'C': [2, np.nan, np.nan, np.nan, 1, 1, np.nan, 2, 3]})
+    orig_input_df = copy.deepcopy(input_df)
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C'], 'log' : False,
+                  'unresolved_policy' : 'same'}
+
+    output_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2, 2, 2, 3],
+         'B': [2, np.nan, 3, 2, 3, 4, 4, 4, 3],
+         'C': [2, np.nan, np.nan, np.nan, 1, 1, np.nan, 2, 3],
+         'ID': [3.0, 3.0, 3.0, 3.0, 2.0, 4.0, 4.0, 4.0, 1.0]})
+
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
+
+
+# def test_assign_unique_ids_unresolved_manual():
+#     '''test assign_unique_ids with unresolved_policy = 'manual'
+#        does not test report generation
+#     '''
+#
+#     input_df = pd.DataFrame(
+#         {'A': [1, 1, 1, 1, 2, 2, 2, 2, 3],
+#          'B': [2, np.nan, 3, 2, 4, 4, 4, 4, 3],
+#          'C': [2, np.nan, 2, 1, 1, 1, np.nan, 2, 3]})
+#     input_args = {'uid': 'ID', 'id_cols': ['A'],
+#                   'conflict_cols': ['B', 'C'], 'log' : False,
+#                   'unresolved_policy' : 'manual'}
+#
+#     output_df = pd.DataFrame(
+#         {'A': [1, 1, 1, 1, 2, 2, 2, 2, 3],
+#          'B': [2, np.nan, 3, 2, 4, 4, 4, 4, 3],
+#          'C': [2, np.nan, 2, 1, 1, 1, np.nan, 2, 3.0],
+#          'ID': [2.0, 2.0, 3.0, 2.0, 4.0, 4.0, 5.0, 6.0, 1.0]})
+#     results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+#     assert results.equals(output_df)
+# test_assign_unique_ids_unresolved_manual()
 
 def test_order_aggregate():
     '''test order_aggregate'''
@@ -89,6 +158,7 @@ def test_order_aggregate():
          'B': [2, 5, 3, 3, 2],
          'C': [6, 1, 3, 4, 1],
          'D': [3, 7, 1, np.nan, 2]})
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'id_cols': ['A'],
                   'agg_cols': ['B', 'C'],
                   'order_cols': ['D'],
@@ -102,6 +172,7 @@ def test_order_aggregate():
     results = assign_unique_ids_functions.order_aggregate(input_df,
                                                           **input_args)
     assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
 
 def test_max_aggregate():
@@ -110,6 +181,7 @@ def test_max_aggregate():
     input_df = pd.DataFrame(
         {'A': [1, 1, 2, 2, 3],
          'B': [1, np.nan, 2, 5, np.nan]})
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'uid': 'A',
                   'col': 'B'}
     output_df = pd.DataFrame(
@@ -118,6 +190,7 @@ def test_max_aggregate():
     results = assign_unique_ids_functions.max_aggregate(input_df,
                                                         **input_args)
     assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
 
 def test_mode_aggregate():
@@ -126,6 +199,7 @@ def test_mode_aggregate():
     input_df = pd.DataFrame(
         {'A': [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3],
          'B': [5, np.nan, np.nan, np.nan, 5, 1, 'F', 'E', 'F', 'E', np.nan]})
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'uid': 'A',
                   'col': 'B'}
     output_df = pd.DataFrame(
@@ -134,6 +208,7 @@ def test_mode_aggregate():
     results = assign_unique_ids_functions.mode_aggregate(input_df,
                                                          **input_args)
     assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
 
 def test_aggregate_data():
@@ -150,7 +225,7 @@ def test_aggregate_data():
          'max': [1, np.nan, 10, 1, 3, 9, 2, 2, -2, np.nan, np.nan],
          'max_names': ['One', np.nan, 'Ten', 'One', 'Three', 'Nine',
                        'Two', 'Two', '-Two', np.nan, np.nan]})
-
+    orig_input_df = copy.deepcopy(input_df)
     input_args = {'uid': 'uid',
                   'id_cols': ['ID'],
                   'mode_cols': ['mode'],
@@ -172,3 +247,4 @@ def test_aggregate_data():
     results = assign_unique_ids_functions.aggregate_data(input_df,
                                                          **input_args)
     assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)

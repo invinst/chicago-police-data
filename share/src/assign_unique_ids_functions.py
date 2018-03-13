@@ -11,6 +11,7 @@ from scipy import stats
 
 from general_utils import keep_duplicates, remove_duplicates, list_diff
 
+
 def generate_uid_report(full, unique, conflicts, resolved, uids):
     return (('Total rows: {0}\n'
              'Unique id + conflict rows: {1}\n'
@@ -19,19 +20,53 @@ def generate_uid_report(full, unique, conflicts, resolved, uids):
              'Total unique ids: {4}\n'
              '').format(full, unique, conflicts, resolved, uids))
 
-def resolve_conflicts(df, id_cols, conflict_cols,
-                      uid, start_uid):
-    """Determines if multiple observations are conflicting
-       and assigns same IDs based on id_cols and no conflicts.
 
-       Groups data by id_cols, then iterates over groups and
-       determines if conflict_cols contain non-NA conflicting information.
-       If no conflicting information is found, group is determined to be same.
-       If conflicting information is found and sub-groups can be formed,
-       resolve_conflicts is called recursively at most once per group,
-       otherwise each observation in group is distinct.
-       Once distinct-ness is determined, uids are assigned based on number of
-       distinct observations found before in the loop + start_uid.
+def split_group(dfm):
+    """Use closure check_conflicts() to recursively determine if
+       records in a dataframe are same, distinct, or not unresolved (NA)
+
+    Parameters
+    ----------
+    dfm : pandas DataFrame
+
+    Returns
+    -------
+    rl : list (of lists)
+    """
+    rl = []
+    strt=0
+    def check_conflicts(df):
+        """Recursively finds conflicts, gives non-conflicted indexes same id
+        """
+        nonlocal strt
+        nonlocal rl
+        for col in df.columns:
+            if df[col].nunique == df[col].size:
+                for ind, num in zip(df.index, range(df.shape[0])):
+                    rl.append([ind, strt])
+                    strt +=1
+            elif df[col].nunique() > 1:
+                if df[col].notnull().all():
+                    for i,g in df.loc[:,col:].groupby(col, as_index=False):
+                        check_conflicts(g)
+                else:
+                    for ind in df.index:
+                        rl.append([ind, np.nan])
+            elif col == df.columns[-1]:
+                for ind, num in zip(df.index, range(df.shape[0])):
+                        rl.append([ind, strt])
+                strt +=1
+            else:
+                continue
+            break
+    check_conflicts(dfm)
+    return rl
+
+
+def resolve_conflicts(df, id_cols, conflict_cols, uid='id', start_uid=0):
+    """Iterates over groups with conflicting records,
+       passing them into split_group to resolve conflicts,
+       and determines uids based on start_uid
 
     Parameters
     ----------
@@ -48,58 +83,72 @@ def resolve_conflicts(df, id_cols, conflict_cols,
     Returns
     -------
     out_df : pandas DataFrame
-    start_uid : int, float, etc.
-        Start uid for next resolve_conflicts
-    Examples
-    --------
     """
-    temp_fillna=-9999
-    out_df = pd.DataFrame()
-
-    df.fillna(temp_fillna, inplace=True)
-
-    df.reset_index(drop=True, inplace=True)
-    group_df = df.groupby(id_cols, as_index=False)
-
-    for key, group in group_df:
-        group = group.reset_index(drop=True)
-        recur = False
-        conflicts = 0
-        for col in conflict_cols:
-            non_nan = group[col]
-            non_nan = non_nan[non_nan != temp_fillna]
-            if (non_nan.nunique() > 1 and
-                    non_nan.nunique() < group.shape[0] and
-                    recur == False and
-                    non_nan.size == group.shape[0]):
-                recur=True
-                group, start_uid = resolve_conflicts(group.copy(),
-                                                     id_cols + [col],
-                                                     list_diff(conflict_cols,
-                                                               [col]),
-                                                     uid, start_uid)
-
-            elif non_nan.nunique() > 1:
-                conflicts += 1
-        if recur:
-            pass
-        elif conflicts == 0:
-            group.insert(0, uid, start_uid + 1)
-            start_uid += 1
-        else:
-            group.insert(0, uid, start_uid + group.index + 1)
-            start_uid += group.index.nunique()
-        out_df = out_df.append(group)
-
-    out_df[out_df == temp_fillna] = np.nan
-    return out_df, start_uid
+    sg_lst = []
+    for k,grp in df.groupby(id_cols, as_index=False):
+        sg_lst.append(split_group(grp[sorted(conflict_cols,
+                                             key=lambda x: grp[x].count(),
+                                             reverse=True)]))
+    fl = []
+    for sg in sg_lst:
+        for tp in sg:
+            tp[1] = tp[1] + start_uid
+        fl.extend(sg)
+        if np.isnan(sg[-1][1]):
+            continue
+        start_uid = sg[-1][1] + 1
+    odf = pd.DataFrame(fl, columns=['ind', uid])
+    assert odf.shape[0] == df.shape[0]
+    assert set(odf.ind) == set(df.index)
+    df = df.merge(odf, left_index=True, right_on='ind', how='inner')\
+        .drop('ind',axis=1)
+    return df
 
 
-def assign_unique_ids(df, uid, id_cols, conflict_cols=[], log=None):
+def manual_resolve(gdf, uid, start_uid):
+    """Resolves conflicts in groupings based on user input.
+
+    Parameters
+    ----------
+    gdf : pandas DataFrame
+    uid : str
+        Name of unique ID column
+    start_uid : int
+
+    Returns
+    -------
+    gdf : pandas DataFrame
+    """
+    print('Current group (rows = %d): \n %s' % (gdf.shape[0], gdf))
+    user_uids = input("Assign uids:\n"
+                      "(0 to n-1) in separated by commas,\n"
+                      "'same' = all same,\n"
+                      "'distinct' = all distinct\n"
+                      "'quit' = quit\n"
+                      "input: ")
+    if user_uids == 'same':
+        gdf[uid] = start_uid
+    elif user_uids == 'distinct':
+        gdf[uid] = np.arange(start_uid, start_uid + gdf.shape[0])
+    elif user_uids == 'quit':
+        gdf[uid] = np.nan
+    else:
+        try:
+            gdf[uid] = [int(i) + start_uid for i in user_uids.split(',')]
+        except:
+             print("Sorry bad input. Try that again.")
+             print(gdf)
+             gdf = manual_resolve(gdf, uid, start_uid)
+    return gdf
+
+
+def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
+                      log=None, unresolved_policy = 'distinct'):
     """Assigns unique IDs (uid) to dataframe based on id_cols groupings.
        If conflict_cols are specified, conflicts will be resolved
        to determine if id_cols groupings with differing conflict_cols
-       information are actually distinct.
+       information are actually distinct, unresolved conflicts can be
+       handled as 'distinct', 'same', or 'manual'.
 
     Parameters
     ----------
@@ -112,13 +161,17 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[], log=None):
         List of column names used for conflict evaluation
     log : logger
         If given, uid_report will be generated and logged as info
+    unresolved_policy: str
+        Determine how to handle unresolved conflicts
+        'distinct' = each unresolved in a group is distinct,
+        'same' = each unresolved in a group is the same,
+        'manual' = send unresolved groups to manual_resolve()
+
     Returns
     -------
     out_df : pandas DataFrame
-
-    Examples
-    --------
     """
+    if conflict_cols is None: conflict_cols = []
     dfu = df[id_cols + conflict_cols].drop_duplicates()
     dfu.reset_index(drop=True, inplace=True)
 
@@ -132,24 +185,59 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=[], log=None):
         rd_df.insert(0, uid, rd_df.index + 1)
 
         kd_df = keep_duplicates(dfu, id_cols).reset_index(drop=True)
+        kd_df[id_cols] = kd_df[id_cols].fillna(value=-9999)
+
         conflict_rows = kd_df.shape[0]
-        rc_df, ending_uid = resolve_conflicts(kd_df, id_cols, conflict_cols,
-                                              uid, max(rd_df[uid]))
+
+        next_uid = 1 if rd_df[uid].dropna().empty else rd_df[uid].max() + 1
+        rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
+                                  uid, next_uid)
+
+        if log:
+            log.info('%d resolved conflicts. %d unresolved conflicts'
+                     % (rc_df[uid].count(),
+                        rc_df[uid].size - rc_df[uid].count()))
+
+        if not rc_df[uid].dropna().empty: next_uid = rc_df[uid].max() + 1
+        if rc_df[uid].isnull().sum() > 0:
+            if unresolved_policy == 'distinct':
+                rc_df.loc[rc_df[uid].isnull(), uid] = \
+                    np.arange(next_uid, next_uid + rc_df[uid].isnull().sum())
+            elif unresolved_policy == 'same':
+                sdf = pd.DataFrame()
+                for k, g in rc_df[rc_df[uid].isnull()].groupby(id_cols):
+                    g[uid] = next_uid
+                    next_uid +=1
+                    sdf = sdf.append(g)
+                rc_df = rc_df.dropna(subset=[uid]).append(sdf)
+
+            elif unresolved_policy == 'manual':
+                mr_df = pd.DataFrame()
+                for k,g in rc_df\
+                    .loc[rc_df[uid].isnull(), id_cols + conflict_cols]\
+                    .groupby(id_cols, as_index=False):
+                    g = manual_resolve(g, uid, next_uid)
+                    next_uid = g[uid].max() + 1
+                    mr_df = mr_df.append(g)
+                if log:
+                    log.info('Unresolved conflicts resolved by "%s" into %d ids'
+                             % (unresolved_policy, mr_df[uid].nunique()))
+                rc_df = rc_df.dropna(subset=[uid]).append(mr_df)
+
+        rc_df[id_cols] = rc_df[id_cols].replace({-9999:np.nan})
+
         if rc_df.shape[0] == 0:
             conflicts_resolved = 0
         else:
             conflicts_resolved = rc_df[uid].nunique()
-
-        df = df.merge(rd_df.append(rc_df),
-                      on=id_cols + conflict_cols,
-                      how='left')
+        df = df.merge(rd_df.append(rc_df), on=id_cols+conflict_cols, how='left')
 
     else:
         dfu[uid] = dfu.index + 1
         df = df.merge(dfu, on=id_cols, how='left')
 
     assert df[df[uid].isnull()].shape[0] == 0,\
-        print('Some unique IDs are null')
+        print('Some unique IDs are null:\n%s' % df[df[uid].isnull()])
     assert max(df[uid]) == df[uid].nunique(),\
         print('Unique IDs are not correctly scaled')
 
@@ -325,9 +413,9 @@ def aggregate_data(df, uid, id_cols=[],
                               on=uid, how='left')
 
     if current_cols and time_col:
-        df[time_col] = pd.to_datetime(df[time_col])
-        oa_df = order_aggregate(df[uid_col + [time_col] + current_cols],
-                                uid_col, current_cols, [time_col])
+        dfu = df[uid_col + [time_col] + current_cols].drop_duplicates()
+        dfu[time_col] = pd.to_datetime(dfu[time_col])
+        oa_df = order_aggregate(dfu, uid_col, current_cols, [time_col])
         agg_df = agg_df.merge(oa_df, on=uid, how='left')
         agg_df.columns = ['current_' + col.replace('current_', '')
                           if col in current_cols else col
