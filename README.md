@@ -4,19 +4,49 @@
 
 This is a living repository of public data about Chicago’s police officers and their interactions with the public. The  various datasets stored within cover complaints of misconduct, misconduct investigations, use of force reports, awards, promotions, salary, official rosters, unit assignment over time.
 
+The [Invisible Institute](https://invisible.institute/introduction) maintains this repo and uses these datasets to inform [CPDP.co](https://beta.cpdp.co) and @CPDPbot.
+
+## What can I find in here?
+
+Data ready for download can be found in [data/](https://github.com/invinst/chicago-police-data/tree/master/data) zipped up for your convenience.
+* cleaned_data contains all our core datasets after the cleaning process
+* matched_data contains all our core datasets matched to unique IDs for each officer (see [Workflow](#workflow))
+* complaints_nov2016 contains only the raw complaints dataset as it was originally produced in response to our FOIA request.
+
+FOIA response letters can be found in [foia/](https://github.com/invinst/chicago-police-data/tree/master/foia)
+
+### Complaints
+
+This dataset lists complaints about Chicago Police officers between 2000 and mid-2016 as well as the outcomes of those complaints. The data includes complaints made by civilians, which comprise the bulk of the records, as well as complaints made by other officers. Some were investigated by CPD’s Bureau of Internal Affairs. Others were investigated by a succession of civilian review agencies (formerly OPS, then IPRA, now COPA). The names of the officers accused are included.
+
+### Awards
+
+This dataset lists Chicago Police awards between 2005 and mid-2017. The Chicago Police publishes a list of current types of awards in their department directives [here](http://directives.chicagopolice.org/directives/data/a7a57bf0-12d101cb-ad612-d102-2b6676509a070b87.html) and describes the process [here](http://directives.chicagopolice.org/directives/data/a7a57bf0-12cad953-0e212-cada-aafce1abc7fcf520.html). The data includes awards that have been requested but are still in process, awards that were rejected, and awards to non-police employees of the CPD, in addition to awards given to sworn Chicago police officers.
+
+### Salary
+
+This dataset includes salary data for Chicago Police employees by year, spanning from 2002 to 2017. The data is kept by the City of Chicago’s Human Resources Department. Every officer has only one row per year, unless they changed positions in a year.
+
+### Unit History
+
+This dataset tracks the unit assignments of Chicago Police officers over time. The data includes entries dating back to the 1940s, though more recent data appears to be more reliable. Each row includes an officer’s name and date of appointment, plus the units they are leaving and joining. A list of unit numbers and their respective names can be found here.
+
+### Matching Officers
+
+In the raw data, officer identities had no unique identifier. In order to link between data sources, the officers in a single file were deduplicated, and these unique profiles were used to match against officer profiles from other deduplicated data sets. We use an iterative pairwise joining method, which identifies the strongest matches between unique officers in different data sets, removes these matched officers, then repeats the process until the permitted joins are exhausted or there are no unmatched officers left.
+
 ## Where did it come from?
 
 The datasets and documents are all sourced originally from the Chicago Police Department (CPD), Civilian Office of Police Accountability (COPA), the Independent Police Review Authority (IPRA), or the City of Chicago. Most of these datasets were released in response to FOIA requests submitted by the Invisible Institute and its partners. Some information was also extracted from public web sites, for example, the [COPA Case Portal](http://www.chicagocopa.org/data-cases/case-portal/), [published reports](http://www.chicagocopa.org/news-publications/publications/) on the COPA web site, and the [City of Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/COPA-Cases-Summary/mft5-nfa8).
 
 # Using the data
 
-This repo aims to be consistent with [Patrick Ball’s Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI). For a detailed layout of the folder structure and data processing workflow, see [Workflow](#workflow).
+This repo aims to be consistent with [Patrick Ball’s Principled Data Processing](https://youtube.com/watch?v=ZSunU9GQdcI).
+For a detailed layout of the folder structure and data processing workflow, see [Workflow](#workflow).
 
 Please join us here. Ask questions and share your own work. We have collected these datasets in this repository so that everyone can analyze and investigate police accountability in Chicago using a common body of evidence. If you would like to start a new project using our data, we encourage you to create a [new ticket](https://github.com/invinst/chicago-police-data/issues/new) and use the yellow "independent project" label to [collaborate with others](https://github.com/invinst/chicago-police-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22independent+project%22) here on GitHub.
 
 ## Contributing to this repository
-
-We want your help.
 
 Browse the ["repo issues" label on the Issue Tracker](https://github.com/invinst/chicago-police-data/issues?q=is%3Aopen+is%3Aissue+label%3A%22repo+issue%22) to see where help is needed.
 
