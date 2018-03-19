@@ -222,7 +222,6 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
         assert not all_vals & set(df['temp_'+col].dropna())
         all_vals.update(set(df['temp_'+col].dropna()))
         temp_cols.append('temp_'+col)
-
     # Generate edge list of connections between column values by row
     el = []
     for i,r in df[temp_cols].drop_duplicates().iterrows():
@@ -252,7 +251,8 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
         out_df = out_df.append(mdf[['ROWID', gid]])
         df.drop(col, axis=1, inplace=True)
     out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')\
-        .drop('ROWID', axis=1)
+        .set_index('ROWID')
+    del out_df.index.name
     df.drop('ROWID', axis=1, inplace=True)
 
     return out_df

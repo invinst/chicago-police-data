@@ -142,19 +142,21 @@ def test_union_group():
         (np.nan, np.nan, 10),
         (0,0,10),
         (9,10,np.nan)],
-        columns=['A','B','C'])
+        columns=['A','B','C'],
+        index=[100,11,12,13, 15, 66, 7])
     orig_input_df = copy.deepcopy(input_df)
     input_args = {'gid' : 'gid', 'cols' : ['A', 'B', 'C']}
 
     output_df = pd.DataFrame([
         (1,1,1,1),
-        (1,1,2,1),
-        (1,np.nan,4,1),
-        (1,4,4,np.nan),
-        (2,np.nan, np.nan, 10),
-        (2,0,0,10),
-        (3,9,10,np.nan)],
-        columns = ['A', 'B', 'C','gid'])
+        (1,2,1,1),
+        (np.nan,4,1,1),
+        (4,4,np.nan,1),
+        (np.nan, np.nan, 10,2),
+        (0,0,10,2),
+        (9,10,np.nan,3)],
+        columns = ['A', 'B', 'C','gid'],
+        index=[100,11,12,13, 15, 66, 7])
 
     results = general_utils.union_group(input_df, **input_args)
     assert orig_input_df.equals(input_df)
