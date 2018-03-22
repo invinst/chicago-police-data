@@ -316,7 +316,7 @@ def max_aggregate(df, uid, col):
     if kd_df.empty:
         ma_df = df
     else:
-        df = df[~df[uid].isin(kd_df[uid])]
+        df = remove_duplicates(df, uid)
         groups = kd_df.groupby(uid, as_index=False)
         groups = groups.agg(np.nanmax)
         ma_df = df.append(groups).reset_index(drop=True)
@@ -351,7 +351,7 @@ def mode_aggregate(df, uid, col):
     if kd_df.empty:
         ma_df = df
     else:
-        df = df[~df[uid].isin(kd_df[uid])]
+        df = remove_duplicates(df, uid)
         groups = kd_df.groupby(uid, as_index=False)
         groups = groups.aggregate(lambda x:
                                   stats.mode(x,
