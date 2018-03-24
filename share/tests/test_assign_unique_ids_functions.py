@@ -24,7 +24,7 @@ def test_resolve_conflicts():
                   'uid': 'ID',
                   'start_uid': 10}
     output_df = pd.DataFrame(
-        {'ID': [10, 10, 11, 12, 12],
+        {'ID': [10.0, 10.0, 11.0, 12.0, 12.0],
          'A': [1, 1, 2, 2, 2],
          'B': [2, np.nan, 3, 4, 4],
          'C': [np.nan, 5, np.nan, np.nan, 1]},
@@ -71,7 +71,7 @@ def test_assign_unique_ids():
                   'conflict_cols': ['B', 'C'], 'log' : False}
 
     output_df = pd.DataFrame(
-        {'ID': [3, 3, 3, 1, 2, 2, 4, 4, 5, 6, 6],
+        {'ID': [3.0, 3.0, 3.0, 1.0, 2.0, 2.0, 4.0, 4.0, 5.0, 6.0, 6.0],
          'A': [1, 1, 1, 2, 3, 3, 4, 4, 5, 5, 5],
          'B': [2, np.nan, 2, 3, 4, 4, 2, np.nan, 3, 4, 4],
          'C': [2, np.nan, np.nan, 3, 1, 1, np.nan, 5, np.nan, np.nan, np.nan]})
@@ -123,6 +123,31 @@ def test_assign_unique_ids_unresolved_same():
          'B': [2, np.nan, 3, 2, 3, 4, 4, 4, 3],
          'C': [2, np.nan, np.nan, np.nan, 1, 1, np.nan, 2, 3],
          'ID': [3.0, 3.0, 3.0, 3.0, 2.0, 4.0, 4.0, 4.0, 1.0]})
+
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
+
+
+def test_assign_unique_ids_many_nans():
+    '''test assign_unique_ids with unresolved_policy = 'distinct'
+       but with many nans
+       does not test report generation
+    '''
+    input_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2, 2, 2],
+         'B': [1, 2, 2, 2, 4, 4, 4, 3],
+         'C': [2, 2, 3, np.nan, 1, 2, np.nan, 1]})
+    orig_input_df = copy.deepcopy(input_df)
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C'], 'log' : False,
+                  'unresolved_policy' : 'distinct'}
+
+    output_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2, 2, 2],
+         'B': [1, 2, 2, 2, 4, 4, 4, 3],
+         'C': [2, 2, 3, np.nan, 1, 2, np.nan, 1],
+         'ID' : [1.0, 3.0, 4.0, 5.0,6.0,7.0, 8.0,2.0]})
 
     results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
     assert results.equals(output_df)
