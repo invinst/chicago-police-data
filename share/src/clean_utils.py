@@ -48,17 +48,14 @@ class GeneralCleaners:
         cleaned_col = self.col.str.upper().replace(type_dict)
         if (cleaned_col[~cleaned_col.isin(type_dict.values())].size > 0 and
                 self.log):
+            warn_locs =  ~cleaned_col.isin(type_dict.values())
             self.log.warning("%s values not in %s_types.yaml file."
                              " %d cases replaced with '%s'",
-                             cleaned_col[
-                                 ~cleaned_col.isin(type_dict.values())
-                                 ].unique().tolist(),
+                             cleaned_col[warn_locs].unique().tolist(),
                              self.col_type,
-                             cleaned_col[
-                                 ~cleaned_col.isin(type_dict.values())
-                                 ].size,
+                             cleaned_col[warn_locs].size,
                              fill)
-        cleaned_col[~cleaned_col.isin(type_dict.values())] = fill
+        cleaned_col[warn_locs] = fill
         return cleaned_col
 
     def clean_int(self, integer,
@@ -122,7 +119,8 @@ class GeneralCleaners:
         cleaned_col : pandas Series
             Column cleaned based on col_type
         """
-        if self.col_type + '_types.yaml' in os.listdir('hand/'):
+        if ('hand' in os.listdir() and
+            self.col_type + '_types.yaml' in os.listdir('hand/')):
             cleaned_col = self.clean_from_yaml()
         else:
             clean_func = eval("self.clean_%s" % self.col_type)
