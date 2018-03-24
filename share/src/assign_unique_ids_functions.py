@@ -91,13 +91,13 @@ def resolve_conflicts(df, id_cols, conflict_cols, uid='id', start_uid=0):
                                              reverse=True)]))
     fl = []
     for sg in sg_lst:
-        for tp in sg:
-            tp[1] = tp[1] + start_uid
-        fl.extend(sg)
-        if np.isnan(sg[-1][1]):
-            continue
-        start_uid = sg[-1][1] + 1
-    odf = pd.DataFrame(fl, columns=['ind', uid])
+        tsa = np.array(sg, dtype=np.float64)
+        tsa[:,1] += start_uid
+        fl.append(tsa)
+        if not np.isnan(tsa[:,1]).all():
+            start_uid = np.nanmax(tsa[:,1]) + 1
+    odf = pd.DataFrame(np.concatenate(fl,axis=0),
+                       columns=['ind', uid])
     assert odf.shape[0] == df.shape[0]
     assert set(odf.ind) == set(df.index)
     df = df.merge(odf, left_index=True, right_on='ind', how='inner')\
@@ -237,7 +237,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
         df = df.merge(dfu, on=id_cols, how='left')
 
     assert keep_duplicates(df[[uid] + id_cols].drop_duplicates(), uid).empty,\
-        "This should not happen."
+        'This should not happen. Same uids between id_col groupings.'
     assert df[df[uid].isnull()].shape[0] == 0,\
         'Some unique IDs are null:\n%s' % df[df[uid].isnull()]
     assert max(df[uid]) == df[uid].nunique(),\
