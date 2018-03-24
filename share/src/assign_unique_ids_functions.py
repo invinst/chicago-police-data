@@ -236,10 +236,12 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
         dfu[uid] = dfu.index + 1
         df = df.merge(dfu, on=id_cols, how='left')
 
+    assert keep_duplicates(df[[uid] + id_cols].drop_duplicates(), uid).empty,\
+        "This should not happen."
     assert df[df[uid].isnull()].shape[0] == 0,\
-        print('Some unique IDs are null:\n%s' % df[df[uid].isnull()])
+        'Some unique IDs are null:\n%s' % df[df[uid].isnull()]
     assert max(df[uid]) == df[uid].nunique(),\
-        print('Unique IDs are not correctly scaled')
+        'Unique IDs are not correctly scaled'
 
     uid_count = max(df[uid])
     uid_report = generate_uid_report(full_row_count, unique_rows,
