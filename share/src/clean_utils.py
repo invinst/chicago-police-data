@@ -46,16 +46,16 @@ class GeneralCleaners:
         with open('hand/{}_types.yaml'.format(self.col_type), 'r') as file:
             type_dict = yaml.load(file)
         cleaned_col = self.col.str.upper().replace(type_dict)
-        if (cleaned_col[~cleaned_col.isin(type_dict.values())].size > 0 and
+        fill_locs =  ~cleaned_col.isin(type_dict.values())
+        if (cleaned_col[fill_locs].size > 0 and
                 self.log):
-            warn_locs =  ~cleaned_col.isin(type_dict.values())
             self.log.warning("%s values not in %s_types.yaml file."
                              " %d cases replaced with '%s'",
-                             cleaned_col[warn_locs].unique().tolist(),
+                             cleaned_col[fill_locs].unique().tolist(),
                              self.col_type,
-                             cleaned_col[warn_locs].size,
+                             cleaned_col[fill_locs].size,
                              fill)
-        cleaned_col[warn_locs] = fill
+        cleaned_col[fill_locs] = fill
         return cleaned_col
 
     def clean_int(self, integer,
