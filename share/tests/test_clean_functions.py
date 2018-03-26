@@ -51,7 +51,7 @@ def test_clean_data():
 
 
 def test_clean_data_dict():
-    '''tests clean_data with dict_cols'''
+    '''tests clean_data with clean_dict'''
     input_df = pd.DataFrame(
        {'race' : ['N', 'wbh', 'naTIVE AMericaN', 'black hispanic',  'I'],
         'gender' : ['mALE', 'm', 'NONE', 'FEMALE', np.nan]
@@ -61,9 +61,9 @@ def test_clean_data_dict():
        {'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
         'gender' : ['', 'MALE', '', 'FEMALE', '']
         })
-    input_dict_cols = {'gender' : {'mALE' : '', 'm' : 'MALE', 'FEMALE': 'FEMALE'}}
+    input_clean_dict = {'gender' : {'mALE' : '', 'm' : 'MALE', 'FEMALE': 'FEMALE'}}
     results = clean_data(input_df, log,
-                         dict_cols = input_dict_cols)
+                         clean_dict = input_clean_dict)
 
     assert set(results.columns) == set(output_df.columns)
     assert results.equals(output_df[results.columns])

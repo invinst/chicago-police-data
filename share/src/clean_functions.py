@@ -12,7 +12,7 @@ from general_utils import collapse_data, expand_data
 from clean_utils import GeneralCleaners, DateTimeCleaners
 
 
-def clean_data(df, log, skip_cols=None, dict_cols=None, types_dict=None):
+def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None):
     """Cleans input dataframe in using standard cleaning functions
 
     Parameters
@@ -22,7 +22,7 @@ def clean_data(df, log, skip_cols=None, dict_cols=None, types_dict=None):
         Used for info/warnings during cleaning process
     skip_cols : list
         List of column names in df that are explicitly not cleaned
-    dict_cols : dict (of dicts)
+    clean_dict : dict (of dicts)
         Dictionary containing dictionaries for cleaning (main key = column name)
     types_dict : dict
         Dictionary of column types
@@ -33,7 +33,7 @@ def clean_data(df, log, skip_cols=None, dict_cols=None, types_dict=None):
     """
     name_cols = []
     cleaned_df = pd.DataFrame()
-    if dict_cols is None: dict_cols = {}
+    if clean_dict is None: clean_dict = {}
     if skip_cols is None: skip_cols = []
     if types_dict is None:
         with open('hand/column_types.yaml', 'r') as file:
@@ -44,9 +44,9 @@ def clean_data(df, log, skip_cols=None, dict_cols=None, types_dict=None):
             log.info("Column '%s' was not cleaned.", col_name)
             cleaned_df[col_name] = df[col_name].copy()
 
-        elif col_name in dict_cols.keys():
+        elif col_name in clean_dict.keys():
             log.info("Column '%s' cleaned using dictionary", col_name)
-            cdict = dict_cols[col_name]
+            cdict = clean_dict[col_name]
             cleaned_col = df[col_name].replace(cdict)
             missing = cleaned_col[~cleaned_col.isin(cdict.values())]
             if missing.size > 0 and log:
