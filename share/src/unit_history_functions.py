@@ -249,7 +249,7 @@ TODAY = datetime.today().date()
 
 def resolve_units(udf,
                   start='unit_start_date', end='unit_end_date',
-                  unit='unit', uid='UID'):
+                  unit='unit'):
     """Resolves unit history conflicts (overlaps) for a single
        individual's unit history in non-panel format.
 
@@ -261,8 +261,6 @@ def resolve_units(udf,
         Name of unit start date column in unit history DataFrames in uh_list
     end : str
         Name of unit end date column in unit history DataFrames in uh_list
-    uid : str
-        Name of unique ID column in unit history
     unit : str
         Name of unit column in unit history DataFrames in uh_list
 
@@ -272,7 +270,7 @@ def resolve_units(udf,
     """
     CODE = 'CODE'
     DAY = timedelta(days=1)
-    udf = udf[[uid, unit, start, end]]\
+    udf = udf\
         .sort_values([start, end])\
         .reset_index(drop=True)
     udf[CODE] = udf[end].map(lambda x: 1 - int(pd.isnull(x)))
