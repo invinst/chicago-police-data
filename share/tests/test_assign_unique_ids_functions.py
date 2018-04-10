@@ -158,19 +158,20 @@ def test_assign_unique_ids_with_empty_kd_df():
        does not test report generation
     '''
     input_df = pd.DataFrame(
-        {'A': [1, 1, 1, 1, 2, 2],
-         'B': [1, 1, 1, 1, 3, 3],
-         'C': [1, 1, 1, 1, 4, 5]})
+        {'A': [1, 1, 1, 1],
+         'B': [1, 1, 1, 1],
+         'C': [1, 1, 1, 1]})
     orig_input_df = copy.deepcopy(input_df)
     input_args = {'uid': 'ID', 'id_cols': ['A'],
                   'conflict_cols': ['B', 'C'], 'log' : False,
                   'unresolved_policy' : 'distinct'}
 
     output_df = pd.DataFrame(
-        {'A': [1, 1, 1, 1, 2, 2],
-         'B': [1, 1, 1, 1, 3, 3],
-         'C': [1, 1, 1, 1, 4, 5],
-         'ID': [1.0, 1.0, 1.0, 1.0, 2.0, 3.0]})
+        {'A': [1, 1, 1, 1],
+         'B': [1, 1, 1, 1],
+         'C': [1, 1, 1, 1],
+         'ID': [1, 1, 1, 1]},
+         dtype='O')
 
     results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
     assert results.equals(output_df)
