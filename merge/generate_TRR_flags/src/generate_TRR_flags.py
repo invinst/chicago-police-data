@@ -23,6 +23,7 @@ def get_setup():
         'input_wd_file': 'input/TRR-weapon-discharges_2004-2016_2016-09.csv.gz',
         'input_ar_file': 'input/TRR-actions-responses_2004-2016_2016-09.csv.gz',
         'output_main_file': 'output/TRR-main_2004-2016_2016-09.csv.gz',
+        'output_hits_file' : 'output/TRR-discharge-hits_2004-2016_2016-09.csv.gz'
         }
 
     assert (args['input_main_file'].startswith('input/') and
@@ -64,12 +65,19 @@ gun_tids = td.loc[
         ['SEMI-AUTO PISTOL','REVOLVER', 'RIFLE','SHOTGUN']
         ))]['trr_id'].tolist()
 
-log.info("Counting number of shots fired in a trr_id")
+log.info("Collecting weapon-discharge info")
 td = td.loc[
     ((td['weapon_type'].isin(['SEMI-AUTO PISTOL','REVOLVER', 'RIFLE','SHOTGUN'])) &
      (td['total_number_of_shots'].notnull()) &
      (td['total_number_of_shots'] > 0)),
-     ['trr_id', 'total_number_of_shots']]\
+     ['trr_id', 'total_number_of_shots', 'weapon_type', 'object_struck_of_discharge']]
+
+log.info("Writing %s for object struck discharges" % cons.output_hits_file)
+td[['trr_id', 'weapon_type', 'object_struck_of_discharge']]\
+    .dropna(subset=['object_struck_of_discharge'])\
+    .to_csv(cons.output_hits_file, **cons.csv_opts)
+
+td = td[['trr_id', 'total_number_of_shots']]\
     .dropna(how='any')\
     .groupby('trr_id', as_index=False)\
     .sum()
