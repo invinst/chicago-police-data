@@ -188,17 +188,21 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
         kd_df[id_cols] = kd_df[id_cols].fillna(value=-9999)
 
         conflict_rows = kd_df.shape[0]
-
         next_uid = 1 if rd_df[uid].dropna().empty else rd_df[uid].max() + 1
-        rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
-                                  uid, next_uid)
+
+        if kd_df.empty:
+            rc_df = pd.DataFrame(columns=[uid] + id_cols + conflict_cols)
+        else:
+            rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
+                                      uid, next_uid)
 
         if log:
             log.info('%d resolved conflicts. %d unresolved conflicts'
                      % (rc_df[uid].count(),
                         rc_df[uid].size - rc_df[uid].count()))
 
-        if not rc_df[uid].dropna().empty: next_uid = rc_df[uid].max() + 1
+        if not rc_df[uid].dropna().empty:
+            next_uid = rc_df[uid].max() + 1
         if rc_df[uid].isnull().sum() > 0:
             if unresolved_policy == 'distinct':
                 rc_df.loc[rc_df[uid].isnull(), uid] = \
@@ -207,30 +211,31 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
                 sdf = pd.DataFrame()
                 for k, g in rc_df[rc_df[uid].isnull()].groupby(id_cols):
                     g[uid] = next_uid
-                    next_uid +=1
+                    next_uid += 1
                     sdf = sdf.append(g)
                 rc_df = rc_df.dropna(subset=[uid]).append(sdf)
 
             elif unresolved_policy == 'manual':
                 mr_df = pd.DataFrame()
-                for k,g in rc_df\
+                for k, g in rc_df\
                     .loc[rc_df[uid].isnull(), id_cols + conflict_cols]\
                     .groupby(id_cols, as_index=False):
-                    g = manual_resolve(g, uid, next_uid)
-                    next_uid = g[uid].max() + 1
-                    mr_df = mr_df.append(g)
+                        g = manual_resolve(g, uid, next_uid)
+                        next_uid = g[uid].max() + 1
+                        mr_df = mr_df.append(g)
                 if log:
                     log.info('Unresolved conflicts resolved by "%s" into %d ids'
                              % (unresolved_policy, mr_df[uid].nunique()))
                 rc_df = rc_df.dropna(subset=[uid]).append(mr_df)
 
-        rc_df[id_cols] = rc_df[id_cols].replace({-9999:np.nan})
+        rc_df[id_cols] = rc_df[id_cols].replace(-9999, np.nan)
 
         if rc_df.shape[0] == 0:
             conflicts_resolved = 0
         else:
             conflicts_resolved = rc_df[uid].nunique()
-        df = df.merge(rd_df.append(rc_df), on=id_cols+conflict_cols, how='left')
+        df = df.merge(rd_df.append(rc_df),
+                      on=id_cols+conflict_cols, how='left')
 
     else:
         dfu[uid] = dfu.index + 1
@@ -247,8 +252,11 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
     uid_report = generate_uid_report(full_row_count, unique_rows,
                                      conflict_rows, conflicts_resolved,
                                      uid_count)
-    if log: log.info(uid_report)
-    else: print(uid_report)
+    if log:
+        log.info(uid_report)
+    else:
+        print(uid_report)
+
     return df
 
 
