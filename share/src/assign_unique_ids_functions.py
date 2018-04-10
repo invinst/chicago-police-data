@@ -180,7 +180,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
     conflict_rows = 0
     conflicts_resolved = 0
 
-    if conflict_cols and dfu.shape[0] > 1:
+    if conflict_cols and dfu.shape[0] > dfu[id_cols].drop_duplicates().shape[0]:
         rd_df = remove_duplicates(dfu, id_cols).reset_index(drop=True)
         rd_df.insert(0, uid, rd_df.index + 1)
 
