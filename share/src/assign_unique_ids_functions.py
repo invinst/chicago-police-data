@@ -180,7 +180,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
     conflict_rows = 0
     conflicts_resolved = 0
 
-    if conflict_cols:
+    if conflict_cols and dfu.shape[0] > 1:
         rd_df = remove_duplicates(dfu, id_cols).reset_index(drop=True)
         rd_df.insert(0, uid, rd_df.index + 1)
 
@@ -190,11 +190,8 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
         conflict_rows = kd_df.shape[0]
         next_uid = 1 if rd_df[uid].dropna().empty else rd_df[uid].max() + 1
 
-        if kd_df.empty:
-            rc_df = pd.DataFrame(columns=[uid] + id_cols + conflict_cols)
-        else:
-            rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
-                                      uid, next_uid)
+        rc_df = resolve_conflicts(kd_df, id_cols, conflict_cols,
+                                  uid, next_uid)
 
         if log:
             log.info('%d resolved conflicts. %d unresolved conflicts'
@@ -239,7 +236,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
 
     else:
         dfu[uid] = dfu.index + 1
-        df = df.merge(dfu, on=id_cols, how='left')
+        df = df.merge(dfu, on=id_cols + conflict_cols, how='left')
 
     assert keep_duplicates(df[[uid] + id_cols].drop_duplicates(), uid).empty,\
         'This should not happen. Same uids between id_col groupings.'
