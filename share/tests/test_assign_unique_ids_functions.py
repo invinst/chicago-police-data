@@ -170,8 +170,7 @@ def test_assign_unique_ids_with_empty_kd_df():
         {'A': [1, 1, 1, 1],
          'B': [1, 1, 1, 1],
          'C': [1, 1, 1, 1],
-         'ID': [1, 1, 1, 1]},
-         dtype='O')
+         'ID': [1, 1, 1, 1]})
 
     results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
     assert results.equals(output_df)
