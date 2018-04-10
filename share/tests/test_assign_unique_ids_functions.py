@@ -153,8 +153,8 @@ def test_assign_unique_ids_many_nans():
     assert results.equals(output_df)
     assert orig_input_df.equals(input_df)
 
-def test_assign_unique_ids_with_empty_kd_df():
-    '''test assign_unique_ids with an empty kd_df and conflict_cols
+def test_assign_unique_ids_with_one_unique_row():
+    '''test assign_unique_ids with one unique row and conflict_cols
        does not test report generation
     '''
     input_df = pd.DataFrame(
@@ -171,6 +171,29 @@ def test_assign_unique_ids_with_empty_kd_df():
          'B': [1, 1, 1, 1],
          'C': [1, 1, 1, 1],
          'ID': [1, 1, 1, 1]})
+
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
+
+def test_assign_unique_ids_with_empty_kd_df():
+    '''test assign_unique_ids with an empty kd_df and conflict_cols
+       does not test report generation
+    '''
+    input_df = pd.DataFrame(
+        {'A' : [1, 1, 2, 3],
+         'B' : [2, 2, np.nan, 3],
+         'C' : [1, 2, 3, 4]})
+    orig_input_df = copy.deepcopy(input_df)
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B'], 'log' : False,
+                  'unresolved_policy' : 'distinct'}
+
+    output_df = pd.DataFrame(
+        {'A' : [1, 1, 2, 3],
+         'B' : [2, 2, np.nan, 3],
+         'C' : [1, 2, 3, 4],
+         'ID': [1, 1, 2, 3]})
 
     results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
     assert results.equals(output_df)
