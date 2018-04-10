@@ -153,6 +153,28 @@ def test_assign_unique_ids_many_nans():
     assert results.equals(output_df)
     assert orig_input_df.equals(input_df)
 
+def test_assign_unique_ids_with_empty_kd_df():
+    '''test assign_unique_ids with an empty kd_df and conflict_cols
+       does not test report generation
+    '''
+    input_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2],
+         'B': [1, 1, 1, 1, 3, 3],
+         'C': [1, 1, 1, 1, 4, 5]})
+    orig_input_df = copy.deepcopy(input_df)
+    input_args = {'uid': 'ID', 'id_cols': ['A'],
+                  'conflict_cols': ['B', 'C'], 'log' : False,
+                  'unresolved_policy' : 'distinct'}
+
+    output_df = pd.DataFrame(
+        {'A': [1, 1, 1, 1, 2, 2],
+         'B': [1, 1, 1, 1, 3, 3],
+         'C': [1, 1, 1, 1, 4, 5],
+         'ID': [1.0, 1.0, 1.0, 1.0, 2.0, 3.0]})
+
+    results = assign_unique_ids_functions.assign_unique_ids(input_df, **input_args)
+    assert results.equals(output_df)
+    assert orig_input_df.equals(input_df)
 
 # def test_assign_unique_ids_unresolved_manual():
 #     '''test assign_unique_ids with unresolved_policy = 'manual'
