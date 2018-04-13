@@ -19,13 +19,11 @@ class dropbox_handler:
     def download_directory(self,dbx_path):
         res = self.dbx.files_list_folder(dbx_path,recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
-        print(filenames)
-        for filename in filenames[1:]:
+        for filename in filenames:
             ## get name of last filepath
             name = filename.split('/')[-1]
             if '.' not in name[1:] and name!='makefile':
                 os.makedirs('/app/dropbox'+filename)
-                print(os.listdir('/app'))
             if '.' in name[1:] or name=='makefile':
                 download_file = '/app/dropbox'+filename
                 self.dbx.files_download_to_file(download_file,filename)
