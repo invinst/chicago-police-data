@@ -19,6 +19,7 @@ class dropbox_handler:
     def download_directory(self,dbx_path):
         res = self.dbx.files_list_folder(dbx_path,recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
+        print(filenames)
         for filename in filenames[1:]:
             ## get name of last filepath
             name = filename.split('/')[-1]
