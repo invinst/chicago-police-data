@@ -26,4 +26,4 @@ if __name__=="__main__":
     ## paths where things are in dropbox
     #print(dropbox.list_files(path))
     dropbox.download_directory(ARGUMENTS.path_to_execute)
-    run_file(ARGUMENTS.path_to_execute)
+    ##run_file(ARGUMENTS.path_to_execute)
