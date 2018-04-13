@@ -23,7 +23,6 @@ class dropbox_handler:
             ## get name of last filepath
             name = filename.split('/')[-1]
             github_fileloc='/'.join(filename.split('/')[3:])
-            print(github_fileloc)
             if '.' not in name[1:] and name!='makefile':
                 os.makedirs('/app'+github_fileloc)
             if '.' in name[1:] or name=='makefile':
