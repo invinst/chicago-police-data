@@ -22,10 +22,12 @@ class dropbox_handler:
         for filename in filenames:
             ## get name of last filepath
             name = filename.split('/')[-1]
+            github_fileloc=filename.split('/')[3:].join('/')
+            print(github_fileloc)
             if '.' not in name[1:] and name!='makefile':
-                os.makedirs('/app/dropbox'+filename)
+                os.makedirs('/app'+github_fileloc)
             if '.' in name[1:] or name=='makefile':
-                download_file = '/app/dropbox'+filename
+                download_file = '/app'+github_fileloc
                 self.dbx.files_download_to_file(download_file,filename)
 
     def download_file(self,
