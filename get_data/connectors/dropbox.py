@@ -25,7 +25,7 @@ class dropbox_handler:
             name = filename.split('/')[-1]
             if '.' not in name[1:] and name!='makefile':
                 os.makedirs('/app/dropbox'+filename)
-                print(os.walk('/app'))
+                print(os.listdir('/app'))
             if '.' in name[1:] or name=='makefile':
                 download_file = '/app/dropbox'+filename
                 self.dbx.files_download_to_file(download_file,filename)
