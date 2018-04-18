@@ -9,6 +9,37 @@ import itertools
 import pandas as pd
 import numpy as np
 
+def get_default_logger(outpath=None):
+    """Creates a default logging object
+
+    Parameters
+    ----------
+    outpath : str
+    Path for logger to be written, if None written to executed directory
+
+    Returns
+    -------
+    logger : logging object
+
+    """
+    import logging
+    import sys
+    from __main__ import __name__
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter(
+        '%(asctime)s[%(levelname)s]: %(message)s',
+        datefmt='%Y-%m-%dT%H:%M:%S')
+
+    stream_out = logging.StreamHandler(sys.stdout)
+    stream_out.setFormatter(formatter)
+    logger.addHandler(stream_out)
+    logfile = '{}{}.log'.format('' if outpath is None else outpath+'/',
+                                '.'.join(script_path.split('.')[:-1]))
+    file_handler = logging.FileHandler(logfile, mode='w')
+    logger.addHandler(file_handler)
+    logger.info("running {}".format(script_path))
+    return logger
 
 def string_strip(string, no_sep=False):
     """Remove unnecessary characters from string
@@ -22,7 +53,7 @@ def string_strip(string, no_sep=False):
 
     Returns
     -------
-        stripped_string : str
+    stripped_string : str
 
     Examples
     --------
@@ -285,7 +316,10 @@ def reshape_data(df, reshape_col, id_col):
             df.loc[df[id_col].isin(dropped_ids),
                    list_diff(long_df.columns, [reshape_col])])
 
-    long_df = long_df.drop_duplicates().reset_index(drop=True)
+    long_df = long_df\
+        .drop_duplicates()\
+        .sort_values(id_col)\
+        .reset_index(drop=True)
 
     return long_df
 
