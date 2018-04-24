@@ -333,6 +333,29 @@
   INVESTIGATOR_TYPE:    investigator_type
   ASSIGN_DATETIME:      assigned_datetime
 
+  'complaints-complaints_2000-2018_2018-03_18-060-157':
+    LOG_NO:                 cr_id
+    INCIDENT_FROMDATE:      incident_start_date
+    INCIDENT_TODATE:        incident_end_date
+    COMPLAINT_DATE:         complaint_date
+    CLOSEDATCOPA_DATETIME:  closed_date
+    CURRENT_STATUS:         current_complaint_status
+    LOCATION_CODE:          incident_location
+    'Unnamed: 7':           address_number
+    STREET_DIRECTION:       street_direction
+    STREET_NME:             street_name
+    APT_NO:                 apartment_no
+    CITY:                   city
+    STATE:                  state
+    ZIP_CD:                 zip
+    OCCURANCE_BEAT:         incident_beat
+    CURRENT_CATEGORY_CODE:  current_complaint_category_code
+    CURRENT_CATEGORY:       current_complaint_category
+    CURRENT_CATEGORY_TYPE:  current_complaint_category_type
+    POLICE_SHOOTING:        was_police_shooting
+    COMPLAINANT_TYPE:       complainant_type
+    INVESTIGATING_AGENCY:   investigating_agency
+
 'complaints-complainants_2000-2018_2018-03_18-060-157':
   LOG_NO:               cr_id
   COMPLAINT_DATE:       complaint_date
@@ -341,27 +364,47 @@
   PARTY_SUBTYPE:        complainant_subtype
   SEX:                  gender
   RACE:                 race
-  'BIRTH YEAR':           birth_year
+  'BIRTH YEAR':         birth_year
 
-'complaints-complaints_2000-2018_2018-03_18-060-157':
-  LOG_NO:                 cr_id
-  INCIDENT_FROMDATE:      incident_start_date
-  INCIDENT_TODATE:        incident_end_date
-  COMPLAINT_DATE:         complaint_date
-  CLOSEDATCOPA_DATETIME:  closed_date
-  CURRENT_STATUS:         current_complaint_status
-  LOCATION_CODE:          incident_location
-  'Unnamed: 7':           address_number
-  STREET_DIRECTION:       street_direction
-  STREET_NME:             street_name
-  APT_NO:                 apartment_no
-  CITY:                   city
-  STATE:                  state
-  ZIP_CD:                 zip
-  OCCURANCE_BEAT:         incident_beat
-  CURRENT_CATEGORY_CODE:  current_complaint_category_code
-  CURRENT_CATEGORY:       current_complaint_category
-  CURRENT_CATEGORY_TYPE:  current_complaint_category_type
-  POLICE_SHOOTING:        was_police_shooting
-  COMPLAINANT_TYPE:       complainant_type
-  INVESTIGATING_AGENCY:   investigating_agency
+
+'complaints-civilian-witnesses_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  COMPLAINT_DATE:       complaint_date
+  AGENCY:               investigating_agency
+  PARTY_TYPE:           complainant_type
+  PARTY_SUBTYPE:        complainant_subtype
+  SEX:                  gender
+  RACE:                 race
+  'BIRTH YEAR':         birth_year
+
+'complaints-victims_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  COMPLAINT_DATE:       complaint_date
+  AGENCY:               investigating_agency
+  PARTY_TYPE:           complainant_type
+  PARTY_SUBTYPE:        complainant_subtype
+  SEX:                  gender
+  RACE:                 race
+  'BIRTH YEAR':         birth_year
+  PARTY_INJURED:        injured
+  INJURY_CONDITION:     injury_condition
+  INJURY_DESCRIPTION:   injury_description
+
+'complaints-CPD-witnesses_2000-2018_2018-03_18-060-157':
+  LOG_NO:                         cr_id
+  COMPLAINT_DATE:                 complaint_date
+  AGENCY:                         investigating_agency
+  PARTY_TYPE:                     complainant_type
+  PARTY_SUBTYPE:                  complainant_subtype
+  FIRST_NAME:                     first_name
+  MIDDLE_NAME:                    middle_initial
+  LAST_NAME:                      last_name
+  RACE:                           race
+  SEX:                            gender
+  BIRTH_YEAR:                     birth_year
+  ASSIGN_UNIT_TIMEOFINCIDENT:     assigned_unit
+  DETAIL_UNIT_TIMEOFINCIDENT:     unit_detail
+  RANK_TIMEOFINCIDENT:            rank
+  SWORN_OFFICER_I:                is_sworn_officer
+  DETAIL_UNIT_CURRENT:            current_unit_detail
+  ASSIGN_UNIT_CURRENT:            current_unit
