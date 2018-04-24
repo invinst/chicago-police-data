@@ -2,7 +2,7 @@
 #
 # Author(s):    Roman Rivera (Invisible Institute)
 
-'''import script for complaints-complainants_2000-2018_2018-03_18-060-157'''
+'''import script for complaints-victims_2000-2018_2018-03_18-060-157'''
 
 import pandas as pd
 import __main__
@@ -21,10 +21,10 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/FOIA_Data_157_(Stecklow)_3.xlsx',
-        'output_file': 'output/complaints-complainants_2000-2018_2018-03.csv.gz',
-        'metadata_file': 'output/metadata_complaints-complainants_2000-2018_2018-03.csv.gz',
-        'column_names_key': 'complaints-complainants_2000-2018_2018-03_18-060-157',
-        'sheet' : 'Complainants'
+        'output_file': 'output/complaints-victims_2000-2018_2018-03.csv.gz',
+        'metadata_file': 'output/metadata_complaints-victims_2000-2018_2018-03.csv.gz',
+        'column_names_key': 'complaints-victims_2000-2018_2018-03_18-060-157',
+        'sheet' : 'Victims'
         }
 
     assert args['input_file'].startswith('input/'),\

@@ -2,7 +2,7 @@
 #
 # Author(s):    Roman Rivera (Invisible Institute)
 
-'''import script for complaints-complainants_2000-2018_2018-03_18-060-157'''
+'''import script for complaints-civilian-witnesses_2000-2018_2018-03_18-060-157'''
 
 import pandas as pd
 import __main__
@@ -21,10 +21,10 @@ def get_setup():
     script_path = __main__.__file__
     args = {
         'input_file': 'input/FOIA_Data_157_(Stecklow)_3.xlsx',
-        'output_file': 'output/complaints-complainants_2000-2018_2018-03.csv.gz',
-        'metadata_file': 'output/metadata_complaints-complainants_2000-2018_2018-03.csv.gz',
-        'column_names_key': 'complaints-complainants_2000-2018_2018-03_18-060-157',
-        'sheet' : 'Complainants'
+        'output_file': 'output/complaints-civilian-witnesses_2000-2018_2018-03.csv.gz',
+        'metadata_file': 'output/metadata_complaints-civilian-witnesses_2000-2018_2018-03.csv.gz',
+        'column_names_key': 'complaints-civilian-witnesses_2000-2018_2018-03_18-060-157',
+        'sheet' : 'Civilan Witnesses'
         }
 
     assert args['input_file'].startswith('input/'),\
@@ -39,7 +39,7 @@ def get_setup():
 cons, log = get_setup()
 
 
-df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
+df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.insert(0, 'row_id', df.index + 1)
 df.to_csv(cons.output_file, **cons.csv_opts)
