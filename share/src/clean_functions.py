@@ -12,7 +12,8 @@ from general_utils import collapse_data, expand_data
 from clean_utils import GeneralCleaners, DateTimeCleaners
 
 
-def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None):
+def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None,
+               use_middle_names=False):
     """Cleans input dataframe in using standard cleaning functions
 
     Parameters
@@ -82,15 +83,20 @@ def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None):
                  tuple(name_cols))
         name_df, stored_df = collapse_data(df[name_cols])
         name_df = name_df.fillna('')
-        for col in name_df.columns:
-            name_df[col] = name_df[col].str.upper()
+        if name_df.shape[1] == 1 and name_df.columns[0] == 'human_name':
+            cleaned_names_df = \
+                clean_human_names(name_df[0].tolist(),
+                                  use_middle_names=use_middle_names)
+        else:
+            for col in name_df.columns:
+                name_df[col] = name_df[col].str.upper()
 
-        cleaned_names_df = pd.DataFrame([NameCleaners(**row.to_dict()).clean()
-                                         for i, row in name_df.iterrows()])
-        cleaned_names_df[cleaned_names_df == ''] = np.nan
-        cleaned_names_df = expand_data(cleaned_names_df,
-                                       stored_df)
-        cleaned_df = cleaned_df.join(cleaned_names_df)
+            cleaned_names_df = pd.DataFrame([NameCleaners(**row.to_dict()).clean()
+                                             for i, row in name_df.iterrows()])
+            cleaned_names_df[cleaned_names_df == ''] = np.nan
+            cleaned_names_df = expand_data(cleaned_names_df,
+                                           stored_df)
+            cleaned_df = cleaned_df.join(cleaned_names_df)
 
     df_cols = cleaned_df.columns.tolist()
     cleaned_df.dropna(axis=1, how='all', inplace=True)

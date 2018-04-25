@@ -7,7 +7,7 @@
 import pytest
 import pandas as pd
 import numpy as np
-from clean_name_utils import NameCleaners
+from clean_name_utils import NameCleaners, clean_human_names
 
 
 def test_clean():
@@ -52,25 +52,22 @@ def test_clean():
     for col in results.columns:
         assert results[col].equals(output_df[col])
 
-"""
-# Does not currently work, fix before using in older data
-def test_clean_human_names():
-    ''' tests NameCleaners.clean() for human names'''
+def test_clean_human_names_UMN_True():
+    ''' tests cleaning for human names'''
 
-    input_list = [ {'human_name' : 'DE ANDRE DE LA O'},
-                   {'human_name' : 'BOB D JONES V'},
-                   {'human_name' : 'A RICHARD  A LUQUE-ROSALES',},
-                   {'human_name': 'KIM-TOY MC CARTHY'},
-                   {'human_name' : 'JO ANN O BRIEN'},
-                   {'human_name' : 'J T SADOWSKY JR'},
-                   {'human_name': 'ABDUL-AZIZ NORWOOD II'},
-                   {'human_name': 'MARCELLUS. H BURKE JR J'},
-                   {'human_name': 'ERIN  E M VON KONDRAT'},
-                   {'human_name' : 'J EDGAR HOOVER'},
-                   {'human_name' : 'GEORGE H WALKER BUSH'} ]
+    input_list = ['DE ANDRE DE LA O',
+                  'BOB D JONES V',
+                  'A RICHARD  A LUQUE-ROSALES',
+                  'KIM-TOY MC CARTHY',
+                  'JO ANN O BRIEN',
+                  'J T SADOWSKY JR',
+                  'ABDUL-AZIZ NORWOOD II',
+                  'MARCELLUS. H BURKE JR J',
+                  'ERIN  E M VON KONDRAT',
+                  'J EDGAR HOOVER',
+                  'GEORGE H WALKER BUSH']
 
-    results = pd.DataFrame([NameCleaners(**name_dict).clean() for name_dict in input_list])
-
+    results = clean_human_names(input_list, use_middle_names=True)
     output_df = pd.DataFrame(
         {'first_name': ['DE ANDRE', 'BOB', 'A RICHARD', 'KIM-TOY',
                         'JO ANN', 'J T', 'ABDUL-AZIZ', 'MARCELLUS',
@@ -90,9 +87,44 @@ def test_clean_human_names():
                           'VONKONDRAT', 'HOOVER', 'BUSH']})
 
     results = results[output_df.columns]
-    print(results)
-    print(output_df)
     assert sorted(results.columns) == sorted(output_df.columns)
-    for col in results.columns:
-        assert results[col].equals(output_df[col])
-"""
+    assert results.equals(output_df)
+
+
+def test_clean_human_names_UMN_False():
+    ''' tests cleaning for human names'''
+
+    input_list = ['DE ANDRE DE LA O',
+                  'BOB D JONES V',
+                  'A RICHARD  A LUQUE-ROSALES',
+                  'KIM-TOY MC CARTHY',
+                  'JO ANN O BRIEN',
+                  'J T SADOWSKY JR',
+                  'ABDUL-AZIZ NORWOOD II',
+                  'MARCELLUS. H BURKE JR J',
+                  'ERIN  E M VON KONDRAT',
+                  'J EDGAR HOOVER',
+                  'GEORGE H WALKER BUSH']
+
+    results = clean_human_names(input_list, use_middle_names=False)
+    output_df = pd.DataFrame(
+        {'first_name': ['DE ANDRE', 'BOB', 'A RICHARD', 'KIM-TOY',
+                        'JO ANN', 'J T', 'ABDUL-AZIZ', 'MARCELLUS',
+                        'ERIN', 'J EDGAR', 'GEORGE'],
+         'middle_initial': ['', 'D', 'A', '', '', '', '', 'H', 'E', '', 'H'],
+         'middle_name': ['', '', '', '', '', '', '', '', '', '', ''],
+         'middle_initial2': ['', '', '', '', '', '', '', 'J', 'M', '', ''],
+         'suffix_name': ['', 'V', '', '', '', 'JR', 'II', 'JR', '', '', ''],
+         'last_name': ['DE LA O', 'JONES', 'LUQUE-ROSALES', 'MC CARTHY',
+                       'O BRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
+                       'VON KONDRAT', 'HOOVER', 'WALKER BUSH'],
+         'first_name_NS': ['DEANDRE', 'BOB', 'ARICHARD', 'KIMTOY',
+                           'JOANN', 'JT', 'ABDULAZIZ', 'MARCELLUS',
+                           'ERIN', 'JEDGAR', 'GEORGE'],
+         'last_name_NS': ['DELAO', 'JONES', 'LUQUEROSALES', 'MCCARTHY',
+                          'OBRIEN', 'SADOWSKY', 'NORWOOD', 'BURKE',
+                          'VONKONDRAT', 'HOOVER', 'WALKERBUSH']})
+
+    results = results[output_df.columns]
+    assert sorted(results.columns) == sorted(output_df.columns)
+    assert results.equals(output_df)
