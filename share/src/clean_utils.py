@@ -267,9 +267,9 @@ class DateTimeCleaners:
         prepped_time_col = time_col.fillna("").map(
             lambda x: re.sub(r'[^0-9|.]', "", str(x)))
         prepped_time_col = pd.Series(
-            np.array(GeneralCleaners(prepped_time_col, "int").clean())
-            ).astype(int)
-        prepped_time_col = prepped_time_col.astype(str).map(self.prep_time)
+            GeneralCleaners(prepped_time_col, "int").clean())\
+            .map(lambda x: str(int(x)) if x == x else x)\
+            .map(self.prep_time)
         return prepped_time_col
 
 #
