@@ -77,7 +77,7 @@ def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None,
                                                    log).clean()
 
     if name_cols:
-        from clean_name_utils import NameCleaners
+        from clean_name_utils import NameCleaners, clean_human_names
 
         log.info("Column(s) '%s' cleaned as name(s) using NameCleaners.",
                  tuple(name_cols))
