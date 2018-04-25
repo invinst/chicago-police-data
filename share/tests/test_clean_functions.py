@@ -126,3 +126,25 @@ def test_clean_data_type_dict():
     assert set(results.columns) == set(output_df.columns)
     assert results.equals(output_df[results.columns])
     assert orig_input_df.equals(input_df)
+
+def test_clean_data_human_names():
+    '''tests clean_data with human names'''
+    input_df = pd.DataFrame(
+       {'human_name' : ['J R JONES JR', 'MICHAEL SMOKED HAM', 'J EDGAR HOOVER', 'SALLY K E MAY JR'],
+        'gender' : ['mALE', 'm', 'NONE', 'FEMALE']
+        })
+    orig_input_df = copy.deepcopy(input_df)
+    output_df = pd.DataFrame(
+       {'first_name' : ['J R', 'MICHAEL', 'J EDGAR', 'SALLY'],
+       'first_name_NS' : ['JR', 'MICHAEL', 'JEDGAR', 'SALLY'],
+       'middle_initial' : [np.nan, np.nan, np.nan, 'K'],
+       'middle_initial2' : [np.nan, np.nan, np.nan, 'E'],
+       'suffix_name' : ['JR', np.nan, np.nan, 'JR'],
+       'last_name' : ['JONES', 'SMOKED HAM', 'HOOVER', 'MAY'],
+       'last_name_NS' : ['JONES', 'SMOKEDHAM', 'HOOVER', 'MAY'],
+        'gender': ['MALE', 'MALE', '', 'FEMALE']
+        })
+    results = clean_data(input_df, log)
+    assert set(results.columns) == set(output_df.columns)
+    assert results.equals(output_df[results.columns])
+    assert orig_input_df.equals(input_df)
