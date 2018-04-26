@@ -270,7 +270,7 @@
 
 'complaints-investigators_1967-1999_2016-12_':
     CASE_NUMBER:            cr_id
-    'INVESTIGATORS NAME':   full_name
+    'INVESTIGATORS NAME':   human_name
 
 'salary_2002-2017_2017-09_':
     'Last Name':                    last_name
@@ -333,28 +333,28 @@
   INVESTIGATOR_TYPE:    investigator_type
   ASSIGN_DATETIME:      assigned_datetime
 
-  'complaints-complaints_2000-2018_2018-03_18-060-157':
-    LOG_NO:                 cr_id
-    INCIDENT_FROMDATE:      incident_start_date
-    INCIDENT_TODATE:        incident_end_date
-    COMPLAINT_DATE:         complaint_date
-    CLOSEDATCOPA_DATETIME:  closed_date
-    CURRENT_STATUS:         current_complaint_status
-    LOCATION_CODE:          incident_location
-    'Unnamed: 7':           address_number
-    STREET_DIRECTION:       street_direction
-    STREET_NME:             street_name
-    APT_NO:                 apartment_no
-    CITY:                   city
-    STATE:                  state
-    ZIP_CD:                 zip
-    OCCURANCE_BEAT:         incident_beat
-    CURRENT_CATEGORY_CODE:  current_complaint_category_code
-    CURRENT_CATEGORY:       current_complaint_category
-    CURRENT_CATEGORY_TYPE:  current_complaint_category_type
-    POLICE_SHOOTING:        was_police_shooting
-    COMPLAINANT_TYPE:       complainant_type
-    INVESTIGATING_AGENCY:   investigating_agency
+'complaints-complaints_2000-2018_2018-03_18-060-157':
+  LOG_NO:                 cr_id
+  INCIDENT_FROMDATE:      incident_start_date
+  INCIDENT_TODATE:        incident_end_date
+  COMPLAINT_DATE:         complaint_date
+  CLOSEDATCOPA_DATETIME:  closed_date
+  CURRENT_STATUS:         current_complaint_status
+  LOCATION_CODE:          incident_location
+  'Unnamed: 7':           address_number
+  STREET_DIRECTION:       street_direction
+  STREET_NME:             street_name
+  APT_NO:                 apartment_no
+  CITY:                   city
+  STATE:                  state
+  ZIP_CD:                 zip
+  OCCURANCE_BEAT:         incident_beat
+  CURRENT_CATEGORY_CODE:  current_complaint_category_code
+  CURRENT_CATEGORY:       current_complaint_category
+  CURRENT_CATEGORY_TYPE:  current_complaint_category_type
+  POLICE_SHOOTING:        was_police_shooting
+  COMPLAINANT_TYPE:       complainant_type
+  INVESTIGATING_AGENCY:   investigating_agency
 
 'complaints-complainants_2000-2018_2018-03_18-060-157':
   LOG_NO:               cr_id
