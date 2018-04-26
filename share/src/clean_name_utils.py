@@ -208,6 +208,14 @@ class NameCleaners:
 
 
 def clean_human_names(names, use_middle_names=False):
+    """Cleans/standardizes ~human~ names (ex: Bob Jones Jr)
+
+    Parameters
+    ----------
+    names : list (or Pandas Series or other iterable)
+    use_middle_names : bool
+
+    """
     sns = ['JR', 'SR', 'III', 'II', 'IV']
     sln = ['MC', 'MAC', 'VAN', 'DE', 'LA', 'DU', 'DI', 'VE', 'ST',
            'LO', 'SER', 'DEL', 'LE', 'AL', 'SAN', 'VON', 'VANDER', 'DAL']
