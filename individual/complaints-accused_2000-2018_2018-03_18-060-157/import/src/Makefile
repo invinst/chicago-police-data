@@ -12,7 +12,7 @@ all: \
 
 output/complaints-accused_2000-2018_2018-03.csv.gz: \
 		src/import.py \
-		input/FOIA_Data_157_(Stecklow)_2.csv
+		input/18-21_accused_updated_no_sql_sterilizied.csv.gz
 	python $<
 
 

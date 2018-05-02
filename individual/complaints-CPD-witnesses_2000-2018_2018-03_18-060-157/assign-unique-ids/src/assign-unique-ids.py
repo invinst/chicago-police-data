@@ -48,6 +48,5 @@ df = assign_unique_ids(df, cons.id, cons.id_cols,
                        log=log)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-profiles_df = df[[cons.id] + cons.id_cols]\
-    .drop_duplicates()\
-    .to_csv(cons.output_profiles_file, **cons.csv_opts)
+profiles_df = df[cons.id_cols + ['rank', cons.id]].drop_duplicates()
+profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)
