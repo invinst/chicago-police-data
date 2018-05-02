@@ -22,6 +22,8 @@ ceremony_date:          date
 start_date:             date
 org_hire_date:          date
 spp_date:               date
+incident_start_date:    date
+incident_end_date:      date
 incident_datetime:      datetime
 complaint_datetime:     datetime
 status_datetime:        datetime
