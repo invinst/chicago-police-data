@@ -44,7 +44,9 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df = df[['row_id', cons.id] + cons.export_cols]
+rows = df.shape[0]
+df = df[[cons.id] + cons.export_cols].drop_duplicates()
+log.info('Removed row_id. Reducing rows from %d to %d after dropping duplicates' % (rows, df.shape[0]))
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 profiles_df = pd.read_csv(cons.input_profiles_file)
