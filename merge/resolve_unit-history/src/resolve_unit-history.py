@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import yaml
 import __main__
+pd.options.mode.chained_assignment = None
 
 import setup
 from unit_history_functions import resolve_units, TODAY
@@ -72,10 +73,8 @@ nUIDs = uh_df[UID].nunique()
 
 log.info("Starting resolve_units")
 resolved = pd.concat(
-    [resolve_units(g, START, END, UNIT, UID)
-     for k,g in uh_df[[UID, UNIT, START, END]].groupby(UID, as_index=False)])
-
+    [resolve_units(g, START, END, UNIT)
+     for k, g in uh_df[[UID, UNIT, START, END]].groupby(UID, as_index=False)])
 log.info("Done resolve_units")
 assert resolved[UID].nunique() == nUIDs, 'Lost UIDs during resolve_units'
-
 resolved.to_csv(cons.output_file, **cons.csv_opts)
