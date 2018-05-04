@@ -31,7 +31,8 @@ class dropbox_handler:
 
     def upload_directory(self,
                          local_path,
-                         dbx_path):
+                         dbx_path,
+                         overwrite=True):
         ## create output path
         if '/input' in dbx_path:
             dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output2/'])
@@ -48,7 +49,7 @@ class dropbox_handler:
             with open(local_path+filename,'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       dbx_output_path+filename,
-                                      mode='overwrite')
+                                      mode=dbx.files.WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,
