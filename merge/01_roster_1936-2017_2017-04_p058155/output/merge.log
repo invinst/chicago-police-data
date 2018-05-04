@@ -1,0 +1,4 @@
+running src/merge.py
+Creating reference data from filewith intrafile ID: roster_1936-2017_2017-04_ID
+609 rows dropped due to merge!=1. 31789 rows remaining
+Data reshaped wide (31789 rows) to long (45539 rows) by star columns

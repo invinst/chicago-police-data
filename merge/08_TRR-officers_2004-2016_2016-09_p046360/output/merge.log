@@ -1,0 +1,24 @@
+running src/merge.py
+Loading reference data with 203153 rows and 33027 universal IDs
+Adding file with intrafile ID: TRR-officers_2004-2016_2016-09_ID
+128 rows dropped due to merge!=1. 10798 rows remaining
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+Adding column [F4FN] to data with ID = TRR-officers_2004-2016_2016-09_ID
+Adding column [F4LN] to data with ID = TRR-officers_2004-2016_2016-09_ID
+Adding column [BY_to_CA] to data with ID = TRR-officers_2004-2016_2016-09_ID
+Adding column [current_age] to data with ID = TRR-officers_2004-2016_2016-09_ID
+Beginning loop_merge.
+Merge Report:
+10797 Total Merged. 32.69% of ref and 99.99% of sup Merged.
+22230 Unmerged in ref. 67.31% Unmerged.
+1 Unmerged in sup. 0.01% Unmerged.
+
+star-first_name_NS-last_name_NS-appointed_date-gender-race                                   10320
+star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                         469
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                        5
+first_name_NS-last_name_NS-appointed_date-gender-race                                            2
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-middle_initial2-gender-race        1
+Name: matched_on, dtype: int64

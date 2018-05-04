@@ -20,7 +20,7 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/FOIA_Data_157_(Stecklow)_2.csv',
+        'input_file': 'input/18-21_accused_updated_no_sql_sterilizied.csv.gz',
         'output_file': 'output/complaints-accused_2000-2018_2018-03.csv.gz',
         'metadata_file': 'output/metadata_complaints-accused_2000-2018_2018-03.csv.gz',
         'column_names_key': 'complaints-accused_2000-2018_2018-03_18-060-157'

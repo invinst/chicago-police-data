@@ -5,7 +5,7 @@
 '''script containing utility functions used for clean name step'''
 
 import re
-
+import pandas as pd
 from general_utils import string_strip, list_unique
 
 from nameparser import HumanName
@@ -206,5 +206,129 @@ class NameCleaners:
         name_dict = self.__dict__
         return name_dict
 
+
+def clean_human_names(names, use_middle_names=False):
+    """Cleans/standardizes ~human~ names (ex: Bob Jones Jr)
+
+    Parameters
+    ----------
+    names : list (or Pandas Series or other iterable)
+    use_middle_names : bool
+
+    """
+    sns = ['JR', 'SR', 'III', 'II', 'IV']
+    sln = ['MC', 'MAC', 'VAN', 'DE', 'LA', 'DU', 'DI', 'VE', 'ST',
+           'LO', 'SER', 'DEL', 'LE', 'AL', 'SAN', 'VON', 'VANDER', 'DAL']
+    fem = ['ANN', 'SUE', 'LOU', 'JO', 'LIND', 'ELLE', 'MARI']
+    lns = pd.read_csv("hand/last_names.csv", header=None)[0].values.tolist()
+
+    def clean_human_name(name):
+        cdict = {'first_name' : '', 'last_name' : '',
+                 'middle_initial' : '', 'middle_initial2': '',
+                 'suffix_name' : '', 'middle_name' : ''}
+        name = string_strip(name)
+        np = name.split(' ')
+
+        def add_mi(m):
+            nonlocal cdict
+            if cdict['middle_initial'] == '':
+                cdict['middle_initial'] = m
+            elif cdict['middle_initial2'] == '':
+                cdict['middle_initial2'] = m
+            else:
+                print(m)
+                raise
+            return None
+
+        def clean(x):
+            nonlocal cdict
+
+            if len(x) == 2:
+                cdict['first_name'] = x[0]
+                cdict['last_name'] = x[1]
+
+            elif len(x) == 3:
+                if len(x[0]) == 1 and len(x[1]) == 1:
+                    cdict['first_name'] = ' '.join(x[:2])
+                    cdict['last_name'] = x[2]
+                elif x[2] in sns + ['V', 'I']:
+                    cdict['first_name'] = x[0]
+                    cdict['last_name'] = x[1]
+                    cdict['suffix_name'] = x[2]
+                elif (x[1] + x[2] in lns or
+                      (x[1] in sln and len(x[2]) >= 3) or '-MC' in x[1]):
+                    cdict['first_name'] = x[0]
+                    cdict['last_name'] = ' '.join(x[1:])
+                elif len(x[1]) == 1:
+                    cdict['first_name'] = x[0]
+                    cdict['last_name'] = x[2]
+                    add_mi(x[1])
+
+                elif (len(x[0]) <= 3 and len(x[1]) >= 3) or x[1] in fem:
+                    cdict['first_name'] = ' '.join(x[:2])
+                    cdict['last_name'] = x[2]
+                else:
+                    cdict['first_name'] = x[0]
+                    if use_middle_names:
+                        cdict['middle_name'] = x[1]
+                        add_mi(x[1][0])
+                        cdict['last_name'] = x[2]
+                    else:
+                        cdict['last_name'] = ' '.join(x[1:])
+
+            elif len(x) > 3:
+                if x[-1] in sns:
+                    cdict['suffix_name'] = x[-1]
+                    x = x[:-1]
+                    return clean(x)
+                elif (len(x[1]) == 1 and
+                      len(x[2]) == 1 and
+                      cdict['middle_initial'] == ''):
+                    add_mi(x[1])
+                    add_mi(x[2])
+                    x = x[:1] + x[3:]
+                    clean(x)
+                elif len(x[0]) == 1 and len(x[1]) >= 1:
+                    x[1] = ' '.join(x[:2])
+                    x = x[1:]
+                    return clean(x)
+                elif len(x[1]) == 1 and cdict['middle_initial'] == '':
+                    add_mi(x[1])
+                    x = x[:1] + x[2:]
+                    clean(x)
+                elif x[2] in sns and len(x[3]) == 1:
+                    cdict['suffix_name'] = x[2]
+                    add_mi(x[3])
+                    x = x[:2]
+                    return clean(x)
+                elif re.match('DE L[O|A]?. ', ' '.join(x[-3:])):
+                    x[-3] = ' '.join(x[-3:])
+                    x = x[:-2]
+                    return clean(x)
+                elif re.match('L*', x[0]) or (len(x[0]) == 1 and len(x[1]) == 1):
+                    x[1] = ' '.join(x[:2])
+                    x = x[1:]
+                    return clean(x)
+                elif x[-2] + x[-1] in lns or (x[-2] in sln and len(x[-1]) > 3):
+                    x[-2] = ' '.join(x[-2:])
+                    x = x[:-1]
+                    return clean(x)
+                else:
+                    print(x)
+                    raise
+
+            else:
+                print(x)
+                raise
+            return None
+
+        if len(np) > 1:
+            clean(np)
+            assert all([k in ' '.join(cdict.values()) for k in name]),\
+                print(cdict, name)
+            cdict['first_name_NS'] = string_strip(cdict['first_name'], no_sep=True)
+            cdict['last_name_NS'] = string_strip(cdict['last_name'], no_sep=True)
+        return cdict
+    return pd.DataFrame([clean_human_name(d) for d in names])
 #
 # end
