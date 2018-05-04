@@ -49,7 +49,7 @@ class dropbox_handler:
             with open(local_path+filename,'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       dbx_output_path+filename,
-                                      mode=dbx.files.WriteMode('overwrite', None))
+                                      mode=self.dbx.files.WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,
