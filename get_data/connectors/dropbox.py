@@ -35,7 +35,7 @@ class dropbox_handler:
                          overwrite=True):
         ## create output path
         if '/input' in dbx_path:
-            dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output2/'])
+            dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output/'])
         filenames = [filename for filename in os.listdir(local_path) if filename[0]!='.']
         print('Files to Upload:')
         print(filenames)
