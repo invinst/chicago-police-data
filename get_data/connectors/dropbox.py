@@ -38,6 +38,8 @@ class dropbox_handler:
         filenames = [filename for filename in os.listdir(local_path) if filename[0]!='.']
         print('Files to Upload:')
         print(filenames)
+        print('DBX Path:')
+        print(dbx_output_path)
         for filename in filenames:
             with open(local_path+filename,'rb') as f:
                 try:
