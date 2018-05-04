@@ -34,19 +34,19 @@ class dropbox_handler:
                          dbx_path):
         ## create output path
         if '/input' in dbx_path:
-            dbx_output_path = '/'.join(dbx_path.split('/')[:-2]+['output2/'])
+            dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output2/'])
         filenames = [filename for filename in os.listdir(local_path) if filename[0]!='.']
         print('Files to Upload:')
         print(filenames)
         print('DBX Path:')
         print(dbx_output_path)
+        try:
+            self.dbx.files_create_folder(dbx_output_path)
+        except:
+            print('Output Path Exists')
         for filename in filenames:
             with open(local_path+filename,'rb') as f:
-                try:
-                    self.dbx.files_upload(f.read(),dbx_output_path+filename)
-                except:
-                    self.dbx.files_create_folder(dbx_output_path)
-                    self.dbx.files_upload(f.read(),dbx_output_path+filename)
+                self.dbx.files_upload(f.read(),dbx_output_path+filename)
 
     def download_file(self,
                       dbx_path,
