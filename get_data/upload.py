@@ -14,7 +14,7 @@ def init_args():
 
 def create_local_file_path(dropbox_path_to_execute):
     ## removes '/Data/roman/Github/chicago-police-data' from the location
-    file_path_list = ['app']+dropbox_path_to_execute.split('/')[5:-1]+['output/']
+    file_path_list = ['/app']+dropbox_path_to_execute.split('/')[5:-1]+['output/']
     return '/'.join(file_path_list)
 
 if __name__=="__main__":
