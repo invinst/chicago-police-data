@@ -16,10 +16,10 @@ if __name__=="__main__":
     ARGUMENTS = init_args()
     client = civis.APIClient()
     dropbox = dropbox_handler()
-
+    print(ARGUMENTS.path_to_execute.split['/'][5:])
     ## paths where things are in dropbox
     #print(dropbox.list_files(path))
-    local_file_path = '/'.join(['/app']+ARGUMENTS.path_to_execute.split['/'][5:])
-    print(local_file_path)
-    dropbox.upload_directory(local_file_path,
-                             ARGUMENTS.path_to_execute)
+    ##local_file_path = '/'.join(['/app']+ARGUMENTS.path_to_execute.split['/'][5:])
+    ##print(local_file_path)
+    ##dropbox.upload_directory(local_file_path,
+    ##                         ARGUMENTS.path_to_execute)
