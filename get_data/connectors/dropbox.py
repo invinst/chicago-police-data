@@ -37,8 +37,6 @@ class dropbox_handler:
         if '/input' in dbx_path:
             dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output/'])
         filenames = [filename for filename in os.listdir(local_path) if filename[0]!='.']
-        print('Files to Upload:')
-        print(filenames)
         print('DBX Path:')
         print(dbx_output_path)
         try:
@@ -46,6 +44,8 @@ class dropbox_handler:
         except:
             print('Output Path Exists')
         for filename in filenames:
+            print('File to Upload:')
+            print(filename)
             with open(local_path+filename,'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       dbx_output_path+filename,
