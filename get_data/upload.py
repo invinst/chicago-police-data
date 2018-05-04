@@ -20,5 +20,6 @@ if __name__=="__main__":
     ## paths where things are in dropbox
     #print(dropbox.list_files(path))
     local_file_path = '/'.join(['/app']+ARGUMENTS.path_to_execute.split['/'][5:])
+    print(local_file_path)
     dropbox.upload_directory(local_file_path,
                              ARGUMENTS.path_to_execute)
