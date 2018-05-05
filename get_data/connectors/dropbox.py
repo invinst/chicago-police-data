@@ -29,6 +29,28 @@ class dropbox_handler:
                 download_file = '/app/'+github_fileloc
                 self.dbx.files_download_to_file(download_file,filename)
 
+    def upload_directory(self,
+                         local_path,
+                         dbx_path,
+                         overwrite=True):
+        ## create output path
+        if '/input' in dbx_path:
+            dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output/'])
+        filenames = [filename for filename in os.listdir(local_path) if filename[0]!='.']
+        print('DBX Path:')
+        print(dbx_output_path)
+        try:
+            self.dbx.files_create_folder(dbx_output_path)
+        except:
+            print('Output Path Exists')
+        for filename in filenames:
+            print('File to Upload:')
+            print(filename)
+            with open(local_path+filename,'rb') as f:
+                self.dbx.files_upload(f.read(),
+                                      dbx_output_path+filename,
+                                      mode=dropbox.files.WriteMode('overwrite', None))
+
     def download_file(self,
                       dbx_path,
                       name,
