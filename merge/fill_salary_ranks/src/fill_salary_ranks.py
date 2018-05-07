@@ -7,6 +7,7 @@
 import pandas as pd
 import __main__
 import os
+import yaml
 
 import setup
 from general_utils import keep_duplicates, remove_duplicates
@@ -24,6 +25,7 @@ def get_setup():
         'input_profiles_file': 'input/final-profiles.csv.gz',
         'output_file' : 'output/salary-filled_2002-2017_2017-09.csv.gz',
         'output_history_file' : 'output/salary-ranks_2002-2017_2017-09.csv.gz',
+        'rank_file' : 'hand/salary_rank_recode.yaml',
         'salary_ranks' : [
             'COMMANDER OF GENERAL SUPPORT DIVISION',
             'COMMANDER',
@@ -160,5 +162,7 @@ df = keep_duplicates(df, ['UID', 'year'])\
     .reset_index(drop=True)\
     .drop('spp_year', axis=1)
 
+rank_dict = yaml.load(open(cons.rank_file))
+df['clean_rank'] = df['rank'].replace(rank_dict)
 assert keep_duplicates(df, ['UID', 'year']).empty
 df.to_csv(cons.output_history_file, **cons.csv_opts)
