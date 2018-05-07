@@ -38,7 +38,10 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
+sworn = df[df['is_sworn_officer'] == 'Y']['roster__2018-03_ID']
+log.info("adding merge column if individual is sworn officer for %d officers", sworn.nunique())
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 profiles_df = pd.read_csv(cons.input_profiles_file)
+profiles_df['merge'] = profiles_df['roster__2018-03_ID'].isin(sworn)
 profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)

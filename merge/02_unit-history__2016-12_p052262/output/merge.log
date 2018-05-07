@@ -27,10 +27,10 @@ first_name_NS-last_name_NS-birth_year-gender                                    
 first_name_NS-F4LN-appointed_date-birth_year-middle_initial-gender-race-current_unit                                4
 first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit                             3
 race-gender-birth_year-appointed_date-last_name_NS                                                                  2
-F4FN-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                                1
 first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-current_unit                                   1
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-suffix_name-current_unit                                1
+F4FN-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                                1
 first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                                                1
 first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                            1
 first_name_NS-last_name_NS-gender-race-current_unit                                                                 1
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-suffix_name-current_unit                                1
 Name: matched_on, dtype: int64

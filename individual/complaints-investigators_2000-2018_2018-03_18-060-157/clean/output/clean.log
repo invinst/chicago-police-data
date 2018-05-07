@@ -12,4 +12,4 @@ Column 'current_unit' cleaned as int using GeneralCleaners.
 Column 'investigator_type' was not cleaned.
 Column 'assigned_datetime' was not cleaned.
 Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('human_name', 'second_name', 'middle_name', 'middle_initial2', 'full_name')
+Columns dropped due to all NA values: ('middle_initial2', 'middle_name', 'human_name', 'full_name', 'second_name')

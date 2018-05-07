@@ -26,7 +26,7 @@ def get_setup():
         'output_profiles_file': 'output/complaints-accused_2000-2018_2018-03_profiles.csv.gz',
         'npor_file' : 'hand/nc_nonpo_ranks.yaml',
         'export_cols': [
-           'accusation_id', 'allegation_category', 'allegation_category_code',
+           'cr_id', 'accusation_id', 'allegation_category', 'allegation_category_code',
            'current_investigator_category',
            'current_investigator_category_code',
            'unit', 'unit_detail', 'accused_arrested',

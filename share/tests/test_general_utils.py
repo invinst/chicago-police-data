@@ -54,14 +54,15 @@ def test_keep_conflicts_all():
     input_df = pd.DataFrame(
         {'A': [1, 1, 1, 1, 2, 10, 11, 12],
          'B': [2, 2, 3, 4, 3, 10, 3, 12],
-         'C': [1, 3, 1, 3, 3, 10, 11, 1]})
+         'C': [1, 3, 1, 3, 3, 10, 11, 1]},
+         index=[1,2,3,4,5,6,7,8])
     input_args = {'cols' : ['A','B'], 'all_dups' : True}
     orig_input_df = copy.deepcopy(input_df)
     output_df = pd.DataFrame(
         {'A': [1, 1, 1, 1, 2, 11],
          'B': [2, 2, 3, 4, 3, 3],
          'C': [1, 3, 1, 3, 3, 11]},
-        index=[0, 1, 2, 3, 4, 6],
+        index=[1,2,3,4,5,7],
         columns=['A','B','C'])
 
     results = general_utils.keep_conflicts(input_df, **input_args)
@@ -92,17 +93,17 @@ def test_keep_conflicts_not_all():
 def test_reshape_data():
     '''test reshape_data'''
     input_df = pd.DataFrame(
-        {'A': [1, 2, 3,4],
-         'B1': [1,2, np.nan, 5,],
-         'B2': [1,np.nan,np.nan, 6],
-         'C' : [10,11,12, 13]})
-    input_args = {'reshape_col' : 'B', 'id_col' : 'A'}
+        {'A': [1, 2, 3, 4],
+         'B1': [1, 2, np.nan, 5],
+         'B2': [1, np.nan, np.nan, 6],
+         'C': [10, 11, 12, 13]})
+    input_args = {'reshape_col': 'B', 'id_col': 'A'}
     orig_input_df = copy.deepcopy(input_df)
     output_df = pd.DataFrame(
-        {'A': [1, 2, 4, 4, 3],
-         'B': [1, 2, 5,6, np.nan],
-         'C': [10, 11, 13, 13, 12]},
-        columns=['A','B','C'])
+        {'A': [1, 2, 3, 4, 4],
+         'B': [1, 2, np.nan, 5, 6],
+         'C': [10, 11, 12, 13, 13]},
+        columns=['A', 'B', 'C'])
 
     results = general_utils.reshape_data(input_df, **input_args)
     assert results.equals(output_df)

@@ -17,4 +17,4 @@ Column 'is_sworn_officer' was not cleaned.
 Column 'current_unit_detail' was not cleaned.
 Column 'current_unit' cleaned as int using GeneralCleaners.
 Column(s) '('first_name', 'middle_initial', 'last_name')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('human_name', 'middle_name', 'full_name', 'second_name')
+Columns dropped due to all NA values: ('full_name', 'human_name', 'second_name', 'middle_name')
