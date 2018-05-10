@@ -32,7 +32,8 @@ def get_setup():
            'unit', 'unit_detail', 'accused_arrested',
            'duty_status', 'injured', 'final_finding', 'finding_narrative',
            'penalty_id', 'penalty_code', 'number_of_days',
-           'final_finding_narrative', 'star', 'rank'
+           'final_finding_narrative', 'star', 'rank',
+           'final_finding_USE', 'final_outcome_USE'
             ],
         'id': 'complaints-accused_2000-2018_2018-03_ID'
         }

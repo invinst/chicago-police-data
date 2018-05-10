@@ -163,6 +163,6 @@ df = keep_duplicates(df, ['UID', 'year'])\
     .drop('spp_year', axis=1)
 
 rank_dict = yaml.load(open(cons.rank_file))
-df['clean_rank'] = df['rank'].replace(rank_dict)
+df['cleaned_rank'] = df['rank'].replace(rank_dict)
 assert keep_duplicates(df, ['UID', 'year']).empty
 df.to_csv(cons.output_history_file, **cons.csv_opts)

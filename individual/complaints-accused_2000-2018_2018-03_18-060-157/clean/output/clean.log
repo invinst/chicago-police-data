@@ -1,5 +1,7 @@
 running src/clean.py
 Dropping redundant current_rank2 column
+Creating complaint_category column from current_investigator_category + '-' + current_investigator_category_code
+Creating final_finding_USE and final_outcome_USE columns
 Column 'row_id' was not cleaned.
 Column 'cr_id' was not cleaned.
 Column 'race' cleaned as race using GeneralCleaners.
@@ -26,5 +28,8 @@ Column 'penalty_code' was not cleaned.
 Column 'number_of_days' was not cleaned.
 Column 'final_finding_narrative' was not cleaned.
 Column 'emp_no' was not cleaned.
+Column 'complaint_category' was not cleaned.
+Column 'final_finding_USE' was not cleaned.
+Column 'final_outcome_USE' was not cleaned.
 Column(s) '('first_name', 'last_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('full_name', 'middle_name', 'second_name', 'human_name')
+Columns dropped due to all NA values: ('second_name', 'full_name', 'middle_name', 'human_name')
