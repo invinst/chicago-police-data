@@ -83,7 +83,7 @@ assert df_FFN.loc[df_FFN['penalty_code'].isnull(), 'number_of_days'].nunique() =
 df_FFN['final_finding_USE'] = df_FFN['final_finding']
 
 df_FFN.loc[(df_FFN['penalty_code'] == 'SUSPENSION'), 'final_outcome_USE'] = \
-    df_FFN.loc[(df_FFN['penalty_code'] == 'SUSPENSION'), 'number_of_days'].map(lambda x: 'Suspension' if pd.isnull(x) else str(x) + ' Day Suspension')
+    df_FFN.loc[(df_FFN['penalty_code'] == 'SUSPENSION'), 'number_of_days'].map(lambda x: 'Suspension' if pd.isnull(x) else str(int(x)) + ' Day Suspension')
 loc_inds = df_FFN['number_of_days'].notnull().astype(str).isin(outcome_dict.keys())
 df_FFN.loc[loc_inds, 'final_outcome_USE'] = df_FFN.loc[loc_inds, 'number_of_days'].astype(str).replace(outcome_dict)
 
@@ -105,7 +105,7 @@ df_NFF = df_NFF\
     .max()
 df_NFF['final_finding_USE'] = df_NFF['final_finding']
 loc_inds = df_NFF['number_of_days'].notnull().astype(str).isin(outcome_dict.keys())
-df_NFF['final_outcome_USE'] = df_NFF['number_of_days'].map(lambda x: np.nan if pd.isnull(x) else str(x) + ' Day Suspension')
+df_NFF['final_outcome_USE'] = df_NFF['number_of_days'].map(lambda x: np.nan if pd.isnull(x) else str(int(x)) + ' Day Suspension')
 df_NFF.loc[loc_inds, 'final_outcome_USE'] = df_NFF.loc[loc_inds, 'number_of_days'].astype(str).replace(outcome_dict)
 
 df_FO = df_NFF.append(df_FFN)[['accusation_id', 'cr_id', 'final_finding_USE', 'final_outcome_USE']]

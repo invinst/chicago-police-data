@@ -22,3 +22,4 @@ Column 'was_police_shooting' was not cleaned.
 Column 'complainant_type' was not cleaned.
 Column 'investigating_agency' was not cleaned.
 Columns dropped due to all NA values: ()
+Purging phone numbers

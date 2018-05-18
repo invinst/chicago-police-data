@@ -23,11 +23,6 @@ def get_setup():
         'input_profiles_file': 'input/complaints-investigators_2000-2018_2018-03_profiles.csv.gz',
         'output_file': 'output/complaints-investigators_2000-2018_2018-03.csv.gz',
         'output_profiles_file': 'output/complaints-investigators_2000-2018_2018-03_profiles.csv.gz',
-        'export_cols': [
-           'cr_id', 'star', 'current_unit', 'investigator_type',
-           'assigned_datetime',
-            ],
-
         'id': 'complaints-investigators_2000-2018_2018-03_ID'
         }
 
@@ -44,7 +39,6 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
-df = df[['row_id',cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 profiles_df = pd.read_csv(cons.input_profiles_file)
