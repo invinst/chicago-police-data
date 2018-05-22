@@ -1,0 +1,10 @@
+running src/assign-unique-ids.py
+Robert E Smith 1947 1971-02-22 in units [5, 602] specified as singular individual.
+12 resolved conflicts. 0 unresolved conflicts
+Total rows: 115987
+Unique id + conflict rows: 32009
+Conflict rows: 12
+Resolved conflcit UID count: 9
+Total unique ids: 32006.0
+
+Specify column used to manually distinguish individuals created for AUID then dropped before aggregation
