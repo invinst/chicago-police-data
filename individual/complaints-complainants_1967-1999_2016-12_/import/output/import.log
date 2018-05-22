@@ -1,0 +1,3 @@
+running src/import.py
+Columns selected: ['CASE NUMBER', 'OFFICER OR NON OFFICER', 'SEX', 'YEAR OF BIRTH', 'RACE']
+41238 rows with officer_or_non = COMPLAINING_WITNESS selected
