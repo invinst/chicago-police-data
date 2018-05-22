@@ -1,0 +1,436 @@
+running src/assign-unique-ids.py
+Assigning unique sub-ids for year: 2002
+105 resolved conflicts. 0 unresolved conflicts
+Total rows: 13480
+Unique id + conflict rows: 13476
+Conflict rows: 105
+Resolved conflcit UID count: 105
+Total unique ids: 13476.0
+
+Assigning unique sub-ids for year: 2003
+122 resolved conflicts. 0 unresolved conflicts
+Total rows: 14360
+Unique id + conflict rows: 13900
+Conflict rows: 122
+Resolved conflcit UID count: 122
+Total unique ids: 13900.0
+
+Assigning unique sub-ids for year: 2004
+124 resolved conflicts. 0 unresolved conflicts
+Total rows: 14148
+Unique id + conflict rows: 13827
+Conflict rows: 124
+Resolved conflcit UID count: 124
+Total unique ids: 13827.0
+
+Assigning unique sub-ids for year: 2005
+116 resolved conflicts. 0 unresolved conflicts
+Total rows: 14097
+Unique id + conflict rows: 13687
+Conflict rows: 116
+Resolved conflcit UID count: 116
+Total unique ids: 13687.0
+
+Assigning unique sub-ids for year: 2006
+119 resolved conflicts. 0 unresolved conflicts
+Total rows: 14137
+Unique id + conflict rows: 13876
+Conflict rows: 119
+Resolved conflcit UID count: 119
+Total unique ids: 13876.0
+
+Assigning unique sub-ids for year: 2007
+133 resolved conflicts. 0 unresolved conflicts
+Total rows: 14111
+Unique id + conflict rows: 13826
+Conflict rows: 133
+Resolved conflcit UID count: 128
+Total unique ids: 13821.0
+
+Assigning unique sub-ids for year: 2008
+113 resolved conflicts. 0 unresolved conflicts
+Total rows: 13789
+Unique id + conflict rows: 13528
+Conflict rows: 113
+Resolved conflcit UID count: 112
+Total unique ids: 13527.0
+
+Assigning unique sub-ids for year: 2009
+107 resolved conflicts. 0 unresolved conflicts
+Total rows: 13278
+Unique id + conflict rows: 13216
+Conflict rows: 107
+Resolved conflcit UID count: 105
+Total unique ids: 13214.0
+
+Assigning unique sub-ids for year: 2010
+113 resolved conflicts. 0 unresolved conflicts
+Total rows: 13133
+Unique id + conflict rows: 13070
+Conflict rows: 113
+Resolved conflcit UID count: 112
+Total unique ids: 13069.0
+
+Assigning unique sub-ids for year: 2011
+111 resolved conflicts. 0 unresolved conflicts
+Total rows: 12613
+Unique id + conflict rows: 12550
+Conflict rows: 111
+Resolved conflcit UID count: 110
+Total unique ids: 12549.0
+
+Assigning unique sub-ids for year: 2012
+112 resolved conflicts. 0 unresolved conflicts
+Total rows: 12631
+Unique id + conflict rows: 12494
+Conflict rows: 112
+Resolved conflcit UID count: 111
+Total unique ids: 12493.0
+
+Assigning unique sub-ids for year: 2013
+185 resolved conflicts. 0 unresolved conflicts
+Total rows: 12584
+Unique id + conflict rows: 12474
+Conflict rows: 185
+Resolved conflcit UID count: 145
+Total unique ids: 12434.0
+
+Assigning unique sub-ids for year: 2014
+131 resolved conflicts. 0 unresolved conflicts
+Total rows: 12548
+Unique id + conflict rows: 12309
+Conflict rows: 131
+Resolved conflcit UID count: 122
+Total unique ids: 12300.0
+
+Assigning unique sub-ids for year: 2015
+190 resolved conflicts. 0 unresolved conflicts
+Total rows: 12563
+Unique id + conflict rows: 12349
+Conflict rows: 190
+Resolved conflcit UID count: 152
+Total unique ids: 12311.0
+
+Assigning unique sub-ids for year: 2016
+392 resolved conflicts. 0 unresolved conflicts
+Total rows: 12794
+Unique id + conflict rows: 12627
+Conflict rows: 392
+Resolved conflcit UID count: 259
+Total unique ids: 12494.0
+
+Assigning unique sub-ids for year: 2017
+131 resolved conflicts. 0 unresolved conflicts
+Total rows: 12242
+Unique id + conflict rows: 12242
+Conflict rows: 131
+Resolved conflcit UID count: 131
+Total unique ids: 12242.0
+
+Beginning self-merge process
+Creating reference data from filewith intrafile ID: salary-2002_2002-2017_2017-09_ID
+Adding file with intrafile ID: salary-2003_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2003_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2003_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13393 Total Merged. 99.38% of ref and 96.35% of sup Merged.
+83 Unmerged in ref. 0.62% Unmerged.
+507 Unmerged in sup. 3.65% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10209
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2234
+first_name_NS-last_name_NS-org_hire_date                                                        374
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      364
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     199
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                  7
+first_name_NS-last_name_NS-start_date-age_at_hire                                                 3
+first_name_NS-last_name_NS-spp_date-org_hire_date-start_date-pay_grade                            2
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2004_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2004_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2004_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13311 Total Merged. 95.19% of ref and 96.27% of sup Merged.
+672 Unmerged in ref. 4.81% Unmerged.
+516 Unmerged in sup. 3.73% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10174
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2243
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      363
+first_name_NS-last_name_NS-org_hire_date                                                        306
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     203
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               10
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                  7
+first_name_NS-last_name_NS-start_date-age_at_hire                                                 4
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2005_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2005_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2005_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13155 Total Merged. 90.73% of ref and 96.11% of sup Merged.
+1344 Unmerged in ref. 9.27% Unmerged.
+532 Unmerged in sup. 3.89% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10090
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2257
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      359
+first_name_NS-last_name_NS-org_hire_date                                                        232
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     205
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       6
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                                3
+first_name_NS-last_name_NS-start_date-age_at_hire                                                 2
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                  1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2006_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2006_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2006_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13156 Total Merged. 87.53% of ref and 94.81% of sup Merged.
+1875 Unmerged in ref. 12.47% Unmerged.
+720 Unmerged in sup. 5.19% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10102
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2298
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      354
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     205
+first_name_NS-last_name_NS-org_hire_date                                                        188
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       6
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                  3
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2007_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2007_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2007_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13424 Total Merged. 85.23% of ref and 97.13% of sup Merged.
+2327 Unmerged in ref. 14.77% Unmerged.
+397 Unmerged in sup. 2.87% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10331
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2364
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      356
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     205
+first_name_NS-last_name_NS-org_hire_date                                                        162
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       6
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2008_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2008_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2008_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13386 Total Merged. 82.9% of ref and 98.96% of sup Merged.
+2762 Unmerged in ref. 17.1% Unmerged.
+141 Unmerged in sup. 1.04% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10313
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2349
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      363
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     207
+first_name_NS-last_name_NS-org_hire_date                                                        146
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                                6
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                       2
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2009_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2009_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2009_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+13072 Total Merged. 80.25% of ref and 98.93% of sup Merged.
+3217 Unmerged in ref. 19.75% Unmerged.
+142 Unmerged in sup. 1.07% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                10081
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                                2291
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire      353
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     202
+first_name_NS-last_name_NS-org_hire_date                                                        131
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               13
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                  1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2010_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2010_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2010_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+12884 Total Merged. 78.41% of ref and 98.58% of sup Merged.
+3547 Unmerged in ref. 21.59% Unmerged.
+185 Unmerged in sup. 1.42% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                9935
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2265
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     347
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    199
+first_name_NS-last_name_NS-org_hire_date                                                       123
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                     14
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2011_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2011_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2011_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+12497 Total Merged. 75.21% of ref and 99.59% of sup Merged.
+4119 Unmerged in ref. 24.79% Unmerged.
+52 Unmerged in sup. 0.41% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                9650
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2205
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     331
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    191
+first_name_NS-last_name_NS-org_hire_date                                                       105
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                     15
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2012_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2012_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2012_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+12041 Total Merged. 72.24% of ref and 96.38% of sup Merged.
+4627 Unmerged in ref. 27.76% Unmerged.
+452 Unmerged in sup. 3.62% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                9295
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2141
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     320
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    182
+first_name_NS-last_name_NS-org_hire_date                                                        92
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                      7
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               4
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2013_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2013_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2013_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+11845 Total Merged. 69.19% of ref and 95.26% of sup Merged.
+5275 Unmerged in ref. 30.81% Unmerged.
+589 Unmerged in sup. 4.74% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                8824
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2437
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     304
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    186
+first_name_NS-last_name_NS-org_hire_date                                                        82
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               8
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                      4
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2014_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2014_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2014_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+11985 Total Merged. 67.68% of ref and 97.44% of sup Merged.
+5724 Unmerged in ref. 32.32% Unmerged.
+315 Unmerged in sup. 2.56% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                8584
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2775
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     298
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    199
+first_name_NS-last_name_NS-org_hire_date                                                        79
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                     46
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               4
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2015_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2015_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2015_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+11861 Total Merged. 65.81% of ref and 96.34% of sup Merged.
+6163 Unmerged in ref. 34.19% Unmerged.
+450 Unmerged in sup. 3.66% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                8288
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               2953
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     280
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    207
+first_name_NS-last_name_NS-org_hire_date                                                        80
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                     51
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               2
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2016_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2016_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2016_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+11869 Total Merged. 64.25% of ref and 95.0% of sup Merged.
+6605 Unmerged in ref. 35.75% Unmerged.
+625 Unmerged in sup. 5.0% Unmerged.
+
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                7995
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               3221
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     273
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                    206
+first_name_NS-last_name_NS-org_hire_date                                                        90
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                     80
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                               3
+first_name_NS-last_name_NS-middle_initial-start_date-age_at_hire                                 1
+Name: matched_on, dtype: int64
+Adding file with intrafile ID: salary-2017_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary_2002-2017_2017-09_ID
+Adding column [F4FN] to data with ID = salary-2017_2002-2017_2017-09_ID
+Adding column [F4LN] to data with ID = salary-2017_2002-2017_2017-09_ID
+Beginning loop_merge.
+Merge Report:
+11529 Total Merged. 60.36% of ref and 94.18% of sup Merged.
+7570 Unmerged in ref. 39.64% Unmerged.
+713 Unmerged in sup. 5.82% Unmerged.
+
+first_name_NS-last_name_NS-spp_date-org_hire_date-start_date-pay_grade                        4647
+first_name_NS-last_name_NS-middle_initial-org_hire_date-start_date-age_at_hire                3511
+first_name_NS-last_name_NS-org_hire_date-start_date-age_at_hire                               1660
+first_name_NS-last_name_NS-org_hire_date                                                      1029
+first_name_NS-last_name_NS-middle_initial-org_hire_date-age_at_hire                            148
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-start_date-age_at_hire     136
+first_name_NS-last_name_NS-org_hire_date-spp_date-salary-pay_grade                             122
+first_name_NS-last_name_NS-spp_date-org_hire_date-pay_grade                                    102
+first_name_NS-last_name_NS-suffix_name-org_hire_date-start_date-age_at_hire                     92
+first_name_NS-last_name_NS-org_hire_date-age_at_hire                                            49
+first_name_NS-middle_initial-spp_date-start_date-org_hire_date-pay_grade                         9
+first_name_NS-last_name_NS-middle_initial-suffix_name-org_hire_date-age_at_hire                  7
+first_name_NS-spp_date-start_date-org_hire_date-pay_grade-age_at_hire                            5
+first_name_NS-last_name_NS-start_date                                                            5
+first_name_NS-last_name_NS-suffix_name-org_hire_date-age_at_hire                                 4
+first_name_NS-last_name_NS-spp_date-start_date-pay_grade                                         3
+Name: matched_on, dtype: int64
+Number of unique IDs = 19812
+Creating so_max_date and so_min_date from max/min of start_date and org_hire_date
+Creating so_max_year and so_min_year from so_max_date and so_min_date
+Creating current_age columns from so_max_year and age_at_hire
+Adding resignation_year column = max year of observation
+Exporting profiles data set with ['salary_2002-2017_2017-09_ID', 'age_at_hire', 'gender', 'first_name', 'last_name', 'first_name_NS', 'last_name_NS', 'suffix_name', 'middle_initial', 'middle_initial2', 'so_max_year', 'so_min_year', 'so_max_year_m1', 'so_min_year_m1', 'so_max_date', 'so_min_date', 'current_age_p1', 'current_age2_pm', 'current_age_m1', 'current_age_pm', 'current_age_mp', 'current_age2_p1', 'current_age2_m1', 'current_age2_mp', 'start_date', 'org_hire_date', 'resignation_year'] columns
