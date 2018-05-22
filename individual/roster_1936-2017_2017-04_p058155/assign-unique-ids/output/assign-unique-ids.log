@@ -1,0 +1,10 @@
+running src/assign-unique-ids.py
+649 hidden officers marked as merge = 0
+1 officer with no name marked as merge = 0
+14 resolved conflicts. 0 unresolved conflicts
+Total rows: 32446
+Unique id + conflict rows: 32405
+Conflict rows: 14
+Resolved conflcit UID count: 7
+Total unique ids: 32398.0
+

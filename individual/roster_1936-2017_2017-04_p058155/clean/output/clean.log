@@ -1,0 +1,27 @@
+running src/clean.py
+Column 'row_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN'] values not in race_types.yaml file. 67 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'current_age' cleaned as age using GeneralCleaners.
+Column 'current_status' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'rank_no' was not cleaned.
+Column 'current_rank' was not cleaned.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column 'unit_description' was not cleaned.
+Column 'resignation_date' cleaned as date using DateTimeCleaners.
+Column 'star1' cleaned as star using GeneralCleaners.
+Column 'star2' cleaned as star using GeneralCleaners.
+Column 'star3' cleaned as star using GeneralCleaners.
+Column 'star4' cleaned as star using GeneralCleaners.
+Column 'star5' cleaned as star using GeneralCleaners.
+Column 'star6' cleaned as star using GeneralCleaners.
+Column 'star7' cleaned as star using GeneralCleaners.
+Column 'star8' cleaned as star using GeneralCleaners.
+Column 'star9' cleaned as star using GeneralCleaners.
+Column 'star10' cleaned as star using GeneralCleaners.
+Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('human_name', 'second_name', 'middle_name', 'full_name')
+current_status column replaced: Y to 1, N to 0
