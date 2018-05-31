@@ -90,7 +90,7 @@ In **individual**/, there are multiple directories named according to their FOIA
 
 ### merge/
 
-In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of these tasks are to produce officer-reference.csv.gz files (a collection of \_profiles files appended to each other with UIDs) into officer-reference.csv.gz (used to compare potentially differing information about the same officer in different files).
+In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of each of these tasks (beginning with a number e.x. 01_roster...) is to produce the officer-reference.csv.gz file, which is a collection of \_profiles files combined with a unique ID unifying the same officer. This file is used to compare/collect potentially differing information about the same officer in different files.
 
 Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step.
 
