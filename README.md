@@ -81,7 +81,7 @@ The lowest level of directories in both individual/ and merge/ trees contain inp
 
 ### individual/
 
-In **individual**/, there are multiple directories named according to their FOIA number and the month of receipt (if applicable) and the topic and date rage of the data. For some of these FOIAs (for example, the complaint and TRR data), there are multiple types of data contained in a single FOIA. The data description for these is complaints-[specific data] and TRR-[specific data]. The workflow goes as follows: import/ -> clean/ -> assign-unique-ids/ (if there are identifiable individuals) -> export/.
+In **individual**/, there are multiple directories named according to their FOIA number and the month of receipt (if applicable) and the topic and date rage of the data. For some of these FOIAs (for example, the complaint and TRR data), there are multiple types of data contained in a single FOIA. The data description for these is complaints-[specific data] and TRR-[specific data]. The workflow goes as follows: import/ -> clean/ -> assign-unique-ids/ (if there are identifiable individuals) -> export/. All individual/ subdirectories can be run independently of each other.
 
 * **import**/ takes the data in whatever format it has been received in (.csv, .xlsx, etc.), does minor formatting, standardizes column names, and collects initial metadata. Then it writes the data to a .csv.gz file.
 * **clean**/ pushes the imported data through various cleaning functions that will standardize names, race, genders, columns that must be integers or dates, etc.
@@ -92,7 +92,7 @@ In **individual**/, there are multiple directories named according to their FOIA
 
 In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of each of these tasks (beginning with a number e.x. 01_roster...) is to produce the officer-reference.csv.gz file, which is a collection of \_profiles files combined with a unique ID unifying the same officer. This file is used to compare/collect potentially differing information about the same officer in different files.
 
-Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step.
+Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step. After the numbered tasks are run, the non-numbered task can run.
 
 The `final-profiles` only takes in the officer-reference file from the last merge, and outputs a condensed profiles file that contains the "best" profile for every individual.
 
