@@ -38,7 +38,7 @@ def get_setup():
         'aggregate_data_args' : {
             'current_cols': [
                 'current_star', 'current_unit',
-                'current_rank', 'current_status', 'unit_description'
+                'current_rank', 'current_status',
                 ],
             'time_col' : 'foia_date',
             'mode_cols': [
@@ -46,7 +46,7 @@ def get_setup():
                 'middle_initial2', 'suffix_name', 'race', 'gender',
                 'birth_year', 'appointed_date', 'start_date', 'org_hire_date'
                 ],
-            'max_cols': ['resignation_date']
+            'max_cols': ['resignation_date'],
             }
         }
 
