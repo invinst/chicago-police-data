@@ -1,0 +1,47 @@
+running src/merge.py
+Loading reference data with 264835 rows and 33693 universal IDs
+Adding file with intrafile ID: complaints-accused_1967-1999_2016-12_ID
+17 rows dropped due to merge!=1. 20112 rows remaining
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [F1FN] to data with ID = UID
+Adding column [L3FN] to data with ID = UID
+Adding column [F1LN] to data with ID = UID
+Adding column [L3LN] to data with ID = UID
+Adding column [L4LN] to data with ID = UID
+Adding column [appointed_date] to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+Adding column [F4FN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [F4LN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [F1FN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [L3FN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [F1LN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [L3LN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [L4LN] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [appointed_date] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [BY_to_CA] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Adding column [current_age] to data with ID = complaints-accused_1967-1999_2016-12_ID
+Beginning loop_merge.
+Merge Report:
+16982 Total Merged. 50.4% of ref and 88.79% of sup Merged.
+16711 Unmerged in ref. 49.6% Unmerged.
+2144 Unmerged in sup. 11.21% Unmerged.
+
+star-first_name_NS-last_name_NS-appointed_date                                   13868
+first_name_NS-last_name_NS-appointed_date                                         1508
+star-first_name_NS-last_name_NS-appointed_date-suffix_name                         751
+first_name_NS-star-appointed_date                                                  638
+star-first_name_NS-F4LN-appointed_date                                              87
+first_name_NS-last_name_NS-appointed_date-suffix_name                               84
+F1FN-last_name_NS-star-appointed_date                                               19
+star-F4FN-last_name_NS-appointed_date                                               10
+first_name_NS-F4LN-appointed_date                                                    6
+star-first_name_NS-last_name_NS-appointed_date-middle_initial                        3
+star-F4FN-last_name_NS-appointed_date-suffix_name                                    2
+F4FN-last_name_NS-appointed_date                                                     2
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-middle_initial2        1
+first_name_NS-last_name_NS-appointed_date-middle_initial-suffix_name                 1
+star-first_name_NS-F4LN-appointed_date-middle_initial                                1
+F4FN-L4LN-appointed_date                                                             1
+Name: matched_on, dtype: int64
