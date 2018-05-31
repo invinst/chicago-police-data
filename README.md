@@ -98,6 +98,13 @@ The `final-profiles` only takes in the officer-reference file from the last merg
 
 `generate_TRR_flags` does not utilize any officer information, but rather generates columns in the main TRR data set using information aggregated from weapon-discharge data and actions-response data.
 
+`fill_salary_ranks` fills the salary data with missing observations (year x rank x officer) for missing Lieutenants (output as salary-filled...) and then aggregates the filled data to 1 row per year x rank x officer (output as salary-ranks...)
+
+`resolve_complaints` take core complaints files (complaints and accused) and generates/aggregates the pre-2000, 2016, and 2018 files to determine which data should be utilized for display purposes. Specifically, this ensures 1 row per CR in the complaints data ('complaints-complaints.csv.gz'), and 1 row per CR x officer in the accused data ('complaints-accused.csv.gz').
+
+`resolve_complaints-supplementary` takes non-core complaints files (complainants, witnesses, investigators, victims) and creates resolved/aggregated files, e.g. information from either 2016 or 2018 complaints files. Outputs 'complaints-victims.csv.gz', etc.
+
+`resolve_unit-history` takes all/both unit-history files and resolves conflicts and generates the aggregated 'unit-history.csv.gz'
 
 ### share/
 
