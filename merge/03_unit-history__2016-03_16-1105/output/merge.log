@@ -33,21 +33,21 @@ star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name-current_u
 first_name_NS-star-gender-race-appointed_date                                                                               20
 star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                                                       7
 star-first_name_NS-F4LN-appointed_date-current_age_m1-gender-race-current_unit                                               7
-first_name_NS-last_name_NS-current_age_p1                                                                                    5
 star-first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-gender-race-current_unit                        5
+first_name_NS-last_name_NS-current_age_p1                                                                                    5
 first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                                                            3
-star-first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-middle_initial2-gender-race-current_unit        2
-star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender                                                         2
 first_name_NS-appointed_date-current_unit-gender-race                                                                        2
 star-first_name_NS-F4LN-appointed_date-current_age_m1-gender-race                                                            2
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-middle_initial2-gender-race-current_unit        2
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender                                                         2
 first_name_NS-last_name_NS                                                                                                   2
-first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-gender-race-suffix_name-current_unit                 1
 star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-suffix_name-current_unit                                1
 star-appointed_date-current_unit-current_age_p1-gender                                                                       1
-star-F4FN-last_name_NS-appointed_date-current_age_m1-gender-race                                                             1
+first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-gender-race-suffix_name-current_unit                 1
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-current_unit                                       1
 star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-current_unit                                            1
 first_name_NS-F4LN-appointed_date-gender-race-current_unit                                                                   1
 star-first_name_NS-last_name_NS-appointed_date-current_age_m1-middle_initial-gender-race                                     1
 first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-current_unit                                                 1
-star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-current_unit                                       1
+star-F4FN-last_name_NS-appointed_date-current_age_m1-gender-race                                                             1
 Name: matched_on, dtype: int64

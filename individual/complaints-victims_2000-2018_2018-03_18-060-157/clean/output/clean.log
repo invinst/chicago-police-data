@@ -6,7 +6,7 @@ Column 'investigating_agency' was not cleaned.
 Column 'complainant_type' was not cleaned.
 Column 'complainant_subtype' was not cleaned.
 Column 'race' cleaned as race using GeneralCleaners.
-[nan, 'UNKNOWN', 'SPANISH (DO NOT USE)'] values not in race_types.yaml file. 9210 cases replaced with ''
+[nan, 'UNKNOWN'] values not in race_types.yaml file. 8736 cases replaced with ''
 Column 'gender' cleaned as gender using GeneralCleaners.
 [nan, 'UNKNOWN'] values not in gender_types.yaml file. 3763 cases replaced with ''
 Column 'birth_year' was not cleaned.

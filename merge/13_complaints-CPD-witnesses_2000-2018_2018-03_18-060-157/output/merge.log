@@ -23,10 +23,10 @@ first_name_NS-last_name_NS-birth_year-suffix_name                               
 first_name_NS-last_name_NS                                                              5
 first_name_NS-last_name_NS-birth_year-middle_initial-middle_initial2-current_unit       4
 first_name_NS-last_name_NS-current_unit                                                 2
-first_name_NS-F4LN                                                                      2
 F4FN-F4LN                                                                               2
-first_name_NS-F4LN-birth_year-middle_initial-current_unit                               2
 first_name_NS-last_name_NS-middle_initial-suffix_name                                   2
+first_name_NS-F4LN-birth_year-middle_initial-current_unit                               2
+first_name_NS-F4LN                                                                      2
 first_name_NS-F4LN-birth_year                                                           1
 first_name_NS-F4LN-birth_year-middle_initial                                            1
 Name: matched_on, dtype: int64

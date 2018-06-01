@@ -22,15 +22,15 @@ star-first_name_NS-last_name_NS-appointed_date-gender-race                      
 first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                                 10
 first_name_NS-star-appointed_date-birth_year-gender-race                                                    8
 first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2-gender-race             6
-star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                             2
 first_name_NS-middle_initial-appointed_date-birth_year-gender-race                                          2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                             2
 F4FN-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                      1
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2-gender-race        1
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                                            1
+star-F4FN-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                 1
 first_name_NS-last_name_NS-birth_year-middle_initial-race-gender                                            1
 first_name_NS-last_name_NS-birth_year-star-race-middle_initial                                              1
-star-first_name_NS-F4LN-appointed_date-birth_year-gender-race                                               1
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                                            1
 F2FN-last_name_NS-star-appointed_date-birth_year                                                            1
-star-F4FN-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                 1
+star-first_name_NS-F4LN-appointed_date-birth_year-gender-race                                               1
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-race                               1
 Name: matched_on, dtype: int64
