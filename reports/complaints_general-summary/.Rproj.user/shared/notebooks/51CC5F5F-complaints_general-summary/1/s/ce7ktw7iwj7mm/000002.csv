@@ -1,0 +1,96 @@
+"0","kable(otu_table, 'html', caption = ""Unique Accused Officers"") %>%
+  kable_styling(c(""striped"", ""bordered"")) %>%
+  group_rows(""Demographics"", 1, 3) %>%
+  group_rows(""Accusations"", 4, 7) %>%
+  group_rows("""", 8, 9,label_row_css = ""background-color: #D7261E"")
+"
+"1","<table class=""table table-striped table-bordered"" style=""margin-left: auto; margin-right: auto;"">
+<caption>Unique Accused Officers</caption>
+ <thead>
+  <tr>
+   <th style=""text-align:left;"">   </th>
+   <th style=""text-align:left;""> Black </th>
+   <th style=""text-align:left;""> Hispanic </th>
+   <th style=""text-align:left;""> Other </th>
+   <th style=""text-align:left;""> White </th>
+   <th style=""text-align:left;""> All </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength=""3""><td colspan=""6"" style=""border-bottom: 1px solid;""><strong>Demographics</strong></td></tr>
+<tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Male </td>
+   <td style=""text-align:left;""> 0.69 </td>
+   <td style=""text-align:left;""> 0.81 </td>
+   <td style=""text-align:left;""> 0.88 </td>
+   <td style=""text-align:left;""> 0.83 </td>
+   <td style=""text-align:left;""> 0.79 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Female </td>
+   <td style=""text-align:left;""> 0.31 </td>
+   <td style=""text-align:left;""> 0.19 </td>
+   <td style=""text-align:left;""> 0.12 </td>
+   <td style=""text-align:left;""> 0.17 </td>
+   <td style=""text-align:left;""> 0.21 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> age </td>
+   <td style=""text-align:left;""> 51.96 </td>
+   <td style=""text-align:left;""> 45.06 </td>
+   <td style=""text-align:left;""> 44.82 </td>
+   <td style=""text-align:left;""> 49.90 </td>
+   <td style=""text-align:left;""> 49.42 </td>
+  </tr>
+  <tr grouplength=""4""><td colspan=""6"" style=""border-bottom: 1px solid;""><strong>Accusations</strong></td></tr>
+<tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Accusations </td>
+   <td style=""text-align:left;""> 7.65 </td>
+   <td style=""text-align:left;""> 8.27 </td>
+   <td style=""text-align:left;""> 7.31 </td>
+   <td style=""text-align:left;""> 7.81 </td>
+   <td style=""text-align:left;""> 7.84 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Officer Filed </td>
+   <td style=""text-align:left;""> 1.23 </td>
+   <td style=""text-align:left;""> 0.77 </td>
+   <td style=""text-align:left;""> 0.70 </td>
+   <td style=""text-align:left;""> 0.72 </td>
+   <td style=""text-align:left;""> 0.86 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Civilian Filed </td>
+   <td style=""text-align:left;""> 6.42 </td>
+   <td style=""text-align:left;""> 7.50 </td>
+   <td style=""text-align:left;""> 6.61 </td>
+   <td style=""text-align:left;""> 7.09 </td>
+   <td style=""text-align:left;""> 6.98 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentlevel=""1""> Sustained </td>
+   <td style=""text-align:left;""> 0.83 </td>
+   <td style=""text-align:left;""> 0.44 </td>
+   <td style=""text-align:left;""> 0.43 </td>
+   <td style=""text-align:left;""> 0.38 </td>
+   <td style=""text-align:left;""> 0.51 </td>
+  </tr>
+  <tr grouplength=""2""><td colspan=""6"" style=""background-color: #D7261E""><strong></strong></td></tr>
+<tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentLevel=""1""> N </td>
+   <td style=""text-align:left;""> 4055 </td>
+   <td style=""text-align:left;""> 2881 </td>
+   <td style=""text-align:left;""> 411 </td>
+   <td style=""text-align:left;""> 8674 </td>
+   <td style=""text-align:left;""> 16021 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentLevel=""1""> % </td>
+   <td style=""text-align:left;""> 25.31 </td>
+   <td style=""text-align:left;""> 17.98 </td>
+   <td style=""text-align:left;""> 2.57 </td>
+   <td style=""text-align:left;""> 54.14 </td>
+   <td style=""text-align:left;""> 100 </td>
+  </tr>
+</tbody>
+</table>"

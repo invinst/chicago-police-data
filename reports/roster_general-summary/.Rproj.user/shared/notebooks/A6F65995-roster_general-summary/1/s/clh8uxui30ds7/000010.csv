@@ -1,0 +1,17 @@
+"0","profs <- prof %>% 
+      filter((is.na(resignation_date) | resignation_date >= min_date),
+             (! is.na(appointed_date) & appointed_date <= max_date),
+             ! is.na(race),
+             ! is.na(gender),
+             ! is.na(birth_year)) %>%
+      mutate(tenure = if_else(is.na(resignation_date) | resignation_date <= appointed_date, 
+                              interval(ymd(appointed_date), ymd(max_date))/years(1),
+                              interval(ymd(appointed_date), ymd(resignation_date))/years(1)),
+             age_at_appointment = year(appointed_date) - birth_year) %>%
+      filter(tenure < 45,
+             between(age_at_appointment,20 50)) %>%
+"
+"2","Error: unexpected numeric constant in:
+""      filter(tenure < 45,
+             between(age_at_appointment,20 50""
+"

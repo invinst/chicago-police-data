@@ -1,0 +1,29 @@
+"0","rm(vict, cmplnt, wit)
+cmpl <- cmpl %>%
+  mutate(district = if_else(! is.na(beat) & beat > 1,
+                            beatToDistrict(as.character(beat)), NA_real_),
+         incident_month = floor_date(ymd(incident_date), 'month'),
+         incident_year = year(incident_date)) %>%
+  select(cr_id, incident_date, incident_month, incident_year, incident_time,
+         complaint_date, closed_date, district, complaint_class) %>%
+  full_join(acc)
+"
+"2","Joining, by = ""cr_id""
+"
+"0","cym_tbl <- cmpl %>%"
+"0","  select(incident_month, UID, cr_id) %>% "
+"0","  unique() %>% "
+"0","  filter(incident_month < max(incident_month)) %>%"
+"0","  select(incident_month) %>%"
+"0","  table()"
+"0","cym_pi_tbl <- cym_tbl[names(cym_tbl) >= IPRA_Active]"
+"0","cmpl_xts <- cmpl %>% "
+"0","  filter(!is.na(UID)) %>% "
+"0","  mutate(incident_month = as.Date(incident_month)) %>% group_by(incident_month) %>% "
+"0","  summarize(Complaints = n(),"
+"0","            Sustained = sum(as.numeric(final_finding=='SU'), na.rm = T)) %>% "
+"0","  tk_xts(.)"
+"2","Non-numeric columns being dropped: incident_month"
+"2","Using column `incident_month` for date_var.
+"
+"0","cmpl.full <- cmpl"

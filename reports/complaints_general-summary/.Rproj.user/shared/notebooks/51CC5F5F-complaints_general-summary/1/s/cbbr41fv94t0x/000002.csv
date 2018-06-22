@@ -1,0 +1,92 @@
+"0","kable(pinvu_table, 'html', caption = ""Unique Officer Investigators"") %>%
+  kable_styling(c(""striped"", ""bordered"")) %>%
+  group_rows("""", nrow(pinvu_table)-1,nrow(pinvu_table),label_row_css = ""background-color: #D7261E"")
+"
+"1","<table class=""table table-striped table-bordered"" style=""margin-left: auto; margin-right: auto;"">
+<caption>Unique Officer Investigators</caption>
+ <thead>
+  <tr>
+   <th style=""text-align:left;"">   </th>
+   <th style=""text-align:left;""> Black </th>
+   <th style=""text-align:left;""> Hispanic </th>
+   <th style=""text-align:left;""> Other </th>
+   <th style=""text-align:left;""> White </th>
+   <th style=""text-align:left;""> All </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:left;""> Male </td>
+   <td style=""text-align:left;""> 0.73 </td>
+   <td style=""text-align:left;""> 0.84 </td>
+   <td style=""text-align:left;""> 0.88 </td>
+   <td style=""text-align:left;""> 0.85 </td>
+   <td style=""text-align:left;""> 0.83 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Female </td>
+   <td style=""text-align:left;""> 0.27 </td>
+   <td style=""text-align:left;""> 0.16 </td>
+   <td style=""text-align:left;""> 0.12 </td>
+   <td style=""text-align:left;""> 0.15 </td>
+   <td style=""text-align:left;""> 0.17 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> In Complaints </td>
+   <td style=""text-align:left;""> 0.85 </td>
+   <td style=""text-align:left;""> 0.89 </td>
+   <td style=""text-align:left;""> 0.95 </td>
+   <td style=""text-align:left;""> 0.84 </td>
+   <td style=""text-align:left;""> 0.85 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Sustained </td>
+   <td style=""text-align:left;""> 3.76 </td>
+   <td style=""text-align:left;""> 1.93 </td>
+   <td style=""text-align:left;""> 0.41 </td>
+   <td style=""text-align:left;""> 1.94 </td>
+   <td style=""text-align:left;""> 2.24 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Allegations </td>
+   <td style=""text-align:left;""> 59.53 </td>
+   <td style=""text-align:left;""> 42.33 </td>
+   <td style=""text-align:left;""> 23.76 </td>
+   <td style=""text-align:left;""> 35.64 </td>
+   <td style=""text-align:left;""> 40.42 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Sustained Rate </td>
+   <td style=""text-align:left;""> 0.07 </td>
+   <td style=""text-align:left;""> 0.05 </td>
+   <td style=""text-align:left;""> 0.01 </td>
+   <td style=""text-align:left;""> 0.05 </td>
+   <td style=""text-align:left;""> 0.06 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Age at Incident </td>
+   <td style=""text-align:left;""> 47.87 </td>
+   <td style=""text-align:left;""> 44.95 </td>
+   <td style=""text-align:left;""> 41.69 </td>
+   <td style=""text-align:left;""> 46.73 </td>
+   <td style=""text-align:left;""> 46.65 </td>
+  </tr>
+  <tr grouplength=""2""><td colspan=""6"" style=""background-color: #D7261E""><strong></strong></td></tr>
+<tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentLevel=""1""> N </td>
+   <td style=""text-align:left;""> 517 </td>
+   <td style=""text-align:left;""> 350 </td>
+   <td style=""text-align:left;""> 41 </td>
+   <td style=""text-align:left;""> 2066 </td>
+   <td style=""text-align:left;""> 2974 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left; padding-left: 2em;"" indentLevel=""1""> % </td>
+   <td style=""text-align:left;""> 17.38 </td>
+   <td style=""text-align:left;""> 11.77 </td>
+   <td style=""text-align:left;""> 1.38 </td>
+   <td style=""text-align:left;""> 69.47 </td>
+   <td style=""text-align:left;""> 100 </td>
+  </tr>
+</tbody>
+</table>"

@@ -1,0 +1,5 @@
+"0","wit <- full_join(wit, prof, by='UID') %>% 
+  inner_join(cmpl[, c(""cr_id"", ""complaint_class"")])
+"
+"2","Joining, by = ""cr_id""
+"

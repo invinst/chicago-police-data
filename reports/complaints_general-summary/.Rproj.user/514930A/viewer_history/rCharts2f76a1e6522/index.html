@@ -1,0 +1,861 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    
+    <script src='http://d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='http://d3js.org/topojson.v1.min.js' type='text/javascript'></script>
+    <script src='http://datamaps.github.io/scripts/datamaps.all.min.js' type='text/javascript'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js' type='text/javascript'></script>
+    
+    <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 800px;
+      height: 400px;
+    }  
+    </style>
+    
+  </head>
+  <body >
+    
+    <div id = 'chart_1' class = 'rChart datamaps'></div>    
+    <script id='popup-template' type='text/x-handlebars-template'>
+    
+</script>
+<script>
+  var chartParams = {
+ "dom": "chart_1",
+"width":    800,
+"height":    400,
+"scope": "chicago",
+"fills": {
+ "A": "#FFFFB2",
+"B": "#FECC5C",
+"C": "#FD8D3C",
+"D": "#F03B20",
+"E": "#BD0026",
+"defaultFill": "white" 
+},
+"data": {
+ "1": {
+ "community": "ALBANY PARK",
+"incident_year":  10957,
+"n": 48,
+"cmpl_pc": 0.00093128,
+"csd": "A",
+"Community": "Albany Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"2": {
+ "community": "ARCHER HEIGHTS",
+"incident_year":  10957,
+"n": 30,
+"cmpl_pc": 0.00224,
+"csd": "A",
+"Community": "Archer Heights",
+"fillKey": "A",
+"Year":   2000 
+},
+"3": {
+ "community": "ARMOUR SQUARE",
+"incident_year":  10957,
+"n": 34,
+"cmpl_pc": 0.002539,
+"csd": "A",
+"Community": "Armour Square",
+"fillKey": "A",
+"Year":   2000 
+},
+"4": {
+ "community": "ASHBURN",
+"incident_year":  10957,
+"n": 86,
+"cmpl_pc": 0.0020934,
+"csd": "A",
+"Community": "Ashburn",
+"fillKey": "A",
+"Year":   2000 
+},
+"5": {
+ "community": "AUBURN GRESHAM",
+"incident_year":  10957,
+"n": 212,
+"cmpl_pc": 0.0043493,
+"csd": "A",
+"Community": "Auburn Gresham",
+"fillKey": "A",
+"Year":   2000 
+},
+"6": {
+ "community": "AUSTIN",
+"incident_year":  10957,
+"n": 392,
+"cmpl_pc": 0.0039791,
+"csd": "A",
+"Community": "Austin",
+"fillKey": "A",
+"Year":   2000 
+},
+"7": {
+ "community": "AVALON PARK",
+"incident_year":  10957,
+"n": 58,
+"cmpl_pc": 0.0056946,
+"csd": "A",
+"Community": "Avalon Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"8": {
+ "community": "AVONDALE",
+"incident_year":  10957,
+"n": 60,
+"cmpl_pc": 0.0015282,
+"csd": "A",
+"Community": "Avondale",
+"fillKey": "A",
+"Year":   2000 
+},
+"9": {
+ "community": "BELMONT CRAGIN",
+"incident_year":  10957,
+"n": 124,
+"cmpl_pc": 0.0015747,
+"csd": "A",
+"Community": "Belmont Cragin",
+"fillKey": "A",
+"Year":   2000 
+},
+"10": {
+ "community": "BEVERLY",
+"incident_year":  10957,
+"n": 20,
+"cmpl_pc": 0.0009983,
+"csd": "A",
+"Community": "Beverly",
+"fillKey": "A",
+"Year":   2000 
+},
+"11": {
+ "community": "BRIDGEPORT",
+"incident_year":  10957,
+"n": 91,
+"cmpl_pc": 0.0028458,
+"csd": "A",
+"Community": "Bridgeport",
+"fillKey": "A",
+"Year":   2000 
+},
+"12": {
+ "community": "BRIGHTON PARK",
+"incident_year":  10957,
+"n": 34,
+"cmpl_pc": 0.00074943,
+"csd": "A",
+"Community": "Brighton Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"13": {
+ "community": "BURNSIDE",
+"incident_year":  10957,
+"n": 10,
+"cmpl_pc": 0.0034294,
+"csd": "A",
+"Community": "Burnside",
+"fillKey": "A",
+"Year":   2000 
+},
+"14": {
+ "community": "CALUMET HEIGHTS",
+"incident_year":  10957,
+"n": 46,
+"cmpl_pc": 0.0033304,
+"csd": "A",
+"Community": "Calumet Heights",
+"fillKey": "A",
+"Year":   2000 
+},
+"15": {
+ "community": "CHATHAM",
+"incident_year":  10957,
+"n": 117,
+"cmpl_pc": 0.0037708,
+"csd": "A",
+"Community": "Chatham",
+"fillKey": "A",
+"Year":   2000 
+},
+"16": {
+ "community": "CHICAGO LAWN",
+"incident_year":  10957,
+"n": 221,
+"cmpl_pc": 0.0039728,
+"csd": "A",
+"Community": "Chicago Lawn",
+"fillKey": "A",
+"Year":   2000 
+},
+"17": {
+ "community": "CLEARING",
+"incident_year":  10957,
+"n": 40,
+"cmpl_pc": 0.0017287,
+"csd": "A",
+"Community": "Clearing",
+"fillKey": "A",
+"Year":   2000 
+},
+"18": {
+ "community": "DOUGLAS",
+"incident_year":  10957,
+"n": 180,
+"cmpl_pc": 0.0098695,
+"csd": "B",
+"Community": "Douglas",
+"fillKey": "B",
+"Year":   2000 
+},
+"19": {
+ "community": "DUNNING",
+"incident_year":  10957,
+"n": 33,
+"cmpl_pc": 0.00078699,
+"csd": "A",
+"Community": "Dunning",
+"fillKey": "A",
+"Year":   2000 
+},
+"20": {
+ "community": "EAST GARFIELD PARK",
+"incident_year":  10957,
+"n": 211,
+"cmpl_pc": 0.010259,
+"csd": "B",
+"Community": "East Garfield Park",
+"fillKey": "B",
+"Year":   2000 
+},
+"21": {
+ "community": "EAST SIDE",
+"incident_year":  10957,
+"n": 48,
+"cmpl_pc": 0.0020832,
+"csd": "A",
+"Community": "East Side",
+"fillKey": "A",
+"Year":   2000 
+},
+"22": {
+ "community": "EDGEWATER",
+"incident_year":  10957,
+"n": 81,
+"cmpl_pc": 0.0014331,
+"csd": "A",
+"Community": "Edgewater",
+"fillKey": "A",
+"Year":   2000 
+},
+"23": {
+ "community": "EDISON PARK",
+"incident_year":  10957,
+"n": 2,
+"cmpl_pc": 0.00017878,
+"csd": "A",
+"Community": "Edison Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"24": {
+ "community": "ENGLEWOOD",
+"incident_year":  10957,
+"n": 317,
+"cmpl_pc": 0.010341,
+"csd": "B",
+"Community": "Englewood",
+"fillKey": "B",
+"Year":   2000 
+},
+"25": {
+ "community": "FOREST GLEN",
+"incident_year":  10957,
+"n": 11,
+"cmpl_pc": 0.00059434,
+"csd": "A",
+"Community": "Forest Glen",
+"fillKey": "A",
+"Year":   2000 
+},
+"26": {
+ "community": "FULLER PARK",
+"incident_year":  10957,
+"n": 127,
+"cmpl_pc": 0.044159,
+"csd": "E",
+"Community": "Fuller Park",
+"fillKey": "E",
+"Year":   2000 
+},
+"27": {
+ "community": "GAGE PARK",
+"incident_year":  10957,
+"n": 54,
+"cmpl_pc": 0.0013536,
+"csd": "A",
+"Community": "Gage Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"28": {
+ "community": "GARFIELD RIDGE",
+"incident_year":  10957,
+"n": 66,
+"cmpl_pc": 0.0019123,
+"csd": "A",
+"Community": "Garfield Ridge",
+"fillKey": "A",
+"Year":   2000 
+},
+"29": {
+ "community": "GRAND BOULEVARD",
+"incident_year":  10957,
+"n": 170,
+"cmpl_pc": 0.0077523,
+"csd": "A",
+"Community": "Grand Boulevard",
+"fillKey": "A",
+"Year":   2000 
+},
+"30": {
+ "community": "GREATER GRAND CROSSING",
+"incident_year":  10957,
+"n": 205,
+"cmpl_pc": 0.006288,
+"csd": "A",
+"Community": "Greater Grand Crossing",
+"fillKey": "A",
+"Year":   2000 
+},
+"31": {
+ "community": "HEGEWISCH",
+"incident_year":  10957,
+"n": 25,
+"cmpl_pc": 0.0026522,
+"csd": "A",
+"Community": "Hegewisch",
+"fillKey": "A",
+"Year":   2000 
+},
+"32": {
+ "community": "HERMOSA",
+"incident_year":  10957,
+"n": 22,
+"cmpl_pc": 0.00087965,
+"csd": "A",
+"Community": "Hermosa",
+"fillKey": "A",
+"Year":   2000 
+},
+"33": {
+ "community": "HUMBOLDT PARK",
+"incident_year":  10957,
+"n": 227,
+"cmpl_pc": 0.0040303,
+"csd": "A",
+"Community": "Humboldt Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"34": {
+ "community": "HYDE PARK",
+"incident_year":  10957,
+"n": 34,
+"cmpl_pc": 0.0013239,
+"csd": "A",
+"Community": "Hyde Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"35": {
+ "community": "IRVING PARK",
+"incident_year":  10957,
+"n": 75,
+"cmpl_pc": 0.0014056,
+"csd": "A",
+"Community": "Irving Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"36": {
+ "community": "JEFFERSON PARK",
+"incident_year":  10957,
+"n": 47,
+"cmpl_pc": 0.0018469,
+"csd": "A",
+"Community": "Jefferson Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"37": {
+ "community": "KENWOOD",
+"incident_year":  10957,
+"n": 44,
+"cmpl_pc": 0.0024662,
+"csd": "A",
+"Community": "Kenwood",
+"fillKey": "A",
+"Year":   2000 
+},
+"38": {
+ "community": "LAKE VIEW",
+"incident_year":  10957,
+"n": 164,
+"cmpl_pc": 0.0017379,
+"csd": "A",
+"Community": "Lake View",
+"fillKey": "A",
+"Year":   2000 
+},
+"39": {
+ "community": "LINCOLN PARK",
+"incident_year":  10957,
+"n": 88,
+"cmpl_pc": 0.0013725,
+"csd": "A",
+"Community": "Lincoln Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"40": {
+ "community": "LINCOLN SQUARE",
+"incident_year":  10957,
+"n": 50,
+"cmpl_pc": 0.001266,
+"csd": "A",
+"Community": "Lincoln Square",
+"fillKey": "A",
+"Year":   2000 
+},
+"41": {
+ "community": "LOGAN SQUARE",
+"incident_year":  10957,
+"n": 175,
+"cmpl_pc": 0.0024041,
+"csd": "A",
+"Community": "Logan Square",
+"fillKey": "A",
+"Year":   2000 
+},
+"42": {
+ "community": "LOOP",
+"incident_year":  10957,
+"n": 857,
+"cmpl_pc": 0.029266,
+"csd": "D",
+"Community": "Loop",
+"fillKey": "D",
+"Year":   2000 
+},
+"43": {
+ "community": "LOWER WEST SIDE",
+"incident_year":  10957,
+"n": 90,
+"cmpl_pc": 0.0025161,
+"csd": "A",
+"Community": "Lower West Side",
+"fillKey": "A",
+"Year":   2000 
+},
+"44": {
+ "community": "MCKINLEY PARK",
+"incident_year":  10957,
+"n": 30,
+"cmpl_pc": 0.0019216,
+"csd": "A",
+"Community": "Mckinley Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"45": {
+ "community": "MONTCLARE",
+"incident_year":  10957,
+"n": 4,
+"cmpl_pc": 0.00029793,
+"csd": "A",
+"Community": "Montclare",
+"fillKey": "A",
+"Year":   2000 
+},
+"46": {
+ "community": "MORGAN PARK",
+"incident_year":  10957,
+"n": 86,
+"cmpl_pc": 0.0038148,
+"csd": "A",
+"Community": "Morgan Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"47": {
+ "community": "MOUNT GREENWOOD",
+"incident_year":  10957,
+"n": 24,
+"cmpl_pc": 0.001257,
+"csd": "A",
+"Community": "Mount Greenwood",
+"fillKey": "A",
+"Year":   2000 
+},
+"48": {
+ "community": "NEAR NORTH SIDE",
+"incident_year":  10957,
+"n": 309,
+"cmpl_pc": 0.0038393,
+"csd": "A",
+"Community": "Near North Side",
+"fillKey": "A",
+"Year":   2000 
+},
+"49": {
+ "community": "NEAR SOUTH SIDE",
+"incident_year":  10957,
+"n": 92,
+"cmpl_pc": 0.0043011,
+"csd": "A",
+"Community": "Near South Side",
+"fillKey": "A",
+"Year":   2000 
+},
+"50": {
+ "community": "NEAR WEST SIDE",
+"incident_year":  10957,
+"n": 325,
+"cmpl_pc": 0.0059219,
+"csd": "A",
+"Community": "Near West Side",
+"fillKey": "A",
+"Year":   2000 
+},
+"51": {
+ "community": "NEW CITY",
+"incident_year":  10957,
+"n": 235,
+"cmpl_pc": 0.0052955,
+"csd": "A",
+"Community": "New City",
+"fillKey": "A",
+"Year":   2000 
+},
+"52": {
+ "community": "NORTH CENTER",
+"incident_year":  10957,
+"n": 56,
+"cmpl_pc": 0.0017573,
+"csd": "A",
+"Community": "North Center",
+"fillKey": "A",
+"Year":   2000 
+},
+"53": {
+ "community": "NORTH LAWNDALE",
+"incident_year":  10957,
+"n": 204,
+"cmpl_pc": 0.0056806,
+"csd": "A",
+"Community": "North Lawndale",
+"fillKey": "A",
+"Year":   2000 
+},
+"54": {
+ "community": "NORTH PARK",
+"incident_year":  10957,
+"n": 26,
+"cmpl_pc": 0.00145,
+"csd": "A",
+"Community": "North Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"55": {
+ "community": "NORWOOD PARK",
+"incident_year":  10957,
+"n": 33,
+"cmpl_pc": 0.00089134,
+"csd": "A",
+"Community": "Norwood Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"56": {
+ "community": "OAKLAND",
+"incident_year":  10957,
+"n": 29,
+"cmpl_pc": 0.0049003,
+"csd": "A",
+"Community": "Oakland",
+"fillKey": "A",
+"Year":   2000 
+},
+"57": {
+ "community": "OHARE",
+"incident_year":  10957,
+"n": 13,
+"cmpl_pc": 0.0010191,
+"csd": "A",
+"Community": "Ohare",
+"fillKey": "A",
+"Year":   2000 
+},
+"58": {
+ "community": "PORTAGE PARK",
+"incident_year":  10957,
+"n": 61,
+"cmpl_pc": 0.00095128,
+"csd": "A",
+"Community": "Portage Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"59": {
+ "community": "PULLMAN",
+"incident_year":  10957,
+"n": 94,
+"cmpl_pc": 0.012833,
+"csd": "B",
+"Community": "Pullman",
+"fillKey": "B",
+"Year":   2000 
+},
+"60": {
+ "community": "RIVERDALE",
+"incident_year":  10957,
+"n": 36,
+"cmpl_pc": 0.0055538,
+"csd": "A",
+"Community": "Riverdale",
+"fillKey": "A",
+"Year":   2000 
+},
+"61": {
+ "community": "ROGERS PARK",
+"incident_year":  10957,
+"n": 144,
+"cmpl_pc": 0.0026186,
+"csd": "A",
+"Community": "Rogers Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"62": {
+ "community": "ROSELAND",
+"incident_year":  10957,
+"n": 232,
+"cmpl_pc": 0.0051996,
+"csd": "A",
+"Community": "Roseland",
+"fillKey": "A",
+"Year":   2000 
+},
+"63": {
+ "community": "SOUTH CHICAGO",
+"incident_year":  10957,
+"n": 180,
+"cmpl_pc": 0.0057696,
+"csd": "A",
+"Community": "South Chicago",
+"fillKey": "A",
+"Year":   2000 
+},
+"64": {
+ "community": "SOUTH DEERING",
+"incident_year":  10957,
+"n": 108,
+"cmpl_pc": 0.0071481,
+"csd": "A",
+"Community": "South Deering",
+"fillKey": "A",
+"Year":   2000 
+},
+"65": {
+ "community": "SOUTH LAWNDALE",
+"incident_year":  10957,
+"n": 174,
+"cmpl_pc": 0.0021945,
+"csd": "A",
+"Community": "South Lawndale",
+"fillKey": "A",
+"Year":   2000 
+},
+"66": {
+ "community": "SOUTH SHORE",
+"incident_year":  10957,
+"n": 183,
+"cmpl_pc": 0.0035186,
+"csd": "A",
+"Community": "South Shore",
+"fillKey": "A",
+"Year":   2000 
+},
+"67": {
+ "community": "UPTOWN",
+"incident_year":  10957,
+"n": 116,
+"cmpl_pc": 0.0020581,
+"csd": "A",
+"Community": "Uptown",
+"fillKey": "A",
+"Year":   2000 
+},
+"68": {
+ "community": "WASHINGTON HEIGHTS",
+"incident_year":  10957,
+"n": 94,
+"cmpl_pc": 0.0035481,
+"csd": "A",
+"Community": "Washington Heights",
+"fillKey": "A",
+"Year":   2000 
+},
+"69": {
+ "community": "WASHINGTON PARK",
+"incident_year":  10957,
+"n": 98,
+"cmpl_pc": 0.0083639,
+"csd": "A",
+"Community": "Washington Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"70": {
+ "community": "WEST ELSDON",
+"incident_year":  10957,
+"n": 14,
+"cmpl_pc": 0.0007731,
+"csd": "A",
+"Community": "West Elsdon",
+"fillKey": "A",
+"Year":   2000 
+},
+"71": {
+ "community": "WEST ENGLEWOOD",
+"incident_year":  10957,
+"n": 286,
+"cmpl_pc": 0.0080552,
+"csd": "A",
+"Community": "West Englewood",
+"fillKey": "A",
+"Year":   2000 
+},
+"72": {
+ "community": "WEST GARFIELD PARK",
+"incident_year":  10957,
+"n": 154,
+"cmpl_pc": 0.0085551,
+"csd": "A",
+"Community": "West Garfield Park",
+"fillKey": "A",
+"Year":   2000 
+},
+"73": {
+ "community": "WEST LAWN",
+"incident_year":  10957,
+"n": 35,
+"cmpl_pc": 0.0010493,
+"csd": "A",
+"Community": "West Lawn",
+"fillKey": "A",
+"Year":   2000 
+},
+"74": {
+ "community": "WEST PULLMAN",
+"incident_year":  10957,
+"n": 111,
+"cmpl_pc": 0.0037435,
+"csd": "A",
+"Community": "West Pullman",
+"fillKey": "A",
+"Year":   2000 
+},
+"75": {
+ "community": "WEST RIDGE",
+"incident_year":  10957,
+"n": 92,
+"cmpl_pc": 0.0012788,
+"csd": "A",
+"Community": "West Ridge",
+"fillKey": "A",
+"Year":   2000 
+},
+"76": {
+ "community": "WEST TOWN",
+"incident_year":  10957,
+"n": 227,
+"cmpl_pc": 0.0027603,
+"csd": "A",
+"Community": "West Town",
+"fillKey": "A",
+"Year":   2000 
+},
+"77": {
+ "community": "WOODLAWN",
+"incident_year":  10957,
+"n": 111,
+"cmpl_pc": 0.0046757,
+"csd": "A",
+"Community": "Woodlawn",
+"fillKey": "A",
+"Year":   2000 
+} 
+},
+"legend": true,
+"labels": true,
+"id": "chart_1" 
+}
+  chartParams.element = document.getElementById('chart_1')
+  
+  
+  var mapchart_1 = new Datamap(chartParams);
+  
+  
+    
+  // draw a bubble map if specified
+  if (chartParams.bubbles) {
+    var bubbles = chartParams.bubbles
+    mapchart_1.bubbles(bubbles)
+  }
+  
+  if (chartParams.labels){
+    mapchart_1.labels()
+  }
+  
+  if (chartParams.legend){
+    mapchart_1.legend()
+  }
+  
+  setProjection = function( element, options ) {
+    var projection, path;
+ 
+      projection = d3.geo.albersUsa()
+        .scale(element.offsetWidth)
+        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+ 
+    path = d3.geo.path()
+      .projection( projection );
+ 
+    return {path: path, projection: projection};
+  }
+</script>
+
+<style>
+.datamaps {
+  position: relative;
+}
+</style>
+    
+    <script></script>    
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516580559753.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "267677147",
+    "id" : "56A039EB",
+    "lastKnownWriteTime" : 1516382375,
+    "last_content_update" : 1516382375,
+    "path" : "~/Dropbox (Invisible Institute)/Data/Roman/Github/chicago-police-data/reports/complaints_general-summary/complaints_general-summary.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "11,16",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

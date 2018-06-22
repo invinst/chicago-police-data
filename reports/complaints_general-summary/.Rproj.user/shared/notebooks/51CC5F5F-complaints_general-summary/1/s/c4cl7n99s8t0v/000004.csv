@@ -1,0 +1,71 @@
+"0","cmpl <- read_csv('input/complaints-complaints_2000-2016_2016-11.csv.gz')
+"
+"2","Parsed with column specification:
+cols(
+  cr_id = col_integer(),
+  beat = col_character(),
+  location_code = col_character(),
+  address_number = col_character(),
+  street = col_character(),
+  apartment_number = col_character(),
+  city_state = col_character(),
+  incident_date = col_date(format = """"),
+  incident_time = col_time(format = """"),
+  complaint_date = col_date(format = """"),
+  closed_date = col_date(format = """")
+)
+"
+"0","oc <- read_csv('input/officer-filed-complaints__2017-09.csv.gz')"
+"2","Parsed with column specification:
+cols(
+  cr_id = col_integer()
+)
+"
+"0","cmpl %<>% "
+"0","  mutate(complaint_class = if_else(cr_id %in% oc$cr_id, 'Civilian', 'Officer'),"
+"0","         beat = as.numeric(beat)) %>%"
+"0","  unique()"
+"2","NAs introduced by coercion"
+"0","rm(oc)"
+"0","acc <- read_csv('input/complaints-accused_2000-2016_2016-11.csv.gz') %>%"
+"0","        select(cr_id, UID, recommended_finding, final_finding, complaint_category)"
+"2","Parsed with column specification:
+cols(
+  row_id = col_integer(),
+  `complaints-accused_2000-2016_2016-11_ID` = col_integer(),
+  cr_id = col_integer(),
+  complaint_category = col_character(),
+  recommended_discipline = col_double(),
+  final_discipline = col_double(),
+  recommended_finding = col_character(),
+  final_finding = col_character(),
+  UID = col_integer()
+)
+"
+"0","vict <- read_csv('input/complaints-victims_2000-2016_2016-11.csv.gz')"
+"2","Parsed with column specification:
+cols(
+  cr_id = col_integer(),
+  gender = col_character(),
+  age = col_double(),
+  race = col_character()
+)
+"
+"0","cmplnt <- read_csv('input/complaints-complainants_2000-2016_2016-11.csv.gz')"
+"2","Parsed with column specification:
+cols(
+  cr_id = col_integer(),
+  gender = col_character(),
+  age = col_double(),
+  race = col_character()
+)
+"
+"0","wit <- read_csv('input/complaints-witnesses_2000-2016_2016-11.csv.gz')"
+"2","Parsed with column specification:
+cols(
+  row_id = col_integer(),
+  `complaints-witnesses_2000-2016_2016-11_ID` = col_integer(),
+  cr_id = col_integer(),
+  UID = col_double()
+)
+"

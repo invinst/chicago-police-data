@@ -1,0 +1,8 @@
+"0","cmpl %<>% 
+  filter(!is.na(UID), 
+         between(incident_month, sample_start_ym, sample_end_ym)) %>%
+  unique()
+"
+"2","Error in filter_impl(.data, quo) : 
+  Evaluation error: object 'UID' not found.
+"

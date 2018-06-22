@@ -1,0 +1,148 @@
+---
+title: "Awards"
+author: "Roman Rivera"
+date: "1/21/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE, fig.align = 'center', fig.width = 9, fig.height = 6)
+library(tidyverse)
+library(stringr)
+library(lubridate)
+library(ggthemes)
+theme_set(theme_igray())
+library(knitr)
+library(kableExtra)
+library(gridExtra)
+library(data.table)
+library(xts)
+library(timetk)
+library(dygraphs)
+source('../helper.functions.R')
+```
+
+# Awards
+INTRO/EXPLANATION
+```{r}
+awd <- read_csv("../../full-output/awards/awards_1967-2017_2017-08.csv.gz") %>% data.table()
+atd_table <- sort(round(prop.table(table(awd$award_type)) * 100, 2), decreasing=T)
+awdu <- unique(awd[, .(`awards_1967-2017_2017-08_ID`, UID, pps_award_detail_id, current_award_status, award_request_date, award_type)]) %>% 
+  mutate(award_type2 = str_to_title(ifelse(award_type %in% names(atd_table)[1:4], str_wrap(award_type, width = 10), "Other")),
+         award_year = format(as.Date(award_request_date), "%Y")) %>%
+  data.table()
+
+cas_table <- round(prop.table(table(awd$current_award_status)) * 100, 2)
+atd_table <- sort(round(prop.table(table(awd$award_type)) * 100, 2), decreasing=T)
+atd_cut <- 4
+nuid_rank_table <- sort(table(awd[is.na(UID)]$rank), decreasing = T)
+names(nuid_rank_table) <- sapply(names(nuid_rank_table), function(x) str_to_title(paste0(strsplit(x, "-")[[1]][2], "s")))
+awduf <- unique(awdu[!is.na(UID) & current_award_status=='FINAL' & between(award_year, "2006", "2016")])
+```
+Our records indicate that about `r pnum(nrow(awd))` awards were requested between `r min(awd$award_request_date)` and `r max(awd$award_request_date)`. After an award is requested, it may be finalized (`r cas_table[['FINAL']]`%), deleted (`r cas_table[['DELETED']]`%), or denied (`r cas_table[['DENIED']]`%). While there are `r length(unique(awdu$award_type))` unique award types, the distribution is highly skewed. The `r atd_cut` most common award types comprise `r sum(atd_table[1:atd_cut])`% of all award requests. While most (`r round(100 * nrow(awdu[!is.na(UID)])/nrow(awdu))`%) of these awards went to identifiable CPD officers, `r round(100 * nrow(awdu[is.na(UID)])/nrow(awdu))`% will be discarded as they went to other employees, such as `r names(nuid_rank_table)[1]` and `r names(nuid_rank_table)[2]`. The `r pnum(nrow(awduf))` observations of officers with known information (`r pnum(length(unique(awduf$UID)))` unique officers), finalized award status, and between 2006 and 2016 (full years of information) will be kept for the remainder of this analysis.
+
+# Award Types
+```{r}
+rm(awd, awdu)
+atd_table <- sort(round(prop.table(table(awduf$award_type)) * 100, 2), decreasing=T)
+most_common <- names(atd_table)[1]
+atdf_table <- sort(round(prop.table(table(awduf$award_type)) * 100, 2), decreasing=T)
+top_num <- 4
+cl <- awduf[award_type == 'COMPLIMENTARY LETTER'][,list(n = .N), by = 'award_year']
+```
+The distribution of award types is highly skewed, with "`r str_to_title(most_common)`" awards comprising `r atd_table[[1]]`% of the finalized awards to known officers. The top `r top_num` most common awards are `r tableToFacts(atd_table[1:top_num])`. With a total of `r pnum(nrow(awduf[award_type == most_common]))` `r str_to_title(most_common)` awards being requested in this data, the average officer in this data has `r round(nrow(awduf[award_type == most_common])/length(unique(awduf[, UID])))` `r most_common` awards. As displayed by the plots below display, there is a great deal of variation in the number of awards requested each year. 
+
+
+```{r}
+pre_table <- cbind(sort(addmargins(table(awduf$award_type)), decreasing=T), sort(round(100 * addmargins(prop.table(table(awduf$award_type))),2), decreasing=T))
+colnames(pre_table) <- c("N", "Percent")
+rownames(pre_table) <- sapply(rownames(pre_table), str_to_title)
+pre_table <- rbind(pre_table[-1, ], pre_table[1,])
+rownames(pre_table)[nrow(pre_table)] <- "Total"
+
+awduf %>% group_by(award_type2) %>% summarize(Count=n()) %>% ggplot(., aes(x=reorder(award_type2, -Count), y=Count, fill=award_type2)) + geom_bar(stat='identity') + scale_y_continuous(labels = scales::comma) + rotate
+```
+```{r}
+awduf_xts <- awduf %>% 
+  mutate(award_year = as.Date(floor_date(award_request_date, 'year')),
+         award_type2 = recode(award_type,
+                              `HONORABLE MENTION` = 'Hon. Mention',
+                              `DEPARTMENT COMMENDATION` = 'Dept. Commend',
+                              `ATTENDANCE RECOGNITION AWARD` = 'Attendance Award',
+                              `COMPLEMENTARY LETTER` = 'Comp. Letter',
+                              .default = 'Other')) %>%
+  group_by(award_type2, award_year) %>%
+  count() %>%
+  spread(key = award_type2, value=n) %>%
+  tk_xts()
+awduf_xts$award_year <- NULL
+
+dygraph(awduf_xts, main = "Awards") %>%
+  dyLegend(width = 600)
+
+# p2 <- awduf[, list(n = .N), by=c('award_type2', 'award_year')] %>% ggplot(., aes(x=award_year, y = n, group=award_type2, color=award_type2)) + geom_point() + geom_line() + theme(legend.position="bottom") + rotate
+# grid_arrange_shared_legend(p1, p2, ncol=2)
+```
+
+While the variation on 'Other' awards can be largley attributed to the event-specific awards which make up `r sum(atd_table[names(atd_table) %in% c("2009 CRIME REDUCTION AWARD", "PRESIDENTIAL ELECTION DEPLOYMENT AWARD 2008", 'NATO SUMMIT SERVICE AWARD')])`% of the data and are all assigned at the same time to (almost) all officers-- such as the `r str_to_title('2009 CRIME REDUCTION AWARD')` and the `r str_to_title('PRESIDENTIAL ELECTION DEPLOYMENT AWARD 2008')`, both awarded in 2011, and the `r str_to_title('NATO SUMMIT SERVICE AWARD')` awarded in 2013. However, `r str_to_title('COMPLIMENTARY LETTER')` awards, are incredibly inconsistent. While only `r pnum(cl[n == min(n), n])` were requested in `r cl[n == min(n), award_year]`, `r pnum(cl[n == max(n), n])` were requested in `r cl[n == max(n), award_year]`. On the other end, some awards are incredibly rare and prestigious, such as the Lambert Tree Award which is given to one member of the Chicago Police and Fire Department each year for outstanding bravery. Our data only contains `r pre_table['Lambert Tree', 'N']` of these awards.
+
+```{r results='asis', fig.align='center'}
+kable(pre_table, "html", caption = "All Awards",
+      label_row_css = "background-color: #666; color: #fff;") %>%
+    kable_styling("striped", full_width = T, font_size = 14) %>%
+  scroll_box(width = "500px", height = "300px")
+```
+
+
+# Award Recipients
+```{r results='asis'}
+# filter deleted/denied?
+awduf <- read_csv("../../full-output/profiles/final-profiles.csv.gz") %>% 
+  select(c("race", "gender", "appointed_date", "UID")) %>% 
+  mutate(race = recode(race, BLACK = 'Black', HISPANIC = 'Hispanic', WHITE = 'White', .default = 'Other')) %>%
+    merge(., awduf[, .(UID, award_year, award_type, award_type2)])
+```
+
+As previously noted, the award recipients who could not be positively identified as known CPD officers were not included in this summary. There are `r pnum(length(unique(awduf$UID)))` remaining CPD officers `r round(length(unique(awduf[!is.na(awduf$race),]$UID))/length(unique(awduf$UID)) * 100,2)`% of which have non-missing race information, which will be kept for this section.
+
+```{r}
+awduf <- awduf %>% filter(!is.na(race)) 
+
+rg_at <- table(awduf$gender, awduf$race)
+rg_apt <- round(prop.table(table(awduf$gender, awduf$race)) * 100, 2)
+
+awdufo <- awduf %>% 
+  group_by(UID) %>%
+  summarise(`Honorable Mention` = sum(as.numeric(award_type == 'HONORABLE MENTION')),
+            `Complimentary Letter` = sum(as.numeric(award_type == 'COMPLIMENTARY LETTER')),
+            `Departmet Commedation` = sum(as.numeric(award_type == 'DEPARTMENT COMMENDATION')),
+            Other = sum(as.numeric(award_type2 == 'OTHER')),
+            race = max(race),
+            gender = max(gender)) %>% ungroup() %>%
+  select(-one_of("UID")) 
+
+rg_ot <- table(awdufo$gender, awdufo$race)
+rg_opt <- round(prop.table(table(awdufo$gender, awdufo$race)) * 100, 2)
+
+awdufos <- awdufo %>%
+  group_by(race, gender) %>%
+  summarise_all(funs(round(mean(.), 2))) %>% t()
+
+colnames(awdufos) <- rep("", 8)
+awdufost <- rbind(awdufos[3:6, ],
+                       do.call(rbind, lapply(list(rg_at, rg_apt, rg_ot, rg_opt),
+                              function(x) return (as.data.frame(x)[['Freq']]))))
+rownames(awdufost)[5:8] <- c("N (awards)", "% (awards)", "N (officers)", "% (officers)")
+```
+```{r}
+ kable(awdufost, 'html') %>%
+   kable_styling("striped", full_width = T, font_size = 14) %>%
+    add_header_above(c(" " = 1, "Female" = 1, "Male" = 1,"Female" = 1, "Male" = 1, "Female" = 1, "Male" = 1, "Female" = 1, "Male" = 1)) %>%
+   add_header_above(c(" " = 1, "Black" = 2, "Hispanic" = 2, "Other" = 2, 'White' = 2)) %>%
+   group_rows('Average Awards', 1, 4,
+                                label_row_css = "background-color: #666; color: #fff;") %>%
+   group_rows('Total Awards', 5, 6,
+                                label_row_css = "background-color: #666; color: #fff;") %>%
+   group_rows('Unique Officers', 7, 8,
+                                label_row_css = "background-color: #666; color: #fff;")
+```

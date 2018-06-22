@@ -1,0 +1,273 @@
+library(data.table)
+library(stringr)
+rotate <- theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Remove rows which contain duplicate by column information information in specified rows
+removeDuplicates <- function(dt, by.cols, to.data.table = T) {
+  dt <- as.data.frame(dt, stringsAsFactors=F)
+  no.dups <- dt[! duplicated(dt[, by.cols]) &
+                  ! duplicated(dt[, by.cols], fromLast = T),
+                ]
+  if (to.data.table) return(data.table(no.dups))
+  else return(no.dups)
+}
+
+# keep duplicates
+keepDuplicates <- function(dt, by.cols, to.data.table=T) {
+  dt <- as.data.frame(dt, stringsAsFactors=F)
+  only.dups <- dt[ duplicated(dt[, by.cols]) |
+                     duplicated(dt[, by.cols], fromLast = T),
+                   ]
+  if (to.data.table) return(data.table(only.dups))
+  else return(only.dups)  
+}
+
+# Return nicely formatted dates
+niceDate <- function(date, form = 'ymd') {
+  if (form=='ymd') {
+    date.string <- format(as.Date(date), format ='%B %d %Y')
+    parts <- strsplit(date.string, " ")[[1]]
+    parts[2] <- as.character(as.numeric(parts[2]))
+    parts <- c(paste(parts[1:2], collapse=" "), parts[3])
+    date.string <- paste(parts, collapse=", ")
+    date.string
+  }
+  else if (form=='ym'){
+    date.string <- format(as.Date(date), format ='%B %Y')
+    parts <- strsplit(date.string, " ")[[1]]
+    date.string <- paste(parts, collapse = " of ")
+    date.string
+    
+  }
+  else if (form=='y') {
+    date.string <- format(as.Date(date), format ='%Y')
+    date.string
+    
+  }
+}
+
+pcnt <- function(x, digits=2) {
+  round(x * 100, digits)
+}
+
+
+# from github
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+
+pcnt_table <- function(..., digits=2, prop_margin=NULL, add_margin=NULL) {
+  tbl <- prop.table(table(...), margin=prop_margin)
+  if (! is.null(add_margin)) tbl <- addmargins(tbl, add_margin)
+  pcnt(tbl, digits)
+}
+
+tableToFacts <- function(tbl, name_order = c(), percent=T, to_case = str_to_title, in_parans = T, digits=2) {
+  if (length(name_order)==0) {name_order <- names(tbl)}
+  add_char <- ''
+  if (percent) {
+    add_char <- "%"
+    tbl <- round(tbl, digits)
+  }
+  return (paste(sapply(name_order,
+                       function(x) {
+                         start_str <- ifelse(names(tbl)[length(tbl)] == x,
+                                             "and ", "")
+                         if (in_parans) {
+                           out_str <- paste0(start_str, to_case(x), " ", "(", tbl[[x]], add_char, ")")
+                         } else {
+                           out_str <- paste0(start_str, tbl[[x]], add_char, ' ', to_case(x))
+                         }
+                         out_str
+                       }),
+                collapse=", "))
+}
+
+# Turn numeric beat to district
+beatToDistrict <- function(beat) {
+  as.numeric(ifelse(nchar(beat)==3, substr(beat,1,1),
+                    substr(beat,1,2)))
+}
+
+districtToRegion <- function(district) {
+  case_when(
+    district %in% c(14, 15, 25, 19, 11, 16, 24, 17, 20, 23) ~ 'North',
+    district %in% c(18, 10, 21, 2, 3, 1, 12, 8, 13, 9) ~ 'Central',
+    district %in% c(6, 7, 4, 5, 22) ~ 'South')
+}
+
+# Make nice table from 2 columns
+niceTableMatrix <- function(dt, vcol, hcol, vcol.order = NULL, hcol.order = NULL, round = 1) {
+  nums <- as.data.frame.matrix(addmargins(table(dt[[vcol]], dt[[hcol]])))
+  prcnt <- as.data.frame.matrix(round(100 * addmargins(prop.table(table(dt[[vcol]], dt[[hcol]]))), 1))
+  rownames(prcnt) <- paste0(rownames(prcnt), ' %')
+  dfm <- rbind(nums, prcnt)
+  roworder <- c(sort(setdiff(rownames(dfm), c('Sum', 'Sum %'))), c('Sum', 'Sum %'))
+  colorder <- c(sort(setdiff(colnames(dfm), c('Sum'))), c('Sum'))
+  dfm <- dfm[roworder,colorder]
+  return (dfm)
+}
+
+pnum <- function(x) {
+  return(prettyNum(x,big.mark = ','))
+}
+
+
+# Nice HTML Tables
+niceTableGroups <- function(dt, group, sub, total=T, percent=T, group_total=T, group_percent=T,
+                            group_order = c(), group_name = "Group", caption_name = "",
+                            scroll=F, scroll.width = 800, scroll.height=400) {
+  dt <- as.data.frame.table(table(dt[[sub]], dt[[group]]), stringsAsFactors = F) %>% filter(Freq != 0)
+  if (group_total) {
+    dt <- dt %>% group_by(Var1) %>% summarise(Freq = sum(Freq), Var2='Total') %>% bind_rows(dt, .) %>% ungroup()
+  }
+  if (group_percent) {
+    dt <- dt %>% group_by(Var1) %>% mutate(`In Group %` = round(Freq/(sum(Freq)/(1 + as.numeric(group_total))), 4) * 100) %>% ungroup()
+  }
+  if (total) {
+    dt <- dt %>% filter(Var2 != 'Total') %>% summarise(Freq = sum(Freq), Var2='Total', Var1='ZZZAll', `In Group %` = 100.00) %>% bind_rows(dt, .)
+  }
+  if (percent) {
+    dt <- dt %>% mutate(`Total %` = round(Freq/max(Freq), 4) * 100)
+  }
+  
+  if (length(group_order) > 0) {
+    dt$order_by = match(dt$Var1, c(group_order, 'ZZZAll'))
+    dt <- dt %>% arrange(order_by, Freq)
+    dt$order_by <- NULL
+  } 
+  else {
+    dt <- dt %>% arrange(Var1, Freq)
+  }
+  dt[dt == 'ZZZAll'] = 'All'
+  
+  kdt <- kable(select(dt, -Var1), "html", caption = caption_name,
+               col.names = c(group_name, "Count", paste0("% of ", group_name), "% of Total"),
+               label_row_css = "background-color: #666; color: #fff;") %>%
+    kable_styling("striped", full_width = T, font_size = 14)
+  
+  current_group <- dt$Var1[1]
+  group_start = 1
+  i = 1
+  total_rows = c()
+  while (i < length(dt$Var1)) {
+    if (dt$Var2[i] == 'Total') {
+      total_rows <- c(total_rows, i)
+      kdt <- kdt %>% group_rows(current_group, group_start, i)
+    }
+    else if (dt$Var1[i] != current_group) {
+      current_group = dt$Var1[i]
+      group_start <- i
+    }
+    i = i + 1
+  }
+  kdt <- kdt %>% row_spec(total_rows, bold = T, color = "white", background = "#D7261E")
+  kdt <- kdt %>% row_spec(i, bold = T, color = "white", background = "#666666")
+  
+  if (scroll) {
+    kdt <- kdt %>% scroll_box(width = paste0(scroll.width, "px"), paste0(scroll.height, "px"))
+  }
+  return (kdt)
+}
+
+
+
+# Stacked table
+niceTableStacked <- function(dts, top.var, row.vars, scroll=T, caption='', headers = NULL) {
+    group_end <- NULL
+    
+    tablePrep <- function(dt, top.var, row.vars, scroll=T, caption='') {
+      nts <- NULL
+      group_end <<- NULL
+      for (rv in row.vars) {
+        rvt <- 100 * round(prop.table(addmargins(table(dt[[rv]], dt[[top.var]]), 2), 2),4)
+        nts <- rbind(nts, rvt)
+        if (is.null(group_end)) {
+          group_end <<- nrow(rvt)
+        }
+        else group_end <<- c(group_end, nrow(rvt) + group_end[length(group_end)])
+        
+      }
+      nts <- rbind(nts, as.character(addmargins(table(dt[[top.var]]))))
+      rownames(nts)[nrow(nts)] <- 'Observations'
+      colnames(nts)[ncol(nts)] <- 'All'
+      colnames(nts) <- str_pad(colnames(nts), 20, side='both')
+      nts <- rbind(nts, as.character(round(100 * addmargins(prop.table(table(dt[[top.var]]))), 2)))
+      rownames(nts)[nrow(nts)] <- '% of Total'
+      return(nts)
+    }
+    
+    if (class(dts) != 'list') {
+      nts <- tablePrep(dts, top.var, row.vars)
+      
+    } else {
+      nts <- do.call(cbind,lapply(dts, tablePrep, top.var, row.vars))
+    }
+    kdt <- kable(nts, "html", caption = caption,
+                 label_row_css = "background-color: #666; color: #fff;") %>%
+      kable_styling("striped", full_width = T, font_size = 14)
+    group_num = 1
+    group_start = 1
+    total_rows = c()
+    for (i in 1:nrow(nts)) {
+      if (i == group_end[group_num]) {
+        kdt <- kdt %>% group_rows(str_to_title(row.vars[group_num]), group_start, group_end[group_num])
+        total_rows <- c(total_rows, i)
+        if (i + 2 < nrow(nts)) {
+          group_start = i + 1
+          group_num = group_num + 1
+        }
+      }
+    }
+    kdt <- kdt %>% group_rows("",i-1, i, label_row_css = "background-color: #D7261E")
+    
+    if (scroll) {
+      kdt <- kdt %>% scroll_box(width = "800px", height = "400px")
+    }
+    
+    if (! is.null(headers)) {
+      header_vector <- c("", rep(as.character(ncol(nts)/length(headers)), 2))
+      names(header_vector) <- c("", headers)
+      kdt <- kdt %>% add_header_above(header_vector)
+    }
+    return (kdt)
+  }
+  
+  
+  ########
+  # https://github.com/tidyverse/ggplot2/wiki/share-a-legend-between-two-ggplot2-graphs
+  #######
+  library(ggplot2)
+  library(gridExtra)
+  library(grid)
+  
+  
+  grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
+    
+    plots <- list(...)
+    position <- match.arg(position)
+    g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+    legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+    lheight <- sum(legend$height)
+    lwidth <- sum(legend$width)
+    gl <- lapply(plots, function(x) x + theme(legend.position="none"))
+    gl <- c(gl, ncol = ncol, nrow = nrow)
+    
+    combined <- switch(position,
+                       "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                              legend,
+                                              ncol = 1,
+                                              heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                       "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                             legend,
+                                             ncol = 2,
+                                             widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+    
+    grid.newpage()
+    grid.draw(combined)
+    
+    # return gtable invisibly
+    invisible(combined)
+    
+  }

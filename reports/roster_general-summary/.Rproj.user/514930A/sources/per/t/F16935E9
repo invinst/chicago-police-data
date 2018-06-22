@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516575753433.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2252348479",
+    "id" : "F16935E9",
+    "lastKnownWriteTime" : 1516576836,
+    "last_content_update" : 1516576836773,
+    "path" : "~/Dropbox (Invisible Institute)/Data/Roman/Github/chicago-police-data/reports/helper.functions.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "176,13",
+        "scrollLine" : "224"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

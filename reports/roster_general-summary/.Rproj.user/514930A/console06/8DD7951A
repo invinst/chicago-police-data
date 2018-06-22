@@ -1,0 +1,3 @@
+]0;~/Dropbox (Invisible Institute)/Data/Roman/Github/chicago-police-data/reports/roster_general-summary[?1034hRomans-MBP:roster_general-summary invinst$ proft <- prof %>% mutate(resignation_ date = if_else(!is.na(resignation_date), ymd(resignation_date), ymd('2017-12-31' )),
+bash: !is.na: event not found
+Romans-MBP:roster_general-summary invinst$ [KRomans-MBP:roster_general-summary invinst$ 
