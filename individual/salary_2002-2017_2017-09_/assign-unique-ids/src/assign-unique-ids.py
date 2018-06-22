@@ -37,6 +37,7 @@ def get_setup():
             ],
         'profile_cols' : [
             'salary_2002-2017_2017-09_ID', 'age_at_hire', 'gender',
+            'first_name', 'last_name',
             'first_name_NS', 'last_name_NS', 'suffix_name',
             'middle_initial', 'middle_initial2', 'so_max_year', 'so_min_year',
             'so_max_year_m1', 'so_min_year_m1',

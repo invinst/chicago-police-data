@@ -1,0 +1,17 @@
+running src/clean.py
+Column 'row_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+['X'] values not in gender_types.yaml file. 12 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+['U'] values not in race_types.yaml file. 330 cases replaced with ''
+Column 'current_age' cleaned as age using GeneralCleaners.
+Column 'is_sworn_officer' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'rank_no' was not cleaned.
+Column 'unit_id' was not cleaned.
+Column 'unit' cleaned as int using GeneralCleaners.
+Column 'unit_detail' was not cleaned.
+Column 'resignation_date' cleaned as date using DateTimeCleaners.
+Column 'current_star' cleaned as star using GeneralCleaners.
+Column(s) '('first_name', 'last_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('second_name', 'full_name', 'human_name', 'middle_name')

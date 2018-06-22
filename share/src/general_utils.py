@@ -264,7 +264,7 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
             el.append((vals[0], vals[0]))
     # Collect edgelist into list of connected components
     cc = nx.connected_components(
-            nx.from_pandas_dataframe(
+            nx.from_pandas_edgelist(
                 pd.DataFrame(el, columns=['H', 'T']),
                 'H','T'))
     # Turn column values into list of 'nodes' with group ids

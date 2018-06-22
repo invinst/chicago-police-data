@@ -41,7 +41,7 @@ def test_clean_data():
         'trr_date' : pd.to_datetime(pd.Series([np.nan, '2000-12-12', '1921-01-01', '2016-12-01', '1921-07-21'])).dt.date,
         'trr_time' : pd.to_datetime(pd.Series(['12:12:00', '00:00:00', np.nan, '23:12:00', '01:09:00'])).dt.time,
         'age' : [np.nan, np.nan, np.nan, 21, np.nan],
-        'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
+        'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'NATIVE AMERICAN/ALASKAN NATIVE'],
         'gender' : ['MALE', 'MALE', '', 'FEMALE', '']
         })
     results = clean_data(input_df, log)
@@ -58,7 +58,7 @@ def test_clean_data_dict():
         })
     orig_input_df = copy.deepcopy(input_df)
     output_df = pd.DataFrame(
-       {'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
+       {'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'NATIVE AMERICAN/ALASKAN NATIVE'],
         'gender' : ['', 'MALE', '', 'FEMALE', '']
         })
     input_clean_dict = {'gender' : {'mALE' : '', 'm' : 'MALE', 'FEMALE': 'FEMALE'}}
@@ -77,7 +77,7 @@ def test_clean_data_skip():
         })
     orig_input_df = copy.deepcopy(input_df)
     output_df = pd.DataFrame(
-       {'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
+       {'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'NATIVE AMERICAN/ALASKAN NATIVE'],
         'gender': ['mALE', 'm', 'NONE', 'FEMALE', np.nan]
         })
     input_skip_cols = ['gender']
@@ -119,7 +119,7 @@ def test_clean_data_type_dict():
         'trr_date' : pd.to_datetime(pd.Series([np.nan, '2000-12-12', '1921-01-01', '2016-12-01', '1921-07-21'])).dt.date,
         'trr_time' : pd.to_datetime(pd.Series(['12:12:00', '00:00:00', np.nan, '23:12:00', '01:09:00'])).dt.time,
         'age' : [np.nan, np.nan, np.nan, 21, np.nan],
-        'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'WHITE'],
+        'race' : ['BLACK', 'HISPANIC', 'NATIVE AMERICAN/ALASKAN NATIVE', 'BLACK',  'NATIVE AMERICAN/ALASKAN NATIVE'],
         'gender' : ['MALE', 'MALE', '', 'FEMALE', '']
         })
     results = clean_data(input_df, log, types_dict=input_types_dict)

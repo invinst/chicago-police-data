@@ -38,4 +38,9 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 df = clean_data(df, log)
+log.info('Purging phone numbers')
+df['street_name'].fillna('', inplace=True)
+df.loc[df['street_name'].str.contains(r'[0-9][0-9][0-9].{0,1}[0-9][0-9][0-9][0-9]') |
+       df['street_name'].str.contains('phone',case=False),
+       'street_name'] = ''
 df.to_csv(cons.output_file, **cons.csv_opts)

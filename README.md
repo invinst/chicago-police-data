@@ -81,7 +81,7 @@ The lowest level of directories in both individual/ and merge/ trees contain inp
 
 ### individual/
 
-In **individual**/, there are multiple directories named according to their FOIA number and the month of receipt (if applicable) and the topic and date rage of the data. For some of these FOIAs (for example, the complaint and TRR data), there are multiple types of data contained in a single FOIA. The data description for these is complaints-[specific data] and TRR-[specific data]. The workflow goes as follows: import/ -> clean/ -> assign-unique-ids/ (if there are identifiable individuals) -> export/.
+In **individual**/, there are multiple directories named according to their FOIA number and the month of receipt (if applicable) and the topic and date rage of the data. For some of these FOIAs (for example, the complaint and TRR data), there are multiple types of data contained in a single FOIA. The data description for these is complaints-[specific data] and TRR-[specific data]. The workflow goes as follows: import/ -> clean/ -> assign-unique-ids/ (if there are identifiable individuals) -> export/. All individual/ subdirectories can be run independently of each other.
 
 * **import**/ takes the data in whatever format it has been received in (.csv, .xlsx, etc.), does minor formatting, standardizes column names, and collects initial metadata. Then it writes the data to a .csv.gz file.
 * **clean**/ pushes the imported data through various cleaning functions that will standardize names, race, genders, columns that must be integers or dates, etc.
@@ -90,14 +90,23 @@ In **individual**/, there are multiple directories named according to their FOIA
 
 ### merge/
 
-In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of these tasks are to produce officer-reference.csv.gz files (a collection of \_profiles files appended to each other with UIDs) into officer-reference.csv.gz (used to compare potentially differing information about the same officer in different files).
+In merge/, exported files from the individual/ directories are brought together to be unified into the main relational dataset. While there cannot be a direct link between some files (for example awards and complaints) these files are linked through common officers identified within. The main output of each of these tasks (beginning with a number e.x. 01_roster...) is to produce the officer-reference.csv.gz file, which is a collection of \_profiles files combined with a unique ID unifying the same officer. This file is used to compare/collect potentially differing information about the same officer in different files.
 
-Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step.
+Each subdirectory beginning with a number indicating the order in which the merges are run. Generally, the files are merged in order of number of unique officers in the data, beginning with the newest roster data set. Each directory's input contains the relevant 'full' file and the relevant \_profiles file, as well as the officer-reference file from the previous step. After the numbered tasks are run, the non-numbered task can run (in any order).
 
 The `final-profiles` only takes in the officer-reference file from the last merge, and outputs a condensed profiles file that contains the "best" profile for every individual.
 
 `generate_TRR_flags` does not utilize any officer information, but rather generates columns in the main TRR data set using information aggregated from weapon-discharge data and actions-response data.
 
+These files in merge/ destory/change information and are only used for CPDP:
+
+`fill_salary_ranks` fills the salary data with missing observations (year x rank x officer) for missing Lieutenants (output as salary-filled...) and then aggregates the filled data to 1 row per year x rank x officer (output as salary-ranks...)
+
+`resolve_complaints` take core complaints files (complaints and accused) and generates/aggregates the pre-2000, 2016, and 2018 files to determine which data should be utilized for display purposes. Specifically, this ensures 1 row per CR in the complaints data ('complaints-complaints.csv.gz'), and 1 row per CR x officer in the accused data ('complaints-accused.csv.gz').
+
+`resolve_complaints-supplementary` takes non-core complaints files (complainants, witnesses, investigators, victims) and creates resolved/aggregated files, e.g. information from either 2016 or 2018 complaints files. Outputs 'complaints-victims.csv.gz', etc.
+
+`resolve_unit-history` takes all/both unit-history files and resolves conflicts and generates the aggregated 'unit-history.csv.gz'
 
 ### share/
 

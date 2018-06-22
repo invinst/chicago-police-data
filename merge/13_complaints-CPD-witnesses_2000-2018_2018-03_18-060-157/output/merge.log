@@ -1,0 +1,32 @@
+running src/merge.py
+Loading reference data with 254691 rows and 33671 universal IDs
+Adding file with intrafile ID: complaints-CPD-witnesses_2000-2018_2018-03_ID
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [F4FN] to data with ID = complaints-CPD-witnesses_2000-2018_2018-03_ID
+Adding column [F4LN] to data with ID = complaints-CPD-witnesses_2000-2018_2018-03_ID
+Beginning loop_merge.
+Merge Report:
+9635 Total Merged. 28.62% of ref and 99.77% of sup Merged.
+24036 Unmerged in ref. 71.38% Unmerged.
+22 Unmerged in sup. 0.23% Unmerged.
+
+first_name_NS-last_name_NS-birth_year-middle_initial-current_unit                    6565
+first_name_NS-last_name_NS-birth_year-current_unit                                   1459
+first_name_NS-last_name_NS-birth_year-middle_initial                                  943
+first_name_NS-last_name_NS-birth_year                                                 227
+first_name_NS-last_name_NS-birth_year-middle_initial-suffix_name-current_unit         202
+first_name_NS-last_name_NS-birth_year-suffix_name-current_unit                        146
+first_name_NS-last_name_NS-birth_year-middle_initial-suffix_name                       37
+first_name_NS-last_name_NS-middle_initial                                              20
+first_name_NS-last_name_NS-birth_year-suffix_name                                      15
+first_name_NS-last_name_NS                                                              5
+first_name_NS-last_name_NS-birth_year-middle_initial-middle_initial2-current_unit       4
+first_name_NS-last_name_NS-current_unit                                                 2
+F4FN-F4LN                                                                               2
+first_name_NS-last_name_NS-middle_initial-suffix_name                                   2
+first_name_NS-F4LN-birth_year-middle_initial-current_unit                               2
+first_name_NS-F4LN                                                                      2
+first_name_NS-F4LN-birth_year                                                           1
+first_name_NS-F4LN-birth_year-middle_initial                                            1
+Name: matched_on, dtype: int64

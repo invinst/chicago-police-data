@@ -293,6 +293,7 @@
     'Employee Status':              employee_status
 
 'complaints-accused_2000-2018_2018-03_18-060-157':
+  LOG_NO:                   cr_id
   OFFICER_FIRST_NAME:       first_name
   OFFICER_LAST_NAME:        last_name
   MIDDLE_INITIAL:           middle_initial
@@ -300,12 +301,13 @@
   SEX_CODE_CD:              gender
   BIRTH_YEAR:               birth_year
   STAR_NO:                  star
+  EMPNO:                    emp_no
   EMPLOYEE_POSITION:        rank
   ALLEGATION_CATEGORY:      allegation_category
   ALLEGATION_CATEGORY_CD:   allegation_category_code
   INV_CURRENT_CATEGORY:     current_investigator_category
   INV_CURRENT_CATEGORY_CD:  current_investigator_category_code
-  EMPLOYEE_POSITION.1:      rank2
+  EMPLOYEE_POSITION_1:      rank2
   EMPLOYEE_ASSIGN_UNIT:     unit
   EMPLOYEE_DETAIL_UNIT:     unit_detail
   ACCUSED_ARRESTED:         accused_arrested

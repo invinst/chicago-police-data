@@ -11,21 +11,18 @@ Merge Report:
 17005 Unmerged in ref. 51.49% Unmerged.
 0 Unmerged in sup. 0.0% Unmerged.
 
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                   7113
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                        4461
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                2607
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                     1056
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                   7135
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                        4471
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                2616
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                     1060
 star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                        290
 first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                             225
 star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                      88
 first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                           66
 star-first_name_NS-last_name_NS-appointed_date-gender-race-current_unit                                                46
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                          23
 star-first_name_NS-last_name_NS-appointed_date-gender-race                                                             16
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                               10
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                                                        9
-first_name_NS-last_name_NS-appointed_date-birth_year-gender                                                             4
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                       3
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2-gender-race-current_unit       2
 first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                            2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                           1
 Name: matched_on, dtype: int64

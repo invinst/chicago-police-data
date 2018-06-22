@@ -1,0 +1,36 @@
+running src/merge.py
+Loading reference data with 240644 rows and 33667 universal IDs
+Adding file with intrafile ID: complaints-accused_2000-2018_2018-03_ID
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [F4FN] to data with ID = complaints-accused_2000-2018_2018-03_ID
+Adding column [F4LN] to data with ID = complaints-accused_2000-2018_2018-03_ID
+Beginning loop_merge.
+Merge Report:
+9601 Total Merged. 28.52% of ref and 99.96% of sup Merged.
+24066 Unmerged in ref. 71.48% Unmerged.
+4 Unmerged in sup. 0.04% Unmerged.
+
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                    7284
+star-first_name_NS-last_name_NS-birth_year-gender-race                                   1564
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name         263
+star-first_name_NS-last_name_NS-birth_year-gender-race-suffix_name                        168
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                           98
+star-first_name_NS-last_name_NS-gender-race                                                78
+star-first_name_NS-last_name_NS                                                            75
+first_name_NS-last_name_NS-birth_year-gender-race                                          27
+star-first_name_NS-last_name_NS-middle_initial-gender-race                                 15
+first_name_NS-last_name_NS-middle_initial-gender-race                                       3
+star-first_name_NS-F4LN-birth_year-middle_initial-gender-race                               3
+star-first_name_NS-last_name_NS-birth_year-middle_initial-middle_initial2-gender-race       3
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name                3
+star-first_name_NS-last_name_NS-gender-race-suffix_name                                     3
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender                            2
+first_name_NS-last_name_NS-birth_year-gender-race-suffix_name                               2
+first_name_NS-F4LN-gender-race                                                              2
+star-first_name_NS-last_name_NS-suffix_name                                                 2
+first_name_NS-last_name_NS-birth_year                                                       2
+star-first_name_NS-last_name_NS-birth_year                                                  2
+first_name_NS-last_name_NS                                                                  1
+star-first_name_NS-last_name_NS-birth_year-gender                                           1
+Name: matched_on, dtype: int64

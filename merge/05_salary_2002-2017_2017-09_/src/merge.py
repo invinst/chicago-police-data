@@ -165,9 +165,9 @@ rd = ReferenceData(ref_df, uid=cons.universal_id, log=log)\
         .loop_merge(**cons.loop_merge)
 rd.merged_df.to_csv("output/merged_df.csv.gz", **cons.csv_opts)
 rd.append_to_reference(keep_sup_um=False)\
-.add_sup_data(rd.sup_um, add_cols=[],
-                base_OD=cons.base_OD)\
-  .loop_merge(verbose=True, base_OD_edits=[
+    .add_sup_data(rd.sup_um, add_cols=[],
+                  base_OD=cons.base_OD)\
+    .loop_merge(verbose=True, base_OD_edits=[
       ('birth_year', ['birth_year', 'current_age',
                       'current_age_m1', 'current_age2_m1',
                       'current_age_p1', 'current_age2_p1',
@@ -176,7 +176,7 @@ rd.append_to_reference(keep_sup_um=False)\
       ('appointed_date', ['so_min_date', 'so_max_date',
                           'so_min_year', 'so_max_year',
                           'so_min_year_m1', 'so_max_year_m1'])
-  ])\
+    ])\
   .append_to_reference(drop_cols=[
     'F4FN', 'F4LN','L4LN', 'F1FN','F3LN', 'resignation_date',
     'resignation_year', 'current_age2_mp2', 'current_age_m1',

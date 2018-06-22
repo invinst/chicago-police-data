@@ -24,6 +24,7 @@ def get_setup():
     args = {
         'input_file': 'input/officer-reference.csv.gz',
         'output_file': 'output/final-profiles.csv.gz',
+        'recode_file' : 'hand/rank_recode.yaml',
         'universal_id': 'UID',
         'column_order': [
             'first_name', 'last_name',
@@ -37,7 +38,7 @@ def get_setup():
         'aggregate_data_args' : {
             'current_cols': [
                 'current_star', 'current_unit',
-                'current_rank', 'current_status', 'unit_description'
+                'current_rank', 'current_status',
                 ],
             'time_col' : 'foia_date',
             'mode_cols': [
@@ -45,7 +46,7 @@ def get_setup():
                 'middle_initial2', 'suffix_name', 'race', 'gender',
                 'birth_year', 'appointed_date', 'start_date', 'org_hire_date'
                 ],
-            'max_cols': ['resignation_date']
+            'max_cols': ['resignation_date'],
             }
         }
 
@@ -60,10 +61,15 @@ def get_setup():
 cons, log = get_setup()
 
 ref_df = pd.read_csv(cons.input_file)
-
-(ReferenceData(ref_df, uid=cons.universal_id, log=log)
+ref_df['current_rank'] = ref_df["current_rank"].replace("UNKNOWN", np.nan)
+profiles = \
+ReferenceData(ref_df, uid=cons.universal_id, log=log)\
     .final_profiles(aggregate_data_args=cons.aggregate_data_args,
                     column_order=cons.column_order,
-                    include_IDs=False,
-                    output_path=cons.output_file,
-                    csv_opts=cons.csv_opts))
+                    include_IDs=False)\
+    .profiles
+
+with open(cons.recode_file, "r") as f:
+    rank_recode = yaml.load(f)
+profiles['cleaned_rank'] = profiles['current_rank'].replace(rank_recode)
+profiles.to_csv(cons.output_file, **cons.csv_opts)

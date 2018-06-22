@@ -1,0 +1,56 @@
+running src/merge.py
+Loading reference data with 228486 rows and 33051 universal IDs
+Adding file with intrafile ID: roster__2018-03_ID
+1930 rows dropped due to merge!=1. 12158 rows remaining
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column by executing 
+df["appointed_date2"], df["appointed_date3"] = df["start_date"], df["org_hire_date"]
+to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+Adding column [F4FN] to data with ID = roster__2018-03_ID
+Adding column [F4LN] to data with ID = roster__2018-03_ID
+Adding column [BY_to_CA] to data with ID = roster__2018-03_ID
+Adding column by executing 
+df["appointed_date2"], df["appointed_date3"] = df["appointed_date"], df["appointed_date"]
+to data with ID = roster__2018-03_ID
+Adding column [BY_to_CA] to data with ID = roster__2018-03_ID
+Adding column [current_age] to data with ID = roster__2018-03_ID
+Beginning loop_merge.
+Merge Report:
+11542 Total Merged. 34.92% of ref and 94.93% of sup Merged.
+21509 Unmerged in ref. 65.08% Unmerged.
+616 Unmerged in sup. 5.07% Unmerged.
+
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                    8363
+star-first_name_NS-last_name_NS-appointed_date-gender-race                                   1809
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                          389
+first_name_NS-last_name_NS-appointed_date3-middle_initial-gender                              262
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name         232
+first_name_NS-last_name_NS-appointed_date3-gender                                             163
+star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                        163
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                                49
+first_name_NS-last_name_NS-appointed_date-gender-race                                          19
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name               18
+first_name_NS-middle_initial-race-gender-current_age_p1-appointed_date-star                    14
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender                           11
+first_name_NS-last_name_NS-appointed_date3-gender-suffix_name                                   9
+first_name_NS-last_name_NS-appointed_date3-middle_initial-gender-suffix_name                    8
+star-first_name_NS-last_name_NS-appointed_date                                                  5
+star-first_name_NS-F4LN-appointed_date-middle_initial-gender-race                               4
+first_name_NS-race-current_age_p1-appointed_date-star                                           4
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                     3
+first_name_NS-current_age_p1-appointed_date                                                     3
+star-first_name_NS-last_name_NS-appointed_date-gender                                           3
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-middle_initial2-gender-race       2
+first_name_NS-last_name_NS-appointed_date2-middle_initial-gender                                2
+last_name_NS-middle_initial-appointed_date-star-race-current_age_p1                             1
+first_name_NS-middle_initial-last_name_NS                                                       1
+first_name_NS-last_name_NS-appointed_date2-gender                                               1
+star-first_name_NS-F4LN-appointed_date                                                          1
+first_name_NS-last_name_NS-appointed_date                                                       1
+star-F4FN-last_name_NS-appointed_date-middle_initial-gender-race                                1
+first_name_NS-last_name_NS-appointed_date-middle_initial                                        1
+Name: matched_on, dtype: int64

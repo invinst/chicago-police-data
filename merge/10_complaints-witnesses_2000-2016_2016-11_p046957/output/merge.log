@@ -46,19 +46,19 @@ first_name_NS-birth_year-appointed_date                                         
 star-first_name_NS-F4LN-appointed_date-birth_year                                             33
 first_name_NS-last_name_NS-appointed_date                                                     16
 star-first_name_NS-last_name_NS-appointed_date                                                14
-last_name_NS-birth_year-appointed_date-star                                                   12
 star-F4FN-last_name_NS-appointed_date-birth_year                                              12
+last_name_NS-birth_year-appointed_date-star                                                   12
 first_name_NS-L4LN-birth_year-appointed_date                                                  12
 first_name_NS-F4LN-appointed_date-birth_year                                                   9
 F4LN-birth_year-appointed_date                                                                 8
 F3FN-last_name_NS-birth_year-appointed_date                                                    7
 F4FN-last_name_NS-appointed_date-birth_year                                                    4
+F1FN-L3FN-birth_year-appointed_date-star                                                       2
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial                       2
 F4FN-star-birth_year-appointed_date                                                            2
-F1FN-L3FN-birth_year-appointed_date-star                                                       2
 first_name_NS-last_name_NS-birth_year                                                          2
-FN2-LN2-birth_year-appointed_date-star                                                         1
-F3FN-L3FN-last_name_NS-birth_year-appointed_date-star                                          1
-F4FN-last_name_NS-appointed_date                                                               1
 star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2       1
+FN2-LN2-birth_year-appointed_date-star                                                         1
+F4FN-last_name_NS-appointed_date                                                               1
+F3FN-L3FN-last_name_NS-birth_year-appointed_date-star                                          1
 Name: matched_on, dtype: int64

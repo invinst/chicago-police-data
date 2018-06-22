@@ -435,11 +435,12 @@ def test_resolve_units_case12():
     ''' tests resolve_units case 12'''
     input_df = pd.read_csv("unit_history_files/case12.csv.gz")
     output_df = pd.DataFrame({
+            'ID' : [2, 2, 2, 2,],
             'unit' : [44.0, 10.0, 193.0, 10.0],
             'unit_start_date' : pd.to_datetime(['2006-06-26', '2007-12-06', '2011-01-06', '2011-09-15']),
             'unit_end_date' : pd.to_datetime(['2007-12-05', '2011-01-05', '2011-09-14', TODAY]),
             'CODE' : [1, 1, 1, 0]},
-        columns = ['unit', 'unit_start_date', 'unit_end_date', 'CODE'])
+        columns = ['ID','unit', 'unit_start_date', 'unit_end_date', 'CODE'])
 
     results = unit_history_functions.resolve_units(input_df)
     assert results.equals(output_df)

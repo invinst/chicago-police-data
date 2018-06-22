@@ -6,6 +6,7 @@
 
 import pandas as pd
 import __main__
+import yaml
 
 import setup
 
@@ -23,16 +24,17 @@ def get_setup():
         'input_profiles_file': 'input/complaints-accused_2000-2018_2018-03_profiles.csv.gz',
         'output_file': 'output/complaints-accused_2000-2018_2018-03.csv.gz',
         'output_profiles_file': 'output/complaints-accused_2000-2018_2018-03_profiles.csv.gz',
+        'npor_file' : 'hand/nc_nonpo_ranks.yaml',
         'export_cols': [
-           'accusation_id', 'allegation_category', 'allegation_category_code',
+           'cr_id', 'accusation_id', 'allegation_category', 'allegation_category_code',
            'current_investigator_category',
            'current_investigator_category_code',
            'unit', 'unit_detail', 'accused_arrested',
            'duty_status', 'injured', 'final_finding', 'finding_narrative',
            'penalty_id', 'penalty_code', 'number_of_days',
-           'final_finding_narrative', 'star', 'rank'
+           'final_finding_narrative', 'star', 'rank',
+           'final_finding_USE', 'final_outcome_USE'
             ],
-
         'id': 'complaints-accused_2000-2018_2018-03_ID'
         }
 
@@ -48,9 +50,18 @@ def get_setup():
 
 cons, log = get_setup()
 
+with open(cons.npor_file, "r") as f:
+    npo_ranks = yaml.load(f)
+
 df = pd.read_csv(cons.input_file)
 df = df[['row_id',cons.id] + cons.export_cols]
-df.to_csv(cons.output_file, **cons.csv_opts)
 
 profiles_df = pd.read_csv(cons.input_profiles_file)
+rows = profiles_df.shape[0]
+profiles_df = profiles_df[~(profiles_df['rank'].isin(npo_ranks) |
+                            profiles_df['rank'].isnull())]
+df['merge'] = (df[cons.id].isin(profiles_df[cons.id])).astype(int)
+df.to_csv(cons.output_file, **cons.csv_opts)
+
+log.info("Dropped %d rows given NA or non-PO ranks" % (rows - profiles_df.shape[0]))
 profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)
