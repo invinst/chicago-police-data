@@ -21,6 +21,8 @@ class dropbox_handler:
         res = self.dbx.files_list_folder(dbx_path, recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
         for filename in filenames:
+            print('File to Download:')
+            print(filename)
             # get name of last filepath
             name = filename.split('/')[-1]
             github_fileloc = '/'.join(filename.split('/')[5:])
