@@ -49,7 +49,7 @@ class dropbox_handler:
             print('File to Upload:')
             print(filename)
             if '.log' in filename:
-                    with open(local_path+filename, 'rb') as f:
+                    with open(local_path+filename, 'r') as f:
                         print(f.read())
             with open(local_path+filename, 'rb') as f:
                 self.dbx.files_upload(f.read(),
