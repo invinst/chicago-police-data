@@ -4,6 +4,9 @@ import pandas as pd
 import numpy as np
 import os
 import argparse
+import logging
+
+LOG = logging.getLogger()
 
 def init_args():
     """Init"""
@@ -18,11 +21,21 @@ def create_local_file_path(dropbox_path_to_execute):
     return '/'.join(file_path_list)
 
 if __name__=="__main__":
+
+    LOGGING_PARAMS = {
+        'stream': sys.stdout,
+        'level': logging.INFO,
+        'format': '%(message)s'
+    }
+
+    logging.basicConfig(**LOGGING_PARAMS)
+
     ARGUMENTS = init_args()
     client = civis.APIClient()
     dropbox = dropbox_handler()
 
     local_file_path = create_local_file_path(ARGUMENTS.path_to_execute)
-    print(local_file_path)
+    LOG.info(local_file_path)
+    
     dropbox.upload_directory(local_file_path,
                              ARGUMENTS.path_to_execute)
