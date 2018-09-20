@@ -29,9 +29,7 @@ def create_path(data_parent_folder,
     new_path = ('_').join(path_to_execute.split('/')[-2:])
     pdf_path = data_parent_folder + pdf_location + new_path
     csv_path = data_parent_folder + csv_or_xlsx_location + new_path
-    print(pdf_path)
     os.makedirs(pdf_path)
-    print(csv_path)
     os.makedirs(csv_path)
 
     for file in downloaded_files:
@@ -56,7 +54,8 @@ if __name__ == "__main__":
                                      ARGUMENTS.pdf_location,
                                      ARGUMENTS.csv_or_xlsx_location,
                                      ARGUMENTS.path_to_execute)
-
+    print(os.listdir(pdf_path))
+    print(os.listdir(csv_path))
     dropbox.upload_directory(pdf_path,
                              ARGUMENTS.path_to_execute)
 
