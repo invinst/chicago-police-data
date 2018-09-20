@@ -5,6 +5,7 @@ import numpy as np
 import os
 import argparse
 
+
 def init_args():
     """Init"""
     parser = argparse.ArgumentParser()
@@ -12,18 +13,11 @@ def init_args():
                         default=os.environ.get('Dropbox_Path'))
     return parser.parse_args()
 
-def run_file(path_to_execute):
-    full_path = 'dropbox'+path_to_execute
-    os.chdir(full_path)
-    print(os.listdir())
-    os.system("make -f src/makefile")
 
-if __name__=="__main__":
+if __name__ == "__main__":
     ARGUMENTS = init_args()
     client = civis.APIClient()
     dropbox = dropbox_handler()
 
-    ## paths where things are in dropbox
-    #print(dropbox.list_files(path))
+    # paths where things are in dropbox
     dropbox.download_directory(ARGUMENTS.path_to_execute)
-    ##run_file(ARGUMENTS.path_to_execute)
