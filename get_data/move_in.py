@@ -47,7 +47,8 @@ if __name__ == "__main__":
     client = civis.APIClient()
     dropbox = dropbox_handler()
 
-    dropbox.download_directory(ARGUMENTS.path_to_execute)
+    dropbox.download_directory(ARGUMENTS.path_to_execute,
+                               split_value=0)
 
     pdf_path, csv_path = create_path(ARGUMENTS.data_parent_folder,
                                      ARGUMENTS.pdf_location,

@@ -17,7 +17,9 @@ class dropbox_handler:
         res = self.dbx.files_list_folder(dbx_path)
         return [entry.name for entry in res.entries]
 
-    def download_directory(self, dbx_path):
+    def download_directory(self,
+                           dbx_path,
+                           split_value=5):
         res = self.dbx.files_list_folder(dbx_path, recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
         for filename in filenames:
@@ -25,7 +27,7 @@ class dropbox_handler:
             print(filename)
             # get name of last filepath
             name = filename.split('/')[-1]
-            github_fileloc = '/'.join(filename.split('/')[5:])
+            github_fileloc = '/'.join(filename.split('/')[split_value:])
             if '.' not in name[1:] and name != 'makefile':
                 os.makedirs('/app/'+github_fileloc)
             if '.' in name[1:] or name == 'makefile':
