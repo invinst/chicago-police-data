@@ -1,7 +1,5 @@
 from .connectors.dropbox import dropbox_handler
 import civis
-import pandas as pd
-import numpy as np
 import os
 import argparse
 import logging

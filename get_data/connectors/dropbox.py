@@ -2,10 +2,6 @@ import dropbox
 import os
 import tempfile
 import pandas as pd
-import numpy as np
-import io
-import sys
-import re
 
 
 class dropbox_handler:
