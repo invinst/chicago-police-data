@@ -25,8 +25,7 @@ def create_path(data_parent_folder,
                 path_to_execute):
 
     downloaded_files = os.listdir('/app'+path_to_execute.lower())
-    print(downloaded_files)
-    new_path = ('_').join(path_to_execute.split('/')[-2:])
+    new_path = ('_').join(path_to_execute.split('/')[-2:]) + '/'
     pdf_path = data_parent_folder + pdf_location + new_path
     csv_path = data_parent_folder + csv_or_xlsx_location + new_path
     os.makedirs(pdf_path)
@@ -35,10 +34,10 @@ def create_path(data_parent_folder,
     for file in downloaded_files:
         file_path = '/app'+path_to_execute.lower() + '/' + file
         if '.pdf' in file:
-            output_path = pdf_path + '/' + file
+            output_path = pdf_path + file
             copy(file_path, output_path)
         elif '.csv' in file or '.xlsx' in file:
-            output_path = csv_path + '/' + file
+            output_path = csv_path + file
             copy(file_path, output_path)
     return pdf_path, csv_path
 
