@@ -24,7 +24,7 @@ def create_path(data_parent_folder,
                 csv_or_xlsx_location,
                 path_to_execute):
 
-    downloaded_files = os.listdir('app'+path_to_execute)
+    downloaded_files = os.listdir('/app'+path_to_execute)
     print(downloaded_files)
     new_path = ('_').join(path_to_execute.split('/')[-2:])
     pdf_path = data_parent_folder + pdf_location + new_path
