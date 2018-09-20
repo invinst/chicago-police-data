@@ -52,11 +52,18 @@ class dropbox_handler:
         for filename in filenames:
             print('File to Upload:')
             print(filename)
-            with open(local_path+filename, 'rb') as f:
-                self.dbx.files_upload(f.read(),
-                                      dbx_output_path+filename,
-                                      mode=dropbox.files.WriteMode('overwrite',
-                                                                   None))
+            try:
+                with open(local_path.lower()+filename, 'rb') as f:
+                    self.dbx.files_upload(f.read(),
+                                          dbx_output_path+filename,
+                                          mode=dropbox.files
+                                          .WriteMode('overwrite', None))
+            except:
+                with open(local_path+filename, 'rb') as f:
+                    self.dbx.files_upload(f.read(),
+                                          dbx_output_path+filename,
+                                          mode=dropbox.files
+                                          .WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,
