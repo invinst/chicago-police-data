@@ -29,6 +29,8 @@ class dropbox_handler:
             name = filename.split('/')[-1]
             github_fileloc = '/'.join(filename.split('/')[split_value:])
             if '.' not in name[1:] and name != 'makefile':
+                print('Making Local Directory:')
+                print(github_fileloc)
                 os.makedirs('/app/'+github_fileloc)
             if '.' in name[1:] or name == 'makefile':
                 download_file = '/app/'+github_fileloc
