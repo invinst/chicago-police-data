@@ -39,6 +39,8 @@ class dropbox_handler:
         # create output path
         if '/input' in dbx_path:
             dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output/'])
+        else:
+            dbx_output_path = local_path
         filenames = [filename for filename in os.listdir(local_path)
                      if filename[0] != '.']
         print('DBX Path:')
