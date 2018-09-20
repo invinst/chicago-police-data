@@ -57,8 +57,8 @@ if __name__ == "__main__":
                                      ARGUMENTS.csv_or_xlsx_location,
                                      ARGUMENTS.path_to_execute)
 
-    # dropbox.upload_directory(pdf_path,
-    #                         ARGUMENTS.path_to_execute)
+    dropbox.upload_directory(pdf_path,
+                             ARGUMENTS.path_to_execute)
 
-    # dropbox.upload_directory(csv_path,
-    #                         ARGUMENTS.path_to_execute)
+    dropbox.upload_directory(csv_path,
+                             ARGUMENTS.path_to_execute)
