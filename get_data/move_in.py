@@ -3,6 +3,8 @@ import civis
 import os
 import argparse
 from shutil import copy
+from .utils import sterilize
+from .utils.folders import (trr_folders, folder_format)
 
 
 def init_args():
@@ -10,6 +12,9 @@ def init_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--path_to_execute',
                         default=os.environ.get('Dropbox_Path'))
+    parser.add_argument('--file_type',
+                        default='TRR')
+    # default=os.environ.get('file_type'))
     parser.add_argument('--data_parent_folder',
                         default='/Data/roman/Github/chicago-police-data/')
     parser.add_argument('--pdf_location',
@@ -17,6 +22,13 @@ def init_args():
     parser.add_argument('--csv_or_xlsx_location',
                         default='frozen/')
     return parser.parse_args()
+
+
+def trr_handler(path_to_execute,
+                trr_filename):
+    trr_filename = '/app'+path_to_execute.lower() + '/' + trr_filename
+    output_trr_filename, trr_files = sterilize.sterilize(trr_filename)
+    return output_trr_filename, trr_files
 
 
 def create_path(data_parent_folder,
@@ -39,7 +51,12 @@ def create_path(data_parent_folder,
         elif '.csv' in file or '.xlsx' in file:
             output_path = csv_path + file
             copy(file_path, output_path)
+            if 'trr' in file.lower():
+                output_trr_filename, trr_files = trr_handler(path_to_execute,
+                                                             file)
+                copy(file_path, csv_path + output_trr_filename)
     return pdf_path, csv_path
+
 
 if __name__ == "__main__":
     ARGUMENTS = init_args()
