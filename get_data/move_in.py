@@ -115,6 +115,6 @@ if __name__ == "__main__":
                                                   ARGUMENTS.file_type)
 
     for folder in folder_structure:
-        local = ARGUMENTS.folders + folder
-        db_location = ARGUMENTS.individual + folder
+        local = ARGUMENTS.folders + folder + '/'
+        db_location = ARGUMENTS.individual + folder + '/'
         dropbox.upload_directory(local, db_location)
