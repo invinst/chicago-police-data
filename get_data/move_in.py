@@ -15,14 +15,15 @@ def init_args():
                         default='TRR')
     # default=os.environ.get('file_type'))
     parser.add_argument('--data_parent_folder',
-                        default='/Data/roman/Github/chicago-police-data/')
+                        default='/Data/Data_Testing_Copy/')
     parser.add_argument('--pdf_location',
                         default='foia/')
     parser.add_argument('--csv_or_xlsx_location',
                         default='frozen/')
     parser.add_argument('--folders',
-                        default='/app/chicago-police-data/\
-                                get_data/utils/folder_structures/')
+                        default='/app/get_data/utils/folder_structures/')
+    parser.add_argument('--individual',
+                        default='/Data/Data_Testing_Copy/individual/')
     return parser.parse_args()
 
 
@@ -89,12 +90,17 @@ if __name__ == "__main__":
     print(os.listdir(output_path_dict['pdf']))
     print(os.listdir(output_path_dict['csv']))
 
-    append_to_folder_structure(ARGUMENTS.folders,
-                               output_path_dict,
-                               ARGUMENTS.file_type)
-
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.path_to_execute)
 
     dropbox.upload_directory(output_path_dict['csv'],
                              ARGUMENTS.path_to_execute)
+
+    folder_structure = append_to_folder_structure(ARGUMENTS.folders,
+                                                  output_path_dict,
+                                                  ARGUMENTS.file_type)
+
+    for folder in folder_structure:
+        local = ARGUMENTS.folders + folder
+        db_location = ARGUMENTS.individual + folder
+        dropbox.upload_directory(local, db_location)
