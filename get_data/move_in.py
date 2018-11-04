@@ -4,7 +4,6 @@ import os
 import argparse
 from shutil import copy
 from .utils import sterilize
-from .utils.folders import (trr_folders, folder_format)
 
 
 def init_args():
@@ -63,6 +62,7 @@ if __name__ == "__main__":
     client = civis.APIClient()
     dropbox = dropbox_handler()
 
+    print('Start Directory Download')
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
