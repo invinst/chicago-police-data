@@ -37,25 +37,31 @@ def create_path(data_parent_folder,
 
     downloaded_files = os.listdir('/app'+path_to_execute.lower())
     new_path = ('_').join(path_to_execute.split('/')[-2:]) + '/'
-    pdf_path = data_parent_folder + pdf_location + new_path
-    csv_path = data_parent_folder + csv_or_xlsx_location + new_path
-    os.makedirs(pdf_path)
-    os.makedirs(csv_path)
+    output_path_dict = {}
+    output_path_dict['pdf'] = (data_parent_folder + pdf_location + new_path)
+    output_path_dict['csv'] = (data_parent_folder +
+                               csv_or_xlsx_location + new_path)
+    os.makedirs(output_path_dict['pdf'])
+    os.makedirs(output_path_dict['csv'])
 
     for file in downloaded_files:
         file_path = '/app'+path_to_execute.lower() + '/' + file
         if '.pdf' in file:
-            output_path = pdf_path + file
+            output_path = output_path_dict['pdf'] + file
             copy(file_path, output_path)
         elif '.csv' in file or '.xlsx' in file:
-            output_path = csv_path + file
+            output_path = output_path_dict['csv'] + file
             copy(file_path, output_path)
             if 'trr' in file.lower():
                 output_trr_filename, trr_files = trr_handler(path_to_execute,
                                                              file)
-                copy(file_path, csv_path + output_trr_filename)
-    return pdf_path, csv_path
+                copy(file_path, output_path_dict['csv'] + output_trr_filename)
+                output_path_dict['trr'] = (output_trr_filename)
+    return output_path_dict
 
+#
+# def append_to_folder_structure(file_type):
+#
 
 if __name__ == "__main__":
     ARGUMENTS = init_args()
@@ -66,14 +72,15 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
-    pdf_path, csv_path = create_path(ARGUMENTS.data_parent_folder,
-                                     ARGUMENTS.pdf_location,
-                                     ARGUMENTS.csv_or_xlsx_location,
-                                     ARGUMENTS.path_to_execute)
-    print(os.listdir(pdf_path))
-    print(os.listdir(csv_path))
-    dropbox.upload_directory(pdf_path,
+    output_path_dict = create_path(ARGUMENTS.data_parent_folder,
+                                   ARGUMENTS.pdf_location,
+                                   ARGUMENTS.csv_or_xlsx_location,
+                                   ARGUMENTS.path_to_execute)
+    print(os.listdir(output_path_dict['pdf']))
+    print(os.listdir(output_path_dict['csv']))
+
+    dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.path_to_execute)
 
-    dropbox.upload_directory(csv_path,
+    dropbox.upload_directory(output_path_dict['csv'],
                              ARGUMENTS.path_to_execute)
