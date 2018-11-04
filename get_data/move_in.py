@@ -51,11 +51,11 @@ def create_path(data_parent_folder,
     for file in downloaded_files:
         file_path = '/app'+path_to_execute.lower() + '/' + file
         if '.pdf' in file:
-            output_path = output_path_dict['pdf'] + file
+            output_path = '/app' + output_path_dict['pdf'] + file
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path)
         elif '.csv' in file or '.xlsx' in file:
-            output_path = output_path_dict['csv'] + file
+            output_path = '/app' + output_path_dict['csv'] + file
             output_path_dict['csv_file'] = file
             copy(file_path, output_path)
             print(os.listdir(output_path))
@@ -93,14 +93,17 @@ if __name__ == "__main__":
                                    ARGUMENTS.pdf_location,
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
+                                   
     print(os.listdir(output_path_dict['pdf']))
     print(os.listdir(output_path_dict['csv']))
 
     dropbox.upload_directory(output_path_dict['pdf'],
-                             ARGUMENTS.path_to_execute)
+                             ARGUMENTS.data_parent_folder +
+                             ARGUMENTS.pdf_location)
 
     dropbox.upload_directory(output_path_dict['csv'],
-                             ARGUMENTS.path_to_execute)
+                             ARGUMENTS.data_parent_folder +
+                             ARGUMENTS.csv_or_xlsx_location)
 
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
