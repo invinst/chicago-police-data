@@ -73,6 +73,7 @@ def create_path(data_parent_folder,
 def append_to_folder_structure(folders, output_path_dict, file_type):
     folder_structure = [x.lower() for x in os.listdir(folders)
                         if file_type.lower() in x.lower()]
+    print(folder_structure)
     for folder in folder_structure:
         frozen = '/app' + output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
@@ -101,8 +102,6 @@ if __name__ == "__main__":
     print(os.listdir('/app' + output_path_dict['pdf']))
     print(os.listdir('/app' + output_path_dict['csv']))
     print('------')
-    print(os.listdir(ARGUMENTS.folders))
-    print('------')
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.pdf_location)
@@ -116,6 +115,6 @@ if __name__ == "__main__":
                                                   ARGUMENTS.file_type)
 
     for folder in folder_structure:
-        local = ARGUMENTS.folders + '/' + folder
+        local = ARGUMENTS.folders + folder
         db_location = ARGUMENTS.individual + folder
         dropbox.upload_directory(local, db_location)
