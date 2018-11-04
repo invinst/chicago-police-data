@@ -58,7 +58,8 @@ def create_path(data_parent_folder,
             output_path = '/app' + output_path_dict['csv'] + file
             output_path_dict['csv_file'] = file
             copy(file_path, output_path)
-            print(os.listdir(output_path))
+            print('List Output Path Files: {}'.format(
+                os.listdir('/app' + output_path_dict['csv'])))
             #if 'trr' in file.lower():
                 #output_trr_filename, trr_files = trr_handler(path_to_execute,
                 #                                             file)
@@ -93,7 +94,7 @@ if __name__ == "__main__":
                                    ARGUMENTS.pdf_location,
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
-                                   
+
     print(os.listdir(output_path_dict['pdf']))
     print(os.listdir(output_path_dict['csv']))
 
