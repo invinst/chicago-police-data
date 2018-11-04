@@ -52,9 +52,11 @@ def create_path(data_parent_folder,
         file_path = '/app'+path_to_execute.lower() + '/' + file
         if '.pdf' in file:
             output_path = output_path_dict['pdf'] + file
+            output_path_dict['pdf_file'] = file
             copy(file_path, output_path)
         elif '.csv' in file or '.xlsx' in file:
             output_path = output_path_dict['csv'] + file
+            output_path_dict['csv_file'] = file
             copy(file_path, output_path)
             #if 'trr' in file.lower():
                 #output_trr_filename, trr_files = trr_handler(path_to_execute,
@@ -69,8 +71,9 @@ def append_to_folder_structure(folders, output_path_dict, file_type):
                         if file_type.lower() in x.lower()]
     print(folder_structure)
     for folder in folder_structure:
-        frozen = output_path_dict['csv'] + file_type.lower()
-        input = folders + folder + '/import/input/' + file_type.lower()
+        frozen = output_path_dict['csv'] + output_path_dict['csv_file'].lower()
+        input = folders + folder + '/import/input/' + \
+            output_path_dict['csv_file'].lower()
         copy(frozen, input)
     return folder_structure
 
