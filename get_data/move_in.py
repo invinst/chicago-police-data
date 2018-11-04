@@ -78,6 +78,7 @@ def append_to_folder_structure(folders, output_path_dict, file_type):
             output_path_dict['csv_file'].lower()
         input = folders + folder + '/import/input/' + \
             output_path_dict['csv_file'].lower()
+        # empty folders don't exist in github
         os.makedirs(folders + folder + '/import/input/')
         os.makedirs(folders + folder + '/import/output/')
         copy(frozen, input)
@@ -116,5 +117,5 @@ if __name__ == "__main__":
 
     for folder in folder_structure:
         local = ARGUMENTS.folders + folder
-        db_location = ARGUMENTS.individual + folder
+        db_location = ARGUMENTS.individual + '/' + folder
         dropbox.upload_directory(local, db_location)
