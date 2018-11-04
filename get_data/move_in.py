@@ -51,13 +51,15 @@ def create_path(data_parent_folder,
     for file in downloaded_files:
         file_path = '/app'+path_to_execute.lower() + '/' + file
         if '.pdf' in file:
-            output_path = '/app' + output_path_dict['pdf'] + file
+            output_path = '/app' + output_path_dict['pdf']
+            os.makedirs(output_path)
             output_path_dict['pdf_file'] = file
-            copy(file_path, output_path)
+            copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
-            output_path = '/app' + output_path_dict['csv'] + file
+            output_path = '/app' + output_path_dict['csv']
+            os.makedirs(output_path)
             output_path_dict['csv_file'] = file
-            copy(file_path, output_path)
+            copy(file_path, output_path + file)
             print('List Output Path Files: {}'.format(
                 os.listdir('/app' + output_path_dict['csv'])))
             #if 'trr' in file.lower():
