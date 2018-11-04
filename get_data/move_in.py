@@ -20,6 +20,9 @@ def init_args():
                         default='foia/')
     parser.add_argument('--csv_or_xlsx_location',
                         default='frozen/')
+    parser.add_argument('--folders',
+                        default='/app/chicago-police-data/\
+                                get_data/utils/folder_structures/')
     return parser.parse_args()
 
 
@@ -52,16 +55,23 @@ def create_path(data_parent_folder,
         elif '.csv' in file or '.xlsx' in file:
             output_path = output_path_dict['csv'] + file
             copy(file_path, output_path)
-            if 'trr' in file.lower():
-                output_trr_filename, trr_files = trr_handler(path_to_execute,
-                                                             file)
-                copy(file_path, output_path_dict['csv'] + output_trr_filename)
-                output_path_dict['trr'] = (output_trr_filename)
+            #if 'trr' in file.lower():
+                #output_trr_filename, trr_files = trr_handler(path_to_execute,
+                #                                             file)
+                #copy(file_path, output_path_dict['csv'] + output_trr_filename)
+                #output_path_dict['trr'] = (output_trr_filename)
     return output_path_dict
 
-#
-# def append_to_folder_structure(file_type):
-#
+
+def append_to_folder_structure(folders, output_path_dict, file_type):
+    folder_structure = [x.lower() for x in os.listdir(folders)
+                        if file_type.lower() in x.lower()]
+    print(folder_structure)
+    for folder in folder_structure:
+        frozen = output_path_dict['csv'] + file_type.lower()
+        input = folders + folder + '/import/input/' + file_type.lower()
+        copy(frozen, input)
+    return folder_structure
 
 if __name__ == "__main__":
     ARGUMENTS = init_args()
@@ -78,6 +88,10 @@ if __name__ == "__main__":
                                    ARGUMENTS.path_to_execute)
     print(os.listdir(output_path_dict['pdf']))
     print(os.listdir(output_path_dict['csv']))
+
+    append_to_folder_structure(ARGUMENTS.folders,
+                               output_path_dict,
+                               ARGUMENTS.file_type)
 
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.path_to_execute)
