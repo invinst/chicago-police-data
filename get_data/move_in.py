@@ -2,7 +2,7 @@ from .connectors.dropbox import dropbox_handler
 import civis
 import os
 import argparse
-from shutil import copy
+from shutil import copy, copytree
 from .utils import sterilize
 
 
@@ -76,10 +76,10 @@ def append_to_folder_structure(folders, output_path_dict, file_type):
     for folder in folder_structure:
         frozen = '/app' + output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
-        input = '/app' + folders + folder + '/import/input/' + \
+        input = folders + folder + '/import/input/' + \
             output_path_dict['csv_file'].lower()
-        os.makedirs(input)
-        copy(frozen, input)
+        print(os.listdir(folders + folder + '/import/input/'))
+        #copy(frozen, input)
     return folder_structure
 
 if __name__ == "__main__":
