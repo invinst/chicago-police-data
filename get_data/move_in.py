@@ -117,5 +117,5 @@ if __name__ == "__main__":
 
     for folder in folder_structure:
         local = ARGUMENTS.folders + '/' + folder
-        db_location = ARGUMENTS.individual + '/' + folder
+        db_location = ARGUMENTS.individual + folder
         dropbox.upload_directory(local, db_location)
