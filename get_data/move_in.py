@@ -76,10 +76,9 @@ def append_to_folder_structure(folders, output_path_dict, file_type):
     for folder in folder_structure:
         frozen = '/app' + output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
-        input = folders + folder + '/import/input/' + \
+        input = '/app' + folders + folder + '/import/input/' + \
             output_path_dict['csv_file'].lower()
-        print(frozen)
-        print(input)
+        os.makedirs(input)
         copy(frozen, input)
     return folder_structure
 
