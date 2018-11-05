@@ -42,8 +42,8 @@ class dropbox_handler:
             dbx_output_path = dbx_path
         else:
             dbx_output_path = local_path
-        filenames = [filename for filename in os.listdir(local_path)
-                     if filename[0] != '.']
+        filenames = [filename[0] for filename in os.walk(local_path)
+                     if filename[0][0] != '.']
         print('DBX Path:')
         print(dbx_output_path)
         try:
