@@ -104,11 +104,13 @@ if __name__ == "__main__":
     print('------')
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
-                             ARGUMENTS.pdf_location)
+                             ARGUMENTS.pdf_location,
+                             local_dbx_same=True)
 
     dropbox.upload_directory(output_path_dict['csv'],
                              ARGUMENTS.data_parent_folder +
-                             ARGUMENTS.csv_or_xlsx_location)
+                             ARGUMENTS.csv_or_xlsx_location,
+                             local_dbx_same=True)
 
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
@@ -117,4 +119,6 @@ if __name__ == "__main__":
     for folder in folder_structure:
         local = ARGUMENTS.folders + folder + '/'
         db_location = ARGUMENTS.individual + folder + '/'
-        dropbox.upload_directory(local, db_location)
+        dropbox.upload_directory(local,
+                                 db_location,
+                                 local_dbx_same=False)

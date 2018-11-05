@@ -33,10 +33,13 @@ class dropbox_handler:
     def upload_directory(self,
                          local_path,
                          dbx_path,
+                         local_dbx_same,
                          overwrite=True):
         # create output path
         if '/input' in dbx_path:
             dbx_output_path = '/'.join(dbx_path.split('/')[:-1]+['output/'])
+        elif local_dbx_same is False:
+            dbx_output_path = dbx_path
         else:
             dbx_output_path = local_path
         filenames = [filename for filename in os.listdir(local_path)
