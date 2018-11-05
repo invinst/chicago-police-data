@@ -51,16 +51,18 @@ class dropbox_handler:
         except:
             print('Output Path Exists')
         for filename in filenames:
-            if os.path.isdir(local_path+filename) is True:
+            if os.path.isdir(filename) is True:
                 print('Folder to Create:')
-                print(filename)
-                self.dbx.files_create_folder(dbx_output_path+filename)
+                last_element = filename.split('/')[-1]
+                print(last_element)
+                self.dbx.files_create_folder(dbx_output_path+last_element)
             else:
                 print('File to Upload:')
-                print(filename)
-                with open(local_path+filename, 'rb') as f:
+                last_element = filename.split('/')[-1]
+                print(last_element)
+                with open(filename, 'rb') as f:
                     self.dbx.files_upload(f.read(),
-                                          dbx_output_path+filename,
+                                          dbx_output_path+last_element,
                                           mode=dropbox.files
                                           .WriteMode('overwrite', None))
 
