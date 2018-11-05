@@ -51,7 +51,7 @@ class dropbox_handler:
         except:
             print('Output Path Exists')
         for filename in filenames:
-            if os.path.isdir(dbx_output_path+filename):
+            if os.path.isdir(local_path+filename) is True:
                 print('Folder to Create:')
                 print(filename)
                 self.dbx.files_create_folder(dbx_output_path+filename)
