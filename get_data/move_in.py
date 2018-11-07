@@ -2,8 +2,9 @@ from .connectors.dropbox import dropbox_handler
 import civis
 import os
 import argparse
-from shutil import copy, copytree
+from shutil import copy
 from .utils import sterilize
+from datetime import datetime
 
 
 def init_args():
@@ -24,6 +25,9 @@ def init_args():
                         default='/app/get_data/utils/folder_structures/')
     parser.add_argument('--individual',
                         default='/Data/Data_Testing_Copy/individual/')
+    parser.add_argument('--new_name',
+                        default='test_run')
+    # default=os.environ.get('folder_identifier'))
     return parser.parse_args()
 
 
@@ -70,11 +74,19 @@ def create_path(data_parent_folder,
     return output_path_dict
 
 
-def append_to_folder_structure(folders, output_path_dict, file_type):
+def append_to_folder_structure(folders,
+                               output_path_dict,
+                               folder_parameter_name,
+                               file_type):
     folder_structure = [x.lower() for x in os.listdir(folders)
                         if file_type.lower() in x.lower()]
     print(folder_structure)
+    new_folder_structure = []
     for folder in folder_structure:
+        new_folder_name = '_'.join([folder,
+                                    folder_parameter_name,
+                                    datetime.today().strftime('%Y%m%d')])
+        new_folder_structure.append(new_folder_name)
         frozen = '/app' + output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
         input = folders + folder + '/import/input/' + \
@@ -83,7 +95,8 @@ def append_to_folder_structure(folders, output_path_dict, file_type):
         os.makedirs(folders + folder + '/import/input/')
         os.makedirs(folders + folder + '/import/output/')
         copy(frozen, input)
-    return folder_structure
+        os.rename(folders+folder, folders+new_folder_name)
+    return new_folder_structure
 
 if __name__ == "__main__":
     ARGUMENTS = init_args()
@@ -114,11 +127,12 @@ if __name__ == "__main__":
 
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
+                                                  ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
-
-    for folder in folder_structure:
-        local = ARGUMENTS.folders + folder + '/'
-        db_location = ARGUMENTS.individual + folder + '/'
-        dropbox.upload_directory(local,
-                                 db_location,
-                                 local_dbx_same=False)
+    print(folder_structure)
+    #for folder in folder_structure:
+    #    local = ARGUMENTS.folders + folder + '/'
+    #    db_location = ARGUMENTS.individual + folder + '/'
+    #    dropbox.upload_directory(local,
+    #                             db_location,
+    #                             local_dbx_same=False)
