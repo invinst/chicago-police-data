@@ -99,11 +99,13 @@ def append_to_folder_structure(folders,
     return new_folder_structure
 
 if __name__ == "__main__":
+    print('Start Directory Download'
     ARGUMENTS = init_args()
     client = civis.APIClient()
+
+    print('Start Dropbox Handler')
     dropbox = dropbox_handler()
 
-    print('Start Directory Download')
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
@@ -130,9 +132,9 @@ if __name__ == "__main__":
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
     print(folder_structure)
-    #for folder in folder_structure:
-    #    local = ARGUMENTS.folders + folder + '/'
-    #    db_location = ARGUMENTS.individual + folder + '/'
-    #    dropbox.upload_directory(local,
-    #                             db_location,
-    #                             local_dbx_same=False)
+    '''for folder in folder_structure:
+        local = ARGUMENTS.folders + folder + '/'
+        db_location = ARGUMENTS.individual + folder + '/'
+        dropbox.upload_directory(local,
+                                 db_location,
+                                 local_dbx_same=False)'''
