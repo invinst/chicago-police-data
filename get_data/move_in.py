@@ -99,7 +99,7 @@ def append_to_folder_structure(folders,
     return new_folder_structure
 
 if __name__ == "__main__":
-    print('Start Directory Download'
+    print('Start Directory Download')
     ARGUMENTS = init_args()
     client = civis.APIClient()
 
