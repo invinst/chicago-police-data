@@ -55,14 +55,14 @@ class dropbox_handler:
                 print('Folder to Create:')
                 last_element = '/'.join(filename.split('/')[4:])
                 print(last_element)
-                self.dbx.files_create_folder(dbx_output_path+last_element)
+                self.dbx.files_create_folder(dbx_output_path+'/'+last_element)
             else:
                 print('File to Upload:')
                 last_element = '/'.join(filename.split('/')[4:])
                 print(last_element)
                 with open(filename, 'rb') as f:
                     self.dbx.files_upload(f.read(),
-                                          dbx_output_path+last_element,
+                                          dbx_output_path+'/'+last_element,
                                           mode=dropbox.files
                                           .WriteMode('overwrite', None))
 
