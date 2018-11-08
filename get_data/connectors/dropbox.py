@@ -52,16 +52,18 @@ class dropbox_handler:
             print('Output Path Exists')
         for filename in filenames:
             last_element = '/'.join(filename.split('/')[4:])
+            if last_element == dbx_output_path.split('/')[-1]:
+                full_path = dbx_output_path
+            else:
+                full_path = dbx_output_path+last_element
             if os.path.isdir(filename) is True:
                 print('Folder to Create:')
-                print(dbx_output_path+'/'+last_element)
-                self.dbx.files_create_folder(dbx_output_path+'/'+last_element)
+                self.dbx.files_create_folder(full_path)
             else:
                 print('File to Upload:')
-                print(dbx_output_path+'/'+last_element)
                 with open(filename, 'rb') as f:
                     self.dbx.files_upload(f.read(),
-                                          dbx_output_path+'/'+last_element,
+                                          full_path,
                                           mode=dropbox.files
                                           .WriteMode('overwrite', None))
 
