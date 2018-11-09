@@ -60,16 +60,18 @@ class dropbox_handler:
                 full_path = dbx_output_path+'/'+relevant_path
             try:
                 folder_path = '/'.join(full_path.split('/')[:-1])
+                print('Create Folder:')
+                print(folder_path)
                 self.dbx.files_create_folder(folder_path)
             except:
                 print('Folder Exists')
-                print('File to Upload:')
-                print(file)
-                with open(file, 'rb') as f:
-                    self.dbx.files_upload(f.read(),
-                                          full_path,
-                                          mode=dropbox.files
-                                          .WriteMode('overwrite', None))
+            print('File to Upload:')
+            print(file)
+            with open(file, 'rb') as f:
+                self.dbx.files_upload(f.read(),
+                                      full_path,
+                                      mode=dropbox.files
+                                      .WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,
