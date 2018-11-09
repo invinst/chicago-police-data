@@ -57,8 +57,11 @@ class dropbox_handler:
             else:
                 full_path = dbx_output_path+last_element
             if os.path.isdir(filename) is True:
-                print('Folder to Create:')
-                self.dbx.files_create_folder(full_path)
+                try:
+                    print('Folder to Create:')
+                    self.dbx.files_create_folder(full_path)
+                except:
+                    print('Folder Exists')
             else:
                 print('File to Upload:')
                 with open(filename, 'rb') as f:
