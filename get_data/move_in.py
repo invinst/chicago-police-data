@@ -5,7 +5,6 @@ import argparse
 from shutil import copy
 from .utils import sterilize
 from datetime import datetime
-import time
 
 
 def init_args():
@@ -103,7 +102,6 @@ if __name__ == "__main__":
     print('Start Directory Download')
     ARGUMENTS = init_args()
     client = civis.APIClient()
-    time.wait(60)
     print('Start Dropbox Handler')
     dropbox = dropbox_handler()
 
