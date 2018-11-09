@@ -46,10 +46,10 @@ class dropbox_handler:
                      if filename[0][0] != '.']
         print('DBX Path:')
         print(dbx_output_path)
-        try:
-            self.dbx.files_create_folder(dbx_output_path)
-        except:
-            print('Output Path Exists')
+        #try:
+        self.dbx.files_create_folder(dbx_output_path)
+        #except:
+        #    print('Output Path Exists')
         for filename in filenames:
             last_element = '/'.join(filename.split('/')[6:])
             if last_element == dbx_output_path.split('/')[-1]:
