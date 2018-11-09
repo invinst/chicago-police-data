@@ -59,16 +59,17 @@ class dropbox_handler:
             if os.path.isdir(filename) is True:
                 try:
                     print('Folder to Create:')
-                    self.dbx.files_create_folder(full_path)
+                    print(full_path)
+                    #self.dbx.files_create_folder(full_path)
                 except:
                     print('Folder Exists')
             else:
                 print('File to Upload:')
                 with open(filename, 'rb') as f:
-                    self.dbx.files_upload(f.read(),
-                                          full_path,
-                                          mode=dropbox.files
-                                          .WriteMode('overwrite', None))
+                    #self.dbx.files_upload(f.read(),
+                    #                      full_path,
+                    #                      mode=dropbox.files
+                    #                      .WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,

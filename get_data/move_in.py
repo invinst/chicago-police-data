@@ -80,7 +80,6 @@ def append_to_folder_structure(folders,
                                file_type):
     folder_structure = [x.lower() for x in os.listdir(folders)
                         if file_type.lower() in x.lower()]
-    print(folder_structure)
     new_folder_structure = []
     for folder in folder_structure:
         new_folder_name = '_'.join([folder,
@@ -130,7 +129,6 @@ if __name__ == "__main__":
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
-    print(folder_structure)
     for folder in folder_structure:
         local = ARGUMENTS.folders + folder + '/'
         db_location = ARGUMENTS.individual + folder + '/'
