@@ -93,6 +93,13 @@ def append_to_folder_structure(folders,
         # empty folders don't exist in github
         os.makedirs(folders + folder + '/import/input/')
         os.makedirs(folders + folder + '/import/output/')
+        os.makedirs(folders + folder + '/clean/input/')
+        os.makedirs(folders + folder + '/clean/output/')
+        os.makedirs(folders + folder + '/export/input/')
+        os.makedirs(folders + folder + '/export/output/')
+        if 'assign-unique-ids' in os.listdir(folders + folder):
+            os.makedirs(folders + folder + '/assign-unique-ids/input/')
+            os.makedirs(folders + folder + '/assign-unique-ids/output/')
         copy(frozen, input)
         os.rename(folders+folder, folders+new_folder_name)
     return new_folder_structure
