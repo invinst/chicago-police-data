@@ -44,22 +44,26 @@ class dropbox_handler:
             dbx_output_path = local_path
         filenames = [filename[0] for filename in os.walk(local_path)
                      if filename[0][0] != '.']
+        print('---------')
+        print(filenames)
+        print('---------')
         print('DBX Path:')
         print(dbx_output_path)
-        #try:
-        self.dbx.files_create_folder(dbx_output_path)
-        #except:
-        #    print('Output Path Exists')
+        try:
+            self.dbx.files_create_folder(dbx_output_path)
+        except:
+            print('Output Path Exists')
         for filename in filenames:
             last_element = '/'.join(filename.split('/')[6:])
             if last_element == dbx_output_path.split('/')[-1]:
                 full_path = dbx_output_path
             else:
                 full_path = dbx_output_path+'/'+last_element
+            print('Thing to Move:')
+            print(full_path)
             if os.path.isdir(full_path) is True:
                 try:
-                    print('Folder to Create:')
-                    print(full_path)
+                    print('hi')
                     #self.dbx.files_create_folder(full_path)
                 except:
                     print('Folder Exists')
