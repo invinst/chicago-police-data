@@ -30,6 +30,15 @@ class dropbox_handler:
                 download_file = '/app/'+github_fileloc
                 self.dbx.files_download_to_file(download_file, filename)
 
+    @staticmethod
+    def walk_handler(local_path):
+        filenames = [filename for filename in os.walk(local_path)]
+        files = []
+        for filename in filenames:
+            for file in filename[2]:
+                files.append(filename[0]+'/'+file)
+        return files
+
     def upload_directory(self,
                          local_path,
                          dbx_path,
@@ -42,38 +51,25 @@ class dropbox_handler:
             dbx_output_path = dbx_path
         else:
             dbx_output_path = local_path
-        filenames = [filename[0] for filename in os.walk(local_path)
-                     if filename[0][0] != '.']
-        print('---------')
-        print(filenames)
-        print('---------')
-        print('DBX Path:')
-        print(dbx_output_path)
-        try:
-            self.dbx.files_create_folder(dbx_output_path)
-        except:
-            print('Output Path Exists')
-        for filename in filenames:
-            last_element = '/'.join(filename.split('/')[6:])
-            if last_element == dbx_output_path.split('/')[-1]:
+        files = self.walk_handler(local_path)
+        for file in files:
+            relevant_path = '/'.join(file.split('/')[6:])
+            if relevant_path == dbx_output_path.split('/')[-1]:
                 full_path = dbx_output_path
             else:
-                full_path = dbx_output_path+'/'+last_element
-            print('Thing to Move:')
-            print(full_path)
-            if os.path.isdir(full_path) is True:
-                try:
-                    print('hi')
-                    #self.dbx.files_create_folder(full_path)
-                except:
-                    print('Folder Exists')
-            else:
+                full_path = dbx_output_path+'/'+relevant_path
+            try:
+                folder_path = '/'.join(full_path.split('/')[:-1])
+                self.dbx.files_create_folder(folder_path)
+            except:
+                print('Folder Exists')
                 print('File to Upload:')
-                #with open(filename, 'rb') as f:
-                    #self.dbx.files_upload(f.read(),
-                    #                      full_path,
-                    #                      mode=dropbox.files
-                    #                      .WriteMode('overwrite', None))
+                print(file)
+                with open(file, 'rb') as f:
+                    self.dbx.files_upload(f.read(),
+                                          full_path,
+                                          mode=dropbox.files
+                                          .WriteMode('overwrite', None))
 
     def download_file(self,
                       dbx_path,
