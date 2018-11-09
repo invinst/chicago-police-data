@@ -65,7 +65,7 @@ class dropbox_handler:
                     print('Folder Exists')
             else:
                 print('File to Upload:')
-                with open(filename, 'rb') as f:
+                #with open(filename, 'rb') as f:
                     #self.dbx.files_upload(f.read(),
                     #                      full_path,
                     #                      mode=dropbox.files
