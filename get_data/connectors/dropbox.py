@@ -51,12 +51,12 @@ class dropbox_handler:
         except:
             print('Output Path Exists')
         for filename in filenames:
-            last_element = '/'.join(filename.split('/')[4:])
+            last_element = '/'.join(filename.split('/')[6:])
             if last_element == dbx_output_path.split('/')[-1]:
                 full_path = dbx_output_path
             else:
                 full_path = dbx_output_path+last_element
-            if os.path.isdir(filename) is True:
+            if os.path.isdir(full_path) is True:
                 try:
                     print('Folder to Create:')
                     print(full_path)
