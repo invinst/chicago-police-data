@@ -55,7 +55,7 @@ class dropbox_handler:
             if last_element == dbx_output_path.split('/')[-1]:
                 full_path = dbx_output_path
             else:
-                full_path = dbx_output_path+last_element
+                full_path = dbx_output_path+'/'+last_element
             if os.path.isdir(full_path) is True:
                 try:
                     print('Folder to Create:')
