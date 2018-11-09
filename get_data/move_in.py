@@ -141,6 +141,6 @@ if __name__ == "__main__":
         print('-----------')
         local = ARGUMENTS.folders + folder
         db_location = ARGUMENTS.individual + folder
-        #dropbox.upload_directory(local,
-        #                         db_location,
-        #                         local_dbx_same=False)
+        dropbox.upload_directory(local,
+                                 db_location,
+                                 local_dbx_same=False)
