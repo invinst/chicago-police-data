@@ -71,13 +71,13 @@ class dropbox_handler:
                 print('Folder Exists')
             # handling possible file issues
             upload = upload.replace('//', '/')
-            if full_path[0] != '/':
-                full_path = '/' + full_path
+            if upload[0] == '/':
+                upload = upload[1:]
             print('File to Upload:')
             print(upload)
             with open(upload, 'rb') as f:
                 self.dbx.files_upload(f.read(),
-                                      full_path,
+                                      path=full_path,
                                       mode=dropbox.files
                                       .WriteMode('overwrite', None))
 
