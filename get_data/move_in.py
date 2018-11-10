@@ -59,12 +59,18 @@ def create_path(data_parent_folder,
         file_path = path_to_execute.lower() + '/' + file
         if '.pdf' in file:
             output_path = output_path_dict['pdf']
-            os.makedirs(output_path)
+            try:
+                os.makedirs(output_path)
+            except:
+                print('Output Path Already Exists: {}'.format(output_path))
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
             output_path = output_path_dict['csv']
-            os.makedirs(output_path)
+            try:
+                os.makedirs(output_path)
+            except:
+                print('Output Path Already Exists: {}'.format(output_path))
             output_path_dict['csv_file'] = file
             copy(file_path, output_path + file)
             print('List Output Path Files: {}'.format(
