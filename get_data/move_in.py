@@ -99,6 +99,10 @@ def append_to_folder_structure(folders,
             output_path_dict['csv_file'].lower()
         input = folders + folder + '/import/input/' + \
             output_path_dict['csv_file'].lower()
+        print('*********')
+        print(frozen)
+        print(input)
+        print('*********')
         copy(frozen, input)
         os.rename(folders+folder, folders+new_folder_name)
     return new_folder_structure
