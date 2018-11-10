@@ -74,6 +74,8 @@ class dropbox_handler:
             upload = upload.replace('//', '/')
             print('File to Upload:')
             print(upload)
+            if full_path[0] != '/':
+                full_path = '/' + full_path
             with open(upload, 'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       path=full_path,
