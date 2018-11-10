@@ -25,9 +25,9 @@ class dropbox_handler:
             name = filename.split('/')[-1]
             github_fileloc = '/'.join(filename.split('/')[split_value:])
             if '.' not in name[1:] and name != 'makefile':
-                os.makedirs('/app/'+github_fileloc)
+                os.makedirs(github_fileloc)
             if '.' in name[1:] or name == 'makefile':
-                download_file = '/app/'+github_fileloc
+                download_file = github_fileloc
                 self.dbx.files_download_to_file(download_file, filename)
 
     @staticmethod
