@@ -87,7 +87,7 @@ def append_to_folder_structure(folders,
                                output_path_dict,
                                folder_parameter_name,
                                file_type):
-    folder_structure = [x.lower() for x in os.listdir(folders)
+    folder_structure = [x for x in os.listdir(folders)
                         if file_type.lower() in x.lower()]
     new_folder_structure = []
     for folder in folder_structure:
