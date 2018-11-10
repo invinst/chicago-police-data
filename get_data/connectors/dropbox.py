@@ -56,8 +56,8 @@ class dropbox_handler:
         print(dbx_output_path)
         print(files)
         print('----------------')
-        for file in files:
-            relevant_path = '/'.join(file.split('/')[6:])
+        for upload in files:
+            relevant_path = '/'.join(upload.split('/')[6:])
             if relevant_path == dbx_output_path.split('/')[-1]:
                 full_path = dbx_output_path
             else:
@@ -69,9 +69,10 @@ class dropbox_handler:
                 self.dbx.files_create_folder(folder_path)
             except:
                 print('Folder Exists')
+            upload = upload.replace('//', '/')
             print('File to Upload:')
-            print(file)
-            with open(file, 'rb') as f:
+            print(upload)
+            with open(upload, 'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       full_path,
                                       mode=dropbox.files
