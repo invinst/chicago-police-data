@@ -52,6 +52,8 @@ class dropbox_handler:
         else:
             dbx_output_path = local_path
         files = self.walk_handler(local_path)
+        if dbx_output_path[0] != '/':
+            dbx_output_path = '/' + dbx_output_path
         print(local_path)
         print(dbx_output_path)
         print(files)
@@ -64,6 +66,7 @@ class dropbox_handler:
                 full_path = dbx_output_path+'/'+relevant_path
             try:
                 folder_path = '/'.join(full_path.split('/')[:-1])
+                folder_path = folder_path.replace('//', '/')
                 print('Create Folder:')
                 print(folder_path)
                 self.dbx.files_create_folder(folder_path)
@@ -72,9 +75,6 @@ class dropbox_handler:
             # handling possible file issues
             upload = '/app/' + upload
             upload = upload.replace('//', '/')
-            if full_path[0] != '/':
-                full_path = '/' + full_path
-            full_path = full_path.replace('//', '/')
             print('File to Upload:')
             print(upload)
             print('Upload Path:')
