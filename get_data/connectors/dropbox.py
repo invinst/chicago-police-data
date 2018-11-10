@@ -52,6 +52,7 @@ class dropbox_handler:
         else:
             dbx_output_path = local_path
         files = self.walk_handler(local_path)
+        # handling dropbox required /
         if dbx_output_path[0] != '/':
             dbx_output_path = '/' + dbx_output_path
         print(local_path)
@@ -61,7 +62,7 @@ class dropbox_handler:
         for upload in files:
             # implies upload to individual folder
             if 'get_data/' in upload:
-                relevant_path = '/'.join(upload.split('/')[6:])
+                relevant_path = '/'.join(upload.split('/')[4:])
                 if relevant_path == dbx_output_path.split('/')[-1]:
                     full_path = dbx_output_path
                 else:
