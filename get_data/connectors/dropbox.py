@@ -59,11 +59,16 @@ class dropbox_handler:
         print(files)
         print('----------------')
         for upload in files:
-            relevant_path = '/'.join(upload.split('/')[6:])
-            if relevant_path == dbx_output_path.split('/')[-1]:
-                full_path = dbx_output_path
+            # implies upload to individual folder
+            if 'get_data/' in upload:
+                relevant_path = '/'.join(upload.split('/')[6:])
+                if relevant_path == dbx_output_path.split('/')[-1]:
+                    full_path = dbx_output_path
+                else:
+                    full_path = dbx_output_path+'/'+relevant_path
+            # implies upload to frozen and foia
             else:
-                full_path = dbx_output_path+'/'+relevant_path
+                full_path = dbx_output_path + upload.split('/')[-1]
             try:
                 folder_path = '/'.join(full_path.split('/')[:-1])
                 folder_path = folder_path.replace('//', '/')
@@ -74,7 +79,6 @@ class dropbox_handler:
                 print('Folder Exists')
             # handling possible file issues
             # upload = '/app/' + upload
-            full_path = full_path + upload.split('/')[-1]
             upload = upload.replace('//', '/')
             print('File to Upload:')
             print(upload)
