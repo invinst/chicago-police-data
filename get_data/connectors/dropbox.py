@@ -70,9 +70,8 @@ class dropbox_handler:
             except:
                 print('Folder Exists')
             # handling possible file issues
+            upload = '/app/' + upload
             upload = upload.replace('//', '/')
-            if upload[0] == '/':
-                upload = upload[1:]
             print('File to Upload:')
             print(upload)
             with open(upload, 'rb') as f:
