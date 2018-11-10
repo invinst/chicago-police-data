@@ -52,6 +52,10 @@ class dropbox_handler:
         else:
             dbx_output_path = local_path
         files = self.walk_handler(local_path)
+        print(local_path)
+        print(dbx_output_path)
+        print(files)
+        print('----------------')
         for file in files:
             relevant_path = '/'.join(file.split('/')[6:])
             if relevant_path == dbx_output_path.split('/')[-1]:

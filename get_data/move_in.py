@@ -108,10 +108,7 @@ if __name__ == "__main__":
                                    ARGUMENTS.pdf_location,
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
-    print('------')
-    print(os.listdir('/app' + output_path_dict['pdf']))
-    print(os.listdir('/app' + output_path_dict['csv']))
-    print('------')
+
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.pdf_location,
