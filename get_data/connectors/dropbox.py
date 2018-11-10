@@ -69,7 +69,10 @@ class dropbox_handler:
                 self.dbx.files_create_folder(folder_path)
             except:
                 print('Folder Exists')
+            # handling possible file issues
             upload = upload.replace('//', '/')
+            if upload[0] != '/':
+                upload = '/' + upload
             print('File to Upload:')
             print(upload)
             with open(upload, 'rb') as f:
