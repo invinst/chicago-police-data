@@ -55,10 +55,6 @@ class dropbox_handler:
         # handling dropbox required /
         if dbx_output_path[0] != '/':
             dbx_output_path = '/' + dbx_output_path
-        print(local_path)
-        print(dbx_output_path)
-        print(files)
-        print('----------------')
         for upload in files:
             # implies upload to individual folder
             if 'get_data/' in upload:
@@ -85,6 +81,7 @@ class dropbox_handler:
             print(upload)
             print('Upload Path:')
             print(full_path)
+            print('*****************')
             with open(upload, 'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       path=full_path,
