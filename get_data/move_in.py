@@ -74,6 +74,7 @@ def create_path(data_parent_folder,
             copy(file_path, output_path + file)
             print('List Output Path Files: {}'.format(
                 os.listdir(output_path_dict['csv'])))
+            # sterilized file creation
             if 'trr' in file.lower():
                 output_trr_filename, trr_files = trr_handler(path_to_execute,
                                                              file)
@@ -103,6 +104,13 @@ def append_to_folder_structure(folders,
         input = folders + folder + '/import/input/' + \
             output_path_dict['csv_file'].lower()
         copy(frozen, input)
+        # handling sterilized
+        if 'trr' in output_path_dict:
+            frozen = output_path_dict['csv'] + \
+                output_path_dict['trr'].lower()
+            input = folders + folder + '/import/input/' + \
+                output_path_dict['trr'].lower()
+            copy(frozen, input)
         os.rename(folders+folder, folders+new_folder_name)
     return new_folder_structure
 
@@ -130,13 +138,6 @@ if __name__ == "__main__":
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.csv_or_xlsx_location,
                              local_dbx_same=True)
-    try:
-        dropbox.upload_directory(output_path_dict['trr'],
-                                 ARGUMENTS.data_parent_folder +
-                                 ARGUMENTS.csv_or_xlsx_location,
-                                 local_dbx_same=True)
-    except:
-        print('Not TRR File to Upload')
 
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
