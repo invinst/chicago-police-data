@@ -7,6 +7,7 @@ from .utils import sterilize
 from datetime import datetime
 import logging
 
+
 def init_args():
     """Init"""
     parser = argparse.ArgumentParser()
@@ -61,7 +62,8 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'.format(output_path))
+                logging.info('Output Path Already Exists: {}'
+                             .format(output_path))
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
@@ -69,15 +71,17 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'.format(output_path))
+                logging.info('Output Path Already Exists: {}'
+                             .format(output_path))
             output_path_dict['csv_file'] = file
             copy(file_path, output_path + file)
             logging.info('List Output Path Files: {}'.format(
                 os.listdir(output_path_dict['csv'])))
             # sterilized file creation
             if 'trr' in file.lower():
-                output_trr_filename, trr_files = trr_handler(path_to_execute,
+                output_trr_filepath, trr_files = trr_handler(path_to_execute,
                                                              file)
+                output_trr_filename = output_trr_filepath.split('/')[-1]
                 copy(file_path, output_path_dict['csv'] + output_trr_filename)
                 output_path_dict['trr'] = (output_trr_filename)
     return output_path_dict

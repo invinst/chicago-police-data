@@ -9,6 +9,7 @@ import numpy as np
 import xlsxwriter
 import logging
 
+
 def clean_cb(x):
     if isinstance(x, str):
         x = x.replace(".0", "").replace("0.", "").replace("-", "")

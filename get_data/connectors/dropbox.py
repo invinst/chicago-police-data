@@ -4,6 +4,7 @@ import tempfile
 import pandas as pd
 import logging
 
+
 class dropbox_handler:
     def __init__(self):
         self.auth_token = os.environ.get('DROPBOX_OAUTH_PASSWORD')
