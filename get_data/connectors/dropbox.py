@@ -2,7 +2,7 @@ import dropbox
 import os
 import tempfile
 import pandas as pd
-
+import logging
 
 class dropbox_handler:
     def __init__(self):
@@ -19,8 +19,8 @@ class dropbox_handler:
         res = self.dbx.files_list_folder(dbx_path, recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
         for filename in filenames:
-            print('File to Download:')
-            print(filename)
+            logging.info('File to Download:')
+            logging.info(filename)
             # get name of last filepath
             name = filename.split('/')[-1]
             github_fileloc = '/'.join(filename.split('/')[split_value:])
@@ -69,18 +69,18 @@ class dropbox_handler:
             try:
                 folder_path = '/'.join(full_path.split('/')[:-1])
                 folder_path = folder_path.replace('//', '/')
-                print('Create Folder:')
-                print(folder_path)
+                logging.info('Create Folder:')
+                logging.info(folder_path)
                 self.dbx.files_create_folder(folder_path)
             except:
-                print('Folder Exists')
+                logging.info('Folder Exists')
             # handling possible file issues
             upload = upload.replace('//', '/')
-            print('File to Upload:')
-            print(upload)
-            print('Upload Path:')
-            print(full_path)
-            print('*****************')
+            logging.info('File to Upload:')
+            logging.info(upload)
+            logging.info('Upload Path:')
+            logging.info(full_path)
+            logging.info('*****************')
             with open(upload, 'rb') as f:
                 self.dbx.files_upload(f.read(),
                                       path=full_path,
@@ -99,7 +99,7 @@ class dropbox_handler:
         with tempfile.NamedTemporaryFile(mode='w') as temp:
             name = name.lower()
             download_file = dbx_path + name
-            print(download_file)
+            logging.info(download_file)
             self.dbx.files_download_to_file(temp.name, download_file)
 
             temp.flush()
@@ -121,5 +121,5 @@ class dropbox_handler:
                                          skiprows=skip,
                                          nrows=rows)
             else:
-                print('''Download of file not supported.
+                logging.info('''Download of file not supported.
                          File is not a .csv, .xls, or .xlsx''')
