@@ -137,7 +137,7 @@ if __name__ == "__main__":
                                  local_dbx_same=True)
     except:
         print('Not TRR File to Upload')
-'''
+
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
@@ -148,4 +148,3 @@ if __name__ == "__main__":
         dropbox.upload_directory(local,
                                  db_location,
                                  local_dbx_same=False)
-'''
