@@ -74,11 +74,11 @@ def create_path(data_parent_folder,
             copy(file_path, output_path + file)
             print('List Output Path Files: {}'.format(
                 os.listdir(output_path_dict['csv'])))
-            '''if 'trr' in file.lower():
+            if 'trr' in file.lower():
                 output_trr_filename, trr_files = trr_handler(path_to_execute,
                                                              file)
                 copy(file_path, output_path_dict['csv'] + output_trr_filename)
-                output_path_dict['trr'] = (output_trr_filename)'''
+                output_path_dict['trr'] = (output_trr_filename)
     return output_path_dict
 
 
