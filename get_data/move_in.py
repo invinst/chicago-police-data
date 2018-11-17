@@ -130,7 +130,7 @@ if __name__ == "__main__":
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.csv_or_xlsx_location,
                              local_dbx_same=True)
-
+'''
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
@@ -141,3 +141,4 @@ if __name__ == "__main__":
         dropbox.upload_directory(local,
                                  db_location,
                                  local_dbx_same=False)
+'''
