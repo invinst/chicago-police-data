@@ -60,9 +60,6 @@ class dropbox_handler:
             # implies upload to individual folder
             if 'get_data/' in upload:
                 relevant_path = '/'.join(upload.split('/')[4:])
-                '''if relevant_path == dbx_output_path.split('/')[-1]:
-                    full_path = dbx_output_path
-                else:'''
                 full_path = dbx_output_path+'/'+relevant_path
             # implies upload to frozen and foia
             else:
