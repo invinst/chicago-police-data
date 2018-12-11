@@ -1,0 +1,17 @@
+running src/clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'race' cleaned as race using GeneralCleaners.
+Column 'age' cleaned as age using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'unit' cleaned as int using GeneralCleaners.
+Column 'unit_detail' was not cleaned.
+Column 'assigned_beat' was not cleaned.
+Column 'rank' was not cleaned.
+Column 'duty_status' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'in_uniform' was not cleaned.
+Column 'current_star' cleaned as star using GeneralCleaners.
+Column(s) '('last_name', 'first_name')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('human_name', 'middle_name', 'second_name', 'full_name')

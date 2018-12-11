@@ -1,0 +1,6 @@
+running src/clean.py
+Column 'trr_id' was not cleaned.
+Column 'weapon_type' was not cleaned.
+Column 'firearm_caliber' was not cleaned.
+Column 'weapon_description' was not cleaned.
+Columns dropped due to all NA values: ()

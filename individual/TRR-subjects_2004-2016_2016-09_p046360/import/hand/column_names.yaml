@@ -1,0 +1,412 @@
+# Standardization dictionaries according to file paths
+
+'roster_1936-2017_2017-04_p058155':
+    'Last Name':                last_name
+    'First Name':               first_name
+    'Middle Initital':          middle_initial
+    Gender:                     gender
+    Race:                       race
+    'D.O.B.':                   birth_year
+    Age:                        current_age
+    'Status I':                 current_status
+    'Appointed Date':           appointed_date
+    'Employee Position Number': rank_no
+    Description:                current_rank
+    ' ':                        current_unit
+    'Unit Description':         unit_description
+    'Resignation Date':         resignation_date
+    'Star 1':                   star1
+    'Star 2':                   star2
+    'Star 3':                   star3
+    'Star 4':                   star4
+    'Star 5':                   star5
+    'Star 6':                   star6
+    'Star 6.1':                 star7
+    'Star 7':                   star8
+    'Star 8':                   star9
+    'Star 9':                   star10
+    'Star 10':                  star11
+
+'roster__2018-03_p441436':
+  FIRST_NME:            first_name
+  LAST_NME:             last_name
+  MIDDLE_INITIAL:       middle_initial
+  SEX_CODE_CD:          gender
+  RACE_CODE_CD:         race
+  AGE:                  current_age
+  SWORN_OFFICER_I:      is_sworn_officer
+  APPOINTED_DATE:       appointed_date
+  EMPLOYEE_POSITION_CD: rank_no
+  CPD_UNIT_ID:          unit_id
+  CPD_UNIT_ASSIGNED_NO: unit
+  CPD_UNIT_DETAIL_NO:   unit_detail
+  RESIGNATION_DATE:     resignation_date
+  STAR_NO:              current_star
+
+'unit-history__2016-03_16-1105':
+    LAST_NME:              last_name
+    FIRST_NME:             first_name
+    SEX_CODE_CD:           gender
+    RACE:                  race
+    CURRAGE:               current_age
+    APPOINTED_DATE:        appointed_date
+    CPD_UNIT_ASSIGNED_NO:  unit
+    EFFECTIVE_DATE:        unit_start_date
+    END_DATE:              unit_end_date
+    STAR1:                 star1
+    STAR2:                 star2
+    STAR3:                 star3
+    STAR4:                 star4
+    STAR5:                 star5
+    STAR6:                 star6
+    STAR7:                 star7
+    STAR8:                 star8
+    STAR9:                 star9
+    STAR10:                star10
+
+
+'unit-history__2016-12_p052262':
+    'Last Name':            last_name
+    'First Name':           first_name
+    'Middle Initial':       middle_initial
+    Gender:                 gender
+    Race:                   race
+    'Year of Birth':        birth_year
+    'Date of Appointment':  appointed_date
+    'Assigned Unit Num.':   unit
+    'Start Date':           unit_start_date
+    'End Date':             unit_end_date
+
+
+'TRR-main_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:                  trr_id
+    SR_NO:                          sr_no
+    SE_NO:                          se_no
+    BEAT:                           beat
+    BLK:                            block
+    DIR:                            direction
+    STN:                            street
+    LOC:                            location
+    DTE:                            trr_date
+    TMEMIL:                         trr_time
+    INDOOR_OR_OUTDOOR:              indoor_or_outdoor
+    LIGHTING_CONDITION:             lighting_condition
+    WEATHER_CONDITION:              weather_condition
+    NOTIFY_OEMC:                    notify_OEMC
+    NOTIFY_DIST_SERGEANT:           notify_district_sergeant
+    NOTIFY_OP_COMMAND:              notify_OP_command
+    NOTIFY_DET_DIV:                 notify_DET_division
+    NUMBER_OF_WEAPONS_DISCHARGED:   number_of_weapons_discharged
+    PARTY_FIRED_FIRST:              party_fired_first
+
+
+'TRR-officers_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:      trr_id
+    POLAST:             last_name
+    POFIRST:            first_name
+    POGNDR:             gender
+    PORACE:             race
+    POAGE:              age
+    APPOINTED_DATE:     appointed_date
+    UNITASSG:           unit
+    UNITDETAIL:         unit_detail
+    ASSGNBEAT:          assigned_beat
+    RANK:               rank
+    DUTYSTATUS:         duty_status
+    POINJURED:          injured
+    MEMBER_IN_UNIFORM:  in_uniform
+
+
+'TRR-subjects_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:          trr_id
+    SUBGNDR:                gender
+    SUBRACE:                race
+    SUBAGE:                 age
+    SUBYEARDOB:             birth_year
+    SUBJECT_ARMED:          armed
+    SUBJECT_INJURED:        injured
+    SUBJECT_ALLEGED_INJURY: alleged_injury
+    SUBJECT_NO:             subject_no
+    SR_NO:                  sr_no
+    SE_NO:                  se_no
+    DTE:                    trr_date
+
+'TRR-stars_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:  trr_id
+    LAST_NME:       last_name
+    FIRST_NME:      first_name
+    CPD_STAR_NO:    current_star
+
+
+'TRR-statuses_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:  trr_id
+    STATUS:         status
+    STATDATETIME:   status_datetime
+    FIRST_NME:      first_name
+    LAST_NME:       last_name
+    STAR:           star
+    RANK:           rank
+    SEX:            gender
+    MEMBERRACE:     race
+    MEMBERAGE:      age
+    APPOINTED_DATE: appointed_date
+
+
+'TRR-actions-responses_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:      trr_id
+    PERSON:             person
+    'Resistance Type':  resistance_type
+    ACTION:             action
+    OTHERDESCR:         other_description
+
+
+'TRR-weapon-discharges_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:                  trr_id
+    WEAPON_TYPE:                    weapon_type
+    WEAPON_TYPE_DESCR:              weapon_type_description
+    FIREARM_MAKE:                   firearm_make
+    FIREARM_MODEL:                  firearm_model
+    FIREARM_BARREL_LENGTH:          firearm_barrel_length
+    FIREARM_CALIBER:                firearm_caliber
+    TOTAL_NUMBER_OF_SHOTS:          total_number_of_shots
+    FIREARM_RELOADED:               firearm_reloaded
+    NUMBER_OF_CATDRIDGE_RELOADED:   number_of_catdridge_reloaded
+    HANDGUN_WORN_TYPE:              handgun_worn_type
+    HANDGUN_DRAWN_TYPE:             handgun_drawn_type
+    METHOD_USED_TO_RELOAD:          method_used_to_reload
+    SIGHT_USED:                     sight_used
+    PROTECTIVE_COVER_USED:          protective_cover_used
+    DISCHARGE_DISTANCE:             discharge_distance
+    OBJECT_STRUCK_OF_DISCHARGE:     object_struck_of_discharge
+    DISCHARGE_POSITION:             discharge_position
+
+
+'TRR-charges_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:  trr_id
+    SR_NO:          sr_no
+    STATUTE:        statute
+    DESCR:          description
+    SUBJECT_NO:     subject_no
+
+
+'TRR-subject-weapons_2004-2016_2016-09_p046360':
+    TRR_REPORT_ID:      trr_id
+    WEAPON_TYPE:        weapon_type
+    FIREARM_CALIBER:    firearm_caliber
+    WEAPON_DESCRIPTION: weapon_description
+
+
+'copa-498_officer-complaints-2017-sep':
+    LOG_NO:             cr_id
+    COMPLAINT_DATE:     complaint_datetime
+    CURRENT_STATUS:     complaint_status
+    CURRENT_CATEGORY:   complaint_category
+    ASSIGNMENT:         agency_assignment
+    IS_NOTIFICATION:    is_notification
+
+'awards_1967-2017_2017-08_p061715':
+    LAST_NME:               last_name
+    FIRST_NME:              first_name
+    MIDDLE_INITIAL:         middle_initial
+    BIRTH_YEAR:             birth_year
+    GENDER:                 gender
+    RACE:                   race
+    STAR:                   current_star
+    APPOINTED_DATE:         appointed_date
+    RANK:                   rank
+    LAST_PROMOTION_DATE:    last_promotion_date
+    RESIGNATION_DATE:       resignation_date
+    PPS_AWARD_DETAIL_ID:    pps_award_detail_id
+    AWARD_TYPE:             award_type
+    AWARD_REQUEST_DATE:     award_request_date
+    TRACKING_NO:            tracking_no
+    CURRENT_STATUS:         current_award_status
+    REQUESTER:              requester_full_name
+    INCIDENT_START_DATE:    award_start_date
+    INCIDENT_END_DATE:      award_end_date
+    CEREMONY_DATE:          ceremony_date
+
+'complaints-accused_1967-1999_2016-12_':
+    CASE_NUMBER:                cr_id
+    'ACCUSED OFFICERS NAME':    human_name
+    STAR_AT_INCIDENT:           star
+    SEX:                        gender
+    DOB:                        date_of_birth
+    APPOINTED_DATE:             appointed_date
+    ASSGND_UNIT_AT_INCIDENT:    unit
+    FINAL_COMPLAINT_CAT:        complaint_category
+    RANK_AT_INCIDENT:           rank_no
+    'COMPLAINT DESC':           complaint_description
+    FINDING:                    final_finding
+    'FINDING DESC':             final_finding_desc
+    ACTION_TAKEN:               final_discipline
+    'ACTION DESC':              final_discipline_desc
+
+'complaints-complaints_1967-1999_2016-12_':
+    CASE_NUMBER:            cr_id
+    INCIDENT_DATE:          incident_date
+    INCIDENT_TIME:          incident_time
+    DATE_COMPLAINT_RECVD:   complaint_date
+    CASE_STATUS:            complaint_status
+    DATE_CLOSED:            closed_date
+    INVESTIGATION_UNIT:     investigation_unit
+    INCIDENT_BEAT:          incident_beat
+    'INCIDENT LOCATION':    incident_location
+
+'complaints-complainants_1967-1999_2016-12_':
+    CASE NUMBER:                cr_id
+    'OFFICER OR NON OFFICER':   officer_or_non
+    SEX:                        gender
+    'YEAR OF BIRTH':            birth_year
+    RACE:                       race
+
+'complaints-witnesses_1967-1999_2016-12_':
+    CASE NUMBER:                cr_id
+    'OFFICER OR NON OFFICER':   officer_or_non
+    'OFFICER LAST NAME':        last_name
+    'OFFICER FIRST NAME':       first_name
+    'OFFICER STAR NUMBER':      star
+    'YEAR OF BIRTH':            birth_year
+
+'complaints-investigators_1967-1999_2016-12_':
+    CASE_NUMBER:            cr_id
+    'INVESTIGATORS NAME':   human_name
+
+'salary_2002-2017_2017-09_':
+    'Last Name':                    last_name
+    'First Name':                   first_name
+    MI:                             middle_initial
+    Gender:                         gender
+    'Age @ Hire':                   age_at_hire
+    'AGE @ HIRE':                   age_at_hire
+    Title:                          rank
+    Rank:                           rank
+    'Start Date(9161)':             start_date
+    'Start Date (9161)':            start_date
+    SPP:                            spp_date
+    'Start Date Present Position':  spp_date
+    'Org Hire':                     org_hire_date
+    'Original Hire Date':           org_hire_date
+    'Salary for reported year':     salary
+    'Salary - Annual':              salary
+    'Pay Grade Name':               pay_grade
+    'Employee Status':              employee_status
+
+'complaints-accused_2000-2018_2018-03_18-060-157':
+  LOG_NO:                   cr_id
+  OFFICER_FIRST_NAME:       first_name
+  OFFICER_LAST_NAME:        last_name
+  MIDDLE_INITIAL:           middle_initial
+  RACE_CODE_CD:             race
+  SEX_CODE_CD:              gender
+  BIRTH_YEAR:               birth_year
+  STAR_NO:                  star
+  EMPNO:                    emp_no
+  EMPLOYEE_POSITION:        rank
+  ALLEGATION_CATEGORY:      allegation_category
+  ALLEGATION_CATEGORY_CD:   allegation_category_code
+  INV_CURRENT_CATEGORY:     current_investigator_category
+  INV_CURRENT_CATEGORY_CD:  current_investigator_category_code
+  EMPLOYEE_POSITION_1:      rank2
+  EMPLOYEE_ASSIGN_UNIT:     unit
+  EMPLOYEE_DETAIL_UNIT:     unit_detail
+  ACCUSED_ARRESTED:         accused_arrested
+  EMPLOYEE_ON_DUTY:         duty_status
+  INJURY_CONDITION:         injured
+  FINDING_CODE:             final_finding
+  FINDING_NARRATIVE:        finding_narrative
+  ACCUSATION_ID:            accusation_id
+  PENALTY_ID:               penalty_id
+  PENALTY_CODE:             penalty_code
+  NO_OF_DAYS:               number_of_days
+  NARRATIVE:                final_finding_narrative
+
+'complaints-investigators_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  INVST_LAST_NAME:      last_name
+  INVST_FIRST_NAME:     first_name
+  MIDDLE_INITIAL:       middle_initial
+  STAR:                 star
+  SEX:                  gender
+  RACE:                 race
+  BIRTH_YEAR:           birth_year
+  APPOINTED_DATE:       appointed_date
+  CURRENT_UNIT_ASSNMNT: current_unit
+  INVESTIGATOR_TYPE:    investigator_type
+  ASSIGN_DATETIME:      assigned_datetime
+
+'complaints-complaints_2000-2018_2018-03_18-060-157':
+  LOG_NO:                 cr_id
+  INCIDENT_FROMDATE:      incident_start_date
+  INCIDENT_TODATE:        incident_end_date
+  COMPLAINT_DATE:         complaint_date
+  CLOSEDATCOPA_DATETIME:  closed_date
+  CURRENT_STATUS:         current_complaint_status
+  LOCATION_CODE:          incident_location
+  'Unnamed: 7':           address_number
+  STREET_DIRECTION:       street_direction
+  STREET_NME:             street_name
+  APT_NO:                 apartment_no
+  CITY:                   city
+  STATE:                  state
+  ZIP_CD:                 zip
+  OCCURANCE_BEAT:         incident_beat
+  CURRENT_CATEGORY_CODE:  current_complaint_category_code
+  CURRENT_CATEGORY:       current_complaint_category
+  CURRENT_CATEGORY_TYPE:  current_complaint_category_type
+  POLICE_SHOOTING:        was_police_shooting
+  COMPLAINANT_TYPE:       complainant_type
+  INVESTIGATING_AGENCY:   investigating_agency
+
+'complaints-complainants_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  COMPLAINT_DATE:       complaint_date
+  AGENCY:               investigating_agency
+  PARTY_TYPE:           complainant_type
+  PARTY_SUBTYPE:        complainant_subtype
+  SEX:                  gender
+  RACE:                 race
+  'BIRTH YEAR':         birth_year
+
+
+'complaints-civilian-witnesses_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  COMPLAINT_DATE:       complaint_date
+  AGENCY:               investigating_agency
+  PARTY_TYPE:           complainant_type
+  PARTY_SUBTYPE:        complainant_subtype
+  SEX:                  gender
+  RACE:                 race
+  'BIRTH YEAR':         birth_year
+
+'complaints-victims_2000-2018_2018-03_18-060-157':
+  LOG_NO:               cr_id
+  COMPLAINT_DATE:       complaint_date
+  AGENCY:               investigating_agency
+  PARTY_TYPE:           complainant_type
+  PARTY_SUBTYPE:        complainant_subtype
+  SEX:                  gender
+  RACE:                 race
+  'BIRTH YEAR':         birth_year
+  PARTY_INJURED:        injured
+  INJURY_CONDITION:     injury_condition
+  INJURY_DESCRIPTION:   injury_description
+
+'complaints-CPD-witnesses_2000-2018_2018-03_18-060-157':
+  LOG_NO:                         cr_id
+  COMPLAINT_DATE:                 complaint_date
+  AGENCY:                         investigating_agency
+  PARTY_TYPE:                     complainant_type
+  PARTY_SUBTYPE:                  complainant_subtype
+  FIRST_NAME:                     first_name
+  MIDDLE_NAME:                    middle_initial
+  LAST_NAME:                      last_name
+  RACE:                           race
+  SEX:                            gender
+  BIRTH_YEAR:                     birth_year
+  ASSIGN_UNIT_TIMEOFINCIDENT:     assigned_unit
+  DETAIL_UNIT_TIMEOFINCIDENT:     unit_detail
+  RANK_TIMEOFINCIDENT:            rank
+  SWORN_OFFICER_I:                is_sworn_officer
+  DETAIL_UNIT_CURRENT:            current_unit_detail
+  ASSIGN_UNIT_CURRENT:            current_unit

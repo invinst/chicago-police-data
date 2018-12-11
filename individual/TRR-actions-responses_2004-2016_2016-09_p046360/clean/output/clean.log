@@ -1,0 +1,8 @@
+running src/clean.py
+Column 'trr_id' was not cleaned.
+Column 'person' was not cleaned.
+Column 'resistance_type' was not cleaned.
+Column 'action' was not cleaned.
+Column 'other_description' was not cleaned.
+Columns dropped due to all NA values: ()
+Generating member_action, force_type, action_sub_category, action_category, and resistance_level columns for member action observations
