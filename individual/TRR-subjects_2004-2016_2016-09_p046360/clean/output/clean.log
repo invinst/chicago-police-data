@@ -1,0 +1,18 @@
+running src/clean.py
+Ensuring birth_year is max of birth_year and age, while age is min. 280 rows changed
+Ensuring replacing ages >= 100 and birth_years <= 1900 with NA. 30 rows changed
+Column 'trr_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan] values not in gender_types.yaml file. 58 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+[nan, 'UNKNOWN'] values not in race_types.yaml file. 878 cases replaced with ''
+Column 'age' cleaned as age using GeneralCleaners.
+Column 'birth_year' was not cleaned.
+Column 'armed' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'alleged_injury' was not cleaned.
+Column 'subject_no' was not cleaned.
+Column 'sr_no' was not cleaned.
+Column 'se_no' was not cleaned.
+Column 'trr_date' cleaned as date using DateTimeCleaners.
+Columns dropped due to all NA values: ()

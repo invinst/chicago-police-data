@@ -1,0 +1,7 @@
+running src/clean.py
+Column 'trr_id' was not cleaned.
+Column 'sr_no' was not cleaned.
+Column 'statute' was not cleaned.
+Column 'description' was not cleaned.
+Column 'subject_no' was not cleaned.
+Columns dropped due to all NA values: ()
