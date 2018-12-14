@@ -6,6 +6,7 @@ from shutil import copy
 from .utils import sterilize
 from datetime import datetime
 import logging
+from .utils import makefile_replacer as mr
 
 
 def init_args():
@@ -147,9 +148,17 @@ if __name__ == "__main__":
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
-    for folder in folder_structure:
-        local = ARGUMENTS.folders + folder
-        db_location = ARGUMENTS.individual + folder
-        dropbox.upload_directory(local,
-                                 db_location,
-                                 local_dbx_same=False)
+    print(folder_structure)
+    # handle starting point
+    #starting_path = folder_structure
+    #makefile_paths = mr.makefile_finder(starting_path)
+    #mr.update_makefiles(output_path_dict['csv'],
+    #                    ARGUMENTS.new_name,
+    #                    makefile_paths)
+
+    #for folder in folder_structure:
+    #    local = ARGUMENTS.folders + folder
+    #    db_location = ARGUMENTS.individual + folder
+    #    dropbox.upload_directory(local,
+    #                             db_location,
+    #                             local_dbx_same=False)

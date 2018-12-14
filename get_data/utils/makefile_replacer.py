@@ -1,15 +1,38 @@
 import os
 import re
 import logging
+from datetime import datetime
 
 
 def makefile_finder(starting_path):
     filenames = [filename for filename in os.walk(starting_path)]
-    Makefile_paths = []
+    makefile_paths = []
     for filename in filenames:
         if 'Makefile' in filename[2]:
-            Makefile_paths.append(filename[0]+'/Makefile')
-    return Makefile_paths
+            makefile_paths.append(filename[0]+'/Makefile')
+    return makefile_paths
+
+
+def update_makefiles(input_file, folder_parameter_name, makefile_paths):
+    for makefile_path in makefile_paths:
+        folder = makefile_path.split('/')[-4]
+        output_file = '_'.join([folder,
+                                folder_parameter_name,
+                                datetime.today().strftime('%Y%m%d')])
+        if 'import/src' in makefile_path:
+            makefile = makefile_reader(makefile_path)
+            makefile = makefile_updater(input_file,
+                                        output_file,
+                                        makefile)
+            makefile_deleter(makefile_path)
+            makefile_writer(makefile_path, makefile)
+        else:
+            makefile = makefile_reader(makefile_path)
+            makefile = makefile_updater(output_file,
+                                        output_file,
+                                        makefile)
+            makefile_deleter(makefile_path)
+            makefile_writer(makefile_path, makefile)
 
 
 def makefile_reader(path):
