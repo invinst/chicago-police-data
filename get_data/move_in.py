@@ -134,6 +134,9 @@ if __name__ == "__main__":
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
 
+    logging.info('--------------------------------------------')
+    logging.info('Output Paths: {}'.format(output_path_dict))
+
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.pdf_location,
@@ -148,13 +151,16 @@ if __name__ == "__main__":
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
-    print(folder_structure)
+
+    logging.info('--------------------------------------------')
+    logging.info('Folder Structure: {}'.format(folder_structure))
     # handle starting point
-    #starting_path = folder_structure
-    #makefile_paths = mr.makefile_finder(starting_path)
-    #mr.update_makefiles(output_path_dict['csv'],
-    #                    ARGUMENTS.new_name,
-    #                    makefile_paths)
+    #starting_paths = folder_structure
+    #for starting_path in starting_paths:
+    #    makefile_paths = mr.makefile_finder(starting_path)
+    #    mr.update_makefiles(output_path_dict['csv'],
+    #                        ARGUMENTS.new_name,
+    #                        makefile_paths)
 
     #for folder in folder_structure:
     #    local = ARGUMENTS.folders + folder
