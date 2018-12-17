@@ -7,6 +7,7 @@ from .utils import sterilize
 from datetime import datetime
 import logging
 from .utils import makefile_replacer as mr
+import time
 
 
 def init_args():
@@ -154,6 +155,7 @@ if __name__ == "__main__":
 
     logging.info('--------------------------------------------')
     logging.info('Folder Structure: {}'.format(folder_structure))
+    time.sleep(60)
     # handle starting point
     #starting_paths = folder_structure
     #for starting_path in starting_paths:
