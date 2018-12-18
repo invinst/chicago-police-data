@@ -17,9 +17,7 @@ def makefile_finder(starting_path):
 def update_makefiles(input_file, folder_parameter_name, makefile_paths):
     for makefile_path in makefile_paths:
         folder = makefile_path.split('/')[-4]
-        output_file = '_'.join([folder,
-                                folder_parameter_name,
-                                datetime.today().strftime('%Y%m%d')])
+        output_file = ''.join([folder, '.csv'])
         if 'import/src' in makefile_path:
             makefile = makefile_reader(makefile_path)
             makefile = makefile_updater(input_file,
