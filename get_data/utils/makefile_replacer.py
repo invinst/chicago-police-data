@@ -6,6 +6,7 @@ from datetime import datetime
 
 def makefile_finder(starting_path):
     filenames = [filename for filename in os.walk(starting_path)]
+    logging.info('Makefile finder filenames: {}'.format(filenames))
     makefile_paths = []
     for filename in filenames:
         if 'Makefile' in filename[2]:
