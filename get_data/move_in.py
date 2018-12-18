@@ -165,7 +165,8 @@ if __name__ == "__main__":
     LOG.info('--------------------------------------------')
     LOG.info('Folder Structure: {}'.format(folder_structure))
     # handle starting point
-    for starting_path in folder_structure:
+    for folder_name in folder_structure:
+        starting_path = 'Data/Data_Testing_Copy/individual/' + folder_name
         if 'TRR-' in starting_path:
             input = output_path_dict['trr']
         else:
