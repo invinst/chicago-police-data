@@ -171,6 +171,8 @@ if __name__ == "__main__":
         else:
             input = output_path_dict['csv_file']
         makefile_paths = mr.makefile_finder(starting_path)
+        LOG.info('********')
+        LOG.info('Makefile Paths: {}'.format(makefile_paths))
         mr.update_makefiles(input,
                             ARGUMENTS.new_name,
                             makefile_paths)
