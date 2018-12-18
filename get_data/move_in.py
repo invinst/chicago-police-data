@@ -178,9 +178,9 @@ if __name__ == "__main__":
                             ARGUMENTS.new_name,
                             makefile_paths)
 
-    #for folder in folder_structure:
-    #    local = ARGUMENTS.folders + folder
-    #    db_location = ARGUMENTS.individual + folder
-    #    dropbox.upload_directory(local,
-    #                             db_location,
-    #                             local_dbx_same=False)
+    for folder in folder_structure:
+        local = ARGUMENTS.folders + folder
+        db_location = ARGUMENTS.individual + folder
+        dropbox.upload_directory(local,
+                                 db_location,
+                                 local_dbx_same=False)
