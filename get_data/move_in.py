@@ -166,7 +166,7 @@ if __name__ == "__main__":
     LOG.info('Folder Structure: {}'.format(folder_structure))
     # handle starting point
     for folder_name in folder_structure:
-        starting_path = ARGUMENTS.individual + folder_name
+        starting_path = ARGUMENTS.folders + folder_name
         if 'TRR-' in starting_path:
             input = output_path_dict['trr']
         else:
