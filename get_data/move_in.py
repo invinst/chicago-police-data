@@ -66,7 +66,7 @@ def create_path(data_parent_folder,
                 os.makedirs(output_path)
             except:
                 LOG.info('Output Path Already Exists: {}'
-                             .format(output_path))
+                         .format(output_path))
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
@@ -75,7 +75,7 @@ def create_path(data_parent_folder,
                 os.makedirs(output_path)
             except:
                 LOG.info('Output Path Already Exists: {}'
-                             .format(output_path))
+                         .format(output_path))
             output_path_dict['csv_file'] = file
             copy(file_path, output_path + file)
             LOG.info('List Output Path Files: {}'.format(
@@ -165,12 +165,15 @@ if __name__ == "__main__":
     LOG.info('--------------------------------------------')
     LOG.info('Folder Structure: {}'.format(folder_structure))
     # handle starting point
-    #starting_paths = folder_structure
-    #for starting_path in starting_paths:
-    #    makefile_paths = mr.makefile_finder(starting_path)
-    #    mr.update_makefiles(output_path_dict['csv'],
-    #                        ARGUMENTS.new_name,
-    #                        makefile_paths)
+    for starting_path in folder_structure:
+        if 'TRR-' in starting_path:
+            input = output_path_dict['trr']
+        else:
+            input = output_path_dict['csv_file']
+        makefile_paths = mr.makefile_finder(starting_path)
+        mr.update_makefiles(input,
+                            ARGUMENTS.new_name,
+                            makefile_paths)
 
     #for folder in folder_structure:
     #    local = ARGUMENTS.folders + folder
