@@ -9,6 +9,7 @@ import logging
 from .utils import makefile_replacer as mr
 import time
 
+LOG = logging.getLogger()
 
 def init_args():
     """Init"""
@@ -47,7 +48,7 @@ def create_path(data_parent_folder,
     try:
         downloaded_files = os.listdir(path_to_execute.lower())
     except:
-        logging.info('app missing')
+        LOG.info('app missing')
         downloaded_files = os.listdir('/app' + path_to_execute.lower())
     new_path = ('_').join(path_to_execute.split('/')[-2:]) + '/'
     output_path_dict = {}
@@ -64,7 +65,7 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'
+                LOG.info('Output Path Already Exists: {}'
                              .format(output_path))
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
@@ -73,11 +74,11 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'
+                LOG.info('Output Path Already Exists: {}'
                              .format(output_path))
             output_path_dict['csv_file'] = file
             copy(file_path, output_path + file)
-            logging.info('List Output Path Files: {}'.format(
+            LOG.info('List Output Path Files: {}'.format(
                 os.listdir(output_path_dict['csv'])))
             # sterilized file creation
             if 'trr' in file.lower():
@@ -121,10 +122,18 @@ def append_to_folder_structure(folders,
     return new_folder_structure
 
 if __name__ == "__main__":
-    logging.info('Start Directory Download')
+    LOGGING_PARAMS = {
+        'stream': sys.stdout,
+        'level': logging.INFO,
+        'format': '%(message)s'
+    }
+
+    logging.basicConfig(**LOGGING_PARAMS)
+
+    LOG.info('Start Directory Download')
     ARGUMENTS = init_args()
     client = civis.APIClient()
-    logging.info('Start Dropbox Handler')
+    LOG.info('Start Dropbox Handler')
     dropbox = dropbox_handler()
 
     dropbox.download_directory(ARGUMENTS.path_to_execute,
@@ -135,8 +144,8 @@ if __name__ == "__main__":
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
 
-    logging.info('--------------------------------------------')
-    logging.info('Output Paths: {}'.format(output_path_dict))
+    LOG.info('--------------------------------------------')
+    LOG.info('Output Paths: {}'.format(output_path_dict))
 
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
@@ -153,8 +162,8 @@ if __name__ == "__main__":
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
 
-    logging.info('--------------------------------------------')
-    logging.info('Folder Structure: {}'.format(folder_structure))
+    LOG.info('--------------------------------------------')
+    LOG.info('Folder Structure: {}'.format(folder_structure))
     time.sleep(60)
     # handle starting point
     #starting_paths = folder_structure
