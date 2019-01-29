@@ -6,7 +6,10 @@ from shutil import copy
 from .utils import sterilize
 from datetime import datetime
 import logging
+from .utils import makefile_replacer as mr
+import sys
 
+LOG = logging.getLogger()
 
 def init_args():
     """Init"""
@@ -45,7 +48,7 @@ def create_path(data_parent_folder,
     try:
         downloaded_files = os.listdir(path_to_execute.lower())
     except:
-        logging.info('app missing')
+        LOG.info('app missing')
         downloaded_files = os.listdir('/app' + path_to_execute.lower())
     new_path = ('_').join(path_to_execute.split('/')[-2:]) + '/'
     output_path_dict = {}
@@ -62,8 +65,8 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'
-                             .format(output_path))
+                LOG.info('Output Path Already Exists: {}'
+                         .format(output_path))
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
@@ -71,11 +74,11 @@ def create_path(data_parent_folder,
             try:
                 os.makedirs(output_path)
             except:
-                logging.info('Output Path Already Exists: {}'
-                             .format(output_path))
+                LOG.info('Output Path Already Exists: {}'
+                         .format(output_path))
             output_path_dict['csv_file'] = file
             copy(file_path, output_path + file)
-            logging.info('List Output Path Files: {}'.format(
+            LOG.info('List Output Path Files: {}'.format(
                 os.listdir(output_path_dict['csv'])))
             # sterilized file creation
             if 'trr' in file.lower():
@@ -119,10 +122,18 @@ def append_to_folder_structure(folders,
     return new_folder_structure
 
 if __name__ == "__main__":
-    logging.info('Start Directory Download')
+    LOGGING_PARAMS = {
+        'stream': sys.stdout,
+        'level': logging.INFO,
+        'format': '%(message)s'
+    }
+
+    logging.basicConfig(**LOGGING_PARAMS)
+
+    LOG.info('Start Directory Download')
     ARGUMENTS = init_args()
     client = civis.APIClient()
-    logging.info('Start Dropbox Handler')
+    LOG.info('Start Dropbox Handler')
     dropbox = dropbox_handler()
 
     dropbox.download_directory(ARGUMENTS.path_to_execute,
@@ -132,6 +143,9 @@ if __name__ == "__main__":
                                    ARGUMENTS.pdf_location,
                                    ARGUMENTS.csv_or_xlsx_location,
                                    ARGUMENTS.path_to_execute)
+
+    LOG.info('--------------------------------------------')
+    LOG.info('Output Paths: {}'.format(output_path_dict))
 
     dropbox.upload_directory(output_path_dict['pdf'],
                              ARGUMENTS.data_parent_folder +
@@ -147,6 +161,23 @@ if __name__ == "__main__":
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
                                                   ARGUMENTS.file_type)
+
+    LOG.info('--------------------------------------------')
+    LOG.info('Folder Structure: {}'.format(folder_structure))
+    # handle starting point
+    for folder_name in folder_structure:
+        starting_path = ARGUMENTS.folders + folder_name
+        if 'TRR-' in starting_path:
+            input = output_path_dict['trr']
+        else:
+            input = output_path_dict['csv_file']
+        makefile_paths = mr.makefile_finder(starting_path)
+        LOG.info('********')
+        LOG.info('Makefile Paths: {}'.format(makefile_paths))
+        mr.update_makefiles(input,
+                            ARGUMENTS.new_name,
+                            makefile_paths)
+
     for folder in folder_structure:
         local = ARGUMENTS.folders + folder
         db_location = ARGUMENTS.individual + folder
