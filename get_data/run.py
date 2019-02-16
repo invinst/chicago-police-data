@@ -19,7 +19,7 @@ def init_args():
 
 def run_make(folder_path, submodule):
     makefile_path = '/'.join([folder_path, submodule, 'src', 'Makefile'])
-    LOG.INFO('Executing Makefile: {}'.format(makefile_path))
+    LOG.info('Executing Makefile: {}'.format(makefile_path))
     subprocess.run(args=['make', '-f', makefile_path])
 
 
@@ -48,9 +48,9 @@ def move_file_from_input_to_output(folder_path,
                                 'input', filename)
     if submodule == 'assign-unique-ids':
         out_path = '/'.join(folder_path, 'export', 'input', filename)
-    LOG.INFO('Moving file from: {}'.format(in_path))
-    LOG.INFO('Moving file to: {}'.format(out_path))
-    LOG.INFO('****************************')
+    LOG.info('Moving file from: {}'.format(in_path))
+    LOG.info('Moving file to: {}'.format(out_path))
+    LOG.info('****************************')
     copy(in_path, out_path)
 
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
-    LOG.INFO('Path: {}'.format(ARGUMENTS.path_to_execute))
+    LOG.info('Path: {}'.format(ARGUMENTS.path_to_execute))
     execute_folder(ARGUMENTS.path_to_execute)
 
     # dropbox.upload_directory(ARGUMENTS.path_to_execute,
