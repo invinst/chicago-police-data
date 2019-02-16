@@ -56,7 +56,8 @@ def move_file_from_input_to_output(folder_path,
 
 
 def execute_folder(folder_path):
-    structure = os.listdir()
+    LOG.info('Structure: {}'.format(folder_path))
+    structure = os.listdir(folder_path)
     if 'import' in structure:
         run_make(folder_path, 'import')
         move_file_from_input_to_output(folder_path,
