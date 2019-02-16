@@ -84,6 +84,7 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
+    LOG.INFO('Path: {}'.format(ARGUMENTS.path_to_execute))
     execute_folder(ARGUMENTS.path_to_execute)
 
     # dropbox.upload_directory(ARGUMENTS.path_to_execute,
