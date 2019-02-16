@@ -96,8 +96,8 @@ if __name__ == "__main__":
                                split_value=0)
 
     for path, dirs, files in os.walk('/app'):
-        print(LOG.info(path))
-        print('**********')
+        LOG.info(path)
+        LOG.info('**********')
 
     # execute_folder(ARGUMENTS.path_to_execute)
 
