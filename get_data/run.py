@@ -36,20 +36,20 @@ def get_output_filename(path):
 def move_file_from_input_to_output(folder_path,
                                    submodule,
                                    structure):
-    input_path = '/'.join(folder_path, submodule, 'output')
+    input_path = '/'.join([folder_path, submodule, 'output'])
     filename = get_output_filename(input_path)
     in_path = '/'.join([input_path, filename])
     if submodule == 'import':
-        out_path = '/'.join(folder_path, 'clean', 'input', filename)
+        out_path = '/'.join([folder_path, 'clean', 'input', filename])
     if submodule == 'clean':
         if 'assign-unique-ids' in structure:
-            out_path = '/'.join(folder_path, 'assign-unique-ids',
-                                'input', filename)
+            out_path = '/'.join([folder_path, 'assign-unique-ids',
+                                 'input', filename])
         else:
-            out_path = '/'.join(folder_path, 'export',
-                                'input', filename)
+            out_path = '/'.join([folder_path, 'export',
+                                 'input', filename])
     if submodule == 'assign-unique-ids':
-        out_path = '/'.join(folder_path, 'export', 'input', filename)
+        out_path = '/'.join([folder_path, 'export', 'input', filename])
     LOG.info('Moving file from: {}'.format(in_path))
     LOG.info('Moving file to: {}'.format(out_path))
     LOG.info('****************************')
