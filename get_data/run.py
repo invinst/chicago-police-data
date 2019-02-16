@@ -81,7 +81,8 @@ if __name__ == "__main__":
     dropbox = dropbox_handler()
 
     # path where things are in dropbox
-    dropbox.download_directory(ARGUMENTS.path_to_execute)
+    dropbox.download_directory(ARGUMENTS.path_to_execute,
+                               split_value=0)
 
     execute_folder(ARGUMENTS.path_to_execute)
 
