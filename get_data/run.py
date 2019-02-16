@@ -97,7 +97,7 @@ if __name__ == "__main__":
                                split_value=0)
 
     print(os.listdir('/app'))
-    print(os.listdir('/app/data'))
+    print(os.listdir('/app/get_data'))
     time.sleep(60)
 
     # execute_folder(ARGUMENTS.path_to_execute)
