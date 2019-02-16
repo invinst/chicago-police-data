@@ -1,5 +1,6 @@
 from .connectors.dropbox import dropbox_handler
 import civis
+import sys
 import os
 import argparse
 import subprocess
@@ -76,6 +77,13 @@ def execute_folder(folder_path):
 
 
 if __name__ == "__main__":
+    LOGGING_PARAMS = {
+        'stream': sys.stdout,
+        'level': logging.INFO,
+        'format': '%(message)s'
+    }
+
+    logging.basicConfig(**LOGGING_PARAMS)
     ARGUMENTS = init_args()
     client = civis.APIClient()
     dropbox = dropbox_handler()
