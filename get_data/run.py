@@ -96,8 +96,7 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
-    print(os.listdir('/app'))
-    print(os.listdir('/app/get_data'))
+    print(os.listdir('/'))
     time.sleep(60)
 
     # execute_folder(ARGUMENTS.path_to_execute)
