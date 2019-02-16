@@ -95,8 +95,8 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
-    LOG.info('Path: {}'.format(ARGUMENTS.path_to_execute))
-    execute_folder(ARGUMENTS.path_to_execute)
+    LOG.info('Path: {}'.format(os.walk('/app/')))
+    #execute_folder(ARGUMENTS.path_to_execute)
 
     # dropbox.upload_directory(ARGUMENTS.path_to_execute,
     #                         local_dbx_same=True)
