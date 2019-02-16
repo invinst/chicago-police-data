@@ -6,6 +6,7 @@ import argparse
 import subprocess
 from shutil import copy
 import logging
+import time
 
 LOG = logging.getLogger()
 
@@ -95,9 +96,9 @@ if __name__ == "__main__":
     dropbox.download_directory(ARGUMENTS.path_to_execute,
                                split_value=0)
 
-    for path, dirs, files in os.walk('/app'):
-        LOG.info(path)
-        LOG.info('**********')
+    print(os.listdir('/app'))
+    print(os.listdir('/app/data'))
+    time.sleep(60)
 
     # execute_folder(ARGUMENTS.path_to_execute)
 
