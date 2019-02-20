@@ -70,6 +70,7 @@ def create_path(data_parent_folder,
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
+            file = file.replace(' ', '_')
             output_path = output_path_dict['csv']
             try:
                 os.makedirs(output_path)
