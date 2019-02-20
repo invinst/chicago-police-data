@@ -59,6 +59,10 @@ def create_path(data_parent_folder,
     os.makedirs(output_path_dict['csv'])
 
     for file in downloaded_files:
+        new_file = file.replace(' ', '_')
+        os.rename(path_to_execute.lower() + '/' + file,
+                  path_to_execute.lower() + '/' + new_file)
+        file = new_file
         file_path = path_to_execute.lower() + '/' + file
         if '.pdf' in file:
             output_path = output_path_dict['pdf']
@@ -70,9 +74,6 @@ def create_path(data_parent_folder,
             output_path_dict['pdf_file'] = file
             copy(file_path, output_path + file)
         elif '.csv' in file or '.xlsx' in file:
-            new_file = file.replace(' ', '_')
-            os.rename(file, new_file)
-            file = new_file
             output_path = output_path_dict['csv']
             try:
                 os.makedirs(output_path)
