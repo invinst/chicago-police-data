@@ -20,7 +20,7 @@ def init_args():
 
 
 def run_make(folder_path, submodule):
-    makefile_path = '/'.join([folder_path, submodule, 'src', 'Makefile'])
+    makefile_path = '/'.join([folder_path, submodule, 'src', 'makefile'])
     LOG.info('Executing Makefile: {}'.format(makefile_path))
     subprocess.run(args=['make', '-f', makefile_path])
 
