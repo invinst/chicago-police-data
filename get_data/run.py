@@ -20,7 +20,8 @@ def init_args():
 
 
 def run_make(folder_path, submodule):
-    makefile_path = '/'.join([folder_path, submodule, 'src', 'makefile'])
+    os.chdir(folder_path)
+    makefile_path = '/'.join([submodule, 'src', 'makefile'])
     LOG.info('Executing Makefile: {}'.format(makefile_path))
     subprocess.run(args=['make', '-f', makefile_path])
 
@@ -31,7 +32,7 @@ def get_output_filename(path):
     if len(files) == 1:
         return files[0]
     else:
-        raise ValueError('Too many output files: {}'.format(files))
+        raise ValueError('Incorrect number of sfiles: {}'.format(files))
 
 
 def move_file_from_input_to_output(folder_path,
