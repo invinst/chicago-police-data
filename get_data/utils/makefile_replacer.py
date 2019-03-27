@@ -56,6 +56,7 @@ def makefile_updater(input_file, output_file, Makefile):
     # find .xslx if there are any
     regex = re.compile(r'[^ \t\n]*.xlsx')
     filenames_to_replace = filenames_to_replace + regex.findall(Makefile)
+    filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
         if 'input/' in filename:
             if '.csv' in filename:
