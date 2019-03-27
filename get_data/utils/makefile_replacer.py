@@ -1,7 +1,6 @@
 import os
 import re
 import logging
-from datetime import datetime
 
 
 def makefile_finder(starting_path):
@@ -72,4 +71,7 @@ def makefile_updater(input_file, output_file, Makefile):
             Makefile = Makefile.replace(filename, output_file)
         else:
             logging.info("Neither input nor output: {}".format(filename))
+    # passing parameters to python job
+    input_and_output = ' '.join(['$<', input_file, output_file])
+    Makefile = Makefile.replace('$<', input_and_output)
     return Makefile

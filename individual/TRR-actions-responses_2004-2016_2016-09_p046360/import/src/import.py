@@ -6,9 +6,15 @@
 
 import pandas as pd
 import __main__
+import sys
 
 from import_functions import standardize_columns, collect_metadata
 import setup
+
+
+def create_metadata_filename(filename):
+    file_split = filename.split('/')
+    return file_split[0] + '/metadata_' + file_split[1]
 
 
 def get_setup():
@@ -19,10 +25,11 @@ def get_setup():
         logger is used to write logging messages
     '''
     script_path = __main__.__file__
+
     args = {
-        'input_file': 'input/10655-FOIA-P046360-TRRdata_sterilized.xlsx',
-        'output_file': 'output/TRR-actions-responses_2004-2016_2016-09.csv.gz',
-        'metadata_file': 'output/metadata_TRR-actions-responses_2004-2016_2016-09.csv.gz',
+        'input_file': sys.argv[1],
+        'output_file': sys.argv[2],
+        'metadata_file': create_metadata_filename(sys.argv[2]),
         'sheet': 'ActionsResponses',
         'column_names_key': 'TRR-actions-responses_2004-2016_2016-09_p046360'
         }
