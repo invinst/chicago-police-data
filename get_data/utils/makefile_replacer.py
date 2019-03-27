@@ -73,6 +73,6 @@ def makefile_updater(input_file, output_file, Makefile):
         else:
             logging.info("Neither input nor output: {}".format(filename))
     # passing parameters to python job
-    input_and_output = ' '.join(['$<', input_file, output_file])
+    input_and_output = ''.join(["$< '", input_file, "' '", output_file, "'"])
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
