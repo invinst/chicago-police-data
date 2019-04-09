@@ -1,15 +1,23 @@
 #!usr/bin/env python3
 #
-# Author(s):    Roman Rivera (Invisible Institute)
+
 
 '''clean script for TRR-main_2004-2016_2016-09_p046360'''
 
 import pandas as pd
 import __main__
 import yaml
+import sys
+
 
 from clean_functions import clean_data
 import setup
+
+
+def create_metadata_filename(filename):
+    file_split = filename.split('/')
+    return file_split[0] + '/metadata_' + file_split[1]
+
 
 
 def get_setup():
@@ -21,8 +29,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/TRR-main_2004-2016_2016-09.csv.gz',
-        'output_file': 'output/TRR-main_2004-2016_2016-09.csv.gz',
+        'input_file': sys.argv[1],
+        'output_file': sys.argv[2],
         'trr_loc_file': 'hand/trr_locations.yaml',
         'trr_loc': 'location',
         'trr_loc_recode': 'location_recode'

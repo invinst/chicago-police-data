@@ -1,14 +1,22 @@
 #!usr/bin/env python3
 #
-# Author(s):    Roman Rivera (Invisible Institute)
+
 
 '''clean script for TRR-statuses_2004-2016_2016-09_p046360'''
 
 import pandas as pd
 import __main__
+import sys
+
 
 from clean_functions import clean_data
 import setup
+
+
+def create_metadata_filename(filename):
+    file_split = filename.split('/')
+    return file_split[0] + '/metadata_' + file_split[1]
+
 
 
 def get_setup():
@@ -20,8 +28,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/TRR-statuses_2004-2016_2016-09.csv.gz',
-        'output_file': 'output/TRR-statuses_2004-2016_2016-09.csv.gz'
+        'input_file': sys.argv[1],
+        'output_file': sys.argv[2],
         }
 
     assert (args['input_file'].startswith('input/') and
