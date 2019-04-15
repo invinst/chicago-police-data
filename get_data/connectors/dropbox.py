@@ -19,7 +19,10 @@ class dropbox_handler:
                            split_value=5):
         res = self.dbx.files_list_folder(dbx_path, recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
-        print(filenames)
+        if res.has_more is True:
+            res2 = self.dbx.files_list_folder_continue(res.cursor)
+            filenames = filenames + \
+                [entry.path_lower for entry in res2.entries]
         for filename in filenames:
             logging.info('File to Download:')
             logging.info(filename)
