@@ -6,7 +6,6 @@ import argparse
 import subprocess
 from shutil import copy
 import logging
-import time
 
 LOG = logging.getLogger()
 
@@ -62,6 +61,7 @@ def execute_folder(folder_path):
     folder_path = folder_path.lower()
     LOG.info('Structure: {}'.format(folder_path))
     structure = os.listdir(folder_path)
+    LOG.info(structure)
     if 'import' in structure:
         run_make(folder_path, 'import')
         move_file_from_input_to_output(folder_path,
