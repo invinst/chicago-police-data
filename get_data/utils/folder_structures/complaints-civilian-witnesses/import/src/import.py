@@ -24,7 +24,7 @@ def get_setup():
         'output_file': 'output/complaints-civilian-witnesses_2000-2018_2018-07.csv.gz',
         'metadata_file': 'output/metadata_complaints-civilian-witnesses_2000-2018_2018-07.csv.gz',
         'column_names_key': 'complaints-civilian-witnesses_2000-2018_2018-07_18-060-294',
-        'sheet' : 'Export Worksheet'
+        'sheet': 'Export Worksheet'
         }
 
     assert args['input_file'].startswith('input/'),\
