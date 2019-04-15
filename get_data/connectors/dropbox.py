@@ -19,6 +19,7 @@ class dropbox_handler:
                            split_value=5):
         res = self.dbx.files_list_folder(dbx_path, recursive=True)
         filenames = [entry.path_lower for entry in res.entries]
+        print(filenames)
         for filename in filenames:
             logging.info('File to Download:')
             logging.info(filename)
