@@ -19,7 +19,6 @@ def create_metadata_filename(filename):
     return file_split[0] + '/metadata_' + file_split[1]
 
 
-
 def get_setup():
     ''' encapsulates args.
         calls setup.do_setup() which returns constants and logger
@@ -83,7 +82,8 @@ df.loc[subset, cons.member_action_col] = df.loc[subset, 'action']
 df[cons.force_type_col] = df[cons.member_action_col].replace(ft_dict)
 
 df[cons.action_category_col] = df[cons.force_type_col].replace(fc_dict)
-df[cons.action_general_category_col] = np.floor(df[cons.action_category_col])
+df[cons.action_general_category_col] = \
+    np.floor(np.array(df[cons.action_category_col], dtype=np.float64))
 
 df[cons.action_resistance_col] = df[cons.member_action_col].replace(ar_dict)
 
