@@ -47,11 +47,7 @@ cons, log = get_setup()
 
 
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
-print('********************')
-print(df.columns)
-print('********************')
-print(cons.column_names_key)
-print('********************')
+
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 
 df.to_csv(cons.output_file, **cons.csv_opts)

@@ -26,12 +26,13 @@ def run_make(folder_path, submodule):
 
 
 def get_output_filename(path):
-    files = [x for x in os.listdir(path) if '.csv' in x or 'sterilized.' in x]
+    files = [x for x in os.listdir(path) if (
+        ('.csv' in x or 'sterilized.' in x) and 'metadata' not in x)]
     LOG.info("Files: {}".format(files))
     if len(files) == 1:
         return files[0]
     else:
-        raise ValueError('Incorrect number of sfiles: {}'.format(files))
+        raise ValueError('Incorrect number of files: {}'.format(files))
 
 
 def move_file_from_input_to_output(folder_path,
