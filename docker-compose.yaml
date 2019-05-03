@@ -1,0 +1,15 @@
+version: "3"
+services:
+  cpdp:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: >
+      bash -lc "cd /src
+      && sleep 10000d"
+    environment:
+      - DROPBOX_PATH=/Data/Data_Testing_Copy/individual/TRR-actions-responses_UOF_20190415
+      - DROPBOX_OAUTH_PASSWORD
+      - CIVIS_API_KEY
+    volumes:
+      - .:/src
