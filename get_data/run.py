@@ -100,5 +100,8 @@ if __name__ == "__main__":
 
     execute_folder(ARGUMENTS.path_to_execute)
 
-    # dropbox.upload_directory(ARGUMENTS.path_to_execute,
-    #                         local_dbx_same=True)
+    print("UPLOADING DIRECTORY: {}".format(ARGUMENTS.path_to_execute))
+
+    dropbox.upload_directory(ARGUMENTS.path_to_execute,
+                             ARGUMENTS.path_to_execute,
+                            local_dbx_same=True)
