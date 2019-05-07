@@ -125,3 +125,48 @@ class dropbox_handler:
             else:
                 logging.info('''Download of file not supported.
                          File is not a .csv, .xls, or .xlsx''')
+
+    def sync_folder(self, local_directory, dropbox_directory, overwrite=True):
+        """Syncs local folder contents to dropbox folder.
+
+           Assumes directories already exist in dropbox.
+
+           params:
+            local_directory: directory from which we are uploading locally
+            dropbox_directory: directory to which we are uploading in dropbox
+            overwrite: whether or not to overwrite existing files
+        """
+
+        if not local_directory.endswith('/'):
+            local_directory = local_directory + '/'
+    
+        if not dropbox_directory.endswith('/'):
+            dropbox_directory = dropbox_directory + '/'
+
+        # walk through all files/directories in local path and upload to dropbox    
+        for root, dirs, files in os.walk(local_directory):
+
+            for filename in files:
+                # construct the full local path
+                local_path = os.path.join(root, filename)
+
+                # construct the full Dropbox path
+                relative_path = os.path.relpath(local_path, local_directory)
+                dropbox_path = os.path.join(local_directory, relative_path)
+
+                mode = (dropbox.files.WriteMode.overwrite
+                        if overwrite
+                        else dropbox.files.WriteMode.add)
+                
+                with open(local_path, 'rb') as f:
+                    data = f.read()
+                try:
+                    logging.info('File to upload: file:/{}'.format(local_path))
+                    logging.info('Upload Path: dropbox:/{}'.format(dropbox_path))
+                    res = self.dbx.files_upload(
+                        data, path=dropbox_path, mode=mode)
+                except dropbox.exceptions.ApiError as err:
+                    logging.exception('*** API error', err)
+                    return None
+
+                                      
