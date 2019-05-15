@@ -1,0 +1,4 @@
+fuzzywuzzy[speedup]
+ipdb
+xlrd
+xlsxwriter

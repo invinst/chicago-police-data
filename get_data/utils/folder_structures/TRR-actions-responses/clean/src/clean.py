@@ -4,6 +4,7 @@
 
 '''clean script for TRR-actions-responses_2004-2016_2016-09_p046360'''
 
+from fuzzywuzzy import process
 import pandas as pd
 import numpy as np
 import __main__
@@ -13,11 +14,32 @@ import sys
 from clean_functions import clean_data
 import setup
 
+# http://michelleful.github.io/code-blog/2015/05/20/cleaning-text-with-fuzzywuzzy/
+
+def correct_member_action(raw_member_action, correct_member_actions):
+    ''' attempts to correct member actions in the raw data by comparing raw member actions
+        to the list of correct member actions
+
+        example: if 'TASER (PROBE DISCHARGE) 1' exists in the raw data, it will
+        score highly against 'TASER (PROBE DISCHARGE)' and will be cleaned to
+        be 'TASER (PROBE DISCHARGE)'
+    '''
+
+    if pd.isna(raw_member_action):
+        return raw_member_action
+ 
+    if raw_member_action in correct_member_actions:
+        return raw_member_action
+
+    new_name, score = process.extractOne(raw_member_action, correct_member_actions)
+    if score < 85:
+        return raw_member_action
+    else:
+        return new_name
 
 def create_metadata_filename(filename):
     file_split = filename.split('/')
     return file_split[0] + '/metadata_' + file_split[1]
-
 
 def get_setup():
     ''' encapsulates args.
@@ -50,7 +72,6 @@ def get_setup():
 
     return setup.do_setup(script_path, args)
 
-
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
@@ -79,9 +100,24 @@ df = df.merge(mao_df, on=['person', 'other_description'], how='left')
 subset = (df[cons.member_action_col].isnull()) & (df['person'] == 'Member Action')
 df.loc[subset, cons.member_action_col] = df.loc[subset, 'action']
 
+# retrieve list of correct member actions from force type file
+correct_member_actions = list(ft_dict.keys())
+
+# standardize member action column 
+df[cons.member_action_col] = df[cons.member_action_col].apply(correct_member_action, correct_member_actions=correct_member_actions)
+
+# retrieve member actions that were unable to be matched against ft_dict
+diff = set(filter(lambda x: x == x , \
+           set(correct_member_actions).symmetric_difference(df[cons.member_action_col].unique())))
+
+if len(diff) > 0:
+    raise Exception("The following member actions from raw data were unable to be matched: {}".format(diff))
+
+# force type recoding
 df[cons.force_type_col] = df[cons.member_action_col].replace(ft_dict)
 
 df[cons.action_category_col] = df[cons.force_type_col].replace(fc_dict)
+
 df[cons.action_general_category_col] = \
     np.floor(np.array(df[cons.action_category_col], dtype=np.float64))
 
