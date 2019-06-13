@@ -4,6 +4,7 @@
 
 '''clean script for TRR-actions-responses_2004-2016_2016-09_p046360'''
 
+from fuzzywuzzy import process
 import pandas as pd
 import numpy as np
 import __main__
@@ -13,6 +14,28 @@ import sys
 from clean_functions import clean_data
 import setup
 
+# http://michelleful.github.io/code-blog/2015/05/20/cleaning-text-with-fuzzywuzzy/
+
+def correct_member_action(raw_member_action, correct_member_actions):
+    ''' attempts to correct member actions in the raw data by comparing raw member actions
+        to the list of correct member actions
+
+        example: if 'TASER (PROBE DISCHARGE) 1' exists in the raw data, it will
+        score highly against 'TASER (PROBE DISCHARGE)' and will be cleaned to
+        be 'TASER (PROBE DISCHARGE)'
+    '''
+
+    if pd.isna(raw_member_action):
+        return raw_member_action
+
+    if raw_member_action in correct_member_actions:
+        return raw_member_action
+
+    new_name, score = process.extractOne(raw_member_action, correct_member_actions)
+    if score < 85:
+        return raw_member_action
+    else:
+        return new_name
 
 def create_metadata_filename(filename):
     file_split = filename.split('/')
@@ -58,7 +81,6 @@ def get_setup():
         "output_file is malformed: {}".format(args['output_file'])
 
     return setup.do_setup(script_path, args)
-
 
 cons, log = get_setup()
 

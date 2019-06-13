@@ -100,5 +100,7 @@ if __name__ == "__main__":
 
     execute_folder(ARGUMENTS.path_to_execute)
 
-    # dropbox.upload_directory(ARGUMENTS.path_to_execute,
-    #                         local_dbx_same=True)
+    # format path_to_execute to match directory in container
+    path_to_execute = ARGUMENTS.path_to_execute.lower()
+
+    dropbox.sync_folder(path_to_execute, path_to_execute)
