@@ -19,6 +19,15 @@ def create_metadata_filename(filename):
     return file_split[0] + '/metadata_' + file_split[1]
 
 
+def filter_values(df, column, df_missing):
+    df1 = df[(df[column].isnull()) & (df['person'] == 'Member Action')]
+    if df1.shape[0] > 0:
+        df1['missing'] = column
+        df_missing = df_missing.append(df1)
+    df = df[(~df[column].isnull()) | (df['person'] != 'Member Action')]
+    return df_missing, df
+
+
 def get_setup():
     ''' encapsulates args.
         calls setup.do_setup() which returns constants and logger
@@ -30,15 +39,15 @@ def get_setup():
     args = {
         'input_file': sys.argv[1],
         'output_file': sys.argv[2],
-        'member_action_other_file' : 'hand/trr_member_action_other.yaml',
-        'force_type_file' : 'hand/trr_member_action_force_type.yaml',
-        'force_category_file' : 'hand/trr_member_action_category.yaml',
-        'action_resistance_file' : 'hand/trr_member_action_resistance.yaml',
-        'member_action_col' : 'member_action',
-        'force_type_col' : 'force_type',
-        'action_category_col' : 'action_sub_category',
+        'member_action_other_file': 'hand/trr_member_action_other.yaml',
+        'force_type_file': 'hand/trr_member_action_force_type.yaml',
+        'force_category_file': 'hand/trr_member_action_category.yaml',
+        'action_resistance_file': 'hand/trr_member_action_resistance.yaml',
+        'member_action_col': 'member_action',
+        'force_type_col': 'force_type',
+        'action_category_col': 'action_sub_category',
         'action_general_category_col': 'action_category',
-        'action_resistance_col' : 'resistance_level'
+        'action_resistance_col': 'resistance_level'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -56,7 +65,8 @@ cons, log = get_setup()
 df = pd.read_csv(cons.input_file)
 df = clean_data(df, log)
 
-log.info("Generating %s, %s, %s, %s, and %s columns for member action observations",
+log.info('''Generating %s, %s, %s, %s,
+            and %s columns for member action observations''',
          cons.member_action_col, cons.force_type_col,
          cons.action_category_col, cons.action_general_category_col,
          cons.action_resistance_col)
@@ -76,15 +86,32 @@ mao_df = pd.DataFrame.from_dict(mao_dict, orient='index')\
 mao_df.insert(0, 'person', 'Member Action')
 df = df.merge(mao_df, on=['person', 'other_description'], how='left')
 
-subset = (df[cons.member_action_col].isnull()) & (df['person'] == 'Member Action')
+subset = ((df[cons.member_action_col].isnull())
+          & (df['person'] == 'Member Action'))
 df.loc[subset, cons.member_action_col] = df.loc[subset, 'action']
 
-df[cons.force_type_col] = df[cons.member_action_col].replace(ft_dict)
+df_missing = pd.DataFrame()
+df[cons.force_type_col] = df[cons.member_action_col].map(ft_dict)
 
-df[cons.action_category_col] = df[cons.force_type_col].replace(fc_dict)
+df_missing, df = filter_values(df,
+                               cons.force_type_col,
+                               df_missing)
+
+df[cons.action_category_col] = df[cons.force_type_col].map(fc_dict)
+
+df_missing, df = filter_values(df,
+                               cons.action_category_col,
+                               df_missing)
+
 df[cons.action_general_category_col] = \
     np.floor(np.array(df[cons.action_category_col], dtype=np.float64))
 
-df[cons.action_resistance_col] = df[cons.member_action_col].replace(ar_dict)
+df[cons.action_resistance_col] = df[cons.member_action_col].map(ar_dict)
 
+df_missing, df = filter_values(df,
+                               cons.action_resistance_col,
+                               df_missing)
+print(df_missing.head())
+print('-------------')
 df.to_csv(cons.output_file, **cons.csv_opts)
+df_missing.to_csv(cons.output_file + '_missing', **cons.csv_opts)
