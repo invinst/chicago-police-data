@@ -27,7 +27,9 @@ def run_make(folder_path, submodule):
 
 def get_output_filename(path):
     files = [x for x in os.listdir(path) if (
-        ('.csv' in x or 'sterilized.' in x) and 'metadata' not in x)]
+        ('.csv' in x or 'sterilized.' in x)
+        and 'metadata_' not in x
+        and 'missing_' not in x)]
     LOG.info("Files: {}".format(files))
     if len(files) == 1:
         return files[0]
