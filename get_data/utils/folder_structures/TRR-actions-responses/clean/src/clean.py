@@ -108,4 +108,7 @@ df_missing, df = filter_values(df,
 print(df_missing.head())
 print('-------------')
 df.to_csv(cons.output_file, **cons.csv_opts)
-df_missing.to_csv('missing_'+cons.output_file, **cons.csv_opts)
+# maybe move this up to get_setup
+missing_file = cons.output_file.split('/')[0] + \
+               '/missing_' + cons.output_file.split('/')[1]
+df_missing.to_csv(missing_file, **cons.csv_opts)
