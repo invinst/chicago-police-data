@@ -54,11 +54,16 @@ def get_setup():
 
 cons, log = get_setup()
 
-notes_df = pd.read_excel(cons.input_file, sheet_name=cons.notes_sheet,
-                         header=None)
-notes = '\n'.join(notes_df.ix[notes_df[0].isin([cons.main_sheet,
-                                                cons.star_sheet]),
-                              1].dropna())
+try:
+    notes_df = pd.read_excel(cons.input_file, sheet_name=cons.notes_sheet,
+                             header=None)
+    notes = '\n'.join(notes_df.ix[notes_df[0].isin([cons.main_sheet,
+                                                    cons.star_sheet]),
+                                  1].dropna())
+except:
+    notes = 'Warning: Notes sheet not found'
+    log.warning(notes)
+
 cons.write_yamlvar('Notes', notes)
 log.info('Notes written to cons: {}'.format(notes))
 

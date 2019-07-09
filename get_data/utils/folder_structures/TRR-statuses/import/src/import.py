@@ -46,10 +46,14 @@ def get_setup():
 
 cons, log = get_setup()
 
-notes_df = pd.read_excel(cons.input_file, sheet_name=cons.note_sheet,
-                         header=None)
-notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet,
-                              1].dropna())
+try:
+    notes_df = pd.read_excel(cons.input_file, sheet_name=cons.note_sheet,
+                             header=None)
+    notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet,
+                                  1].dropna())
+except:
+    notes = 'Warning: Notes sheet not found'
+    log.warning(notes)
 
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
