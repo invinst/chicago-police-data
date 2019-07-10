@@ -56,7 +56,9 @@ cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
 # only select columns to keep that appear in original dataframe
-cons.keep_columns = df.columns[df.columns.isin(cons.keep_columns)]
+cons = cons._replace(
+    keep_columns=df.columns[df.columns.isin(cons.keep_columns)]
+)
 df = df[cons.keep_columns]
 log.info('{} columns selected.'.format(cons.keep_columns))
 df.columns = standardize_columns(df.columns, cons.column_names_key)
