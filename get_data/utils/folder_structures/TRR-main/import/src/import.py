@@ -55,10 +55,12 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
-# only select columns to keep that appear in original dataframe
-cons = cons._replace(
-    keep_columns=df.columns[df.columns.isin(cons.keep_columns)]
-)
+missing_columns = set(cons.keep_columns) - set(df.columns)
+if missing_columns:
+    log.warning('Warning: {} columns missing.'.format(missing_columns))
+    # set values in missing columns to be empty, for tracking in the metadata
+    for col in missing_columns:
+        df[col] = ''
 df = df[cons.keep_columns]
 log.info('{} columns selected.'.format(cons.keep_columns))
 df.columns = standardize_columns(df.columns, cons.column_names_key)
