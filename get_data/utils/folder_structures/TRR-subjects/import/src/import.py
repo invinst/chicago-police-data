@@ -58,7 +58,7 @@ if missing_columns:
     log.warning('Warning: {} columns missing.'.format(missing_columns))
     # set values in missing columns to be empty, for tracking in the metadata
     for col in missing_columns:
-        df[col] = ''
+        df[col] = None
 df = df[cons.keep_columns]
 log.info('{} columns selected.'.format(cons.keep_columns))
 df.columns = standardize_columns(df.columns, cons.column_names_key)
