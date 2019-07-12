@@ -1,4 +1,5 @@
-fuzzywuzzy[speedup]
 ipdb
+nameparser
+networkx
 xlrd
 xlsxwriter
