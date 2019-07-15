@@ -1,3 +1,8 @@
+''' Runs the analysis pipeline on multiple Dropbox paths
+in parallel container scripts.
+Pass each directory as a command line argument.
+'''
+
 import logging
 import sys
 
@@ -6,6 +11,7 @@ from civis.base import CivisJobFailure
 from joblib import Parallel, delayed
 
 LOG = logging.getLogger()
+MAX_N_JOBS = 8
 
 def run_container(dropbox_path):
     client = civis.APIClient()
@@ -21,7 +27,7 @@ def run_container(dropbox_path):
         repo_http_uri='https://github.com/invinst/chicago-police-data.git',
         repo_ref='master',
         docker_command=f'''cd app
-pip install nameparser networkx xlrd xlsxwriter
+pip install -r requirements.txt
 python -m get_data.run --path_to_execute {dropbox_path}''',
         params = [{'allowed_values': [],
                    'default': None,
@@ -53,14 +59,8 @@ python -m get_data.run --path_to_execute {dropbox_path}''',
         LOG.warning(f'Error: script {script_id} run {run_id} {state}')
 
 
-def main():
-    paths = [
-        '/Data/Data_Testing_Copy/individual/TRR-charges_JSF_20190711',
-        '/Data/Data_Testing_Copy/individual/TRR-main_JSF_20190711',
-        '/Data/Data_Testing_Copy/individual/TRR-officers_JSF_20190711',
-        '/Data/Data_Testing_Copy/individual/TRR-subjects_JSF_20190711'
-    ]
-    Parallel(n_jobs=4)(delayed(run_container)(path) for path in paths)
+def main(paths):
+    Parallel(n_jobs=MAX_N_JOBS)(delayed(run_container)(path) for path in paths)
 
 
 if __name__ == "__main__":
@@ -70,4 +70,4 @@ if __name__ == "__main__":
         'format': '%(message)s'
     }
     logging.basicConfig(**LOGGING_PARAMS)
-    main()
+    main(sys.argv[1:])
