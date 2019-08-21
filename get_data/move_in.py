@@ -11,6 +11,7 @@ import sys
 
 LOG = logging.getLogger()
 
+
 def init_args():
     """Init"""
     parser = argparse.ArgumentParser()
@@ -124,6 +125,7 @@ def append_to_folder_structure(folders,
             copy(frozen, input)
         os.rename(folders+folder, folders+new_folder_name)
     return new_folder_structure
+
 
 if __name__ == "__main__":
     LOGGING_PARAMS = {

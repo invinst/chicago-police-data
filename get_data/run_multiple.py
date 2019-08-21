@@ -13,6 +13,7 @@ from joblib import Parallel, delayed
 LOG = logging.getLogger()
 MAX_N_JOBS = 8
 
+
 def run_container(dropbox_path):
     client = civis.APIClient()
     script_id = client.scripts.post_containers(
@@ -29,15 +30,15 @@ def run_container(dropbox_path):
         docker_command=f'''cd app
 pip install -r requirements.txt
 python -m get_data.run --path_to_execute {dropbox_path}''',
-        params = [{'allowed_values': [],
-                   'default': None,
-                   'description': None,
-                   'label': 'Dropbox Credential',
-                   'name': 'DROPBOX_OAUTH',
-                   'required': True,
-                   'type': 'credential_custom',
-                   'value': None}],
-        arguments = {'DROPBOX_OAUTH': 6644}
+        params=[{'allowed_values': [],
+                 'default': None,
+                 'description': None,
+                 'label': 'Dropbox Credential',
+                 'name': 'DROPBOX_OAUTH',
+                 'required': True,
+                 'type': 'credential_custom',
+                 'value': None}],
+        arguments={'DROPBOX_OAUTH': 6644}
     )['id']
 
     run_id = client.scripts.post_containers_runs(script_id)['id']
