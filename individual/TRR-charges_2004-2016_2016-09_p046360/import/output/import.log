@@ -1,2 +1,0 @@
-running src/import.py
-Keeping columns: ['TRR_REPORT_ID', 'SR_NO', 'STATUTE', 'DESCR', 'SUBJECT_NO']

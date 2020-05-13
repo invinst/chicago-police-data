@@ -83,6 +83,9 @@ def execute_folder(folder_path):
     if 'export' in structure:
         run_make(folder_path, 'export')
 
+    if 'src' in structure:
+        run_make(folder_path, '')
+
 
 if __name__ == "__main__":
     LOGGING_PARAMS = {

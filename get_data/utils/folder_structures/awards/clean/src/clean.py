@@ -5,6 +5,7 @@
 '''clean script for awards_1967-2017_2017-08_p061715'''
 
 import pandas as pd
+import sys
 import __main__
 
 from clean_functions import clean_data
@@ -20,8 +21,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/awards_1967-2017_2017-08.csv.gz',
-        'output_file': 'output/awards_1967-2017_2017-08.csv.gz'
+        'input_file': sys.argv[1],
+        'output_file': sys.argv[2]
         }
 
     assert (args['input_file'].startswith('input/') and

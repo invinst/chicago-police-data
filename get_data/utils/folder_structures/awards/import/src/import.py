@@ -5,11 +5,16 @@
 '''import script for awards_1967-2017_2017-08_p061715'''
 
 import pandas as pd
+import sys
 import __main__
 
 from import_functions import standardize_columns, collect_metadata
 import setup
 
+
+def create_metadata_filename(filename):
+    file_split = filename.split('/')
+    return file_split[0] + '/metadata_' + file_split[1]
 
 def get_setup():
     ''' encapsulates args.
@@ -20,9 +25,9 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/Awards_Data_(New_Copy).csv',
-        'output_file': 'output/awards_1967-2017_2017-08.csv.gz',
-        'metadata_file': 'output/metadata_awards_1967-2017_2017-08.csv.gz',
+        'input_file':sys.argv[1],
+        'output_file': sys.argv[2],
+        'metadata_file': create_metadata_filename(sys.argv[2]),
         'column_names_key': 'awards_1967-2017_2017-08_p061715'
         }
 

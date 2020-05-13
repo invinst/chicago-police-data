@@ -139,11 +139,11 @@ class dropbox_handler:
 
         if not local_directory.endswith('/'):
             local_directory = local_directory + '/'
-    
+
         if not dropbox_directory.endswith('/'):
             dropbox_directory = dropbox_directory + '/'
 
-        # walk through all files/directories in local path and upload to dropbox    
+        # walk through all files/directories in local path and upload to dropbox
         for root, dirs, files in os.walk(local_directory):
 
             for filename in files:
@@ -157,7 +157,7 @@ class dropbox_handler:
                 mode = (dropbox.files.WriteMode.overwrite
                         if overwrite
                         else dropbox.files.WriteMode.add)
-                
+
                 with open(local_path, 'rb') as f:
                     data = f.read()
                 try:
@@ -168,5 +168,3 @@ class dropbox_handler:
                 except dropbox.exceptions.ApiError as err:
                     logging.exception('*** API error', err)
                     return None
-
-                                      

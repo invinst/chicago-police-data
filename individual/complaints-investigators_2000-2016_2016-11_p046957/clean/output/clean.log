@@ -1,9 +1,0 @@
-running src/clean.py
-Column 'row_id' was not cleaned.
-Column 'cr_id' was not cleaned.
-Column 'current_unit' cleaned as int using GeneralCleaners.
-Column 'current_rank' was not cleaned.
-Column 'current_star' cleaned as star using GeneralCleaners.
-Column 'appointed_date' cleaned as date using DateTimeCleaners.
-Column(s) '('full_name',)' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('middle_name', 'human_name', 'second_name', 'middle_initial2')

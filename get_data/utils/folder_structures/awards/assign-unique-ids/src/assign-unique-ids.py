@@ -5,10 +5,16 @@
 '''assign-unique-ids script for awards_1967-2017_2017-08_p061715'''
 
 import pandas as pd
+import sys
 import __main__
 
 from assign_unique_ids_functions import assign_unique_ids, aggregate_data
 import setup
+
+
+def create_profile_filename(filename):
+    file_split = filename.split('.')
+    return file_split[0] + '_profiles' + file_split[1] + file_split[2]
 
 
 def get_setup():
@@ -20,9 +26,9 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/awards_1967-2017_2017-08.csv.gz',
-        'output_file': 'output/awards_1967-2017_2017-08.csv.gz',
-        'output_demo_file': 'output/awards_1967-2017_2017-08_profiles.csv.gz',
+        'input_file': sys.argv[1],
+        'output_file': sys.argv[2],
+        'output_demo_file': create_profile_filename(sys.argv[2]),
         'id_cols': [
             "first_name", "last_name",
             "first_name_NS", "last_name_NS"

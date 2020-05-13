@@ -7,8 +7,12 @@
 import pandas as pd
 import __main__
 import yaml
-
+import sys
 import setup
+
+def create_profile_filename(filename):
+    file_split = filename.split('.')
+    return file_split[0] + '_profiles' + file_split[1] + file_split[2]
 
 
 def get_setup():
@@ -20,10 +24,10 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/awards_1967-2017_2017-08.csv.gz',
-        'input_profiles_file': 'input/awards_1967-2017_2017-08_profiles.csv.gz',
-        'output_file': 'output/awards_1967-2017_2017-08.csv.gz',
-        'output_profiles_file': 'output/awards_1967-2017_2017-08_profiles.csv.gz',
+        'input_file': sys.argv[1],
+        'input_profiles_file': sys.argv[2],
+        'output_file': sys.argv[3],
+        'output_profiles_file': create_profile_filename(sys.argv[3]),
         'export_cols': [
             'pps_award_detail_id', 'award_type', 'award_start_date',
             'current_award_status', 'award_request_date',

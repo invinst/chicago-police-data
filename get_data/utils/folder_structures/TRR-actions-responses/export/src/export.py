@@ -16,7 +16,6 @@ def create_metadata_filename(filename):
     return file_split[0] + '/metadata_' + file_split[1]
 
 
-
 def get_setup():
     ''' encapsulates args.
         calls setup.do_setup() which returns constants and logger
