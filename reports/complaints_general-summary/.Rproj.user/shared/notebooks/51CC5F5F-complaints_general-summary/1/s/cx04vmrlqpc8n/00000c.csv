@@ -1,9 +1,0 @@
-"0","dygraph(tk_xts(cmpl_xts), main = ""Accusations Over Time"") %>% 
-dyRangeSelector() %>% 
-dyLegend(width = 500) %>%
-dyAnnotation(IPRA_Active, text = ""IPRA"", width = 50, height=30, attachAtBottom=T) %>%
-dyShading(from = IPRA_Active, to = '2007-10-01', color='#EE4242') %>%
-dyOptions(stackedGraph = TRUE) %>%
-  dyShading(from = sample_start_ym, to = sample_end_ym)
-"
-"0","rm(cym_pi_tbl, cym_tbl, cmpl_xts)"

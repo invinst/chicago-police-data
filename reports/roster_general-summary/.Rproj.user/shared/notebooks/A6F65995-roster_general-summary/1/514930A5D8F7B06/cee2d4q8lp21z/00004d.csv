@@ -1,5 +1,0 @@
-"0","proft %>% tk_xts(.) %>% dygraph()
-"
-"2","Non-numeric columns being dropped: race, gender, active_dates"
-"2","Using column `active_dates` for date_var.
-"
