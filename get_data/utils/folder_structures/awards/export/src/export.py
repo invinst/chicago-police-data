@@ -52,8 +52,7 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-working_path = os.getcwd()
-shared_path = '/'.join(working_path.split('/')[:-2])
+shared_path = '/app/get_data/utils/folder_structures'
 
 with open(shared_path + "/share/hand/award_po_ranks.yaml", "r") as f:
     po_ranks = yaml.load(f)

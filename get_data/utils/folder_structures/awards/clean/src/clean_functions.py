@@ -38,9 +38,8 @@ def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None,
     if clean_dict is None: clean_dict = {}
     if skip_cols is None: skip_cols = []
     if types_dict is None:
-        working_path = os.getcwd()
-        column_types_path = '/'.join(working_path.split('/')[:-2])
-        column_types_path += '/share/hand/column_types.yaml'
+        working_path = '/app/get_data/utils/folder_structures'
+        column_types_path = working_path + '/share/hand/column_types.yaml'
         with open(column_types_path, 'r') as file:
             types_dict = yaml.load(file)
 
