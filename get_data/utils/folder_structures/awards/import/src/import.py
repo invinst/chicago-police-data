@@ -31,11 +31,11 @@ def get_setup():
         'column_names_key': 'awards_1967-2017_2017-08_p061715'
         }
 
-    assert args['input_file'].startswith('input/'),\
-        "Input_file is malformed: {}".format(args['input_file'])
-    assert (args['output_file'].startswith('output/') and
-            args['output_file'].endswith('.csv.gz')),\
-        "output_file is malformed: {}".format(args['output_file'])
+    #assert args['input_file'].startswith('input/'),\
+    #    "Input_file is malformed: {}".format(args['input_file'])
+    #assert (args['output_file'].startswith('output/') and
+    #        args['output_file'].endswith('.csv.gz')),\
+    #    "output_file is malformed: {}".format(args['output_file'])
 
     return setup.do_setup(script_path, args)
 

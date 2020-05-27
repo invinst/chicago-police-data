@@ -12,7 +12,8 @@ import setup
 
 def create_profile_filename(filename):
     file_split = filename.split('.')
-    return file_split[0] + '_profiles' + file_split[1] + file_split[2]
+    return file_split[0] + '_profiles' + '.' + \
+        '.'.join([file_split[1], file_split[2]])
 
 
 def get_setup():
@@ -34,7 +35,7 @@ def get_setup():
             'award_end_date', 'rank', 'last_promotion_date',
             'requester_full_name', 'ceremony_date', 'tracking_no'
             ],
-        'id': 'awards_1967-2017_2017-08_ID'
+        'id': sys.argv[1] + '_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -51,9 +52,12 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 
-with open("hand/award_po_ranks.yaml", "r") as f:
+working_path = os.getcwd()
+shared_path = '/'.join(working_path.split('/')[:-2])
+
+with open(shared_path + "/share/hand/award_po_ranks.yaml", "r") as f:
     po_ranks = yaml.load(f)
-with open("hand/maybe_po_ranks.yaml", "r") as f:
+with open(shared_path + "/share/hand/maybe_po_ranks.yaml", "r") as f:
     maybe_po_ranks = yaml.load(f)
 
 po_ids = df.loc[(df['rank'].isin(po_ranks)) |

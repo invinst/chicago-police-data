@@ -14,7 +14,8 @@ import setup
 
 def create_profile_filename(filename):
     file_split = filename.split('.')
-    return file_split[0] + '_profiles' + file_split[1] + file_split[2]
+    return file_split[0] + '_profiles' + '.' + \
+        '.'.join([file_split[1], file_split[2]])
 
 
 def get_setup():
@@ -38,7 +39,7 @@ def get_setup():
             'middle_initial', 'middle_initial2',
             'birth_year', 'current_star', 'resignation_date'
             ],
-        'id': 'awards_1967-2017_2017-08_ID'
+        'id': sys.argv[1] + '_ID'
         }
 
     assert (args['input_file'].startswith('input/') and

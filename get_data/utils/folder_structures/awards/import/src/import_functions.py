@@ -10,6 +10,7 @@ import re
 import yaml
 import pandas as pd
 import numpy as np
+import os
 
 
 def read_p046957_file(input_file, original_crid_col,
@@ -103,11 +104,13 @@ def standardize_columns(col_names, file_path_key):
     -------
     standard_cols : list
     """
-    column_names_path = 'hand/column_names.yaml'
+    # reaching into share folder in utils
+    working_path = os.getcwd()
+    column_names_path = '/'.join(working_path.split('/')[:-2])
+    column_names_path += '/share/hand/column_names.yaml'
     # Try to read the reference file for converting column names
     with open(column_names_path) as file:
         col_dict = yaml.load(file)
-
     # Ensure that file path key is in col dict keys
     assert file_path_key in col_dict.keys(),\
         ('{0} is the file path key, but it is not in col_dict kets: {1}'

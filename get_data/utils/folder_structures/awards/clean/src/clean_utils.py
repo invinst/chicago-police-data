@@ -43,7 +43,10 @@ class GeneralCleaners:
         -------
         cleaned_col : pandas Series
         """
-        with open('hand/{}_types.yaml'.format(self.col_type), 'r') as file:
+        working_path = os.getcwd()
+        names_path = '/'.join(working_path.split('/')[:-2])
+        names_path += f'/share/hand/{self.col_type}_types.yaml'
+        with open(names_path, 'r') as file:
             type_dict = yaml.load(file)
         cleaned_col = self.col.str.upper().replace(type_dict)
         fill_locs =  ~cleaned_col.isin(type_dict.values())

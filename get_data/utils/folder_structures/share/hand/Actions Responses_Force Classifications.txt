@@ -1,0 +1,20 @@
+trr_id – provided as part of the original data
+
+person – provided as part of the original data, marks whether it was a police officer or a subject who took the action in question
+
+resistance_type - provided as part of the original data, provides information on the level of resistance used by the subject
+
+action - provided as part of the original data, detail about the use of force or resistance. Most are from checkboxes, but a substantial portion are marked as “Other (Specify)” in which case the full detail is provided separately in the next column ("other_description")
+
+other_description - provided as part of the original data, provides officer text input in cases where they checked the box “Other (Specify)” to describe their actions or the actions of the subject.
+
+member_action - created by the Invisible Institute, this field consolidates some of the data in the “action” field, finding instances where officers described their actions in the “other_description” text field using terms that are identical or nearly identical to existing checkbox options (matching options from the "action" field). For example, a large number of officers used the “Other (Specify)” text field to write “Emergency Handcuffing/Takedown” which is also offered as a checkbox option. (These actions should appear on the CPDP TRR detail page in order of severity based on the numeric value in the "action_sub_category".)
+
+force_type - created by the Invisible Institute, this field provides the level of force used in each row, per the CPD’s use of force matrix. The field is designed to provide a summary of the level of force used.
+
+action_sub_category - created by the Invisible Institute, this field provides a ranking of the level of force used in each row. The first part of the number (before the decimal point) shows the overall level of force (lethal, impact weapon) and the second part (after the decimal point) provides differentiation between types of force that are considered equally serious by the CPD. The field allows all CPD force uses to be ranked by severity, with larger numbers being more severe.
+
+action_category - created by the Invisible Institute, this field shows only the first part of the prior field, the ranking of the level of force used in each row. It does not differentiate between different types of force that are considered equally serious.
+
+
+resistance_level - created by the Invisible Institute, this field shows the level of resistance that should correspond with the officer’s reported use of force in each instance. 
