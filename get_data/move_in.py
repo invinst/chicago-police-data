@@ -18,8 +18,7 @@ def init_args():
     parser.add_argument('--path_to_execute',
                         default=os.environ.get('Dropbox_Path'))
     parser.add_argument('--file_type',
-                        default='TRR')
-    # default=os.environ.get('file_type'))
+                        default=os.environ.get('file_type'))
     parser.add_argument('--data_parent_folder',
                         default='Data/Data_Testing_Copy/')
     parser.add_argument('--pdf_location',
