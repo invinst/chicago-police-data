@@ -43,9 +43,8 @@ class GeneralCleaners:
         -------
         cleaned_col : pandas Series
         """
-        working_path = os.getcwd()
-        names_path = '/'.join(working_path.split('/')[:-2])
-        names_path += f'/share/hand/{self.col_type}_types.yaml'
+        working_path = '/app/get_data/utils/folder_structures'
+        names_path = working_path + f'/share/hand/{self.col_type}_types.yaml'
         with open(names_path, 'r') as file:
             type_dict = yaml.load(file)
         cleaned_col = self.col.str.upper().replace(type_dict)
