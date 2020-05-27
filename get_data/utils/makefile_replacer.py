@@ -55,17 +55,20 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace = regex.findall(Makefile)
     # find .xslx if there are any
     regex = re.compile(r'[^ \t\n]*.xlsx')
-    filenames_to_replace = filenames_to_replace + regex.findall(Makefile)
+    filenames_to_replace += regex.findall(Makefile)
+    # find all .csv only
+    regex = re.compile(r'[^ \t\n]*.csv')
+    filenames_to_replace += regex.findall(Makefile)
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
         if 'input/' in filename:
-            if '.csv' in filename:
+            if '.csv.gz' in filename:
                 input_file = 'input/' + input_file + '.gz'
             else:
                 input_file = 'input/' + input_file
             Makefile = Makefile.replace(filename, input_file)
         elif 'output/' in filename:
-            if '.csv' in filename:
+            if '.csv.gz' in filename:
                 output_file = 'output/' + output_file + '.gz'
             else:
                 output_file = 'output/' + output_file
