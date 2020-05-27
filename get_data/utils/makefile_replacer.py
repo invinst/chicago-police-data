@@ -69,9 +69,15 @@ def makefile_updater(input_file, output_file, Makefile):
             Makefile = Makefile.replace(filename, input_file)
         elif 'output/' in filename:
             if '.csv.gz' in filename:
-                output_file = 'output/' + output_file + '.gz'
+                if 'output/' in output_file:
+                    output_file = output_file + '.gz'
+                else:
+                    output_file = 'output/' + output_file + '.gz'
             else:
-                output_file = 'output/' + output_file
+                if 'output/' in output_file:
+                    output_file = output_file
+                else:
+                    output_file = 'output/' + output_file
             Makefile = Makefile.replace(filename, output_file)
         else:
             logging.info("Neither input nor output: {}".format(filename))
