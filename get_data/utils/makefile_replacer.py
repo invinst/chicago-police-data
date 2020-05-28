@@ -57,8 +57,11 @@ def makefile_updater(input_file, output_file, Makefile):
     regex = re.compile(r'[^ \t\n]*.xlsx')
     filenames_to_replace += regex.findall(Makefile)
     # find all .csv only
-    regex = re.compile(r'[^ \t\n]*.csv[ \t\n]')
+    regex = re.compile(r'[^ \t\n]*.csv[^.]')
     filenames_to_replace += regex.findall(Makefile)
+    # removing extra whitespaces from the only .csv
+    filenames_to_replace = [filename.strip() for filename
+                            in filenames_to_replace]
     for filename in filenames_to_replace:
         print(filename)
         print(input_file)
@@ -66,21 +69,21 @@ def makefile_updater(input_file, output_file, Makefile):
         print('*********************************************')
         new_input_file = input_file
         new_output_file = output_file
-        if '_profiles' in filename and '_profiles' not in input_file:
+        if '_profiles' in filename and '_profiles' not in new_input_file:
             new_input_file = new_input_file.split('.')[0]+'_profiles.csv.gz'
-        if 'input/' in filename  and 'input/' not in input_file:
+        if 'input/' in filename  and 'input/' not in new_input_file:
             new_input_file = 'input/' + new_input_file
-        if '.csv.gz' in filename and '.csv.gz' not in input_file:
+        if '.csv.gz' in filename and '.csv.gz' not in new_input_file:
             new_input_file = new_input_file + '.gz'
 
         if 'input/' in new_input_file:
             Makefile = Makefile.replace(filename, new_input_file)
 
-        if '_profiles' in filename and '_profiles' not in output_file:
+        if '_profiles' in filename and '_profiles' not in new_output_file:
             new_output_file = new_output_file.split('.')[0]+'_profiles.csv.gz'
-        if 'output/' in filename and 'output/' not in output_file:
+        if 'output/' in filename and 'output/' not in new_output_file:
             new_output_file = 'output/' + new_output_file
-        if '.csv.gz' in filename and '.csv.gz' not in output_file:
+        if '.csv.gz' in filename and '.csv.gz' not in new_output_file:
             new_output_file = new_output_file + '.gz'
 
         if 'output/' in new_output_file:
