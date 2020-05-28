@@ -121,8 +121,8 @@ class GeneralCleaners:
         cleaned_col : pandas Series
             Column cleaned based on col_type
         """
-        if ('hand' in os.listdir() and
-            self.col_type + '_types.yaml' in os.listdir('hand/')):
+        shared_file_path = '/app/get_data/utils/folder_structures/share/hand/'
+        if (self.col_type + '_types.yaml' in os.listdir(shared_file_path)):
             cleaned_col = self.clean_from_yaml()
         else:
             clean_func = eval("self.clean_%s" % self.col_type)
