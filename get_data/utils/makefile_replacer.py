@@ -63,10 +63,6 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace = [filename.strip() for filename
                             in filenames_to_replace]
     for filename in filenames_to_replace:
-        print(filename)
-        print(input_file)
-        print(output_file)
-        print('*********************************************')
         new_input_file = input_file
         new_output_file = output_file
         if '_profiles' in filename and '_profiles' not in new_input_file:
@@ -91,6 +87,10 @@ def makefile_updater(input_file, output_file, Makefile):
         else:
             logging.info(f'{filename} neither input nor output')
     # passing parameters to python job
-    input_and_output = ''.join(["$< '", input_file, "' '", output_file, "'"])
-    # Makefile = Makefile.replace('$<', input_and_output)
+    input_and_output = ''.join(["$< '",
+                                new_input_file,
+                                "' '",
+                                new_output_file,
+                                "'"])
+    Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
