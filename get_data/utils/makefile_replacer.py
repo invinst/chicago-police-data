@@ -63,15 +63,17 @@ def makefile_updater(input_file, output_file, Makefile):
     for filename in filenames_to_replace:
         if 'input/' in filename  and '/input' not in input_file:
             input_file = 'input/' + input_file
-        if '_profiles' in filename and _'profiles' not in input_file:
-            input_file = input_file.split('.')[0]+'_profiles.csv.gz'
         if '.csv.gz' in filename and '.csv.gz' not in input_file:
             input_file += '.gz'
+        if '_profiles' in filename and '_profiles' not in input_file:
+            input_file = input_file.split('.')[0]+'_profiles.csv.gz'
 
         if 'output/' in filename and '/output' not in output_file:
             output_file = 'output/' + output_file
         if '.csv.gz' in filename and '.csv.gz' not in output_file:
             output_file = output_file + '.gz'
+        if '_profiles' in filename and '_profiles' not in output_file:
+            output_file = output_file.split('.')[0]+'_profiles.csv.gz'
 
         if '/input' in filename:
             Makefile = Makefile.replace(filename, input_file)
