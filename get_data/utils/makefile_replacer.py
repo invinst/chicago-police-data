@@ -70,10 +70,9 @@ def makefile_updater(input_file, output_file, Makefile):
         elif '.csv.gz' in filename and '.csv.gz' not in input_file:
             input_file += '.gz'
             Makefile = Makefile.replace(filename, input_file)
-        else:
+        elif 'input/' in filename:
             Makefile = Makefile.replace(filename, input_file)
-
-        if '_profiles' in filename and '_profiles' not in output_file:
+        elif '_profiles' in filename and '_profiles' not in output_file:
             output_file = output_file.split('.')[0]+'_profiles.csv.gz'
             Makefile = Makefile.replace(filename, output_file)
         elif 'output/' in filename and 'output/' not in output_file:
@@ -82,8 +81,10 @@ def makefile_updater(input_file, output_file, Makefile):
         elif '.csv.gz' in filename and '.csv.gz' not in output_file:
             output_file = output_file + '.gz'
             Makefile = Makefile.replace(filename, output_file)
-        else:
+        elif 'output/' in filename:
             Makefile = Makefile.replace(filename, output_file)
+        else:
+            logging.info(f'{filename} neither input nor output')
     # passing parameters to python job
     input_and_output = ''.join(["$< '", input_file, "' '", output_file, "'"])
     # Makefile = Makefile.replace('$<', input_and_output)
