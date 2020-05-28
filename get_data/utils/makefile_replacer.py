@@ -61,33 +61,25 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace += regex.findall(Makefile)
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
-        if 'input/' in filename:
-            if '.csv.gz' in filename:
-                if 'input/' in input_file:
-                    input_file = input_file + '.gz'
-                else:
-                    input_file = 'input/' + input_file + '.gz'
-            else:
-                if 'input/' in input_file:
-                    input_file = input_file
-                else:
-                    input_file = 'input/' + input_file
+        if 'input/' in filename  and '/input' not in input_file:
+            input_file = 'input/' + input_file
+        if '_profiles' in filename and _'profiles' not in input_file:
+            input_file = input_file.split('.')[0]+'_profiles.csv.gz'
+        if '.csv.gz' in filename and '.csv.gz' not in input_file:
+            input_file += '.gz'
+
+        if 'output/' in filename and '/output' not in output_file:
+            output_file = 'output/' + output_file
+        if '.csv.gz' in filename and '.csv.gz' not in output_file:
+            output_file = output_file + '.gz'
+
+        if '/input' in filename:
             Makefile = Makefile.replace(filename, input_file)
-        elif 'output/' in filename:
-            if '.csv.gz' in filename:
-                if 'output/' in output_file:
-                    output_file = output_file + '.gz'
-                else:
-                    output_file = 'output/' + output_file + '.gz'
-            else:
-                if 'output/' in output_file:
-                    output_file = output_file
-                else:
-                    output_file = 'output/' + output_file
+        else:
             Makefile = Makefile.replace(filename, output_file)
         else:
             logging.info("Neither input nor output: {}".format(filename))
     # passing parameters to python job
     input_and_output = ''.join(["$< '", input_file, "' '", output_file, "'"])
-    Makefile = Makefile.replace('$<', input_and_output)
+    # Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
