@@ -96,6 +96,6 @@ def makefile_updater(input_file, output_file, Makefile):
                                 "'"])
     # passing extra parameter if it exists
     if extra_output_file != '':
-        input_and_output = input_and_output " '" + extra_output_file + "'"
+        input_and_output = input_and_output + " '" + extra_output_file + "'"
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
