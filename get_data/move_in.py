@@ -179,6 +179,7 @@ if __name__ == "__main__":
         makefile_paths = mr.makefile_finder(starting_path)
         LOG.info('********')
         LOG.info('Makefile Paths: {}'.format(makefile_paths))
+        LOG.info(f'Input File: {input}')
         mr.update_makefiles(input,
                             ARGUMENTS.new_name,
                             makefile_paths)
