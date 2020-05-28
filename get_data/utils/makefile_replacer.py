@@ -94,13 +94,11 @@ def makefile_updater(input_file, output_file, Makefile):
             argument_dict['input_file'] = new_input_file
         elif 'input/' in new_input_file and '_profiles' in new_input_file:
             argument_dict['input_profile_file'] = new_input_file
-        elif 'output/' in new_output_file and '_profiles' not in new_output_file:
+        if 'output/' in new_output_file and '_profiles' not in new_output_file:
             argument_dict['output_file'] = new_output_file
         elif 'output/' in new_output_file and '_profiles' in new_output_file:
             argument_dict['output_profile_file'] = new_output_file
     # passing parameters to python job
-    print('Here is the argument_dict')
-    print(argument_dict)
     if len(argument_dict) == 2:
         input_and_output = "$< '" + \
             "' '".join([argument_dict['input_file'],
