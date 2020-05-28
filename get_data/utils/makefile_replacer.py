@@ -63,6 +63,7 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace = [filename.strip() for filename
                             in filenames_to_replace]
     extra_output_file = ''
+    argument_dict = {}
     for filename in filenames_to_replace:
         new_input_file = input_file
         new_output_file = output_file
@@ -89,7 +90,6 @@ def makefile_updater(input_file, output_file, Makefile):
         else:
             logging.info(f'{filename} neither input nor output')
 
-        argument_dict = {}
         if 'input/' in new_input_file and '_profiles' not in new_input_file:
             argument_dict['input_file'] = new_input_file
         elif 'input/' in new_input_file and '_profiles' in new_input_file:
