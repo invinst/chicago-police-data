@@ -61,6 +61,10 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace += regex.findall(Makefile)
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
+        print(filename)
+        print(input_file)
+        print(output_file)
+        print('*********************************************')
         if '_profiles' in filename and '_profiles' not in input_file:
             new_file = input_file.split('.')[0]+'_profiles.csv.gz'
             Makefile = Makefile.replace(filename, new_file)
