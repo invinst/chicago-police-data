@@ -81,7 +81,6 @@ def makefile_updater(input_file, output_file, Makefile):
             new_output_file = new_output_file.split('.')[0]+'_profiles.csv.gz'
         if 'output/' in filename and 'output/' not in output_file:
             new_output_file = 'output/' + new_output_file
-            Makefile = Makefile.replace(filename, new_file)
         if '.csv.gz' in filename and '.csv.gz' not in output_file:
             new_output_file = output_file + '.gz'
 
