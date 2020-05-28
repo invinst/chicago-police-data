@@ -77,7 +77,7 @@ def makefile_updater(input_file, output_file, Makefile):
 
         if '/input' in filename:
             Makefile = Makefile.replace(filename, input_file)
-        else:
+        elif '/output' in filename:
             Makefile = Makefile.replace(filename, output_file)
         else:
             logging.info("Neither input nor output: {}".format(filename))
