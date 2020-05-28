@@ -98,6 +98,8 @@ def makefile_updater(input_file, output_file, Makefile):
             argument_dict['output_file'] = new_output_file
         elif 'output/' in new_output_file and '_profiles' in new_output_file:
             argument_dict['output_profile_file'] = new_output_file
+    print("here are the arguments:")
+    print(argument_dict)
     # passing parameters to python job
     if len(argument_dict) == 2:
         input_and_output = "$< '" + \
