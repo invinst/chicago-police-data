@@ -62,25 +62,25 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
         if '_profiles' in filename and '_profiles' not in input_file:
-            input_file = input_file.split('.')[0]+'_profiles.csv.gz'
-            Makefile = Makefile.replace(filename, input_file)
+            new_file = input_file.split('.')[0]+'_profiles.csv.gz'
+            Makefile = Makefile.replace(filename, new_file)
         elif 'input/' in filename  and 'input/' not in input_file:
-            input_file = 'input/' + input_file
-            Makefile = Makefile.replace(filename, input_file)
+            new_file = 'input/' + input_file
+            Makefile = Makefile.replace(filename, new_file)
         elif '.csv.gz' in filename and '.csv.gz' not in input_file:
-            input_file += '.gz'
-            Makefile = Makefile.replace(filename, input_file)
+            new_file = input_file + '.gz'
+            Makefile = Makefile.replace(filename, new_file)
         elif 'input/' in filename:
             Makefile = Makefile.replace(filename, input_file)
         elif '_profiles' in filename and '_profiles' not in output_file:
-            output_file = output_file.split('.')[0]+'_profiles.csv.gz'
-            Makefile = Makefile.replace(filename, output_file)
+            new_file = output_file.split('.')[0]+'_profiles.csv.gz'
+            Makefile = Makefile.replace(filename, new_file)
         elif 'output/' in filename and 'output/' not in output_file:
-            output_file = 'output/' + output_file
-            Makefile = Makefile.replace(filename, output_file)
+            new_file = 'output/' + output_file
+            Makefile = Makefile.replace(filename, new_file)
         elif '.csv.gz' in filename and '.csv.gz' not in output_file:
-            output_file = output_file + '.gz'
-            Makefile = Makefile.replace(filename, output_file)
+            new_file = output_file + '.gz'
+            Makefile = Makefile.replace(filename, new_file)
         elif 'output/' in filename:
             Makefile = Makefile.replace(filename, output_file)
         else:
