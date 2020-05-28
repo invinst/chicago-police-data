@@ -61,26 +61,29 @@ def makefile_updater(input_file, output_file, Makefile):
     filenames_to_replace += regex.findall(Makefile)
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
-        if 'input/' in filename  and 'input/' not in input_file:
-            input_file = 'input/' + input_file
-        if '.csv.gz' in filename and '.csv.gz' not in input_file:
-            input_file += '.gz'
         if '_profiles' in filename and '_profiles' not in input_file:
             input_file = input_file.split('.')[0]+'_profiles.csv.gz'
+            Makefile = Makefile.replace(filename, input_file)
+        elif 'input/' in filename  and 'input/' not in input_file:
+            input_file = 'input/' + input_file
+            Makefile = Makefile.replace(filename, input_file)
+        elif '.csv.gz' in filename and '.csv.gz' not in input_file:
+            input_file += '.gz'
+            Makefile = Makefile.replace(filename, input_file)
+        else:
+            Makefile = Makefile.replace(filename, input_file)
 
-        if 'output/' in filename and 'output/' not in output_file:
-            output_file = 'output/' + output_file
-        if '.csv.gz' in filename and '.csv.gz' not in output_file:
-            output_file = output_file + '.gz'
         if '_profiles' in filename and '_profiles' not in output_file:
             output_file = output_file.split('.')[0]+'_profiles.csv.gz'
-
-        if 'input/' in filename:
-            Makefile = Makefile.replace(filename, input_file)
-        elif 'output/' in filename:
+            Makefile = Makefile.replace(filename, output_file)
+        elif 'output/' in filename and 'output/' not in output_file:
+            output_file = 'output/' + output_file
+            Makefile = Makefile.replace(filename, output_file)
+        elif '.csv.gz' in filename and '.csv.gz' not in output_file:
+            output_file = output_file + '.gz'
             Makefile = Makefile.replace(filename, output_file)
         else:
-            logging.info("Neither input nor output: {}".format(filename))
+            Makefile = Makefile.replace(filename, output_file)
     # passing parameters to python job
     input_and_output = ''.join(["$< '", input_file, "' '", output_file, "'"])
     # Makefile = Makefile.replace('$<', input_and_output)
