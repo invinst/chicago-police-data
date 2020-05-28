@@ -88,14 +88,25 @@ def makefile_updater(input_file, output_file, Makefile):
             Makefile = Makefile.replace(filename, new_output_file)
         else:
             logging.info(f'{filename} neither input nor output')
+
+        argument_dict = {}
+        if 'input/' in new_input_file and '_profiles' not in new_input_file:
+            argument_dict['input_file'] = new_input_file
+        elif 'input/' in new_input_file and '_profiles' in new_input_file:
+            argument_dict['input_profile_file'] = new_input_file
+        elif 'output/' in new_output_file and '_profiles' not in new_output_file:
+            argument_dict['output_file'] = new_output_file
+        elif 'output/' in new_output_file and '_profiles' in new_output_file:
+            argument_dict['output_profile_file'] = new_output_file
     # passing parameters to python job
-    input_and_output = ''.join(["$< '",
-                                new_input_file,
-                                "' '",
-                                new_output_file,
-                                "'"])
-    # passing extra parameter if it exists
-    if extra_output_file != '':
-        input_and_output = input_and_output + " '" + extra_output_file + "'"
+    if len(argument_dict) == 2:
+        input_and_output = "$< '" + \
+            "' '".join([argument_dict['input_file'],
+                        argument_dict['output_file']) + "'"
+    elif len(argument_dict) == 3:
+        input_and_output = "$< '" + \
+            "' '".join([argument_dict['input_file'],
+                        argument_dict['input_profile_file'],
+                        argument_dict['output_file']) + "'"
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
