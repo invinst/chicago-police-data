@@ -62,6 +62,7 @@ def makefile_updater(input_file, output_file, Makefile):
     # removing extra whitespaces from the only .csv
     filenames_to_replace = [filename.strip() for filename
                             in filenames_to_replace]
+    extra_output_file = ''
     for filename in filenames_to_replace:
         new_input_file = input_file
         new_output_file = output_file
@@ -77,6 +78,7 @@ def makefile_updater(input_file, output_file, Makefile):
 
         if '_profiles' in filename and '_profiles' not in new_output_file:
             new_output_file = new_output_file.split('.')[0]+'_profiles.csv.gz'
+            extra_output_file = new_output_file
         if 'output/' in filename and 'output/' not in new_output_file:
             new_output_file = 'output/' + new_output_file
         if '.csv.gz' in filename and '.csv.gz' not in new_output_file:
@@ -92,5 +94,8 @@ def makefile_updater(input_file, output_file, Makefile):
                                 "' '",
                                 new_output_file,
                                 "'"])
+    # passing extra parameter if it exists
+    if extra_output_file != '':
+        input_and_output = input_and_output " '" + extra_output_file + "'"
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
