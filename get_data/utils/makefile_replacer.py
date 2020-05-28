@@ -102,11 +102,11 @@ def makefile_updater(input_file, output_file, Makefile):
     if len(argument_dict) == 2:
         input_and_output = "$< '" + \
             "' '".join([argument_dict['input_file'],
-                        argument_dict['output_file']) + "'"
+                        argument_dict['output_file']]) + "'"
     elif len(argument_dict) == 3:
         input_and_output = "$< '" + \
             "' '".join([argument_dict['input_file'],
                         argument_dict['input_profile_file'],
-                        argument_dict['output_file']) + "'"
+                        argument_dict['output_file']]) + "'"
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
