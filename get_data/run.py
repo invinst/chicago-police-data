@@ -31,8 +31,8 @@ def get_output_filename(path):
         and 'metadata_' not in x
         and 'missing_' not in x)]
     LOG.info("Files: {}".format(files))
-    if len(files) == 1:
-        return files[0]
+    if len(files) <= 2:
+        return files
     else:
         raise ValueError('Incorrect number of files: {}'.format(files))
 
@@ -41,23 +41,24 @@ def move_file_from_input_to_output(folder_path,
                                    submodule,
                                    structure):
     input_path = '/'.join([folder_path, submodule, 'output'])
-    filename = get_output_filename(input_path)
-    in_path = '/'.join([input_path, filename])
-    if submodule == 'import':
-        out_path = '/'.join([folder_path, 'clean', 'input', filename])
-    if submodule == 'clean':
-        if 'assign-unique-ids' in structure:
-            out_path = '/'.join([folder_path, 'assign-unique-ids',
-                                 'input', filename])
-        else:
-            out_path = '/'.join([folder_path, 'export',
-                                 'input', filename])
-    if submodule == 'assign-unique-ids':
-        out_path = '/'.join([folder_path, 'export', 'input', filename])
-    LOG.info('Moving file from: {}'.format(in_path))
-    LOG.info('Moving file to: {}'.format(out_path))
-    LOG.info('****************************')
-    copy(in_path, out_path)
+    files = get_output_filename(input_path)
+    for filename in files:
+        in_path = '/'.join([input_path, filename])
+        if submodule == 'import':
+            out_path = '/'.join([folder_path, 'clean', 'input', filename])
+        if submodule == 'clean':
+            if 'assign-unique-ids' in structure:
+                out_path = '/'.join([folder_path, 'assign-unique-ids',
+                                     'input', filename])
+            else:
+                out_path = '/'.join([folder_path, 'export',
+                                     'input', filename])
+        if submodule == 'assign-unique-ids':
+            out_path = '/'.join([folder_path, 'export', 'input', filename])
+        LOG.info('Moving file from: {}'.format(in_path))
+        LOG.info('Moving file to: {}'.format(out_path))
+        LOG.info('****************************')
+        copy(in_path, out_path)
 
 
 def execute_folder(folder_path):
