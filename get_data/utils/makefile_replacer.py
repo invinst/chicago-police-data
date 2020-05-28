@@ -57,7 +57,7 @@ def makefile_updater(input_file, output_file, Makefile):
     regex = re.compile(r'[^ \t\n]*.xlsx')
     filenames_to_replace += regex.findall(Makefile)
     # find all .csv only
-    regex = re.compile(r'[^ \t\n]*.csv')
+    regex = re.compile(r'[^ \t\n]*.csv[^ \t\n]')
     filenames_to_replace += regex.findall(Makefile)
     filenames_to_replace = list(set(filenames_to_replace))
     for filename in filenames_to_replace:
@@ -65,28 +65,28 @@ def makefile_updater(input_file, output_file, Makefile):
         print(input_file)
         print(output_file)
         print('*********************************************')
+        new_input_file = input_file
+        new_output_file = output_file
         if '_profiles' in filename and '_profiles' not in input_file:
-            new_file = input_file.split('.')[0]+'_profiles.csv.gz'
+            new_input_file = new_input_file.split('.')[0]+'_profiles.csv.gz'
+        if 'input/' in filename  and 'input/' not in input_file:
+            new_input_file = 'input/' + new_input_file
+        if '.csv.gz' in filename and '.csv.gz' not in input_file:
+            new_input_file = new_input_file + '.gz'
+
+        if 'input/' in new_input_file:
+            Makefile = Makefile.replace(filename, new_input_file)
+
+        if '_profiles' in filename and '_profiles' not in output_file:
+            new_output_file = new_output_file.split('.')[0]+'_profiles.csv.gz'
+        if 'output/' in filename and 'output/' not in output_file:
+            new_output_file = 'output/' + new_output_file
             Makefile = Makefile.replace(filename, new_file)
-        elif 'input/' in filename  and 'input/' not in input_file:
-            new_file = 'input/' + input_file
-            Makefile = Makefile.replace(filename, new_file)
-        elif '.csv.gz' in filename and '.csv.gz' not in input_file:
-            new_file = input_file + '.gz'
-            Makefile = Makefile.replace(filename, new_file)
-        elif 'input/' in filename:
-            Makefile = Makefile.replace(filename, input_file)
-        elif '_profiles' in filename and '_profiles' not in output_file:
-            new_file = output_file.split('.')[0]+'_profiles.csv.gz'
-            Makefile = Makefile.replace(filename, new_file)
-        elif 'output/' in filename and 'output/' not in output_file:
-            new_file = 'output/' + output_file
-            Makefile = Makefile.replace(filename, new_file)
-        elif '.csv.gz' in filename and '.csv.gz' not in output_file:
-            new_file = output_file + '.gz'
-            Makefile = Makefile.replace(filename, new_file)
-        elif 'output/' in filename:
-            Makefile = Makefile.replace(filename, output_file)
+        if '.csv.gz' in filename and '.csv.gz' not in output_file:
+            new_output_file = output_file + '.gz'
+
+        if 'output/' in new_output_file:
+            Makefile = Makefile.replace(filename, new_output_file)
         else:
             logging.info(f'{filename} neither input nor output')
     # passing parameters to python job
