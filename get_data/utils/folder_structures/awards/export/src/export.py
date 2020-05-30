@@ -66,6 +66,13 @@ po_ids = df.loc[(df['rank'].isin(po_ranks)) |
                 cons.id].unique()
 
 df_rows = df.shape[0]
+# handling special cases from 2019 file
+if 'requester_last_name' in df.columns:
+    df['requester_full_name'] = (df['requester_last_name'] + ", " +
+                                 df['requester_first_name'] + " " +
+                                 df['requester_middle_initial']).str.strip()
+if 'tracking_no' not in df.columns:
+    df['tracking_no'] = 'Unknown'
 df = df[['row_id', cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 
