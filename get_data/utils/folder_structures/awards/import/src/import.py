@@ -42,8 +42,12 @@ def get_setup():
 
 cons, log = get_setup()
 
+try:
+    df = pd.read_csv(cons.input_file)
+except pandas.errors.ParserError:
+    log.info('Reading from XLSX file:')
+    df = pd.read_excel(cons.input_file)
 
-df = pd.read_csv(cons.input_file)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.insert(0, 'row_id', df.index+1)
 df.to_csv(cons.output_file, **cons.csv_opts)

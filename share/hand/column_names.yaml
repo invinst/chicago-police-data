@@ -217,6 +217,7 @@
     LAST_PROMOTION_DATE:    last_promotion_date
     RESIGNATION_DATE:       resignation_date
     PPS_AWARD_DETAIL_ID:    pps_award_detail_id
+    AWARD_ID:               pps_award_detail_id
     AWARD_TYPE:             award_type
     AWARD_REQUEST_DATE:     award_request_date
     TRACKING_NO:            tracking_no
