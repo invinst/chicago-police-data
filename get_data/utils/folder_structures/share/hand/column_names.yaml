@@ -206,24 +206,37 @@
 
 'awards_1967-2017_2017-08_p061715':
     LAST_NME:               last_name
+    AWARDEE_LASTN:          last_name
     FIRST_NME:              first_name
+    AWARDEE_FIRSTN:         first_name
     MIDDLE_INITIAL:         middle_initial
+    AWARDEE_MI:             middle_initial
     BIRTH_YEAR:             birth_year
+    BIRTHYEAR:              birth_year
+    SEX:                    gender
     GENDER:                 gender
     RACE:                   race
+    CPD_STAR_NO:            current_star
     STAR:                   current_star
     APPOINTED_DATE:         appointed_date
     RANK:                   rank
+    AWARDEE_RANK:           rank
+    SENIORITY_DATE:         last_promotion_date
     LAST_PROMOTION_DATE:    last_promotion_date
     RESIGNATION_DATE:       resignation_date
     PPS_AWARD_DETAIL_ID:    pps_award_detail_id
     AWARD_TYPE:             award_type
     AWARD_REQUEST_DATE:     award_request_date
+    AWARD_REF_NUMBER:       pps_award_detail_id
     TRACKING_NO:            tracking_no
     CURRENT_STATUS:         current_award_status
     REQUESTER:              requester_full_name
+    REQ_LASTN:              requester_last_name
+    REQ_FIRSTN:             requester_first_name
+    REQ_MI:                 requester_middle_initial
     INCIDENT_START_DATE:    award_start_date
     INCIDENT_END_DATE:      award_end_date
+    INCIDENT_DESCR:         award_description
     CEREMONY_DATE:          ceremony_date
     AWARD_ID:               pps_award_detail_id
     DELAYED_REASON:         delayed_reason
