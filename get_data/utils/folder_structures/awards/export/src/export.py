@@ -35,7 +35,8 @@ def get_setup():
             'award_end_date', 'rank', 'last_promotion_date',
             'requester_full_name', 'ceremony_date', 'tracking_no'
             ],
-        'id': sys.argv[1] + '_ID'
+        # remove file path info
+        'id': sys.argv[1].split('/')[1].split('.')[0] + '_ID'
         }
 
     assert (args['input_file'].startswith('input/') and
