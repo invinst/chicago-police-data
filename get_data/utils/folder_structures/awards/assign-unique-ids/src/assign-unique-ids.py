@@ -39,7 +39,7 @@ def get_setup():
             'middle_initial', 'middle_initial2',
             'birth_year', 'current_star', 'resignation_date'
             ],
-        'id': sys.argv[1] + '_ID'
+        'id': sys.argv[1].split('/')[1].split('.')[0] + '_ID'
         }
 
     assert (args['input_file'].startswith('input/') and

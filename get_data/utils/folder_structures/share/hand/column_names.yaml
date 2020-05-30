@@ -225,7 +225,7 @@
     INCIDENT_START_DATE:    award_start_date
     INCIDENT_END_DATE:      award_end_date
     CEREMONY_DATE:          ceremony_date
-    AWARD_ID:               award_id
+    AWARD_ID:               pps_award_detail_id
     DELAYED_REASON:         delayed_reason
 
 'complaints-accused_1967-1999_2016-12_':
