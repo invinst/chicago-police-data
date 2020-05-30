@@ -44,7 +44,7 @@ cons, log = get_setup()
 
 try:
     df = pd.read_csv(cons.input_file)
-except pandas.errors.ParserError:
+except pd.errors.ParserError:
     log.info('Reading from XLSX file:')
     df = pd.read_excel(cons.input_file)
 
