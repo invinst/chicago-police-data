@@ -60,9 +60,11 @@ with open(shared_path + "/share/hand/award_po_ranks.yaml", "r") as f:
 with open(shared_path + "/share/hand/maybe_po_ranks.yaml", "r") as f:
     maybe_po_ranks = yaml.load(f)
 
-po_ranks_no_id = [x.split('-')[1].trim() for x in po_ranks]
+# if ranks in file are missing ids
+po_ranks_no_id = [x.split('-')[1].strip() for x in po_ranks]
 
 po_ids = df.loc[(df['rank'].isin(po_ranks)) |
+                (df['rank'].isin(po_ranks_no_id))
                 ((df['rank'].isin(maybe_po_ranks)) &
                  (df['appointed_date'] < "2010-01-01")),
                 cons.id].unique()
