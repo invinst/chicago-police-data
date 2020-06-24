@@ -46,8 +46,11 @@ try:
     df = pd.read_csv(cons.input_file)
 except pd.errors.ParserError:
     log.info('Reading from XLSX file:')
-    df = pd.read_excel(cons.input_file)
-
+    try:
+        df = pd.read_excel(cons.input_file, sheet_name=1)
+    except IndexError:
+        log.info('Reading the first tab')
+        df = pd.read_excel(cons.input_file, sheet_name=0)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.insert(0, 'row_id', df.index+1)
 df.to_csv(cons.output_file, **cons.csv_opts)
