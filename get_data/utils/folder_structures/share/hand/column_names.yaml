@@ -212,17 +212,23 @@
     MIDDLE_INITIAL:         middle_initial
     AWARDEE_MI:             middle_initial
     BIRTH_YEAR:             birth_year
+    AWARDEE_BIRTHYEAR:      birth_year
     BIRTHYEAR:              birth_year
+    AWARDEE_SEX:            gender
     SEX:                    gender
     GENDER:                 gender
+    AWARDEE_RACE:           race
     RACE:                   race
+    AWARDEE_STAR_NO:        current_star
     CPD_STAR_NO:            current_star
     STAR:                   current_star
     APPOINTED_DATE:         appointed_date
     RANK:                   rank
     AWARDEE_RANK:           rank
+    AWARDEE_TITLE_CURR:     rank
     SENIORITY_DATE:         last_promotion_date
     LAST_PROMOTION_DATE:    last_promotion_date
+    LAST_PROMOTION_SENIORITY_DATE: last_promotion_date
     RESIGNATION_DATE:       resignation_date
     PPS_AWARD_DETAIL_ID:    pps_award_detail_id
     AWARD_TYPE:             award_type
@@ -231,9 +237,16 @@
     TRACKING_NO:            tracking_no
     CURRENT_STATUS:         current_award_status
     REQUESTER:              requester_full_name
+    REQ_NAME:               requester_full_name
     REQ_LASTN:              requester_last_name
     REQ_FIRSTN:             requester_first_name
     REQ_MI:                 requester_middle_initial
+    REQ_RACE:               requester_race
+    REQ_BIRTH_YEAR:         requester_birth_year
+    REQ_SEX:                requester_gender
+    REQ_APPOINTED_DATE:     requester_appointed_date
+    REQ_STAR_NO_AT_TIME:    requester_current_star
+    REQ_CURR_TITLE:         requester_rank
     INCIDENT_START_DATE:    award_start_date
     INCIDENT_END_DATE:      award_end_date
     INCIDENT_DESCR:         award_description
