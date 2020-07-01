@@ -26,7 +26,7 @@ def run_container(dropbox_path):
             'disk_space': 5,
         },
         repo_http_uri='https://github.com/invinst/chicago-police-data.git',
-        repo_ref='master',
+        repo_ref='removed_csvs',
         docker_command=f'''cd app
 pip install -r requirements.txt
 python -m get_data.run --path_to_execute {dropbox_path}''',
