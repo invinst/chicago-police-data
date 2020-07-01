@@ -30,7 +30,13 @@ def process_data(filename):
     logging.info("File loaded")
 
     # Sterilize CB NOs
-    main_df = xl_wb.parse("Sheet1")
+    sheet_name = "Sheet1"
+    try:
+        main_df = xl_wb.parse(sheet_name)
+    # sheet1 isn't always the name
+    except xlrd.biffh.XLRDError:
+        sheet_name = 'TRRData'
+        main_df = xl_wb.parse(sheet_name)
     charges_df = xl_wb.parse("Charges")
     logging.info("Sheets loaded")
 
@@ -136,7 +142,7 @@ def write_files(output_filename,
     logging.info("charges_df written")
 
     for sn in xl_wb.sheet_names:
-        if sn not in ["Sheet1", "Charges"]:
+        if sn not in [sheet_name, "Charges"]:
             xl_wb.parse(sn).to_excel(writer, sn, index=False)
             logging.info("{} sheet written".format(sn))
 
