@@ -142,7 +142,7 @@ def write_files(output_filename,
     logging.info("charges_df written")
 
     for sn in xl_wb.sheet_names:
-        if sn not in [sheet_name, "Charges"]:
+        if sn not in ["Sheet1", "TRRData", "Charges"]:
             xl_wb.parse(sn).to_excel(writer, sn, index=False)
             logging.info("{} sheet written".format(sn))
 
