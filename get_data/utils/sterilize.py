@@ -34,7 +34,7 @@ def process_data(filename):
     try:
         main_df = xl_wb.parse(sheet_name)
     # sheet1 isn't always the name
-    except XLRDError:
+except ValueError:
         sheet_name = 'TRRData'
         main_df = xl_wb.parse(sheet_name)
     charges_df = xl_wb.parse("Charges")
