@@ -103,7 +103,8 @@ def standardize_columns(col_names, file_path_key):
     -------
     standard_cols : list
     """
-    column_names_path = 'hand/column_names.yaml'
+    working_path = '/app/get_data/utils/folder_structures'
+    column_names_path = working_path + '/share/hand/column_names.yaml'
     # Try to read the reference file for converting column names
     with open(column_names_path) as file:
         col_dict = yaml.load(file)

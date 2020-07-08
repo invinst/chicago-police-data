@@ -88,6 +88,7 @@
     STN:                            street
     LOC:                            location
     DTE:                            trr_date
+    DATETIME:                       trr_datetime
     TMEMIL:                         trr_time
     INDOOR_OR_OUTDOOR:              indoor_or_outdoor
     LIGHTING_CONDITION:             lighting_condition
@@ -104,9 +105,11 @@
     TRR_REPORT_ID:      trr_id
     POLAST:             last_name
     POFIRST:            first_name
+    POMI:               middle_initial
     POGNDR:             gender
     PORACE:             race
     POAGE:              age
+    POYTofBIRTH:        birth_year
     APPOINTED_DATE:     appointed_date
     UNITASSG:           unit
     UNITDETAIL:         unit_detail
@@ -141,14 +144,17 @@
 'TRR-statuses_2004-2016_2016-09_p046360':
     TRR_REPORT_ID:  trr_id
     STATUS:         status
+    TRR_STATUS:     status
     STATDATETIME:   status_datetime
     FIRST_NME:      first_name
     LAST_NME:       last_name
+    MI:             middle_initial
     STAR:           star
     RANK:           rank
     SEX:            gender
     MEMBERRACE:     race
     MEMBERAGE:      age
+    YEAROFBIRTH:    birth_year
     APPOINTED_DATE: appointed_date
 
 
