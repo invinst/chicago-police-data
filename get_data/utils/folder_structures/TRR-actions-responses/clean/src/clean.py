@@ -78,8 +78,11 @@ mao_df = pd.DataFrame.from_dict(mao_dict, orient='index')\
     .rename(columns={'index': 'other_description',
                      0: cons.member_action_col})
 mao_df.insert(0, 'person', 'Member Action')
-df = df.merge(mao_df, on=['person', 'other_description'], how='left')
-
+try:
+    df = df.merge(mao_df, on=['person', 'other_description'], how='left')
+except KeyError:
+    df['other_description'] = np.nan
+    df[cons.member_action_col] = np.nan
 subset = ((df[cons.member_action_col].isnull())
           & (df['person'] == 'Member Action'))
 df.loc[subset, cons.member_action_col] = df.loc[subset, 'action']
