@@ -109,7 +109,7 @@
     POGNDR:             gender
     PORACE:             race
     POAGE:              age
-    POYTofBIRTH:        birth_year
+    POYRofBIRTH:        birth_year
     APPOINTED_DATE:     appointed_date
     UNITASSG:           unit
     UNITDETAIL:         unit_detail
