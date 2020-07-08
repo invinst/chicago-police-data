@@ -30,12 +30,12 @@ def get_setup():
         'input_file': sys.argv[1],
         'output_file': sys.argv[2],
         'metadata_file': create_metadata_filename(sys.argv[2]),
-        'main_sheet': 'Sheet1',
+        'main_sheet': 'TRRData',
         'star_sheet': 'Star #',
         'notes_sheet': 'Notes',
         'main_keep_columns': [
             'TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR',
-            'PORACE', 'POAGE', 'APPOINTED_DATE', 'UNITASSG',
+            'PORACE', 'POYRofBIRTH', 'APPOINTED_DATE', 'UNITASSG',
             'UNITDETAIL', 'ASSGNBEAT', 'RANK', 'DUTYSTATUS',
             'POINJURED', 'MEMBER_IN_UNIFORM'
             ],

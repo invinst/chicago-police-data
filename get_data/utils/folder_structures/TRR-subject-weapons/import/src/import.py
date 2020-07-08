@@ -48,19 +48,19 @@ cons, log = get_setup()
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 
-log.info('Parsing columns with \\r\\n due to error in original file')
-er1 = df.loc[25287, 'weapon_description']
-new_rows1 = er1.split('\r\n')
-df.loc[25287, 'weapon_description'] = new_rows1[0]
-df = df.append(pd.DataFrame([i.split('\t') for i in new_rows1[1:]],
-                            columns=df.columns))
-er2 = df.loc[47336, 'weapon_description']
-new_rows2 = er2.split('\r\n')
-new_rows2[-1] = new_rows2[-1] + df.loc[47337, 'trr_id'] + '\t\t'
-df = df.drop(47337)
-df.loc[47336, 'weapon_description'] = new_rows2[0]
-df = df.append(pd.DataFrame([i.split('\t') for i in new_rows2[1:]],
-                            columns=df.columns))
+# log.info('Parsing columns with \\r\\n due to error in original file')
+# er1 = df.loc[25287, 'weapon_description']
+# new_rows1 = er1.split('\r\n')
+# df.loc[25287, 'weapon_description'] = new_rows1[0]
+# df = df.append(pd.DataFrame([i.split('\t') for i in new_rows1[1:]],
+#                             columns=df.columns))
+# er2 = df.loc[47336, 'weapon_description']
+# new_rows2 = er2.split('\r\n')
+# new_rows2[-1] = new_rows2[-1] + df.loc[47337, 'trr_id'] + '\t\t'
+# df = df.drop(47337)
+# df.loc[47336, 'weapon_description'] = new_rows2[0]
+# df = df.append(pd.DataFrame([i.split('\t') for i in new_rows2[1:]],
+ #                            columns=df.columns))
 
 df.to_csv(cons.output_file, **cons.csv_opts)
 
