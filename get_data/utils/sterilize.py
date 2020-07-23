@@ -155,6 +155,7 @@ def write_files(output_filename,
 def sterilize(filename):
     xl_wb, main_df, charges_df = process_data(filename)
     output_filename = filename.split('.')[0] + '_sterilized.xlsx'
+    LOG.info(f'MAIN COLUMNS: {main_df.columns}')
     trr_files = write_files(output_filename,
                             main_df,
                             charges_df,
