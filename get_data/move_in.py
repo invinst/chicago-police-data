@@ -89,6 +89,9 @@ def create_path(data_parent_folder,
                 output_trr_filepath, trr_files = trr_handler(path_to_execute,
                                                              file)
                 output_trr_filename = output_trr_filepath.split('/')[-1]
+                LOG.info(f'Output TRR Filename: {output_trr_filename}')
+                LOG.info(f'file path: {file_path}')
+                LOG.info(f'output_path_dict:{output_path_dict['csv']}')
                 copy(file_path, output_path_dict['csv'] + output_trr_filename)
                 output_path_dict['trr'] = (output_trr_filename)
     return output_path_dict
