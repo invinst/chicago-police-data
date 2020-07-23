@@ -95,7 +95,7 @@ def create_path(data_parent_folder,
                 input_trr_filename = file_path.split('/')[-1]
                 copy(file_path,
                      output_path_dict['csv'] + input_trr_filename)
-                copy(output_trr_filename,
+                copy(output_trr_filepath,
                      output_path_dict['csv'] + output_trr_filename)
                 output_path_dict['trr'] = (output_trr_filename)
     return output_path_dict
