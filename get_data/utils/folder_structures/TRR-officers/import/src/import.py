@@ -54,7 +54,7 @@ def get_setup():
 
 cons, log = get_setup()
 
-for value in cons.note_sheet:
+for value in cons.notes_sheet:
     try:
         notes_df = pd.read_excel(cons.input_file, sheet_name=value,
                             header=None)
