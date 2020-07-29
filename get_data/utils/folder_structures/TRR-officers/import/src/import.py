@@ -32,7 +32,7 @@ def get_setup():
         'metadata_file': create_metadata_filename(sys.argv[2]),
         'main_sheet': 'TRRData',
         'star_sheet': 'Star #',
-        'notes_sheet': 'Notes',
+        'notes_sheet': ['Notes', 'Source Info and Notes'],
         'main_keep_columns': [
             'TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR',
             'PORACE', 'POYRofBIRTH', 'APPOINTED_DATE', 'UNITASSG',
@@ -54,8 +54,12 @@ def get_setup():
 
 cons, log = get_setup()
 
-notes_df = pd.read_excel(cons.input_file, sheet_name=cons.notes_sheet,
-                         header=None)
+for value in cons.note_sheet:
+    try:
+        notes_df = pd.read_excel(cons.input_file, sheet_name=value,
+                            header=None)
+    except ValueError:
+        log.info(f'{value} Not found in sterilized doc')
 notes = '\n'.join(notes_df.ix[notes_df[0].isin([cons.main_sheet,
                                                 cons.star_sheet]),
                               1].dropna())
