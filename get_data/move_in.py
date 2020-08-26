@@ -123,13 +123,14 @@ def handle_complaints(folders,
             if key in file:
                     folder = OFFICER_MAPPER[key]
                     LOG.info('FOLDER OF CHOICE')
-                    LOG.info(os.listdir('get_data/utils/folder_structures'))
-                    LOG.info(os.listdir(folders + folder))
+                    LOG.info(folders + folder)
+                    LOG.info(file)
                     input = folders + folder + '/import/input/' + \
                         file.lower()
                     frozen = output_path_dict['csv'] + file.lower()
                     copy(frozen, input)
         if 'case_info' in file:
+            LOG.info('CASE INFO')
             input = folders + folder + '/import/input/' + \
                 file.lower()
             frozen = output_path_dict['csv'] + file.lower()
