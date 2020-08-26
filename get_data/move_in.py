@@ -242,9 +242,9 @@ if __name__ == "__main__":
         LOG.info('********')
         LOG.info('Makefile Paths: {}'.format(makefile_paths))
         LOG.info(f'Input File: {input}')
-        mr.update_makefiles(input,
-                            ARGUMENTS.new_name,
-                            makefile_paths)
+        #mr.update_makefiles(input,
+        #                    ARGUMENTS.new_name,
+        #                    makefile_paths)
 
     for folder in folder_structure:
         local = ARGUMENTS.folders + folder
