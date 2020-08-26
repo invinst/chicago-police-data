@@ -126,6 +126,8 @@ def handle_complaints(folders,
                     input = folders + folder + '/import/input/' + \
                         file.lower()
                     print(input)
+                    print(frozen)
+                    print('******************')
                     copy(frozen, input)
         if 'case_info' in file:
             input = folders + folder + '/import/input/' + \
