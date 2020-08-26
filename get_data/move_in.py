@@ -118,7 +118,7 @@ def handle_complaints(folders,
                       new_folder_name,
                       output_path_dict):
     input_files = os.listdir(output_path_dict['csv'])
-    other_files = [x for input_files if 'case_info' in x]
+    other_files = [x for x in input_files if 'case_info' in x]
     for key in OFFICER_MAPPER:
         for file in input_files:
             if key in file:
