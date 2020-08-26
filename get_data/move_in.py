@@ -124,12 +124,13 @@ def handle_complaints(folders,
             if key in file:
                     folder = OFFICER_MAPPER[key]
                     LOG.info('FOLDER OF CHOICE')
-                    LOG.info(folders + folder)
-                    LOG.info(file)
                     input = folders + folder + '/import/input/' + \
                         file.lower()
                     frozen = output_path_dict['csv'] + file.lower()
+                    LOG.info(frozen)
+                    LOG.info(input)
                     copy(frozen, input)
+                    LOG.info('Copy Successful')
                     for other_file in other_files:
                         input = folders + folder + '/import/input/' + \
                             other_file.lower()
