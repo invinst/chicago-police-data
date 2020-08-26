@@ -116,8 +116,7 @@ def create_path(data_parent_folder,
 def handle_complaints(folders,
                       folder,
                       new_folder_name,
-                      output_path_dict,
-                      frozen):
+                      output_path_dict):
     input_files = os.listdir(output_path_dict['csv'])
     for file in input_files:
         for key in OFFICER_MAPPER:
@@ -128,10 +127,12 @@ def handle_complaints(folders,
                     print(input)
                     print(frozen)
                     print('******************')
+                    frozen = output_path_dict['csv'] + file.lower()
                     copy(frozen, input)
         if 'case_info' in file:
             input = folders + folder + '/import/input/' + \
                 file.lower()
+            frozen = output_path_dict['csv'] + file.lower()
             copy(frozen, input)
     os.rename(folders+folder, folders+new_folder_name)
 
@@ -182,8 +183,7 @@ def append_to_folder_structure(folders,
             handle_complaints(folders,
                               folder,
                               new_folder_name,
-                              output_path_dict,
-                              frozen)
+                              output_path_dict)
     return new_folder_structure
 
 
@@ -222,7 +222,7 @@ if __name__ == "__main__":
                              ARGUMENTS.data_parent_folder +
                              ARGUMENTS.csv_or_xlsx_location,
                              local_dbx_same=True)
-
+    LOG.info('BEGIN APPENDING TO FOLDER STRUCTURE')
     folder_structure = append_to_folder_structure(ARGUMENTS.folders,
                                                   output_path_dict,
                                                   ARGUMENTS.new_name,
