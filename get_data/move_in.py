@@ -121,21 +121,20 @@ def handle_complaints(folders,
     other_files = [x for x in input_files if 'case_info' in x]
     for key in OFFICER_MAPPER:
         for file in input_files:
-            if key in file:
-                    folder = OFFICER_MAPPER[key]
-                    LOG.info('FOLDER OF CHOICE')
+            if key in file and folder == OFFICER_MAPPER[key]:
+                LOG.info('FOLDER OF CHOICE')
+                input = folders + folder + '/import/input/' + \
+                    file.lower()
+                frozen = output_path_dict['csv'] + file.lower()
+                LOG.info(frozen)
+                LOG.info(input)
+                copy(frozen, input)
+                LOG.info('Copy Successful')
+                for other_file in other_files:
                     input = folders + folder + '/import/input/' + \
-                        file.lower()
-                    frozen = output_path_dict['csv'] + file.lower()
-                    LOG.info(frozen)
-                    LOG.info(input)
+                        other_file.lower()
+                    frozen = output_path_dict['csv'] + other_file.lower()
                     copy(frozen, input)
-                    LOG.info('Copy Successful')
-                    for other_file in other_files:
-                        input = folders + folder + '/import/input/' + \
-                            other_file.lower()
-                        frozen = output_path_dict['csv'] + other_file.lower()
-                        copy(frozen, input)
     os.rename(folders+folder, folders+new_folder_name)
 
 def handle_all_others(folders,
