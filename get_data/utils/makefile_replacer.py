@@ -112,7 +112,7 @@ def makefile_updater(input_file, output_file, Makefile):
         input_and_output = "$< '" + \
             "' '".join([argument_dict['input_file'],
                         argument_dict['input_profile_file'],
-                        argument_dict['output_file']],
+                        argument_dict['output_file'],
                         argument_dict['output_profile_file']]) + "'"
     Makefile = Makefile.replace('$<', input_and_output)
     return Makefile
