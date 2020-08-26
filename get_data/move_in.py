@@ -122,6 +122,8 @@ def handle_complaints(folders,
         for key in OFFICER_MAPPER:
             if key in file:
                     folder = OFFICER_MAPPER[key]
+                    LOG.info('FOLDER OF CHOICE')
+                    LOG.info(os.listdir(folders + folder))
                     input = folders + folder + '/import/input/' + \
                         file.lower()
                     frozen = output_path_dict['csv'] + file.lower()
