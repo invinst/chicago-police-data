@@ -49,7 +49,7 @@ for value in cons.notes_sheet:
     try:
         notes_df = pd.read_excel(cons.input_file, sheet_name=value,
                             header=None)
-    except ValueError:
+    except:
         log.info(f'{value} Not found in sterilized doc')
 notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet,
                               1].dropna())

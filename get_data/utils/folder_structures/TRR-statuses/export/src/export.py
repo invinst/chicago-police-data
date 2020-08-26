@@ -26,11 +26,13 @@ def get_setup():
         logger is used to write logging messages
     '''
     script_path = __main__.__file__
+
+    output_profiles_file = "output/{}".format(sys.argv[3].split('/')[1])
     args = {
         'input_file': sys.argv[1],
-        'input_profiles_file': 'input/TRR-statuses_2004-2016_2016-09_profiles.csv.gz',
-        'output_file': sys.argv[2],
-        'output_profiles_file': 'output/TRR-statuses_2004-2016_2016-09_profiles.csv.gz',
+        'input_profiles_file': sys.argv[2],
+        'output_file': sys.argv[3],
+        'output_profiles_file': output_profiles_file,
         'export_cols': [
             'trr_id', 'rank', 'star', 'status',
             'status_time', 'status_date', 'age'

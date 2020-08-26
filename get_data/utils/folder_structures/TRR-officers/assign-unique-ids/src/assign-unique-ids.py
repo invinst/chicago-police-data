@@ -27,10 +27,14 @@ def get_setup():
         logger is used to write logging messages
     '''
     script_path = __main__.__file__
+
+    output_profiles_file = '{}_profiles.csv.gz'.format(sys.argv[2].split('.')[0])
+
     args = {
         'input_file': sys.argv[1],
         'output_file': sys.argv[2],
-        'output_profiles_file': 'output/TRR-officers_2004-2016_2016-09_profiles.csv.gz',
+        ## UPDATE THIS OUTPUT_PROFILES HARDCODED BULLSHIT
+        'output_profiles_file': output_profiles_file,
         'id_cols': [
             "first_name", "last_name", "first_name_NS", "last_name_NS",
             "middle_initial", 'middle_initial2', "suffix_name",
