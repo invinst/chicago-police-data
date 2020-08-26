@@ -11,6 +11,18 @@ import sys
 
 LOG = logging.getLogger()
 
+OFFICER_MAPPER = {
+    'accused': 'complaints-accused',
+    'civilian_witness': 'complaints-civilian-witnesses',
+    'complainants': 'complaints-complainants',
+    'cpd_witness': 'complaints-CPD-witnesses',
+    'investigator': 'complaints-investigators',
+    'subject': 'complaints-victims',
+    'other_witness': 'complaints-witnesses',
+    'officer_filed': 'officer-filed-complaints',
+}
+
+
 
 def init_args():
     """Init"""
@@ -101,6 +113,42 @@ def create_path(data_parent_folder,
     return output_path_dict
 
 
+def handle_complaints(folders,
+                      folder,
+                      new_folder_name,
+                      output_path_dict,
+                      frozen):
+    input_files = os.listdir(output_path_dict['csv'])
+    for file in input_files:
+        for key in OFFICER_MAPPER:
+            if key in file:
+                    folder = OFFICER_MAPPER[key]
+                    input = folders + folder + '/import/input/' + \
+                        file.lower()
+                    copy(frozen, input)
+        if 'case_info' in file:
+            input = folders + folder + '/import/input/' + \
+                file.lower()
+            copy(frozen, input)
+    os.rename(folders+folder, folders+new_folder_name)
+
+def handle_all_others(folders,
+                      folder,
+                      new_folder_name,
+                      output_path_dict,
+                      frozen):
+    input = folders + folder + '/import/input/' + \
+        output_path_dict['csv_file'].lower()
+    copy(frozen, input)
+    # handling sterilized
+    if 'trr' in output_path_dict:
+        frozen = output_path_dict['csv'] + \
+            output_path_dict['trr'].lower()
+        input = folders + folder + '/import/input/' + \
+            output_path_dict['trr'].lower()
+        copy(frozen, input)
+    os.rename(folders+folder, folders+new_folder_name)
+
 def append_to_folder_structure(folders,
                                output_path_dict,
                                folder_parameter_name,
@@ -119,17 +167,19 @@ def append_to_folder_structure(folders,
         new_folder_structure.append(new_folder_name)
         frozen = output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
-        input = folders + folder + '/import/input/' + \
-            output_path_dict['csv_file'].lower()
-        copy(frozen, input)
-        # handling sterilized
-        if 'trr' in output_path_dict:
-            frozen = output_path_dict['csv'] + \
-                output_path_dict['trr'].lower()
-            input = folders + folder + '/import/input/' + \
-                output_path_dict['trr'].lower()
-            copy(frozen, input)
-        os.rename(folders+folder, folders+new_folder_name)
+
+        if file_type != 'complaints':
+            handle_all_others(folders,
+                              folder,
+                              new_folder_name,
+                              output_path_dict,
+                              frozen)
+        else:
+            handle_complaints(folders,
+                              folder,
+                              new_folder_name,
+                              output_path_dict,
+                              frozen)
     return new_folder_structure
 
 
