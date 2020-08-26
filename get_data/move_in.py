@@ -15,7 +15,7 @@ OFFICER_MAPPER = {
     'accused': 'complaints-accused',
     'civilian_witness': 'complaints-civilian-witnesses',
     'complainants': 'complaints-complainants',
-    'cpd_witness': 'complaints-CPD-witnesses',
+    'cpd_witness': 'complaints-cpd-witnesses',
     'investigator': 'complaints-investigators',
     'subject': 'complaints-victims',
     'other_witness': 'complaints-witnesses',
