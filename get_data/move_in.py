@@ -125,6 +125,7 @@ def handle_complaints(folders,
                     folder = OFFICER_MAPPER[key]
                     input = folders + folder + '/import/input/' + \
                         file.lower()
+                    print(input)
                     copy(frozen, input)
         if 'case_info' in file:
             input = folders + folder + '/import/input/' + \
@@ -168,13 +169,14 @@ def append_to_folder_structure(folders,
         frozen = output_path_dict['csv'] + \
             output_path_dict['csv_file'].lower()
 
-        if file_type != 'complaints':
+        if file_type.lower() != 'complaints':
             handle_all_others(folders,
                               folder,
                               new_folder_name,
                               output_path_dict,
                               frozen)
         else:
+            print(folder)
             handle_complaints(folders,
                               folder,
                               new_folder_name,
