@@ -123,6 +123,7 @@ def handle_complaints(folders,
         for file in input_files:
             if key in file and folder == OFFICER_MAPPER[key]:
                 LOG.info('FOLDER OF CHOICE')
+                LOG.info(folder)
                 input = folders + folder + '/import/input/' + \
                     file.lower()
                 frozen = output_path_dict['csv'] + file.lower()
