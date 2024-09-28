@@ -4,6 +4,9 @@
 *.RData
 .Rhistory
 ##*.ipynb
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
 
 ############
 # packages #

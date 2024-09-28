@@ -1,13 +1,3 @@
-"0","wit_xts <- unique(wit[, c(""Witness"", ""cr_id"")]) %>% 
-  full_join(cmpl.full[, c(""cr_id"", ""incident_month"")]) %>% 
-  select(cr_id, incident_month, Witness) %>%
-  group_by(incident_month) %>%
-  summarise(`All Complaints` = n(),
-            `With Any Witness` = sum(as.numeric(!is.na(Witness)))) %>% 
-  tk_xts(.)
-"
-"2","Joining, by = ""cr_id""
-"
-"2","Non-numeric columns being dropped: incident_month"
-"2","Using column `incident_month` for date_var.
-"
+version https://git-lfs.github.com/spec/v1
+oid sha256:b49bc1b427acaca2a1b98561493b9eb2cc079e0d9b726c94d33721ea8229754f
+size 462

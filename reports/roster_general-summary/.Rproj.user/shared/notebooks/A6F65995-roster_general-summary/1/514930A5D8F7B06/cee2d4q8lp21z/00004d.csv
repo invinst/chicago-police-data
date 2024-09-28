@@ -1,5 +1,3 @@
-"0","proft %>% tk_xts(.) %>% dygraph()
-"
-"2","Non-numeric columns being dropped: race, gender, active_dates"
-"2","Using column `active_dates` for date_var.
-"
+version https://git-lfs.github.com/spec/v1
+oid sha256:d10b786ea0f3391826d7493bc108579832bc67004b1e19f40d2e3d11e3fefc48
+size 158

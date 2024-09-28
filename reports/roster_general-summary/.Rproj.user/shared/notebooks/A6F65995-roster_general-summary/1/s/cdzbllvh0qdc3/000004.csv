@@ -1,16 +1,3 @@
-"0","proft %>%
-  group_by(active_dates, race) %>% tally() %>%
-  select(Year = active_dates, race, n) %>%
-  spread(race, n)  %>% 
-  replace_na(list(""Black"" = 0, ""Hispanic""=0, ""Hispanic""=0,   ""Other""=0, ""White""=0)) %>% 
-  tk_xts(.) %>% 
-  dygraph() %>%
-  dySeries(""Black"", label = ""Black"") %>%
-  dySeries(""White"", label = ""White"") %>%
-  dySeries(""Hispanic"", label = ""Hispanic"") %>%
-  dySeries(""Other"", label = ""Other"") %>%
-  dyLegend(width = 500) %>%
-  dyRangeSelector(dateWindow = c(min(proft$active_dates), max(proft$active_dates)))
-"
-"2","Using column `Year` for date_var.
-"
+version https://git-lfs.github.com/spec/v1
+oid sha256:1526a4ad683a8366f4441e0d51ec9d4a335ced2c6b6338b58803aacf9f856447
+size 602

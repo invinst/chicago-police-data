@@ -1,9 +1,3 @@
-"0","dygraph(tk_xts(cmpl_xts), main = ""Accusations Over Time"") %>% 
-dyRangeSelector() %>% 
-dyLegend(width = 500) %>%
-dyAnnotation(IPRA_Active, text = ""IPRA"", width = 50, height=30, attachAtBottom=T) %>%
-dyShading(from = IPRA_Active, to = '2007-10-01', color='#EE4242') %>%
-dyOptions(stackedGraph = TRUE) %>%
-  dyShading(from = sample_start_ym, to = sample_end_ym)
-"
-"0","rm(cym_pi_tbl, cym_tbl, cmpl_xts)"
+version https://git-lfs.github.com/spec/v1
+oid sha256:24e9bb28e0f2c1153baf28cac5d5afcc13992da8c1893fb5174be6aea7c35513
+size 410

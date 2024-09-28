@@ -1,32 +1,3 @@
-"0","rm(vict, cmplnt, wit)
-cmpl <- cmpl %>%
-  mutate(district = if_else(! is.na(beat) & beat > 1,
-                            beatToDistrict(as.character(beat)), NA_real_),
-         incident_month = floor_date(ymd(incident_date), 'month'),
-         incident_year = year(incident_date)) %>%
-  select(cr_id, incident_date, incident_month, incident_year, incident_time,
-         complaint_date, closed_date, district, complaint_class) %>%
-  unique() %>%
- full_join(acc, by='cr_id')
-stopifnot(nrow(keepDuplicates(cmpl)) == 0)
-cym_tbl <- cmpl %>%
-  select(incident_month, UID, cr_id) %>% 
-  filter(!is.na(UID)) %>%
-  unique() %>% 
-  filter(incident_month < max(incident_month)) %>%
-  select(incident_month) %>%
-  table()
-cym_pi_tbl <- cym_tbl[names(cym_tbl) >= IPRA_Active]
-cmpl_xts <- cmpl %>% 
-  filter(!is.na(UID)) %>% 
-  unique() %>%
-  mutate(incident_month = as.Date(incident_month)) %>% 
-  group_by(incident_month) %>% 
-  summarize(Accusations = n(),
-            Sustained = sum(as.numeric(final_finding=='SU'), na.rm = T)) %>% 
-  tk_xts(.)
-"
-"2","Non-numeric columns being dropped: incident_month"
-"2","Using column `incident_month` for date_var.
-"
-"0","cmpl.full <- cmpl"
+version https://git-lfs.github.com/spec/v1
+oid sha256:6033b20e09166be28dc72e4ac48101c11c0130456c7efb1fd5afba6f4393dc69
+size 1175

@@ -1,27 +1,3 @@
-"0","prof <- read_csv(""../../full-output/profiles/final-profiles.csv.gz"") %>%
-        mutate(gender = recode(gender, MALE = 'Male', FEMALE = 'Female', .default='Unknown'),
-               race = recode(race, BLACK = 'Black', HISPANIC = 'Hispanic', WHITE = 'White', .default = 'Other'),
-               resignation_date = ymd(resignation_date),
-               appointed_date = ymd(appointed_date))
-"
-"2","Parsed with column specification:
-cols(
-  UID = col_integer(),
-  first_name = col_character(),
-  last_name = col_character(),
-  middle_initial = col_character(),
-  middle_initial2 = col_character(),
-  suffix_name = col_character(),
-  birth_year = col_double(),
-  race = col_character(),
-  gender = col_character(),
-  appointed_date = col_date(format = """"),
-  resignation_date = col_date(format = """"),
-  current_status = col_double(),
-  current_star = col_double(),
-  current_unit = col_double(),
-  current_unit_description = col_character(),
-  current_rank = col_character(),
-  profile_count = col_integer()
-)
-"
+version https://git-lfs.github.com/spec/v1
+oid sha256:8638efe9622a78437f6479a3f7ff1ac2613b0fe9c9e70c25685d9298126e59cc
+size 1020
