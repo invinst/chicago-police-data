@@ -20,7 +20,6 @@ def generate_uid_report(full, unique, conflicts, resolved, uids):
              'Total unique ids: {4}\n'
              '').format(full, unique, conflicts, resolved, uids))
 
-
 def split_group(dfm):
     """Use closure check_conflicts() to recursively determine if
        records in a dataframe are same, distinct, or not unresolved (NA)
@@ -41,6 +40,7 @@ def split_group(dfm):
         nonlocal strt
         nonlocal rl
         for col in df.columns:
+            # column is different for every row, 
             if df[col].nunique == df[col].size:
                 for ind, num in zip(df.index, range(df.shape[0])):
                     rl.append([ind, strt])
@@ -96,12 +96,15 @@ def resolve_conflicts(df, id_cols, conflict_cols, uid='id', start_uid=0):
         fl.append(tsa)
         if not np.isnan(tsa[:,1]).all():
             start_uid = np.nanmax(tsa[:,1]) + 1
+    
     odf = pd.DataFrame(np.concatenate(fl,axis=0),
                        columns=['ind', uid])
+
     assert odf.shape[0] == df.shape[0]
     assert set(odf.ind) == set(df.index)
     df = df.merge(odf, left_index=True, right_on='ind', how='inner')\
         .drop('ind',axis=1)
+
     return df
 
 
@@ -135,8 +138,8 @@ def manual_resolve(gdf, uid, start_uid):
     else:
         try:
             gdf[uid] = [int(i) + start_uid for i in user_uids.split(',')]
-        except:
-             print("Sorry bad input. Try that again.")
+        except Exception as e:
+             print(f"Sorry bad input. Try that again. Exception: {e}")
              print(gdf)
              gdf = manual_resolve(gdf, uid, start_uid)
     return gdf
@@ -209,8 +212,8 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
                 for k, g in rc_df[rc_df[uid].isnull()].groupby(id_cols):
                     g[uid] = next_uid
                     next_uid += 1
-                    sdf = sdf.append(g)
-                rc_df = rc_df.dropna(subset=[uid]).append(sdf)
+                    sdf = pd.concat([sdf, g])
+                rc_df = pd.concat([rc_df.dropna(subset=[uid]), sdf])
 
             elif unresolved_policy == 'manual':
                 mr_df = pd.DataFrame()
@@ -219,11 +222,11 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
                     .groupby(id_cols, as_index=False):
                         g = manual_resolve(g, uid, next_uid)
                         next_uid = g[uid].max() + 1
-                        mr_df = mr_df.append(g)
+                        mr_df = pd.concat([mr_df, g])
                 if log:
                     log.info('Unresolved conflicts resolved by "%s" into %d ids'
                              % (unresolved_policy, mr_df[uid].nunique()))
-                rc_df = rc_df.dropna(subset=[uid]).append(mr_df)
+                rc_df = pd.concat([rc_df.dropna(subset=[uid]), mr_df])
 
         rc_df[id_cols] = rc_df[id_cols].replace(-9999, np.nan)
 
@@ -231,7 +234,7 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
             conflicts_resolved = 0
         else:
             conflicts_resolved = rc_df[uid].nunique()
-        df = df.merge(rd_df.append(rc_df),
+        df = df.merge(pd.concat([rd_df, rc_df]),
                       on=id_cols+conflict_cols, how='left')
 
     else:
@@ -243,7 +246,8 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
     assert df[df[uid].isnull()].shape[0] == 0,\
         'Some unique IDs are null:\n%s' % df[df[uid].isnull()]
     assert max(df[uid]) == df[uid].nunique(),\
-        'Unique IDs are not correctly scaled'
+        f'Unique IDs are not correctly scaled, {df.to_string()}'
+
 
     uid_count = max(df[uid])
     uid_report = generate_uid_report(full_row_count, unique_rows,
@@ -255,7 +259,6 @@ def assign_unique_ids(df, uid, id_cols, conflict_cols=None,
         print(uid_report)
 
     return df
-
 
 def order_aggregate(df, id_cols,
                     agg_cols, order_cols,
@@ -297,6 +300,29 @@ def order_aggregate(df, id_cols,
         oa_df = oa_df.merge(ac_df, on=id_cols, how='outer')
     return oa_df
 
+def sorted_order_aggregate(df, uid, col, sort_order):
+    """Aggregates pandas dataframe by grouping by uid
+        and taking first non-NA observation in col in order by sort_order.
+    Parameters
+    ----------
+    df : pandas DataFrame
+    id_cols : list
+        List of column names used for grouping
+    col : str
+        Column name to be aggregated
+    sort_order : list
+        Ordered list of values from col for custom sort: 
+        values not in sort_order will be dropped/not included
+
+    Returns
+    -------
+    soa_df : pandas DataFrame
+
+    Examples
+    --------
+    """
+    assert sort_order.issubset(df[col].unique)
+
 
 def max_aggregate(df, uid, col):
     """Aggregates pandas dataframe by grouping by uid
@@ -326,8 +352,40 @@ def max_aggregate(df, uid, col):
         df = remove_duplicates(df, uid)
         groups = kd_df.groupby(uid, as_index=False)
         groups = groups.agg(np.nanmax)
-        ma_df = df.append(groups).reset_index(drop=True)
+        ma_df = pd.concat([df, groups]).reset_index(drop=True)
     return ma_df
+
+def min_aggregate(df, uid, col):
+    """Aggregates pandas dataframe by grouping by uid
+       and taking minimum (non-NA) observation in col for each group.
+       uids with only NA values in col are not returned in aggregated dataframe.
+    Parameters
+    ----------
+    df : pandas DataFrame
+    uid : str
+        Name of unique ID column
+    col : str
+        Name of column to be aggregated
+
+    Returns
+    -------
+    ma_df : pandas DataFrame
+
+    Examples
+    --------
+    """
+    df = df[[uid, col]].drop_duplicates()
+    df.dropna(axis=0, how='any', inplace=True)
+    kd_df = keep_duplicates(df, uid)
+    if kd_df.empty:
+        ma_df = df
+    else:
+        df = remove_duplicates(df, uid)
+        groups = kd_df.groupby(uid, as_index=False)
+        groups = groups.agg(np.nanmin)
+        ma_df = pd.concat([df, groups]).reset_index(drop=True)
+    return ma_df
+
 
 def mode_aggregate(df, uid, col):
     """Aggregates pandas dataframe by grouping by uid
@@ -360,18 +418,46 @@ def mode_aggregate(df, uid, col):
     else:
         df = remove_duplicates(df, uid)
         groups = kd_df.groupby(uid, as_index=False)
-        groups = groups.aggregate(lambda x:
-                                  stats.mode(x,
-                                             nan_policy='omit').mode[0])
+        groups = groups.aggregate(lambda x: x.mode().iloc[0])
         groups = pd.DataFrame(groups, columns=[uid, col])
-        ma_df =  df.append(groups).reset_index(drop=True)
+        ma_df =  pd.concat([df, groups]).reset_index(drop=True)
     return ma_df
 
+def list_aggregate(df, uid, col):
+    """Aggregates by adding new numbered columns for every unique value of col per uid.
+    Just a pivot, useful for getting id columns per profile and then reshaping back on merge.
+
+    Parameters
+    ----------
+    df : pandas DataFrame
+    uid : str
+        Name of unique ID column
+    col : str
+        Name of column to be aggregated
+
+    Examples
+    --------
+    """
+    la_df = df[[uid, col]].drop_duplicates()
+
+    return la_df.assign(cumcount=col + (df.groupby(uid)[col].cumcount() + 1).astype(str)) \
+            .pivot(index=uid, columns='cumcount', values=col)
+
+def func_aggregate(df, uid, col, func):
+    """Aggregate column of df group by uid on col by applying passed func"""
+    f_df = df.groupby(uid, as_index=False)[col].agg(func)
+
+    return f_df
+
+def first_aggregate(df, uid, col):
+    f_df = df.groupby(uid, as_index=False)[col].first()
+
+    return f_df
 
 def aggregate_data(df, uid, id_cols=[],
-                   mode_cols=[], max_cols=[],
-                   current_cols=[], time_col="",
-                   merge_cols=[], merge_on_cols=[]):
+                   mode_cols=[], max_cols=[], min_cols=[],
+                   current_cols=[], sorted_first_instance_cols=[], time_col="", list_cols=[],
+                   func_cols={}, merge_cols=[], merge_on_cols=[]):
     """Aggregates pandas dataframe by grouping by uid and id_cols.
        Utilizes various forms of aggregation for specified columns:
        mode (most common value), max (maximum value),
@@ -388,6 +474,9 @@ def aggregate_data(df, uid, id_cols=[],
         List of column names used for grouping
     mode_cols : list
         List of columns to be used in mode_aggregate
+    sorted_first_instance_cols: list
+        List of columns to be used in first_aggregate
+        Note: assumes df has already been pre-sorted so that first instance is as desired
     max_cols : list
         List of columns to be used in max_aggregate
     current_cols : list
@@ -419,6 +508,22 @@ def aggregate_data(df, uid, id_cols=[],
         agg_df = agg_df.merge(max_aggregate(df[[uid, col]], uid, col),
                               on=uid, how='left')
 
+    for col in min_cols:
+        agg_df = agg_df.merge(min_aggregate(df[[uid, col]], uid, col), 
+                              on=uid, how='left')
+
+    for col in list_cols:
+        agg_df = agg_df.merge(list_aggregate(df[[uid, col]], uid, col),
+                              on=uid, how='left')
+
+    for col, func in func_cols.items():
+        agg_df = agg_df.merge(func_aggregate(df[[uid, col]], uid, col, func),
+                              on=uid, how='left')
+
+    for col in sorted_first_instance_cols:
+        agg_df = agg_df.merge(first_aggregate(df[[uid, col]], uid, col),
+                              on=uid, how='left')
+
     if current_cols and time_col:
         dfu = df[uid_col + [time_col] + current_cols].drop_duplicates()
         dfu[time_col] = pd.to_datetime(dfu[time_col])
@@ -436,3 +541,206 @@ def aggregate_data(df, uid, id_cols=[],
         assert agg_df.shape[0] == df[uid].nunique(),\
             "Some uids were gained or lost in merge cols step"
     return agg_df
+
+def calculate_possible_ages_as_of_foia_date(df, age_col, date_col, foia_year):
+    """Given a age_col that is point in time (age as of date_col), returns age as of target date. 
+
+
+    Parameters
+    ----------
+    df : DataFrame
+        dataframe with age_col, date_col
+    age_col : str
+        column with point in time age
+    date_col : str
+        column with point in time
+    foia_date : str/datetime
+        date foia was received on, to convert age as of
+    
+    Returns
+    -------
+    DataFrame
+        df with added current_age column
+    """    
+    df[date_col] = pd.to_datetime(df[date_col]) 
+
+    year_diff = foia_year - df[date_col].dt.year
+    possible_current_age = df[age_col] + year_diff
+
+    df['current_age'] = possible_current_age
+
+    return df
+
+
+def get_most_recent_rows(df, id_col, date_col):
+    """Given dataframe, id col and column representing date, returns just rows representing most recent date_col (either current or most recent)
+       Assumes that date_col is something like and "end_date", and gets consider max to be either a null (not terminated) value,
+       or the most recent non-null value. 
+
+       Returns full dataframe filtered to just these rows
+     """
+    # cast just in case
+    df[date_col] = pd.to_datetime(df[date_col])
+
+    # get max value, add to it to construct new known max; makes using existing functions (idxmax) possible while properly handling nulls
+    max_date_value = df[date_col].max() + pd.Timedelta(days=100)
+
+    # get index representing most recent date col
+    max_date_idxs = df.assign(filled_date_col = lambda x: x[date_col].fillna(max_date_value)) \
+        .groupby(id_col, as_index=False) \
+        .agg(max_date_idx = ('filled_date_col', lambda x: x.idxmax()))
+
+    # merge back to filter just most recent date cols
+    return df.reset_index() \
+        .merge(max_date_idxs, left_on=[id_col, 'index'], right_on=[id_col, 'max_date_idx']) \
+        .drop(['index', 'max_date_idx'], axis=1)
+
+def intrafile_dedupe(df, id, id_cols, change_cols, change_filters, 
+                    change_whitelist={}, change_blacklist={}, add_cols={}, log=None):
+    """Deduplicates file from intrafile id changes (e.g., if an officer last name changes between rows of the same file)
+    
+    Parameters
+    ----------
+    df: dataframe 
+        df with interfile changes
+    id: str
+        column name reprsenting initial attempt at assigning id
+    id_cols: list
+        relatively stable columns, those relatively unlikely to change (e.g., last_name_NS)
+        likely used for generating initial id
+    incident_cols: list
+        columns more likely to change (e.g., current_age)
+    allowed changes: list
+        optional, list of changes to actually allow through. 
+
+    Returns
+    -------
+    possible_changes: dictionary mapping columns to possible changes on that column
+    """
+    possible_changes = get_intrafile_changes(df, id, id_cols, change_cols, add_cols)
+
+    return apply_changes(df, id, possible_changes, change_filters, change_whitelist, change_blacklist, log)
+
+def get_intrafile_changes(df, id, id_cols, change_cols, add_cols={}):
+    """Used for getting possible changes within a single df. 
+    Effectively applies blocking then a leave one out self match with stable columns, and a leave 2 out with less stable matches. 
+
+    Parameters
+    ----------
+    df: dataframe 
+        df with interfile changes
+    id: str
+        column name reprsenting initial attempt at assigning id
+    id_cols: list
+        relatively stable columns, those relatively unlikely to change (e.g., last_name_NS)
+        likely used for generating initial id
+    incident_cols: list
+        columns more likely to change (e.g., current_age)
+    allowed changes: list
+        optional, list of changes to actually allow through. 
+
+    Returns
+    -------
+    possible_changes: dictionary mapping columns to possible changes on that column
+    """
+    set_join = lambda x: ', '.join(set(x.astype(str)))
+
+    all_cols = list(set(id_cols + change_cols))
+
+    change_ids = []
+
+    # leave one column out at a time, get possible changes within file
+    changes = {}
+    for change_col in change_cols:
+        id_cols = [col for col in all_cols if col != change_col]
+
+        agg_dict = {
+            "ids": (id, set_join),
+            **{change_col: (change_col, set_join)},
+            "change_count": (id, pd.Series.nunique),
+            "null_count": (change_col, lambda x: x.replace("", np.nan).isnull().sum())}
+
+        if change_col in add_cols:
+            agg_dict.update(add_cols[change_col])
+
+        changes[change_col] = df \
+            .loc[~df[id].isin(change_ids), all_cols + [id]].fillna("") \
+            .groupby(id_cols, as_index=False) \
+            .agg(**agg_dict) \
+            .assign(change_col=change_col) \
+            .query("change_count > 1")
+
+        change_ids += list(changes[change_col].ids.str.split(", ").explode().astype(int).values)
+
+    return changes
+
+def apply_change_to_row(row, id, df):
+    row_df = pd.DataFrame(row).T
+
+    ids = row_df.ids.str.split(", ").explode().astype(int).values
+    first_id = ids[0]
+    other_ids = ids[1:]
+
+    # set other ids to first id
+    df.loc[df[id].isin(other_ids), id] = first_id
+    return df
+
+def filter_changes(changes, change_filters={}, change_whitelist={}, change_blacklist={}):
+    filtered_changes = {}
+    for change_col in changes:
+        if change_col in change_filters:
+            change_df = changes[change_col].query(change_filters[change_col])
+        else:
+            change_df = pd.DataFrame()
+
+        if change_col in change_whitelist:
+            whitelist_df = changes[change_col].query(f"`{change_col}`.isin({change_whitelist[change_col]})", engine='python')
+            change_df = pd.concat([whitelist_df, change_df], axis=0).drop_duplicates()
+
+        if change_col in change_blacklist:
+            change_df = change_df.query(f"~`{change_col}`.isin({change_blacklist[change_col]})", engine="python")
+
+        filtered_changes[change_col] = change_df
+
+    return filtered_changes
+
+def apply_changes(df, id, changes, log=None):
+    """Apply changes to actual df"""
+    change_counts = {}
+
+    for change_col, change_df in changes.items():
+        for _, row in change_df.iterrows():
+            df = apply_change_to_row(row, id, df)
+
+        change_counts[change_col] = change_df.shape[0]
+
+    if log:
+        log.info("Applied change counts:\n" + pd.Series(change_counts, name="Change Counts").to_string())
+
+    return df
+
+
+class Foia:
+    def __init__(self, foia_string):
+        self.foia_string = foia_string
+        self.parse(foia_string)
+
+    def parse(self, foia_string):
+        if foia_string.count("_") == 2:
+            foia_string = foia_string + "_"
+        elif foia_string.count("_") < 2:
+            raise ValueError(f"Unable to parse foia string {foia_string}, less than 2 underscores")
+        
+        self.type, self.date_range, self.date_received, self.foia_number = foia_string.split("_")
+        self.subtype = ""
+
+        self.split_type_subtype()        
+
+    def split_type_subtype(self):
+        types = ['complaints', 'TRR']
+
+        for type in types: 
+            if type in self.type:
+                self.subtype = "-".join(self.type.split("-")[1:])
+                self.type = type
+                break

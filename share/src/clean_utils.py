@@ -44,7 +44,7 @@ class GeneralCleaners:
         cleaned_col : pandas Series
         """
         with open('hand/{}_types.yaml'.format(self.col_type), 'r') as file:
-            type_dict = yaml.load(file)
+            type_dict = yaml.load(file, yaml.FullLoader)
         cleaned_col = self.col.str.upper().replace(type_dict)
         fill_locs =  ~cleaned_col.isin(type_dict.values())
         if (cleaned_col[fill_locs].size > 0 and

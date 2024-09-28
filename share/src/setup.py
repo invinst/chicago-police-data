@@ -6,6 +6,7 @@
 
 import logging
 import sys
+import os
 from collections import namedtuple
 
 
@@ -21,11 +22,11 @@ def get_basic_logger(name, script_path=None):
     stream_out.setFormatter(formatter)
     logger.addHandler(stream_out)
 
-    logfile = 'output/{}.log'.format(script_path[4:-3])
+    logfile = 'output/{}.log'.format(name[:-3])
     file_handler = logging.FileHandler(logfile, mode='w')
     logger.addHandler(file_handler)
 
-    logger.info("running {}".format(script_path))
+    logger.info("running {}".format(name))
     return logger
 
 
@@ -33,9 +34,11 @@ def do_setup(script_path, args, cmdargs=None):
     ''' called at the end of each script's specific get_setup
         or get_args() function.
     '''
+    script_name = os.path.basename(script_path)
+    script_dir = os.path.dirname(script_path)
     # cmdargs = a name space created by argparse.ArgumentParser.parse_args
-    assert script_path.startswith('src/') and script_path.endswith('py')
-    script_name = script_path[4:-3]
+    assert script_dir.endswith('src') and script_name.endswith('.py')
+
     yaml_path = "output/{}.yaml".format(script_name)
 
     def write_yamlvar(var, val):
@@ -60,7 +63,6 @@ def do_setup(script_path, args, cmdargs=None):
     constants = namedtuple('Arguments', constants.keys())(**constants)
     logger = get_basic_logger(script_name, script_path)
     return constants, logger
-
 
 if __name__ == '__main__':
     pass

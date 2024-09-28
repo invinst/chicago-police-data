@@ -8,6 +8,8 @@ import re
 import itertools
 import pandas as pd
 import numpy as np
+import hashlib
+from functools import reduce
 
 def get_default_logger(outpath=None):
     """Creates a default logging object
@@ -128,7 +130,7 @@ def expand_data(collapsed_df, stored_df, temp_id='TempID'):
         .sort_values('Index')\
         .set_index('Index')\
         .drop(temp_id, axis=1)
-    del full_df.index.name
+    full_df.index.name = None
     return full_df
 
 
@@ -279,11 +281,11 @@ def union_group(df, gid, cols, sep = '__', starting_gid=1):
     for col in temp_cols:
         mdf = df[['ROWID', col]].merge(node_df, left_on=col,
                                         right_on='node', how='inner')
-        out_df = out_df.append(mdf[['ROWID', gid]])
+        out_df = pd.concat([out_df, mdf[['ROWID', gid]]])
         df.drop(col, axis=1, inplace=True)
     out_df = df.merge(out_df.drop_duplicates(), on='ROWID', how='left')\
         .set_index('ROWID')
-    del out_df.index.name
+    out_df.index.name = None
     df.drop('ROWID', axis=1, inplace=True)
 
     return out_df
@@ -312,9 +314,9 @@ def reshape_data(df, reshape_col, id_col):
         .drop(reshape_col+'_num', axis=1)
     dropped_ids = list(set(df[id_col]) - set(long_df[id_col]))
     if dropped_ids:
-        long_df = long_df.append(
+        long_df = pd.concat([long_df, 
             df.loc[df[id_col].isin(dropped_ids),
-                   list_diff(long_df.columns, [reshape_col])])
+                   list_diff(long_df.columns, [reshape_col])]], ignore_index=True)
 
     long_df = long_df\
         .drop_duplicates()\
@@ -468,6 +470,135 @@ def list_union(list1, list2, unique=True):
     if unique:
         union_list = list_unique(union_list)
     return union_list
+
+# helper functions
+def fewest_nans(x):
+    nulls = x.apply(lambda x: x.isnull().sum(), axis=1)
+    return x[nulls == nulls.min()].iloc[0]
+
+def resolve(d):
+    nulls = d.apply(lambda x: x.isnull().sum(), axis=1)
+    if nulls.sum() == 1 and d['closed_date'].isnull().any():
+        d = d[nulls == 0]
+    elif d['closed_date'].isnull().all():
+        if nulls.sum()==2:
+            d = d[d['cv']==2]
+        elif nulls.sum()==3:
+            d = d[nulls == 1]
+    elif (nulls.sum() == 2 and
+          d[d['closed_date'].notnull()]['cv'].tolist() == [3] and
+          d[d['incident_date'].notnull()]['cv'].tolist() == [2]):
+        d.loc[d['cv']==3, 'incident_date'] = d['incident_date'].dropna().values[0]
+        d = d[d['cv']==3]
+        assert not d.dropna(how='any').empty
+    elif (nulls.sum() == 0):
+        # proper duplicate due to overlapping data, keep latest
+        d = d[d['cv'] == d['cv'].max()]
+    else:
+        print(d)
+        raise
+    if d.shape[0] > 1:
+        print(d)
+        raise 
+    return d
+
+def combine_dfs(dfs, col_funcs, keep_cols=None):
+    # filter columns by provided cols subset
+    # col_funcs maps col to function for combining
+    if keep_cols:
+        dfs = [df.loc[:, df.columns.isin(keep_cols)] for df in dfs]
+
+    for col in col_funcs:
+        pass
+    return reduce(lambda new_df, old_df: new_df.combine_first(old_df), dfs)
+
+def get_str_cols(df):
+    return df.loc[:, (df.applymap(type) == str).any()].columns
+
+# helper function: given an ordered list of dataframes, prefers data from earlier dfs, replaces nulls and adds new rows 
+# reversed dfs means prefering newer data, but dfs can be ordered by reliability manually in the list
+def combine_ordered_dfs(dfs, keep_cols=None):
+    # replace empty strings with explicit nulls so combine first actually treats them as nulls
+    dfs = [df.replace("", np.nan) for df in dfs]
+    # filter columns by provided cols subset
+    if keep_cols:
+        dfs = [df.loc[:, df.columns.isin(keep_cols)] for df in dfs]
+    combined_df = reduce(lambda new_df, old_df: new_df.combine_first(old_df), dfs)
+
+    # replace back with empty strings
+    combined_df.update(combined_df.loc[:, get_str_cols(combined_df)].replace(np.nan, ""))
+    return combined_df
+
+def combine_address_cols(df, address_cols):
+    for col in address_cols:
+        df[col] = df[col].fillna('')
+    return df[address_cols[0]].str.cat(df[address_cols[1:]], sep=' ', na_rep='').str.strip(", ")
+
+
+def get_data_changes(df, data_col, pivot_col):
+    index = df.index.name
+    changes = df.loc[df.groupby(index)[data_col].nunique() > 1]
+
+    return changes.pivot(columns=[pivot_col], values=[data_col])
+
+def deduplicate_complaints_by_finding(df, finding_cols, 
+                                      finding_order_dict= {
+                                          'SUSTAINED': 1, 
+                                          'EXONERATED': 2, 
+                                          'UNFOUNDED': 3, 
+                                          'NOT SUSTAINED': 4, 
+                                          'NO AFFIDAVIT': 5, 
+                                          'ADDITIONAL INVESTIGATION REQUESTED': np.nan, 
+                                          None: np.nan}):
+    """Takes complaint and deduplicates using finding columns
+
+    Maps finding order dict then sorts, picking first value for every cr_id, UID. 
+
+    Parameters
+    ----------
+    df : DataFrame
+        dataframe with complaints
+    finding_cols : list of str
+        sorted list of columns representing complaint finding. 
+    finding_order_dict : dict {str: int}
+        mapping from value of finding (UNSUSTAINED to 3), with int representing sort order
+
+    Returns
+    -------
+    df : DataFrame
+        deduplicated dataframe
+    """    
+    cr_ids = set(df.cr_id)
+
+    for col in finding_cols:    
+        # assert that every value in finding col is accounted for in finding order dict
+        assert np.isin(df[col].dropna(), list(finding_order_dict.keys())).all(), \
+            "Finding type not found in dict"
+
+        df[f"{col}_order"] = df[col].map(finding_order_dict)
+
+    order_cols = [f"{col}_order" for col in finding_cols]
+
+    df = df[df.UID.notnull()] \
+        .sort_values(['cr_id', 'UID'] + order_cols) \
+        .groupby(['cr_id', 'UID'], as_index=False) \
+        .nth(0) \
+        .append(df[df.UID.isnull()]) \
+        .drop(order_cols, axis=1)
+    
+    assert keep_duplicates(df, ['cr_id', 'UID'])["UID"].notnull().sum() == 0, "Should not have duplicates on cr_id and UID"
+    assert set(df.cr_id) == cr_ids, "Missing cr_ids"
+    assert df[df.cr_id.isnull()].empty, "Row without cr_id" 
+
+    return df
+
+
+def sterilize_df(df, sterilize_columns):
+    for col in sterilize_columns:
+        if col in df:
+            df.loc[:, col] = df.loc[:, col].astype(str) \
+                .apply(lambda x: hashlib.sha256(x.encode()).hexdigest() if not pd.isnull(x) else '')
+    return df
 
 
 if __name__ == "__main__":

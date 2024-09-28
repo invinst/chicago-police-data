@@ -38,7 +38,7 @@ def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None,
     if skip_cols is None: skip_cols = []
     if types_dict is None:
         with open('hand/column_types.yaml', 'r') as file:
-            types_dict = yaml.load(file)
+            types_dict = yaml.load(file, yaml.FullLoader)
 
     for col_name in df.columns.values:
         if col_name in skip_cols or col_name not in types_dict.keys():
@@ -67,7 +67,10 @@ def clean_data(df, log, skip_cols=None, clean_dict=None, types_dict=None,
             cleaned_dt_df = DateTimeCleaners(collapsed_data[col_name],
                                              types_dict[col_name], log).clean()
             cleaned_dt_df = expand_data(cleaned_dt_df, stored_df)
-            cleaned_df = cleaned_df.join(cleaned_dt_df)
+            if not cleaned_df.empty:
+                cleaned_df = cleaned_df.join(cleaned_dt_df)
+            else:
+                cleaned_df = cleaned_dt_df
 
         else:
             log.info("Column '%s' cleaned as %s using GeneralCleaners.",
