@@ -1,0 +1,35 @@
+# first level: task name
+# second level: subdirectory
+# third level: list of files to be symlinked between share and task's subdirectory
+
+import:
+  hand: 
+    - column_names.yaml
+
+  src: 
+    - import_functions.py
+    - setup.py
+
+clean:
+  hand:
+    - column_types.yaml
+    - gender_types.yaml
+    - race_types.yaml
+  
+  src:
+    - clean_functions.py
+    - clean_name_utils.py
+    - clean_utils.py
+    - general_utils.py
+    - setup.py
+
+assign-unique-ids:
+    src:
+    - assign_unique_ids_functions.py
+    - general_utils.py
+    - setup.py
+
+export:
+  src:
+    - setup.py
+
