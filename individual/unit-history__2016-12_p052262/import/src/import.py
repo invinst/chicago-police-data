@@ -38,12 +38,12 @@ def get_setup():
 
 cons, log = get_setup()
 
-notes_df = pd.read_excel(cons.input_file, sheetname=0)
-notes = '\n'.join(notes_df.ix[:, 0].dropna())
+notes_df = pd.read_excel(cons.input_file, sheet_name=0)
+notes = '\n'.join(notes_df.iloc[:, 0].dropna())
 log.info('metadata written to cons: {}'.format(notes))
 cons.write_yamlvar('Notes', notes)
 
-df = pd.read_excel(cons.input_file, sheetname=1)
+df = pd.read_excel(cons.input_file, sheet_name=1)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.insert(0, 'row_id', df.index+1)
 df.to_csv(cons.output_file, **cons.csv_opts)
