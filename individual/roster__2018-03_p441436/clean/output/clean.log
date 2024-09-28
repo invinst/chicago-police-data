@@ -1,4 +1,4 @@
-running src/clean.py
+running clean.py
 Column 'row_id' was not cleaned.
 Column 'gender' cleaned as gender using GeneralCleaners.
 ['X'] values not in gender_types.yaml file. 12 cases replaced with ''
@@ -14,4 +14,4 @@ Column 'unit_detail' was not cleaned.
 Column 'resignation_date' cleaned as date using DateTimeCleaners.
 Column 'current_star' cleaned as star using GeneralCleaners.
 Column(s) '('first_name', 'last_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('second_name', 'full_name', 'human_name', 'middle_name')
+Columns dropped due to all NA values: ('middle_name', 'second_name', 'human_name', 'full_name')

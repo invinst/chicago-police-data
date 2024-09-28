@@ -1,2 +1,2 @@
-running src/import.py
+running import.py
 546 rows dropped due to all null values

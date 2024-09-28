@@ -1,0 +1,27 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN / REFUSED'] values not in race_types.yaml file. 134 cases replaced with ''
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'birth_year' was not cleaned.
+Column 'current_age' cleaned as age using GeneralCleaners.
+Column 'status' was not cleaned.
+Column 'rank' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'resignation_date' cleaned as date using DateTimeCleaners.
+Column 'vacate_date' was not cleaned.
+Column 'vacate_description' was not cleaned.
+Column 'unit' cleaned as int using GeneralCleaners.
+Column 'unit_description' was not cleaned.
+Column 'star1' cleaned as star using GeneralCleaners.
+Column 'star2' cleaned as star using GeneralCleaners.
+Column 'star3' cleaned as star using GeneralCleaners.
+Column 'star4' cleaned as star using GeneralCleaners.
+Column 'star5' cleaned as star using GeneralCleaners.
+Column 'star6' cleaned as star using GeneralCleaners.
+Column 'star7' cleaned as star using GeneralCleaners.
+Column 'star8' cleaned as star using GeneralCleaners.
+Column 'star9' cleaned as star using GeneralCleaners.
+Column 'star10' cleaned as star using GeneralCleaners.
+Column(s) '('first_name', 'middle_initial', 'last_name')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('human_name', 'star8', 'star9', 'full_name', 'second_name', 'star10', 'middle_name')

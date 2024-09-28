@@ -1,4 +1,4 @@
-running src/assign-unique-ids.py
+running assign-unique-ids.py
 Total rows: 14088
 Unique id + conflict rows: 14088
 Conflict rows: 0

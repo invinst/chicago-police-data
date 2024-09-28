@@ -23,5 +23,5 @@ Column 'star8' cleaned as star using GeneralCleaners.
 Column 'star9' cleaned as star using GeneralCleaners.
 Column 'star10' cleaned as star using GeneralCleaners.
 Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('human_name', 'second_name', 'middle_name', 'full_name')
+Columns dropped due to all NA values: ('full_name', 'second_name', 'human_name', 'middle_name')
 current_status column replaced: Y to 1, N to 0
