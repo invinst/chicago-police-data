@@ -1,4 +1,4 @@
-running src/clean.py
+running clean.py
 Column 'row_id' was not cleaned.
 Column 'birth_year' was not cleaned.
 Column 'gender' cleaned as gender using GeneralCleaners.
@@ -27,4 +27,4 @@ Name: award_start_date, dtype: object.
 Column 'award_end_date' cleaned as date using DateTimeCleaners.
 Column 'ceremony_date' cleaned as date using DateTimeCleaners.
 Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('human_name', 'full_name', 'second_name', 'middle_name')
+Columns dropped due to all NA values: ('human_name', 'full_name', 'middle_name', 'second_name')

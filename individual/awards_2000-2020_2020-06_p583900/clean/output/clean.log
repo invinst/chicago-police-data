@@ -1,0 +1,35 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'birth_year' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN / REFUSED', 'ASIAN / PACIFIC ISLANDER', 'AMER INDIAN / ALASKAN NATIVE'] values not in race_types.yaml file. 22377 cases replaced with ''
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'seniority_date' was not cleaned.
+Column 'award_type' was not cleaned.
+Column 'award_request_date' cleaned as date using DateTimeCleaners.
+Column 'tracking_no' was not cleaned.
+Column 'current_award_status' was not cleaned.
+Column 'requester_name' was not cleaned.
+Column 'requester_race' was not cleaned.
+Column 'requester_birth_year' was not cleaned.
+Column 'requester_sex' was not cleaned.
+Column 'requester_appointed_date' was not cleaned.
+Column 'requster_star' was not cleaned.
+Column 'requester_rank' was not cleaned.
+Column 'award_start_date' cleaned as date using DateTimeCleaners.
+Some errors in award_start_date. Returned as NaT:
+ 1509    0201-07-24
+5920    0200-05-31
+5967    1012-08-17
+6207    0201-08-15
+6244    0200-03-04
+Name: award_start_date, dtype: object.
+Column 'award_end_date' cleaned as date using DateTimeCleaners.
+Column 'award_incident_description' was not cleaned.
+Column 'delayed_reason' was not cleaned.
+Column 'ceremony_date' cleaned as date using DateTimeCleaners.
+Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('full_name', 'human_name', 'middle_name', 'second_name')

@@ -48,9 +48,11 @@ cons, log = get_setup()
 df = pd.read_csv(cons.input_file)
 
 with open("hand/award_po_ranks.yaml", "r") as f:
-    po_ranks = yaml.load(f)
+    po_ranks = yaml.safe_load(f)
 with open("hand/maybe_po_ranks.yaml", "r") as f:
-    maybe_po_ranks = yaml.load(f)
+    maybe_po_ranks = yaml.safe_load(f)
+
+df['appointed_date'] = pd.to_datetime(df['appointed_date'])
 
 po_ids = df.loc[(df['rank'].isin(po_ranks)) |
                 ((df['rank'].isin(maybe_po_ranks)) &
@@ -65,4 +67,8 @@ profiles_df = pd.read_csv(cons.input_profiles_file)
 profiles_df.loc[profiles_df[cons.id].isin(po_ids), 'merge'] = 1
 profiles_df['merge'] = profiles_df['merge'].fillna(0)
 log.info('%d IDs with PO ranks marked for merging', len(po_ids))
+
+# remove CHRIS system, not an officer, not sure why it got an award
+profiles_df.loc[(profiles_df.first_name_NS == 'SYSTEM') & 
+                (profiles_df.last_name_NS == 'CHRIS'), 'merge'] = 0
 profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)

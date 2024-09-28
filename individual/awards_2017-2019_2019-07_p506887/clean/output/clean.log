@@ -1,0 +1,25 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'current_star' cleaned as star using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'birth_year' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN'] values not in race_types.yaml file. 580 cases replaced with ''
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'seniority_date' was not cleaned.
+Column 'resignation_date' cleaned as date using DateTimeCleaners.
+Column 'award_type' was not cleaned.
+Column 'award_request_date' cleaned as date using DateTimeCleaners.
+Column 'tracking_no' was not cleaned.
+Column 'current_award_status' was not cleaned.
+Column 'requester_last_name' was not cleaned.
+Column 'requester_first_name' was not cleaned.
+Column 'requester_middle_initial' was not cleaned.
+Column 'award_start_date' cleaned as date using DateTimeCleaners.
+Column 'award_end_date' cleaned as date using DateTimeCleaners.
+Column 'award_incident_description' was not cleaned.
+Column 'delayed_reason' was not cleaned.
+Column 'ceremony_date' cleaned as date using DateTimeCleaners.
+Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('full_name', 'human_name', 'second_name', 'middle_name')

@@ -55,6 +55,9 @@ df = assign_unique_ids(df, cons.id,
                        log=log)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
+# manual fix: thomas mcgreal shows up once without a birth date, should be same id
+df.loc[df[cons.id] == 27433, cons.id] = 27422
+
 profiles_df = aggregate_data(df, cons.id, cons.id_cols,
                              max_cols=cons.conflict_cols)
 profiles_df.to_csv(cons.output_demo_file, **cons.csv_opts)
