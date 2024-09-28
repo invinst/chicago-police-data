@@ -11,4 +11,4 @@ Column 'salary' was not cleaned.
 Column 'pay_grade' was not cleaned.
 Column 'employee_status' was not cleaned.
 Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('middle_name', 'second_name', 'human_name', 'full_name')
+Columns dropped due to all NA values: ('second_name', 'human_name', 'middle_name', 'full_name')

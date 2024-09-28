@@ -1,0 +1,16 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan, 'NON-BINARY'] values not in gender_types.yaml file. 3 cases replaced with ''
+Column 'age_at_hire' cleaned as age using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'start_date' cleaned as date using DateTimeCleaners.
+Column 'org_hire_date' cleaned as date using DateTimeCleaners.
+Column 'spp_date' cleaned as date using DateTimeCleaners.
+Column 'salary' was not cleaned.
+Column 'pay_grade' was not cleaned.
+Column 'employee_status' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'year' was not cleaned.
+Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('middle_name', 'full_name', 'human_name', 'second_name')

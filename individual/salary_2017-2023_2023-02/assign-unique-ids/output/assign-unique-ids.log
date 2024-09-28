@@ -1,0 +1,174 @@
+running assign-unique-ids.py
+Assigning unique ids per year
+Year 2017
+Initial assign unique ids
+Total rows: 14481
+Unique id + conflict rows: 14003
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 14003
+
+Year 2018
+Initial assign unique ids
+Total rows: 15269
+Unique id + conflict rows: 14562
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 14562
+
+Year 2019
+Initial assign unique ids
+Total rows: 15552
+Unique id + conflict rows: 14352
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 14352
+
+Year 2020
+Initial assign unique ids
+Total rows: 14546
+Unique id + conflict rows: 13767
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 13767
+
+Year 2021
+Initial assign unique ids
+Total rows: 13669
+Unique id + conflict rows: 13331
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 13331
+
+Year 2022
+Initial assign unique ids
+Total rows: 14061
+Unique id + conflict rows: 13862
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 13862
+
+Year 2023
+Initial assign unique ids
+Total rows: 11907
+Unique id + conflict rows: 11906
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 11906
+
+Starting self merge between years
+Creating reference data from filewith intrafile ID: salary-year_2017-2023_2023-02_ID
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 1): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+12652 rows merged. 90.35% of ref and 86.88% of sup merged.
+14003 unmerged in ref. 100.0% unmerged.
+1910 unmerged in sup. 13.12% unmerged.
+
+Final Merge Report: 
+12652 rows merged. 90.35% of ref and 86.88% of sup merged.
+1351 unmerged in ref. 9.65% unmerged.
+1910 unmerged in sup. 13.12% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    12619
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name                  32
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name-pay_grade         1
+Name: count, dtype: int64
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 2): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+13508 rows merged. 84.89% of ref and 94.12% of sup merged.
+15913 unmerged in ref. 100.0% unmerged.
+844 unmerged in sup. 5.88% unmerged.
+
+Final Merge Report: 
+13508 rows merged. 84.89% of ref and 94.12% of sup merged.
+2405 unmerged in ref. 15.11% unmerged.
+844 unmerged in sup. 5.88% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    13444
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name                  62
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name-pay_grade         2
+Name: count, dtype: int64
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 3): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+13385 rows merged. 79.88% of ref and 97.23% of sup merged.
+16757 unmerged in ref. 100.0% unmerged.
+384 unmerged in sup. 2.79% unmerged.
+
+Final Merge Report: 
+13385 rows merged. 79.88% of ref and 97.23% of sup merged.
+3377 unmerged in ref. 20.15% unmerged.
+384 unmerged in sup. 2.79% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    13296
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name                  89
+Name: count, dtype: int64
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 4): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+12798 rows merged. 74.66% of ref and 96.0% of sup merged.
+17141 unmerged in ref. 100.0% unmerged.
+535 unmerged in sup. 4.01% unmerged.
+
+Final Merge Report: 
+12798 rows merged. 74.66% of ref and 96.0% of sup merged.
+4345 unmerged in ref. 25.35% unmerged.
+535 unmerged in sup. 4.01% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    12729
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name                  66
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name-pay_grade         3
+Name: count, dtype: int64
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 5): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+12258 rows merged. 69.35% of ref and 88.43% of sup merged.
+17676 unmerged in ref. 100.0% unmerged.
+1609 unmerged in sup. 11.61% unmerged.
+
+Final Merge Report: 
+12258 rows merged. 69.35% of ref and 88.43% of sup merged.
+5424 unmerged in ref. 30.69% unmerged.
+1609 unmerged in sup. 11.61% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    12064
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name                 192
+first_name_NS-last_name_NS-age_at_hire-org_hire_date-middle_initial-suffix_name-pay_grade         2
+Name: count, dtype: int64
+Adding column [F4FN] to data with ID = salary-year_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary-year_2017-2023_2023-02_ID
+Running merge (1 of 6): 
+Required column types: first_name_NS, last_name_NS, appointed_date, middle_initial
+Optional column types: age_at_hire, suffix_name, pay_grade
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, spp_date, start_date
+11853 rows merged. 61.46% of ref and 99.55% of sup merged.
+19285 unmerged in ref. 100.0% unmerged.
+57 unmerged in sup. 0.48% unmerged.
+
+Final Merge Report: 
+11853 rows merged. 61.46% of ref and 99.55% of sup merged.
+7432 unmerged in ref. 38.54% unmerged.
+57 unmerged in sup. 0.48% unmerged.
+matched_on
+first_name_NS-last_name_NS-age_at_hire-appointed_date-middle_initial-suffix_name-pay_grade    11853
+Name: count, dtype: int64
+Creating so_max_year and so_min_year from so_max_date and so_min_date
+Creating current_age columns from so_max_year and age_at_hire
+Exporting profiles data set with ['salary_2017-2023_2023-02_ID', 'age_at_hire', 'gender', 'appointed_date', 'first_name', 'last_name', 'rank', 'first_name_NS', 'last_name_NS', 'suffix_name', 'middle_initial', 'middle_initial2', 'so_max_year', 'so_min_year', 'so_max_year_m1', 'so_min_year_m1', 'so_max_date', 'so_min_date', 'current_age_p1', 'current_age2_pm', 'current_age_m1', 'current_age_pm', 'current_age_mp', 'current_age2_p1', 'current_age2_m1', 'current_age2_mp', 'start_date', 'spp_date', 'appointed_date', 'org_hire_date'] columns

@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author(s):    Roman Rivera (Invisible Institute)
+# Author(s):    Roman Rivera / Ashwin Sharma (Invisible Institute)
 
 '''assign-unique-ids script for salary_2002-2017_2017-09_'''
 
@@ -78,7 +78,8 @@ def get_setup():
             ['first_name_NS', 'last_name_NS', 'org_hire_date'],
             ['first_name_NS', 'last_name_NS', 'start_date'],
             ['first_name_NS', 'middle_initial', 'spp_date', 'start_date', 'org_hire_date', 'pay_grade'],
-            ['first_name_NS', 'spp_date', 'start_date', 'org_hire_date', 'pay_grade', 'age_at_hire']
+            {"query": "row_id != 190379 and row_id != 201358", # brian bridgemon and brian brandolino: salary jump makes the match seem unlikely, all others seem fine
+             "cols": ['first_name_NS', 'spp_date', 'start_date', 'org_hire_date', 'pay_grade', 'age_at_hire']}
         ]
         }
 
@@ -91,101 +92,114 @@ def get_setup():
 
     return setup.do_setup(script_path, args)
 
+if __name__ == "__main__":
 
-cons, log = get_setup()
+    cons, log = get_setup()
 
-df = pd.read_csv(cons.input_file)
+    df = pd.read_csv(cons.input_file)
 
-full_df = pd.DataFrame()
+    full_df = pd.DataFrame()
+    year_dfs = []
 
-for year in df['year'].unique():
-    log.info('Assigning unique sub-ids for year: %d', year)
-    sub_df = df[df['year']==year]
-    sub_df = assign_unique_ids(sub_df, cons.sub_id,
-                               cons.sub_id_cols,
-                               conflict_cols=cons.sub_conflict_cols,
-                               log=log)
-    sub_df[cons.sub_id] = sub_df[cons.sub_id] + year * 100000
-    full_df = full_df.append(sub_df)
+    for year in df['year'].unique():
+        log.info('Assigning unique sub-ids for year: %d', year)
+        sub_df = df[df['year']==year]
+        sub_df = assign_unique_ids(sub_df, cons.sub_id,
+                                cons.sub_id_cols,
+                                conflict_cols=cons.sub_conflict_cols,
+                                log=log)
+        sub_df[cons.sub_id] = sub_df[cons.sub_id] + year * 100000
+        year_dfs.append(sub_df)
 
-assert full_df.shape[0] == df.shape[0],\
-    print('Remerged data does not match input dataset')
+    full_df = pd.concat(year_dfs)
 
-df = full_df
+    assert full_df.shape[0] == df.shape[0],\
+        print('Remerged data does not match input dataset')
 
-log.info("Beginning self-merge process")
+    df = full_df
 
-for year in range(2002, 2018):
-    dfy = df[df['year'] == year].copy()
-    yid = cons.year_id.replace('year', str(year))
-    dfy.rename(columns={cons.year_id: yid},
-               inplace=True)
-    if year == 2002:
-        sd = ReferenceData(dfy, uid=cons.sid, data_id=yid, log=log)
-    else:
-        sd = (sd.add_sup_data(dfy, add_cols=['F4FN', 'F4LN'], base_OD=[])
-                .loop_merge(custom_merges=cons.custom_merges, verbose=False)
-                .append_to_reference())
-log.info('Number of unique IDs = %d', len(sd.ref_df[cons.sid].unique()))
+    log.info("Beginning self-merge process")
 
-sd.write_reference(cons.output_file, cons.csv_opts)
+    for year in range(2002, 2018):
+        dfy = df[df['year'] == year].copy()
+        yid = cons.year_id.replace('year', str(year))
+        dfy.rename(columns={cons.year_id: yid},
+                inplace=True)
+        if year == 2002:
+            sd = ReferenceData(dfy, uid=cons.sid, data_id=yid, log=log)
+        else:
+            sd = (sd.add_sup_data(dfy, add_cols=['F4FN', 'F4LN'], base_OD=[])
+                    .loop_merge(custom_merges=cons.custom_merges, verbose=False)
+                    .append_to_reference())
 
-sal = sd.ref_df
+    # manual fix            
+    # JEFFREY GOUGIS - a seargant with a new appointed date
+    # SIDNEY KING
+    # MATTHEW TEWS
+    sd.ref_df.loc[sd.ref_df[cons.sid] == 19363, cons.sid] = 5261
+    sd.ref_df.loc[sd.ref_df[cons.sid] == 19731, cons.sid] = 8922
+    sd.ref_df.loc[sd.ref_df[cons.sid] == 16486, cons.sid] = 11590
 
-res_years = sal[[cons.id, 'year']].groupby(cons.id, as_index=False).max().rename(columns={'year' : 'resignation_year'})
-sal = sal[[col for col in sal.columns if col in cons.profile_cols]].drop_duplicates()
-assert sal[sal['start_date'].isnull() & sal['org_hire_date'].isnull()].empty
+    log.info('Number of unique IDs = %d', len(sd.ref_df[cons.sid].unique()))
 
-log.info('Creating so_max_date and so_min_date from max/min'
-         ' of start_date and org_hire_date')
+    sd.write_reference(cons.output_file, cons.csv_opts)
 
-sal['so_max_date'] = sal[cons.ad_cols]\
-                            .apply(pd.to_datetime)\
-                            .apply(max, axis=1).dt.date
-sal['so_min_date'] = sal[cons.ad_cols]\
-                            .apply(pd.to_datetime)\
-                            .apply(min, axis=1).dt.date
-sal.loc[sal['so_max_date'].isnull() &
-        sal['start_date'].notnull(),
-        'so_max_date'] = sal.loc[sal['so_max_date'].isnull() &
-                                 sal['start_date'].notnull(),
-                                 'start_date']
-sal.loc[sal['so_min_date'].isnull() &
-        sal['start_date'].notnull(),
-        'so_min_date'] = sal.loc[sal['so_min_date'].isnull() &
-                                 sal['start_date'].notnull(),
-                                 'start_date']
-sal.loc[sal['so_max_date'].isnull() &
-        sal['org_hire_date'].notnull(),
-        'so_max_date'] = sal.loc[sal['so_max_date'].isnull() &
-                                 sal['org_hire_date'].notnull(),
-                                 'org_hire_date']
-sal.loc[sal['so_min_date'].isnull() &
-        sal['org_hire_date'].notnull(),
-        'so_min_date'] = sal.loc[sal['so_min_date'].isnull() &
-                                 sal['org_hire_date'].notnull(),
-                                 'org_hire_date']
+    sal = sd.ref_df
 
-log.info('Creating so_max_year and so_min_year from so_max_date and so_min_date')
-sal['so_max_year'] = pd.to_datetime(sal['so_max_date']).dt.year
-sal['so_min_year'] = pd.to_datetime(sal['so_min_date']).dt.year
-sal['so_max_year_m1'] = sal['so_max_year']-1
-sal['so_min_year_m1'] = sal['so_min_year']-1
+    res_years = sal[[cons.id, 'year']].groupby(cons.id, as_index=False).max().rename(columns={'year' : 'resignation_year'})
+    sal = sal[[col for col in sal.columns if col in cons.profile_cols]].drop_duplicates()
+    assert sal[sal['start_date'].isnull() & sal['org_hire_date'].isnull()].empty
 
-log.info('Creating current_age columns from so_max_year and age_at_hire')
-sal['current_age_p1'] = 2017 - (sal['so_min_year'] - sal['age_at_hire']) + 1
-sal['current_age_m1'] = 2017 - (sal['so_min_year'] - sal['age_at_hire'])
-sal['current_age_pm'] = sal['current_age_p1']
-sal['current_age_mp'] = sal['current_age_m1']
+    log.info('Creating so_max_date and so_min_date from max/min'
+            ' of start_date and org_hire_date')
 
-sal['current_age2_p1'] = 2017 - (sal['so_max_year'] - sal['age_at_hire']) + 1
-sal['current_age2_m1'] = 2017 - (sal['so_max_year'] - sal['age_at_hire'])
-sal['current_age2_pm'] = sal['current_age2_p1']
-sal['current_age2_mp'] = sal['current_age2_m1']
+    sal['so_max_date'] = sal[cons.ad_cols]\
+                                .apply(pd.to_datetime)\
+                                .apply(max, axis=1).dt.date
+    sal['so_min_date'] = sal[cons.ad_cols]\
+                                .apply(pd.to_datetime)\
+                                .apply(min, axis=1).dt.date
+    sal.loc[sal['so_max_date'].isnull() &
+            sal['start_date'].notnull(),
+            'so_max_date'] = sal.loc[sal['so_max_date'].isnull() &
+                                    sal['start_date'].notnull(),
+                                    'start_date']
+    sal.loc[sal['so_min_date'].isnull() &
+            sal['start_date'].notnull(),
+            'so_min_date'] = sal.loc[sal['so_min_date'].isnull() &
+                                    sal['start_date'].notnull(),
+                                    'start_date']
+    sal.loc[sal['so_max_date'].isnull() &
+            sal['org_hire_date'].notnull(),
+            'so_max_date'] = sal.loc[sal['so_max_date'].isnull() &
+                                    sal['org_hire_date'].notnull(),
+                                    'org_hire_date']
+    sal.loc[sal['so_min_date'].isnull() &
+            sal['org_hire_date'].notnull(),
+            'so_min_date'] = sal.loc[sal['so_min_date'].isnull() &
+                                    sal['org_hire_date'].notnull(),
+                                    'org_hire_date']
 
-log.info('Adding resignation_year column = max year of observation')
-sal = sal.merge(res_years, on=cons.id, how='left')
-log.info('Exporting profiles data set with %s columns', cons.profile_cols)
-sal[cons.profile_cols]\
-    .drop_duplicates()\
-    .to_csv(cons.output_profiles_file, **cons.csv_opts)
+    log.info('Creating so_max_year and so_min_year from so_max_date and so_min_date')
+    sal['so_max_year'] = pd.to_datetime(sal['so_max_date']).dt.year
+    sal['so_min_year'] = pd.to_datetime(sal['so_min_date']).dt.year
+    sal['so_max_year_m1'] = sal['so_max_year']-1
+    sal['so_min_year_m1'] = sal['so_min_year']-1
+
+    log.info('Creating current_age columns from so_max_year and age_at_hire')
+    sal['current_age_p1'] = 2017 - (sal['so_min_year'] - sal['age_at_hire']) + 1
+    sal['current_age_m1'] = 2017 - (sal['so_min_year'] - sal['age_at_hire'])
+    sal['current_age_pm'] = sal['current_age_p1']
+    sal['current_age_mp'] = sal['current_age_m1']
+
+    sal['current_age2_p1'] = 2017 - (sal['so_max_year'] - sal['age_at_hire']) + 1
+    sal['current_age2_m1'] = 2017 - (sal['so_max_year'] - sal['age_at_hire'])
+    sal['current_age2_pm'] = sal['current_age2_p1']
+    sal['current_age2_mp'] = sal['current_age2_m1']
+
+    log.info('Adding resignation_year column = max year of observation')
+    sal = sal.merge(res_years, on=cons.id, how='left')
+    log.info('Exporting profiles data set with %s columns', cons.profile_cols)
+    sal[cons.profile_cols]\
+        .drop_duplicates()\
+        .to_csv(cons.output_profiles_file, **cons.csv_opts)
