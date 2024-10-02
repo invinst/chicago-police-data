@@ -20,13 +20,13 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/10655-FOIA-P046360-TRRdata_sterilized.xlsx',
+        'input_file': 'input/10655-FOIA-P046360-TRRdata.xlsx',
         'output_file': 'output/TRR-main_2004-2016_2016-09.csv.gz',
         'metadata_file': 'output/metadata_TRR-main_2004-2016_2016-09.csv.gz',
         'sheet': 'Sheet1',
         'keep_columns': [
-            'TRR_REPORT_ID', 'SR_NO',
-            'SE_NO', 'BEAT', 'BLK', 'DIR', 'STN',
+            'TRR_REPORT_ID', 'RD_NO',
+            'EVENT_NO', 'BEAT', 'BLK', 'DIR', 'STN',
             'LOC', 'DTE', 'TMEMIL', 'INDOOR_OR_OUTDOOR',
             'LIGHTING_CONDITION', 'WEATHER_CONDITION',
             'NOTIFY_OEMC', 'NOTIFY_DIST_SERGEANT',

@@ -1,0 +1,30 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN'] values not in race_types.yaml file. 149 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'unit' cleaned as int using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'rank' was not cleaned.
+Column 'height' was not cleaned.
+Column 'weight' was not cleaned.
+Column 'trr_date' cleaned as date using DateTimeCleaners.
+Column 'duty_status' was not cleaned.
+Column 'in_uniform' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'current_star' cleaned as star using GeneralCleaners.
+Column 'start_date' cleaned as date using DateTimeCleaners.
+Column 'end_date' was not cleaned.
+Column 'star_type' was not cleaned.
+Column 'star1' cleaned as star using GeneralCleaners.
+Column 'star2' cleaned as star using GeneralCleaners.
+Column 'star3' cleaned as star using GeneralCleaners.
+Column 'star4' cleaned as star using GeneralCleaners.
+Column 'star5' cleaned as star using GeneralCleaners.
+Column 'star6' cleaned as star using GeneralCleaners.
+Column 'star7' cleaned as star using GeneralCleaners.
+Column 'star8' cleaned as star using GeneralCleaners.
+Column(s) '('first_name', 'middle_initial', 'last_name')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('middle_name', 'second_name', 'star7', 'full_name', 'human_name', 'star8')

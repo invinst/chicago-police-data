@@ -22,8 +22,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/TRR-actions-responses_2004-2016_2016-09.csv.gz',
-        'output_file': 'output/TRR-actions-responses_2004-2016_2016-09.csv.gz',
+        'input_file': 'input/TRR-actions-responses_2004-2016_2016-09_p046360.csv.gz',
+        'output_file': 'output/TRR-actions-responses_2004-2016_2016-09_p046360.csv.gz',
         'member_action_other_file' : 'hand/trr_member_action_other.yaml',
         'force_type_file' : 'hand/trr_member_action_force_type.yaml',
         'force_category_file' : 'hand/trr_member_action_category.yaml',
@@ -55,13 +55,13 @@ log.info("Generating %s, %s, %s, %s, and %s columns for member action observatio
          cons.action_category_col, cons.action_general_category_col,
          cons.action_resistance_col)
 with open(cons.member_action_other_file, 'r') as file:
-    mao_dict = yaml.load(file)
+    mao_dict = yaml.safe_load(file)
 with open(cons.force_type_file, 'r') as file:
-    ft_dict = yaml.load(file)
+    ft_dict = yaml.safe_load(file)
 with open(cons.force_category_file, 'r') as file:
-    fc_dict = yaml.load(file)
+    fc_dict = yaml.safe_load(file)
 with open(cons.action_resistance_file, 'r') as file:
-    ar_dict = yaml.load(file)
+    ar_dict = yaml.safe_load(file)
 
 mao_df = pd.DataFrame.from_dict(mao_dict, orient='index')\
     .reset_index(drop=False)\

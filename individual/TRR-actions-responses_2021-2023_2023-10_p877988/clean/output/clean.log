@@ -1,0 +1,13 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'subject_actions_do_not_apply' was not cleaned.
+Column 'subject_actions_unknown' was not cleaned.
+Column 'subject_actions' was not cleaned.
+Column 'type_activity' was not cleaned.
+Column 'force_mitigation_efforts' was not cleaned.
+Column 'control_tactics' was not cleaned.
+Column 'response_without_weapons' was not cleaned.
+Column 'response_with_weapon' was not cleaned.
+Column 'force_while_handcuffed' was not cleaned.
+Columns dropped due to all NA values: ()

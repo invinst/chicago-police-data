@@ -1,0 +1,21 @@
+running clean.py
+Column 'trr_id' was not cleaned.
+Column 'rd_no' was not cleaned.
+Column 'beat' was not cleaned.
+Column 'block' was not cleaned.
+Column 'direction' was not cleaned.
+Column 'street' was not cleaned.
+Column 'location' was not cleaned.
+Column 'trr_time' cleaned as time using DateTimeCleaners.
+Column 'indoor_or_outdoor' was not cleaned.
+Column 'lighting_condition' was not cleaned.
+Column 'weather_condition' was not cleaned.
+Column 'notify_OEMC' was not cleaned.
+Column 'notify_district_sergeant' was not cleaned.
+Column 'notify_OP_command' was not cleaned.
+Column 'notify_DET_division' was not cleaned.
+Column 'number_of_weapons_discharged' was not cleaned.
+Column 'party_fired_first' was not cleaned.
+Column 'trr_date' cleaned as date using DateTimeCleaners.
+Columns dropped due to all NA values: ('notify_DET_division', 'party_fired_first')
+Creating location_recode column by recoding some values in location column using hand/trr_locations.yaml file.

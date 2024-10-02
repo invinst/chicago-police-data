@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author(s):    Roman Rivera (Invisible Institute)
+# Author(s):    Roman Rivera / Ashwin Sharma (Invisible Institute)
 
 '''import script for TRR-subjects_2004-2016_2016-09_p046360'''
 
@@ -20,7 +20,7 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/10655-FOIA-P046360-TRRdata_sterilized.xlsx',
+        'input_file': 'input/10655-foia-p046360-trrdata_sterilized.xlsx',
         'output_file': 'output/TRR-subjects_2004-2016_2016-09.csv.gz',
         'metadata_file': 'output/metadata_TRR-subjects_2004-2016_2016-09.csv.gz',
         'sheet': 'Sheet1',

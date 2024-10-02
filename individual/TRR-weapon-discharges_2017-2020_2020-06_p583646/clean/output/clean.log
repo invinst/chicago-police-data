@@ -1,0 +1,18 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'weapon_type' was not cleaned.
+Column 'firearm_make' was not cleaned.
+Column 'firearm_model' was not cleaned.
+Column 'total_number_of_shots' was not cleaned.
+Column 'firearm_reloaded' was not cleaned.
+Column 'number_of_catdridge_reloaded' was not cleaned.
+Column 'handgun_worn_type' was not cleaned.
+Column 'handgun_drawn_type' was not cleaned.
+Column 'method_used_to_reload' was not cleaned.
+Column 'sight_used' was not cleaned.
+Column 'protective_cover_used' was not cleaned.
+Column 'discharge_distance' was not cleaned.
+Column 'object_struck_of_discharge' was not cleaned.
+Column 'discharge_position' was not cleaned.
+Columns dropped due to all NA values: ('discharge_distance', 'handgun_drawn_type', 'discharge_position', 'method_used_to_reload', 'sight_used', 'handgun_worn_type', 'protective_cover_used', 'number_of_catdridge_reloaded')

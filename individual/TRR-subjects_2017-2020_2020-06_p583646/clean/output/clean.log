@@ -1,0 +1,19 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'cr_no_obtained' was not cleaned.
+Column 'subject_cb_no' was not cleaned.
+Column 'subject_ir_no' was not cleaned.
+Column 'event_no' was not cleaned.
+Column 'direction' was not cleaned.
+Column 'trr_time' cleaned as time using DateTimeCleaners.
+Column 'duty_status' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan] values not in gender_types.yaml file. 17 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN / REFUSED'] values not in race_types.yaml file. 12 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'armed' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'alleged_injury' was not cleaned.
+Columns dropped due to all NA values: ('trr_time',)

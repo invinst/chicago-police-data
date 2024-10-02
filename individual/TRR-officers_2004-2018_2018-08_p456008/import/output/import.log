@@ -1,0 +1,6 @@
+running import.py
+Notes written to cons: 
+['TRR_REPORT_ID', 'POLAST', 'POFIRST', 'POGNDR', 'PORACE', 'POAGE', 'APPOINTED_DATE', 'UNITASSG', 'UNITDETAIL', 'ASSGNBEAT', 'RANK', 'DUTYSTATUS', 'POINJURED', 'MEMBER_IN_UNIFORM', 'DTE'] columns selected from main sheet.
+        trr_id last_name_x first_name_x gender   race  age appointed_date  unit  unit_detail assigned_beat            rank duty_status injured in_uniform   trr_date    last_name_y first_name_y  current_star _merge
+66591    95817     JOHNSON       SHEENA      F  WHITE   33     2013-07-15     9          NaN         0935R  POLICE OFFICER         Yes      No        Yes 2016-03-01  JOHNSON-PANEK       SHEENA       14978.0   both
+74519  2368284     JOHNSON       SHEENA      F  WHITE   35     2013-07-15     9          NaN         0933R            9161           Y     Yes          Y 2017-11-04  JOHNSON-PANEK       SHEENA       14978.0   both name changes

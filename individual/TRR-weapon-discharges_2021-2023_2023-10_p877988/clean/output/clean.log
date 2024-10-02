@@ -1,0 +1,32 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'weapon_type_new_trr' was not cleaned.
+Column 'weapon_dischrg_does_not_apply' was not cleaned.
+Column 'weapon_dischrg_count_new_trr' was not cleaned.
+Column 'weapon_type' was not cleaned.
+Column 'weapcontribute_subinjry' was not cleaned.
+Column 'weapon_dischrg_selfinjur_mem_i' was not cleaned.
+Column 'weapon_dischrg_selfinjur_sub_i' was not cleaned.
+Column 'accidental_discharge' was not cleaned.
+Column 'discharge_to_destruct_animal' was not cleaned.
+Column 'objstrck_disch_memweap_new_trr' was not cleaned.
+Column 'taser_dartid_no' was not cleaned.
+Column 'taser_prop_inventory_no' was not cleaned.
+Column 'taser_probe_dischrg_cd' was not cleaned.
+Column 'taser_contact_stun_cd' was not cleaned.
+Column 'taser_spark_display_cd' was not cleaned.
+Column 'taser_arc_cycle_cd' was not cleaned.
+Column 'taser_trigger_cd' was not cleaned.
+Column 'taser_arc_oth_desc' was not cleaned.
+Column 'fadischrg_first_shot_cd' was not cleaned.
+Column 'total_number_of_shots' was not cleaned.
+Column 'fadischrg_reloaded_i' was not cleaned.
+Column 'fadischrg_fired_at_veh_i' was not cleaned.
+Column 'fadischrg_make_cd' was not cleaned.
+Column 'firearm_make' was not cleaned.
+Column 'fadischrg_model_cd' was not cleaned.
+Column 'firearm_model' was not cleaned.
+Columns dropped due to all NA values: ()
+Dropping 8660 rows without weapon_type
+678 rows remaining.

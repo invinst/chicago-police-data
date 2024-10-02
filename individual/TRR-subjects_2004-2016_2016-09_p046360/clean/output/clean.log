@@ -1,4 +1,4 @@
-running src/clean.py
+running clean.py
 Ensuring birth_year is max of birth_year and age, while age is min. 280 rows changed
 Ensuring replacing ages >= 100 and birth_years <= 1900 with NA. 30 rows changed
 Column 'trr_id' was not cleaned.

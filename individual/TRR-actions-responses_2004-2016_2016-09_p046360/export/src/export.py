@@ -19,8 +19,8 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/TRR-actions-responses_2004-2016_2016-09.csv.gz',
-        'output_file': 'output/TRR-actions-responses_2004-2016_2016-09.csv.gz',
+        'input_file': 'input/TRR-actions-responses_2004-2016_2016-09_p046360.csv.gz',
+        'output_file': 'output/TRR-actions-responses_2004-2016_2016-09_p046360.csv.gz',
         }
 
     assert (args['input_file'].startswith('input/') and

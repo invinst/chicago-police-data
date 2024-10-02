@@ -39,5 +39,3 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 df.to_csv(cons.output_file, **cons.csv_opts)
-profiles_df = pd.read_csv(cons.input_profiles_file)
-profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)

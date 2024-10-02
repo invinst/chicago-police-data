@@ -1,0 +1,8 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'event_no' was not cleaned.
+Column 'rd_no' was not cleaned.
+Column 'weapon_type' was not cleaned.
+Column 'weapon_use' was not cleaned.
+Columns dropped due to all NA values: ()

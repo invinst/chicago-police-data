@@ -80,8 +80,8 @@
 
 'TRR-main_2004-2016_2016-09_p046360':
     TRR_REPORT_ID:                  trr_id
-    SR_NO:                          sr_no
-    SE_NO:                          se_no
+    RD_NO:                          rd_no
+    EVENT_NO:                       event_no
     BEAT:                           beat
     BLK:                            block
     DIR:                            direction
@@ -127,8 +127,8 @@
     SUBJECT_INJURED:        injured
     SUBJECT_ALLEGED_INJURY: alleged_injury
     SUBJECT_NO:             subject_no
-    SR_NO:                  sr_no
-    SE_NO:                  se_no
+    RD_NO:                  rd_no
+    EVENT_NO:               event_no
     DTE:                    trr_date
 
 'TRR-stars_2004-2016_2016-09_p046360':
@@ -183,7 +183,7 @@
 
 'TRR-charges_2004-2016_2016-09_p046360':
     TRR_REPORT_ID:  trr_id
-    SR_NO:          sr_no
+    RD_NO:          rd_no
     STATUTE:        statute
     DESCR:          description
     SUBJECT_NO:     subject_no

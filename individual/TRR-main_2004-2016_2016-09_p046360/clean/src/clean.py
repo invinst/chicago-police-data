@@ -42,10 +42,13 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
 df = clean_data(df, log)
+
+df['rd_no'] = df['rd_no'].str.replace('-', '') 
+
 log.info('Creating %s column by recoding some values'
          'in %s column using %s file.',
          cons.trr_loc_recode, cons.trr_loc, cons.trr_loc_file)
 with open(cons.trr_loc_file, 'r') as file:
-    trr_loc_dict = yaml.load(file)
+    trr_loc_dict = yaml.safe_load(file)
 df[cons.trr_loc_recode] = df[cons.trr_loc].replace(trr_loc_dict)
 df.to_csv(cons.output_file, **cons.csv_opts)

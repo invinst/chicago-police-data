@@ -1,4 +1,4 @@
-running src/clean.py
+running clean.py
 Column 'trr_id' was not cleaned.
 Column 'person' was not cleaned.
 Column 'resistance_type' was not cleaned.

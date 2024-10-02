@@ -1,0 +1,31 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'member_last_name' was not cleaned.
+Column 'member_first_name' was not cleaned.
+Column 'member_middle_initial' was not cleaned.
+Column 'on_scene_response_i' was not cleaned.
+Column 'evident_technician' was not cleaned.
+Column 'supsubinj_new_trr' was not cleaned.
+Column 'supinjsustained_new_trr' was not cleaned.
+Column 'witness_sex_cd' was not cleaned.
+Column 'witness_race' was not cleaned.
+Column 'witness_birth_year' was not cleaned.
+Column 'witness_zipcode' was not cleaned.
+Column 'witness_interviewed' was not cleaned.
+Column 'complied_with_duties' was not cleaned.
+Column 'complaint_log_number_obtained' was not cleaned.
+Column 'log_no' was not cleaned.
+Column 'reviewed_affirm_complete' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan] values not in gender_types.yaml file. 5 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN', nan] values not in race_types.yaml file. 11 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'current_rank' was not cleaned.
+Column 'rank' was not cleaned.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column(s) '('last_name', 'first_name', 'middle_initial')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('second_name', 'supinjsustained_new_trr', 'middle_initial2', 'human_name', 'full_name', 'middle_name')

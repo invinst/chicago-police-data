@@ -20,7 +20,7 @@ def get_setup():
     '''
     script_path = __main__.__file__
     args = {
-        'input_file': 'input/10655-FOIA-P046360-TRRdata_sterilized.xlsx',
+        'input_file': 'input/10655-FOIA-P046360-TRRdata.xlsx',
         'output_file': 'output/TRR-statuses_2004-2016_2016-09.csv.gz',
         'metadata_file': 'output/metadata_TRR-statuses_2004-2016_2016-09.csv.gz',
         'sheet': 'Statuses_OtherMembers',
@@ -41,7 +41,7 @@ cons, log = get_setup()
 
 notes_df = pd.read_excel(cons.input_file, sheet_name=cons.note_sheet,
                          header=None)
-notes = '\n'.join(notes_df.ix[notes_df[0].str.replace(' ', '') == cons.sheet,
+notes = '\n'.join(notes_df.loc[notes_df[0].str.replace(' ', '') == cons.sheet,
                               1].dropna())
 
 df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)

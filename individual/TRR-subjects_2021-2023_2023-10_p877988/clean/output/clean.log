@@ -1,0 +1,29 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'trr_id' was not cleaned.
+Column 'subject_cb_no' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan] values not in gender_types.yaml file. 307 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+['UNKNOWN / REFUSED', nan] values not in race_types.yaml file. 270 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'height' was not cleaned.
+Column 'weight' was not cleaned.
+Column 'zip_code' was not cleaned.
+Column 'condition_new_trr' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'alleged_injury' was not cleaned.
+Column 'under_influence' was not cleaned.
+Column 'med_treatment_new_trr' was not cleaned.
+Column 'inj_mem_uoff_new_trr' was not cleaned.
+Column 'refuse_medical_aid' was not cleaned.
+Column 'hospitalized' was not cleaned.
+Column 'armed' was not cleaned.
+Column 'armed_with' was not cleaned.
+Column 'weapon_use' was not cleaned.
+Column 'drug_related' was not cleaned.
+Column 'gang_related' was not cleaned.
+Column 'veh_used_weapon' was not cleaned.
+Column 'weapcontribute_subinjry' was not cleaned.
+Column 'weapon_dischrg_selfinjur_sub_i' was not cleaned.
+Columns dropped due to all NA values: ('refuse_medical_aid', 'under_influence')
