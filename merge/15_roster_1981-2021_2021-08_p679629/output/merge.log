@@ -1,0 +1,118 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [F4FN] to data with ID = roster_1981-2021_2021-08_p679629_ID
+Adding column [F4LN] to data with ID = roster_1981-2021_2021-08_p679629_ID
+Adding column [BY_to_CA] to data with ID = roster_1981-2021_2021-08_p679629_ID
+Running merge (1 of 6): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+10329 rows merged. 30.68% of ref and 85.4% of sup merged.
+23334 unmerged in ref. 69.32% unmerged.
+1766 unmerged in sup. 14.6% unmerged.
+
+Running merge (2 of 6): null appointed date (reference) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+1 rows merged. 0.0% of ref and 0.01% of sup merged.
+23333 unmerged in ref. 69.31% unmerged.
+1765 unmerged in sup. 14.59% unmerged.
+
+Running merge (3 of 6): null appointed date and birth year reference merge
+Required column types: first_name, last_name
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, 
+4 rows merged. 0.01% of ref and 0.03% of sup merged.
+23329 unmerged in ref. 69.3% unmerged.
+1761 unmerged in sup. 14.56% unmerged.
+
+Running merge (4 of 6): multirow merges
+Required column types: first_name
+Optional column types: star, last_name, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+5 rows merged. 0.01% of ref and 0.04% of sup merged.
+23324 unmerged in ref. 69.29% unmerged.
+1756 unmerged in sup. 14.52% unmerged.
+
+Running merge (5 of 6): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+59 rows merged. 0.18% of ref and 0.49% of sup merged.
+23265 unmerged in ref. 69.11% unmerged.
+1697 unmerged in sup. 14.03% unmerged.
+
+Running merge (6 of 6): 
+7 rows merged. 0.02% of ref and 0.06% of sup merged.
+23258 unmerged in ref. 69.09% unmerged.
+1690 unmerged in sup. 13.97% unmerged.
+
+Final Merge Report: 
+10405 rows merged. 30.91% of ref and 86.03% of sup merged.
+23258 unmerged in ref. 69.09% unmerged.
+1690 unmerged in sup. 13.97% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                                         3668
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                                            2513
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                                               767
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                                            712
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                                         699
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                                                                     654
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                                                                          495
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                                              131
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                                                  115
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name                                               74
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name-current_unit                                  74
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                                                 65
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                                              62
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender                                                                           58
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                                                                                37
+star-first_name_NS-last_name_NS-appointed_date-gender-race                                                                                     33
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name                                                          32
+star-first_name_NS-appointed_date-birth_year-middle_initial-gender-race                                                                        28
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name                                                    24
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name                                                               19
+star-first_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                                                           17
+first_name_NS-last_name_NS-appointed_date-gender-race                                                                                          16
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                                                  14
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                                                   11
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                                                                 9
+star-first_name_NS-last_name_NS-appointed_date-birth_year                                                                                       7
+star-first_name_NS-appointed_date-middle_initial-gender-race                                                                                    7
+first_name_NS-last_name_NS-birth_year-middle_initial-gender                                                                                     6
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name-current_unit                                        6
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                                                                      4
+first_name_NS-last_name_NS-middle_initial-gender-race                                                                                           3
+first_name_NS-last_name_NS-appointed_date-birth_year                                                                                            3
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                                                                3
+star-first_name_NS-appointed_date-birth_year-gender-race                                                                                        3
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                                                                                3
+first_name_NS-last_name_NS-appointed_date-gender                                                                                                3
+star-first_name_NS-F4LN-appointed_date-birth_year-gender-race-current_unit                                                                      2
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-current_age_m1-current_age_p1-F4LN-appointed_date-F4FN                    2
+first_name_NS-middle_initial-birth_year-appointed_date                                                                                          2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit                                                    2
+star-first_name_NS-F4LN-appointed_date-birth_year-gender-race                                                                                   2
+star-F4FN-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                                                        2
+star-first_name_NS-last_name_NS-birth_year-gender-race-current_age_m1-current_age_p1-F4LN-appointed_date-current_unit-F4FN                      1
+star-first_name_NS-appointed_date-birth_year-gender-race-current_unit                                                                           1
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-current_age_m1-current_age_p1-F4LN-appointed_date-F4FN                         1
+star-first_name_NS-appointed_date-gender-race                                                                                                   1
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-current_age_m1-current_age_p1-F4LN-appointed_date-current_unit-F4FN       1
+first_name_NS-F4LN-appointed_date-birth_year-gender-race                                                                                        1
+first_name_NS-last_name_NS-gender-race                                                                                                          1
+first_name_NS-last_name_NS-birth_year-middle_initial                                                                                            1
+F4FN-last_name_NS-appointed_date-middle_initial-gender                                                                                          1
+first_name_NS-F4LN-appointed_date-birth_year-middle_initial-gender-race-current_unit                                                            1
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-race                                                                   1
+first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                                                                               1
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                                                                     1
+star-first_name_NS-last_name_NS-appointed_date-gender                                                                                           1
+star-first_name_NS-F4LN-appointed_date-birth_year-middle_initial-gender-race-current_unit                                                       1
+star-first_name_NS-F4LN-appointed_date-birth_year-middle_initial-gender-race                                                                    1
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                                                       1
+star-last_name_NS-appointed_date-middle_initial-gender-race                                                                                     1
+Name: count, dtype: int64

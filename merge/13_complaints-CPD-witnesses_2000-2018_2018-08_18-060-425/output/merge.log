@@ -1,0 +1,57 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [F4FN] to data with ID = complaints-CPD-witnesses_2000-2018_2018-07_ID
+Adding column [F4LN] to data with ID = complaints-CPD-witnesses_2000-2018_2018-07_ID
+Running merge (1 of 4): base
+Required column types: first_name, last_name, appointed_date, birth_year
+Optional column types: star, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN
+9768 rows merged. 29.04% of ref and 98.18% of sup merged.
+23864 unmerged in ref. 70.96% unmerged.
+181 unmerged in sup. 1.82% unmerged.
+
+Running merge (2 of 4): null reference birth year merge
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN
+150 rows merged. 0.45% of ref and 1.51% of sup merged.
+23714 unmerged in ref. 70.51% unmerged.
+31 unmerged in sup. 0.31% unmerged.
+
+Running merge (3 of 4): null supplemental birth year merge
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, 
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+23714 unmerged in ref. 70.51% unmerged.
+31 unmerged in sup. 0.31% unmerged.
+
+Running merge (4 of 4): multirow merges
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+23714 unmerged in ref. 70.51% unmerged.
+31 unmerged in sup. 0.31% unmerged.
+
+Final Merge Report: 
+9918 rows merged. 29.49% of ref and 99.69% of sup merged.
+23714 unmerged in ref. 70.51% unmerged.
+31 unmerged in sup. 0.31% unmerged.
+matched_on
+first_name_NS-last_name_NS-birth_year-middle_initial-current_unit                6346
+first_name_NS-last_name_NS-birth_year-current_unit                               1436
+first_name_NS-last_name_NS-birth_year-middle_initial                             1310
+first_name_NS-last_name_NS-birth_year                                             268
+first_name_NS-last_name_NS-birth_year-middle_initial-suffix_name-current_unit     194
+first_name_NS-last_name_NS-birth_year-suffix_name-current_unit                    144
+first_name_NS-last_name_NS-middle_initial                                         142
+first_name_NS-last_name_NS-birth_year-middle_initial-suffix_name                   48
+first_name_NS-last_name_NS-birth_year-suffix_name                                  18
+first_name_NS-last_name_NS-middle_initial-suffix_name                               4
+first_name_NS-last_name_NS                                                          4
+first_name_NS-F4LN-birth_year-middle_initial-current_unit                           1
+first_name_NS-F4LN-birth_year-middle_initial                                        1
+first_name_NS-F4LN-birth_year-current_unit                                          1
+first_name_NS-F4LN-birth_year                                                       1
+Name: count, dtype: int64

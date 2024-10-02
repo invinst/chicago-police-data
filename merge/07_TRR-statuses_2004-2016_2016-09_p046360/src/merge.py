@@ -7,7 +7,9 @@
 import pandas as pd
 import __main__
 
-from merge_functions import ReferenceData
+from reference_data import ReferenceData
+from merge_data import Merge
+from default_merges import default_merges, base_merge
 import setup
 
 
@@ -23,6 +25,7 @@ def get_setup():
         'input_reference_file': 'input/officer-reference.csv.gz',
         'output_reference_file': 'output/officer-reference.csv.gz',
         'universal_id': 'UID',
+        'data_id': 'TRR-statuses_2004-2016_2016-09_ID',
         'input_profiles_file' : 'input/TRR-statuses_2004-2016_2016-09_profiles.csv.gz',
         'add_cols' : [
             'F4FN', 'F4LN',
@@ -41,17 +44,17 @@ def get_setup():
 
     return setup.do_setup(script_path, args)
 
+if __name__ == "__main__":
+    cons, log = get_setup()
 
-cons, log = get_setup()
+    ref_df = pd.read_csv(cons.input_reference_file)
+    sup_df = pd.read_csv(cons.input_profiles_file)
 
-ref_df = pd.read_csv(cons.input_reference_file)
-sup_df = pd.read_csv(cons.input_profiles_file)
-
-ReferenceData(ref_df, uid=cons.universal_id, log=log)\
-    .add_sup_data(sup_df, add_cols=cons.add_cols)\
-    .loop_merge(**cons.loop_merge)\
-    .append_to_reference()\
-    .remerge_to_file(cons.input_remerge_file,
-                    cons.output_remerge_file,
-                    cons.csv_opts)\
-    .write_reference(cons.output_reference_file, cons.csv_opts)
+    rd = ReferenceData(ref_df, id=cons.universal_id, add_cols=cons.add_cols, null_flag_cols=['appointed_date'], log=log) \
+        .add_sup_data(sup_df, data_id = cons.data_id, add_cols = cons.add_cols) \
+        .loop_merge([base_merge]) \
+        .append_to_reference() \
+        .remerge_to_file(cons.input_remerge_file,
+                        cons.output_remerge_file,
+                        cons.csv_opts)\
+        .write_reference(cons.output_reference_file, cons.csv_opts)

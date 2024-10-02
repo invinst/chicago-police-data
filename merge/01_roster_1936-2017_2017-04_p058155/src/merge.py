@@ -7,7 +7,7 @@
 import pandas as pd
 import __main__
 
-from merge_functions import ReferenceData
+from reference_data import ReferenceData
 import setup
 
 
@@ -35,14 +35,13 @@ def get_setup():
     return setup.do_setup(script_path, args)
 
 
-cons, log = get_setup()
-data_df = pd.read_csv(cons.input_profiles_file)
-ReferenceData(data_df=data_df, uid=cons.universal_id,
-              data_id=cons.intrafile_id,
-              starting_uid = cons.starting_uid,
-              log=log)\
-              .remerge_to_file(cons.input_remerge_file,
-                                cons.output_remerge_file,
-                                cons.csv_opts)\
-              .write_reference(cons.output_reference_file,
-                                cons.csv_opts)
+if __name__ == "__main__":
+    cons, log = get_setup()
+
+    df = pd.read_csv(cons.input_profiles_file)
+    rd = ReferenceData.from_first_file(df, 
+                                       id=cons.universal_id,
+                                       data_id=cons.intrafile_id,
+                                       starting_id=cons.starting_uid,
+                                       log=log)\
+                    .write_reference(cons.output_reference_file, cons.csv_opts)

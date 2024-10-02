@@ -1,0 +1,53 @@
+running merge.py
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+133 rows dropped due to merge!=1. 4773 rows remaining
+Data reshaped wide (4773 rows) to long (12160 rows) by cr_id columns
+Adding column [BY_to_CA] to data with ID = complaints-accused-crms_2016-2021_2021-09_p675956_ID
+Adding column [current_age] to data with ID = complaints-accused-crms_2016-2021_2021-09_p675956_ID
+Adding column [F4FN] to data with ID = complaints-accused-crms_2016-2021_2021-09_p675956_ID
+Adding column [F4LN] to data with ID = complaints-accused-crms_2016-2021_2021-09_p675956_ID
+Running merge (1 of 2): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+4770 rows merged. 13.42% of ref and 99.94% of sup merged.
+30784 unmerged in ref. 86.58% unmerged.
+3 unmerged in sup. 0.06% unmerged.
+
+Running merge (2 of 2): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+2 rows merged. 0.01% of ref and 0.04% of sup merged.
+30782 unmerged in ref. 86.58% unmerged.
+1 unmerged in sup. 0.02% unmerged.
+
+Final Merge Report: 
+4772 rows merged. 13.42% of ref and 99.98% of sup merged.
+30782 unmerged in ref. 86.58% unmerged.
+1 unmerged in sup. 0.02% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                2859
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                742
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                      620
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                                   155
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                     123
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name-current_unit      76
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                     76
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                               35
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                   21
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name-current_unit           16
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                          15
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name                         9
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                               9
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                       5
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                        4
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit                             2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit                        2
+star-first_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                                2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name                    1
+Name: count, dtype: int64
+Assembling 2016 - 2021 crms accused

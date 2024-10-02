@@ -1,0 +1,71 @@
+running merge.py
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [L4LN] to data with ID = UID
+2590 rows dropped due to merge!=1. 15109 rows remaining
+Data reshaped wide (15109 rows) to long (24295 rows) by cr_id columns
+Adding column [BY_to_CA] to data with ID = complaints-accused_2000-2023_2023-09_p867849_ID
+Adding column [current_age] to data with ID = complaints-accused_2000-2023_2023-09_p867849_ID
+Adding column [F4FN] to data with ID = complaints-accused_2000-2023_2023-09_p867849_ID
+Adding column [F4LN] to data with ID = complaints-accused_2000-2023_2023-09_p867849_ID
+Adding column [L4LN] to data with ID = complaints-accused_2000-2023_2023-09_p867849_ID
+Running merge (1 of 5): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, L4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+4464 rows merged. 11.89% of ref and 29.55% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+10645 unmerged in sup. 70.45% unmerged.
+
+Running merge (2 of 5): appointed date update, offset 1 day
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, L4LN
+10353 rows merged. 27.58% of ref and 68.52% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+292 unmerged in sup. 1.93% unmerged.
+
+Running merge (3 of 5): null appointed date and birth year supplemental merge
+Required column types: first_name, last_name
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, 
+63 rows merged. 0.17% of ref and 0.42% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+229 unmerged in sup. 1.52% unmerged.
+
+Running merge (4 of 5): appointed date update star
+Required column types: star, first_name, last_name, birth_year
+Optional column types: appointed_date, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, L4LN
+2 rows merged. 0.01% of ref and 0.01% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+227 unmerged in sup. 1.5% unmerged.
+
+Running merge (5 of 5): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+227 unmerged in sup. 1.5% unmerged.
+
+Final Merge Report: 
+14882 rows merged. 39.65% of ref and 98.5% of sup merged.
+29122 unmerged in ref. 77.59% unmerged.
+227 unmerged in sup. 1.5% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-birth_year-gender-race-current_unit                    3354
+star-first_name_NS-last_name_NS-birth_year-current_unit                                1979
+star-first_name_NS-last_name_NS-birth_year-gender-race-current_unit-cr_id              1909
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit     1164
+star-first_name_NS-last_name_NS-birth_year-current_unit-cr_id                          1148
+                                                                                       ... 
+star-F4FN-last_name_NS-birth_year-gender-race-current_unit                                1
+star-first_name_NS-L4LN-birth_year-gender-race-current_unit-cr_id                         1
+first_name_NS-last_name_NS-appointed_date-gender-race-current_unit                        1
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-current_unit-cr_id       1
+star-first_name_NS-F4LN-gender-race                                                       1
+Name: count, Length: 87, dtype: int64
+Assembling 2000 - 2023 clear accused

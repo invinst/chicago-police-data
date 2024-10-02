@@ -1,0 +1,97 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [L4LN] to data with ID = UID
+Adding column [F1FN] to data with ID = UID
+Adding column [F3LN] to data with ID = UID
+Adding column [BY_to_CA] to data with ID = UID
+Adding column by executing 
+df['current_age_mp'], df['current_age_pm'], df['current_age2_mp'], df['current_age2_pm'], df['current_age2_p1'], df['current_age2_m1'], df['current_age2_mp2'] = df['current_age_p1'], df['current_age_m1'], df['current_age_p1'], df['current_age_m1'], df['current_age_p1'], df['current_age_m1'], df['current_age_p1'] + 1
+to data with ID = UID
+Adding column by executing 
+df['so_max_date'], df['so_min_date']= zip(*df['appointed_date'].apply(lambda x: (x,x)))
+to data with ID = UID
+Adding column by executing 
+df['org_hire_date'] = df['appointed_date']
+to data with ID = UID
+Adding column by executing 
+df['org_hire_date'] = df['appointed_date']
+to data with ID = UID
+Adding column by executing 
+df['so_max_year'],df['so_min_year'], df['so_min_year_m1'], df['so_max_year_m1'] = zip(*pd.to_datetime(df['appointed_date']).dt.year.apply(lambda x: (x,x,x,x)))
+to data with ID = UID
+Adding column [F4FN] to data with ID = salary_2017-2023_2023-02_ID
+Adding column [F4LN] to data with ID = salary_2017-2023_2023-02_ID
+Adding column [L4LN] to data with ID = salary_2017-2023_2023-02_ID
+Adding column [F1FN] to data with ID = salary_2017-2023_2023-02_ID
+Adding column [F3LN] to data with ID = salary_2017-2023_2023-02_ID
+Adding column [BY_to_CA] to data with ID = salary_2017-2023_2023-02_ID
+Running merge (1 of 3): first merge
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit, current_rank
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; appointed_date: appointed_date, org_hire_date, so_min_date, so_max_date, so_min_year, so_max_year; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+18848 rows merged. 50.22% of ref and 97.45% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+494 unmerged in sup. 2.55% unmerged.
+
+Running merge (2 of 3): rank merge
+Required column types: first_name, last_name, current_rank
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: appointed_date: appointed_date, org_hire_date, so_min_date, so_max_date, so_min_year, so_max_year, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+79 rows merged. 0.21% of ref and 0.41% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+415 unmerged in sup. 2.15% unmerged.
+
+Running merge (3 of 3): loose merge
+Required column types: first_name, last_name
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit, current_rank
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; appointed_date: appointed_date, so_min_date, so_max_date, so_min_year, so_max_year, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+375 rows merged. 1.0% of ref and 1.94% of sup merged.
+37533 unmerged in ref. 100.0% unmerged.
+40 unmerged in sup. 0.21% unmerged.
+
+Final Merge Report: 
+19302 rows merged. 51.43% of ref and 99.79% of sup merged.
+21040 unmerged in ref. 56.06% unmerged.
+40 unmerged in sup. 0.21% unmerged.
+matched_on
+first_name_NS-last_name_NS-org_hire_date-middle_initial-gender                             5966
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                            4826
+first_name_NS-last_name_NS-appointed_date-gender                                           4004
+first_name_NS-last_name_NS-org_hire_date-gender                                            1553
+first_name_NS-last_name_NS-org_hire_date-middle_initial-gender-current_rank                1431
+first_name_NS-last_name_NS-org_hire_date-gender-current_rank                                310
+first_name_NS-last_name_NS-middle_initial-gender                                            278
+first_name_NS-last_name_NS-org_hire_date-middle_initial-gender-suffix_name                  223
+first_name_NS-last_name_NS-appointed_date-gender-suffix_name                                160
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                 148
+first_name_NS-last_name_NS-org_hire_date-gender-suffix_name                                 145
+first_name_NS-last_name_NS-gender                                                            76
+first_name_NS-last_name_NS-middle_initial-gender-current_rank                                61
+first_name_NS-last_name_NS-org_hire_date-middle_initial-gender-suffix_name-current_rank      35
+first_name_NS-last_name_NS-org_hire_date-gender-suffix_name-current_rank                     12
+first_name_NS-last_name_NS-gender-current_rank                                               12
+first_name_NS-last_name_NS-middle_initial-gender-suffix_name                                 11
+first_name_NS-last_name_NS-gender-suffix_name                                                10
+first_name_NS-last_name_NS-so_min_year-middle_initial-gender                                  8
+first_name_NS-last_name_NS-appointed_date-middle_initial                                      4
+first_name_NS-last_name_NS-so_min_year-gender                                                 3
+F4FN-last_name_NS-appointed_date-gender                                                       3
+first_name_NS-last_name_NS-gender-suffix_name-current_rank                                    3
+first_name_NS-F4LN-so_max_year-gender                                                         2
+first_name_NS-last_name_NS-org_hire_date                                                      2
+first_name_NS-last_name_NS-so_min_year-middle_initial-gender-current_rank                     2
+first_name_NS-last_name_NS-current_rank                                                       2
+first_name_NS-last_name_NS-so_max_date-gender                                                 1
+first_name_NS-last_name_NS-so_max_date-middle_initial-gender-suffix_name                      1
+first_name_NS-last_name_NS-so_max_date-middle_initial-gender                                  1
+first_name_NS-last_name_NS-appointed_date                                                     1
+first_name_NS-last_name_NS-middle_initial-gender-suffix_name-current_rank                     1
+first_name_NS-last_name_NS-so_min_year-gender-current_rank                                    1
+F4FN-last_name_NS-org_hire_date-middle_initial-gender-current_rank                            1
+F4FN-last_name_NS-appointed_date-middle_initial-gender                                        1
+first_name_NS-F4LN-org_hire_date-gender                                                       1
+first_name_NS-F4LN-appointed_date-gender                                                      1
+first_name_NS-last_name_NS-so_max_year-middle_initial-gender                                  1
+F4FN-last_name_NS-org_hire_date-middle_initial-gender                                         1
+Name: count, dtype: int64

@@ -1,7 +1,4 @@
-running src/merge.py
-Loading reference data with 216925 rows and 33028 universal IDs
-Adding file with intrafile ID: complaints-witnesses_2000-2016_2016-11_ID
-605 rows dropped due to merge!=1. 11561 rows remaining
+running merge.py
 Adding column [F4FN] to data with ID = UID
 Adding column [F4LN] to data with ID = UID
 Adding column [L4LN] to data with ID = UID
@@ -18,6 +15,7 @@ to data with ID = UID
 Adding column by executing 
 df['LN2']=df['first_name_NS']
 to data with ID = UID
+605 rows dropped due to merge!=1. 11561 rows remaining
 Adding column [F4FN] to data with ID = complaints-witnesses_2000-2016_2016-11_ID
 Adding column [F4LN] to data with ID = complaints-witnesses_2000-2016_2016-11_ID
 Adding column [L4LN] to data with ID = complaints-witnesses_2000-2016_2016-11_ID
@@ -31,34 +29,46 @@ to data with ID = complaints-witnesses_2000-2016_2016-11_ID
 Adding column by executing 
 df['LN2']=df['last_name_NS']
 to data with ID = complaints-witnesses_2000-2016_2016-11_ID
-Beginning loop_merge.
-Merge Report:
-11538 Total Merged. 34.93% of ref and 99.8% of sup Merged.
-21490 Unmerged in ref. 65.07% Unmerged.
-23 Unmerged in sup. 0.2% Unmerged.
+Running merge (1 of 2): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+11149 rows merged. 33.76% of ref and 96.44% of sup merged.
+33020 unmerged in ref. 100.0% unmerged.
+412 unmerged in sup. 3.56% unmerged.
 
-star-first_name_NS-last_name_NS-appointed_date-birth_year                                   7301
-first_name_NS-last_name_NS-appointed_date-birth_year                                        3270
-star-first_name_NS-last_name_NS-appointed_date-birth_year-suffix_name                        322
-first_name_NS-star-birth_year-appointed_date                                                 281
-first_name_NS-last_name_NS-appointed_date-birth_year-suffix_name                             164
-first_name_NS-birth_year-appointed_date                                                       61
-star-first_name_NS-F4LN-appointed_date-birth_year                                             33
-first_name_NS-last_name_NS-appointed_date                                                     16
-star-first_name_NS-last_name_NS-appointed_date                                                14
-star-F4FN-last_name_NS-appointed_date-birth_year                                              12
-last_name_NS-birth_year-appointed_date-star                                                   12
-first_name_NS-L4LN-birth_year-appointed_date                                                  12
-first_name_NS-F4LN-appointed_date-birth_year                                                   9
-F4LN-birth_year-appointed_date                                                                 8
-F3FN-last_name_NS-birth_year-appointed_date                                                    7
-F4FN-last_name_NS-appointed_date-birth_year                                                    4
-F1FN-L3FN-birth_year-appointed_date-star                                                       2
-star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial                       2
-F4FN-star-birth_year-appointed_date                                                            2
-first_name_NS-last_name_NS-birth_year                                                          2
-star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2       1
-FN2-LN2-birth_year-appointed_date-star                                                         1
-F4FN-last_name_NS-appointed_date                                                               1
-F3FN-L3FN-last_name_NS-birth_year-appointed_date-star                                          1
-Name: matched_on, dtype: int64
+Running merge (2 of 2): custom_merges
+390 rows merged. 1.18% of ref and 3.37% of sup merged.
+33020 unmerged in ref. 100.0% unmerged.
+22 unmerged in sup. 0.19% unmerged.
+
+Final Merge Report: 
+11539 rows merged. 34.95% of ref and 99.81% of sup merged.
+21698 unmerged in ref. 65.71% unmerged.
+22 unmerged in sup. 0.19% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year                   7301
+first_name_NS-last_name_NS-appointed_date-birth_year                        3270
+star-first_name_NS-last_name_NS-appointed_date-birth_year-suffix_name        322
+first_name_NS-star-birth_year-appointed_date                                 281
+first_name_NS-last_name_NS-appointed_date-birth_year-suffix_name             164
+first_name_NS-birth_year-appointed_date                                       61
+star-first_name_NS-F4LN-appointed_date-birth_year                             33
+first_name_NS-last_name_NS-appointed_date                                     16
+star-first_name_NS-last_name_NS-appointed_date                                14
+first_name_NS-L4LN-birth_year-appointed_date                                  12
+star-F4FN-last_name_NS-appointed_date-birth_year                              12
+last_name_NS-birth_year-appointed_date-star                                   12
+first_name_NS-F4LN-appointed_date-birth_year                                   9
+F3FN-last_name_NS-birth_year-appointed_date                                    7
+F4LN-birth_year-appointed_date                                                 5
+F1FN-last_name_NS-birth_year-appointed_date                                    4
+F4FN-last_name_NS-appointed_date-birth_year                                    4
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial       3
+first_name_NS-last_name_NS-birth_year                                          2
+F1FN-L3FN-birth_year-appointed_date-star                                       2
+F4FN-star-birth_year-appointed_date                                            2
+F3FN-L3FN-last_name_NS-birth_year-appointed_date-star                          1
+F4FN-last_name_NS-appointed_date                                               1
+FN2-LN2-birth_year-appointed_date-star                                         1
+Name: count, dtype: int64

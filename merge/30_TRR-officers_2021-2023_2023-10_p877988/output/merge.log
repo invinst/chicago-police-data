@@ -1,0 +1,33 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+44 rows dropped due to merge!=1. 4278 rows remaining
+Data reshaped wide (4278 rows) to long (4486 rows) by star columns
+Adding column [F4FN] to data with ID = TRR-officers_2021-2023_2023-10_p877988_ID
+Adding column [F4LN] to data with ID = TRR-officers_2021-2023_2023-10_p877988_ID
+Running merge (1 of 2): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+4277 rows merged. 11.4% of ref and 99.98% of sup merged.
+33258 unmerged in ref. 88.61% unmerged.
+1 unmerged in sup. 0.02% unmerged.
+
+Running merge (2 of 2): custom merge/appointed date update
+1 rows merged. 0.0% of ref and 0.02% of sup merged.
+33257 unmerged in ref. 88.61% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+
+Final Merge Report: 
+4278 rows merged. 11.4% of ref and 100.0% of sup merged.
+33257 unmerged in ref. 88.61% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit    3720
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                    438
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit           82
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                   29
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit            5
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                   3
+star-first_name_NS-last_name_NS-birth_year-race-gender                                                  1
+Name: count, dtype: int64

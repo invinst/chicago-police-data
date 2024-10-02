@@ -1,28 +1,34 @@
-running src/merge.py
-Loading reference data with 175660 rows and 33026 universal IDs
-Adding file with intrafile ID: complaints-accused_2000-2016_2016-11_ID
+running merge.py
 Adding column [F4FN] to data with ID = UID
 Adding column [F4LN] to data with ID = UID
+Data reshaped wide (16021 rows) to long (125581 rows) by cr_id columns
 Adding column [F4FN] to data with ID = complaints-accused_2000-2016_2016-11_ID
 Adding column [F4LN] to data with ID = complaints-accused_2000-2016_2016-11_ID
-Beginning loop_merge.
-Merge Report:
-16021 Total Merged. 48.51% of ref and 100.0% of sup Merged.
-17005 Unmerged in ref. 51.49% Unmerged.
-0 Unmerged in sup. 0.0% Unmerged.
+Running merge (1 of 1): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+16021 rows merged. 48.52% of ref and 100.0% of sup merged.
+16997 unmerged in ref. 51.48% unmerged.
+0 unmerged in sup. 0.0% unmerged.
 
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                   7135
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                        4471
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                2616
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                                     1060
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                        290
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                             225
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                      88
-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                           66
-star-first_name_NS-last_name_NS-appointed_date-gender-race-current_unit                                                46
-star-first_name_NS-last_name_NS-appointed_date-gender-race                                                             16
-star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                       3
-star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-middle_initial2-gender-race-current_unit       2
-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                            2
-star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                           1
-Name: matched_on, dtype: int64
+Final Merge Report: 
+16021 rows merged. 48.52% of ref and 100.0% of sup merged.
+16997 unmerged in ref. 51.48% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                   7135
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                        4471
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                2616
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                     1060
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit        290
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit             225
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                      88
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                           66
+star-first_name_NS-last_name_NS-appointed_date-gender-race-current_unit                                46
+star-first_name_NS-last_name_NS-appointed_date-gender-race                                             16
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit       5
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit            2
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                           1
+Name: count, dtype: int64
+Assembling 2000 - 2016 accused

@@ -1,0 +1,33 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+126 rows dropped due to merge!=1. 4507 rows remaining
+Adding column [F4FN] to data with ID = TRR-officers_2017-2020_2020-06_p583646_ID
+Adding column [F4LN] to data with ID = TRR-officers_2017-2020_2020-06_p583646_ID
+Running merge (1 of 1): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+4507 rows merged. 12.68% of ref and 100.0% of sup merged.
+31046 unmerged in ref. 87.32% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+
+Final Merge Report: 
+4507 rows merged. 12.68% of ref and 100.0% of sup merged.
+31046 unmerged in ref. 87.32% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+matched_on
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-current_unit                3085
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                              582
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-current_unit                                508
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name-current_unit      88
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-current_unit                       68
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                                              53
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name-current_unit                     51
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race-suffix_name                   43
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                                    14
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race-suffix_name                                  12
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-suffix_name-current_unit            1
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-suffix_name                         1
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-current_unit                                       1
+Name: count, dtype: int64

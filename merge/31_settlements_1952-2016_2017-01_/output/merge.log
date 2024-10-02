@@ -1,0 +1,42 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+36 rows dropped due to merge!=1. 2452 rows remaining
+Adding column [F4FN] to data with ID = settlements_1952-2016_2017-01_ID
+Adding column [F4LN] to data with ID = settlements_1952-2016_2017-01_ID
+Running merge (1 of 2): base
+Required column types: star, first_name, last_name
+Optional column types: appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit, current_rank, service_years
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+1685 rows merged. 4.49% of ref and 68.72% of sup merged.
+35848 unmerged in ref. 95.51% unmerged.
+767 unmerged in sup. 31.28% unmerged.
+
+Running merge (2 of 2): without star merge
+Required column types: first_name, last_name
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit, current_rank, service_years
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+720 rows merged. 1.92% of ref and 29.36% of sup merged.
+35128 unmerged in ref. 93.59% unmerged.
+47 unmerged in sup. 1.92% unmerged.
+
+Final Merge Report: 
+2405 rows merged. 6.41% of ref and 98.08% of sup merged.
+35128 unmerged in ref. 93.59% unmerged.
+47 unmerged in sup. 1.92% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-gender-race-current_rank-service_years                1589
+first_name_NS-last_name_NS-gender-race-current_rank-service_years                      660
+star-first_name_NS-last_name_NS-gender-race-suffix_name-current_rank-service_years      70
+first_name_NS-last_name_NS-gender-race-suffix_name-current_rank-service_years           34
+first_name_NS-last_name_NS-gender-race-current_rank                                     13
+star-first_name_NS-last_name_NS-gender-race-service_years                               12
+star-first_name_NS-last_name_NS-gender-race-current_rank                                11
+first_name_NS-last_name_NS                                                               7
+first_name_NS-F4LN                                                                       3
+star-first_name_NS-last_name_NS                                                          2
+star-first_name_NS-last_name_NS-gender-race-suffix_name-current_rank                     1
+first_name_NS-last_name_NS-gender-race-suffix_name-service_years                         1
+first_name_NS-last_name_NS-gender-race-service_years                                     1
+first_name_NS-last_name_NS-gender-current_rank                                           1
+Name: count, dtype: int64

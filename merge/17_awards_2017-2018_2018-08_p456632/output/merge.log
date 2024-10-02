@@ -1,0 +1,43 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+3429 rows dropped due to merge!=1. 16795 rows remaining
+Adding column [F4FN] to data with ID = awards_2017-2018_2018-08_p456632_ID
+Adding column [F4LN] to data with ID = awards_2017-2018_2018-08_p456632_ID
+Running merge (1 of 2): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+16794 rows merged. 47.26% of ref and 99.99% of sup merged.
+18744 unmerged in ref. 52.74% unmerged.
+1 unmerged in sup. 0.01% unmerged.
+
+Running merge (2 of 2): null appointed date (supplemental) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+1 rows merged. 0.0% of ref and 0.01% of sup merged.
+18743 unmerged in ref. 52.74% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+
+Final Merge Report: 
+16795 rows merged. 47.26% of ref and 100.0% of sup merged.
+18743 unmerged in ref. 52.74% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race    8352
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race         5458
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                   1758
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                        1113
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender           79
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                 25
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                           2
+star-first_name_NS-last_name_NS-appointed_date-birth_year                                  1
+star-first_name_NS-last_name_NS-appointed_date-gender-race                                 1
+star-F4FN-last_name_NS-appointed_date-birth_year-middle_initial-gender-race                1
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                 1
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                       1
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                            1
+first_name_NS-last_name_NS-appointed_date-gender-race                                      1
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                      1
+Name: count, dtype: int64

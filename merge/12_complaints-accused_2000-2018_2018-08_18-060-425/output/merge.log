@@ -1,0 +1,86 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Data reshaped wide (29527 rows) to long (264732 rows) by cr_id columns
+Adding column [F4FN] to data with ID = complaints-accused_2000-2018_2018-07_ID
+Adding column [F4LN] to data with ID = complaints-accused_2000-2018_2018-07_ID
+Running merge (1 of 5): base
+Required column types: first_name, last_name, appointed_date, birth_year
+Optional column types: star, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN
+15488 rows merged. 46.07% of ref and 98.61% of sup merged.
+18134 unmerged in ref. 53.93% unmerged.
+218 unmerged in sup. 1.39% unmerged.
+
+Running merge (2 of 5): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+35 rows merged. 0.1% of ref and 0.22% of sup merged.
+18099 unmerged in ref. 53.83% unmerged.
+183 unmerged in sup. 1.17% unmerged.
+
+Running merge (3 of 5): null supplemental birth year merge
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, 
+135 rows merged. 0.4% of ref and 0.86% of sup merged.
+17964 unmerged in ref. 53.43% unmerged.
+48 unmerged in sup. 0.31% unmerged.
+
+Running merge (4 of 5): null reference birth year merge
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN
+37 rows merged. 0.11% of ref and 0.24% of sup merged.
+17927 unmerged in ref. 53.32% unmerged.
+11 unmerged in sup. 0.07% unmerged.
+
+Running merge (5 of 5): custom_merge
+1 rows merged. 0.0% of ref and 0.01% of sup merged.
+17926 unmerged in ref. 53.32% unmerged.
+10 unmerged in sup. 0.06% unmerged.
+
+Final Merge Report: 
+15696 rows merged. 46.68% of ref and 99.94% of sup merged.
+17926 unmerged in ref. 53.32% unmerged.
+10 unmerged in sup. 0.06% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                11848
+star-first_name_NS-last_name_NS-birth_year-gender-race-cr_id                          1491
+star-first_name_NS-last_name_NS-birth_year-gender-race                                1095
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name      399
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                       301
+star-first_name_NS-last_name_NS-birth_year-gender-race-suffix_name-cr_id               135
+star-first_name_NS-last_name_NS-birth_year-gender-race-suffix_name                     125
+star-first_name_NS-last_name_NS-cr_id                                                   70
+star-first_name_NS-last_name_NS                                                         56
+first_name_NS-last_name_NS-birth_year-gender-race-cr_id                                 48
+star-first_name_NS-last_name_NS-middle_initial-gender-race                              43
+star-first_name_NS-birth_year-middle_initial-gender-race                                 9
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name             9
+first_name_NS-last_name_NS-middle_initial-gender-race                                    8
+star-first_name_NS-last_name_NS-gender-race                                              8
+first_name_NS-last_name_NS-birth_year                                                    5
+star-first_name_NS-last_name_NS-birth_year                                               5
+first_name_NS-last_name_NS-birth_year-middle_initial-gender                              5
+star-first_name_NS-F4LN-birth_year-middle_initial-gender-race                            4
+first_name_NS-last_name_NS-birth_year-gender-race                                        4
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-cr_id              4
+first_name_NS-last_name_NS-birth_year-gender-race-suffix_name-cr_id                      3
+star-first_name_NS-last_name_NS-suffix_name-cr_id                                        3
+first_name_NS-last_name_NS-cr_id                                                         3
+star-F4FN-last_name_NS-birth_year-middle_initial-gender-race                             3
+star-first_name_NS-last_name_NS-suffix_name                                              2
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender                         2
+star-first_name_NS-F4LN-birth_year                                                       1
+star-first_name_NS-birth_year-gender-race-cr_id                                          1
+star-first_name_NS-last_name_NS-birth_year-gender                                        1
+first_name_NS-last_name_NS                                                               1
+star-first_name_NS-last_name_NS-gender-race-suffix_name                                  1
+first_name_NS-last_name_NS-middle_initial-gender                                         1
+first_name_NS-last_name_NS-gender                                                        1
+star-cr_id                                                                               1
+Name: count, dtype: int64
+Assembling 2000 - 2018 accused
+Dropped 31312 ids due to merge flag

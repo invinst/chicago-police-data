@@ -1,0 +1,57 @@
+running merge.py
+Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
+75 rows dropped due to merge!=1. 3899 rows remaining
+Adding column [BY_to_CA] to data with ID = complaints-accused-cms_2016-2021_2021-09_p675956_ID
+Adding column [current_age] to data with ID = complaints-accused-cms_2016-2021_2021-09_p675956_ID
+Running merge (1 of 3): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit, cr_id
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+3188 rows merged. 8.97% of ref and 95.22% of sup merged.
+32365 unmerged in ref. 91.03% unmerged.
+160 unmerged in sup. 4.78% unmerged.
+
+Running merge (2 of 3): null appointed date (supplemental) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+9 rows merged. 0.03% of ref and 0.27% of sup merged.
+32356 unmerged in ref. 91.01% unmerged.
+151 unmerged in sup. 4.51% unmerged.
+
+Running merge (3 of 3): custom merge
+37 rows merged. 0.1% of ref and 1.11% of sup merged.
+32319 unmerged in ref. 90.9% unmerged.
+114 unmerged in sup. 3.41% unmerged.
+
+Final Merge Report: 
+3234 rows merged. 9.1% of ref and 96.59% of sup merged.
+32319 unmerged in ref. 90.9% unmerged.
+114 unmerged in sup. 3.41% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-gender-race                               1667
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-race                1188
+star-first_name_NS-last_name_NS-appointed_date-current_age_p1-gender-race                 119
+star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                     54
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-race-suffix_name      53
+star-appointed_date                                                                        34
+star-first_name_NS-last_name_NS-appointed_date-gender                                      25
+first_name_NS-last_name_NS-appointed_date-gender-race                                      24
+first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-race                       21
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender                       17
+star-first_name_NS-last_name_NS-appointed_date-current_age_p1-gender-race-suffix_name       9
+star-first_name_NS-last_name_NS-gender-race                                                 6
+first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-race-suffix_name            3
+first_name_NS-last_name_NS-gender-race                                                      3
+star-first_name_NS-last_name_NS-appointed_date-gender-suffix_name                           2
+star-first_name_NS-last_name_NS-appointed_date-current_age_m1-gender-suffix_name            2
+first_name_NS-last_name_NS-appointed_date-gender                                            2
+first_name_NS-last_name_NS-appointed_date-current_age_p1-gender-race                        1
+first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                           1
+first_name_NS-last_name_NS-race                                                             1
+star-first_name_NS-last_name_NS-current_age_m1-gender-race                                  1
+first_name_NS-last_name_NS-current_age_m1-gender-race                                       1
+Name: count, dtype: int64
+Preparing accused file for resolve.
+Dropped 1092 cr_ids for not having UIDs associated

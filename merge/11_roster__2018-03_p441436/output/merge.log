@@ -1,56 +1,93 @@
-running src/merge.py
-Loading reference data with 228486 rows and 33051 universal IDs
-Adding file with intrafile ID: roster__2018-03_ID
-1930 rows dropped due to merge!=1. 12158 rows remaining
+running merge.py
 Adding column [F4FN] to data with ID = UID
 Adding column [F4LN] to data with ID = UID
 Adding column [BY_to_CA] to data with ID = UID
+Adding column [current_age] to data with ID = UID
 Adding column by executing 
 df["appointed_date2"], df["appointed_date3"] = df["start_date"], df["org_hire_date"]
 to data with ID = UID
-Adding column [BY_to_CA] to data with ID = UID
-Adding column [current_age] to data with ID = UID
+1930 rows dropped due to merge!=1. 12158 rows remaining
 Adding column [F4FN] to data with ID = roster__2018-03_ID
 Adding column [F4LN] to data with ID = roster__2018-03_ID
 Adding column [BY_to_CA] to data with ID = roster__2018-03_ID
+Adding column [current_age] to data with ID = roster__2018-03_ID
 Adding column by executing 
 df["appointed_date2"], df["appointed_date3"] = df["appointed_date"], df["appointed_date"]
 to data with ID = roster__2018-03_ID
-Adding column [BY_to_CA] to data with ID = roster__2018-03_ID
-Adding column [current_age] to data with ID = roster__2018-03_ID
-Beginning loop_merge.
-Merge Report:
-11542 Total Merged. 34.92% of ref and 94.93% of sup Merged.
-21509 Unmerged in ref. 65.08% Unmerged.
-616 Unmerged in sup. 5.07% Unmerged.
+Running merge (1 of 6): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; appointed_date: appointed_date, appointed_date2, appointed_date3; birth_year: birth_year, current_age, 
+11529 rows merged. 34.92% of ref and 94.83% of sup merged.
+21491 unmerged in ref. 65.08% unmerged.
+629 unmerged in sup. 5.17% unmerged.
 
-star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                    8363
-star-first_name_NS-last_name_NS-appointed_date-gender-race                                   1809
-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                          389
-first_name_NS-last_name_NS-appointed_date3-middle_initial-gender                              262
-star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name         232
-first_name_NS-last_name_NS-appointed_date3-gender                                             163
-star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                        163
-first_name_NS-last_name_NS-appointed_date-middle_initial-gender                                49
-first_name_NS-last_name_NS-appointed_date-gender-race                                          19
-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name               18
-first_name_NS-middle_initial-race-gender-current_age_p1-appointed_date-star                    14
-star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender                           11
-first_name_NS-last_name_NS-appointed_date3-gender-suffix_name                                   9
-first_name_NS-last_name_NS-appointed_date3-middle_initial-gender-suffix_name                    8
-star-first_name_NS-last_name_NS-appointed_date                                                  5
-star-first_name_NS-F4LN-appointed_date-middle_initial-gender-race                               4
-first_name_NS-race-current_age_p1-appointed_date-star                                           4
-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                     3
-first_name_NS-current_age_p1-appointed_date                                                     3
-star-first_name_NS-last_name_NS-appointed_date-gender                                           3
-star-first_name_NS-last_name_NS-appointed_date-middle_initial-middle_initial2-gender-race       2
-first_name_NS-last_name_NS-appointed_date2-middle_initial-gender                                2
-last_name_NS-middle_initial-appointed_date-star-race-current_age_p1                             1
-first_name_NS-middle_initial-last_name_NS                                                       1
-first_name_NS-last_name_NS-appointed_date2-gender                                               1
-star-first_name_NS-F4LN-appointed_date                                                          1
-first_name_NS-last_name_NS-appointed_date                                                       1
-star-F4FN-last_name_NS-appointed_date-middle_initial-gender-race                                1
-first_name_NS-last_name_NS-appointed_date-middle_initial                                        1
-Name: matched_on, dtype: int64
+Running merge (2 of 6): null appointed date (supplemental) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+1 rows merged. 0.0% of ref and 0.01% of sup merged.
+21490 unmerged in ref. 65.08% unmerged.
+628 unmerged in sup. 5.17% unmerged.
+
+Running merge (3 of 6): null appointed date (reference) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+21490 unmerged in ref. 65.08% unmerged.
+628 unmerged in sup. 5.17% unmerged.
+
+Running merge (4 of 6): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+21 rows merged. 0.06% of ref and 0.17% of sup merged.
+21469 unmerged in ref. 65.02% unmerged.
+607 unmerged in sup. 4.99% unmerged.
+
+Running merge (5 of 6): custom_merges
+4 rows merged. 0.01% of ref and 0.03% of sup merged.
+21465 unmerged in ref. 65.01% unmerged.
+603 unmerged in sup. 4.96% unmerged.
+
+Running merge (6 of 6): manual/custom merges
+1 rows merged. 0.0% of ref and 0.01% of sup merged.
+21464 unmerged in ref. 65.0% unmerged.
+602 unmerged in sup. 4.95% unmerged.
+
+Final Merge Report: 
+11556 rows merged. 35.0% of ref and 95.05% of sup merged.
+21464 unmerged in ref. 65.0% unmerged.
+602 unmerged in sup. 4.95% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                8365
+star-first_name_NS-last_name_NS-appointed_date-gender-race                               1809
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                      389
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                           313
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name     232
+first_name_NS-last_name_NS-appointed_date-gender                                          171
+star-first_name_NS-last_name_NS-appointed_date-gender-race-suffix_name                    163
+first_name_NS-last_name_NS-appointed_date-gender-race                                      19
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race-suffix_name           18
+star-first_name_NS-appointed_date-current_age_m1-middle_initial-gender-race                16
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender                       11
+first_name_NS-last_name_NS-appointed_date-gender-suffix_name                                9
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender-suffix_name                 9
+star-first_name_NS-last_name_NS-appointed_date                                              5
+star-first_name_NS-F4LN-appointed_date-middle_initial-gender-race                           4
+first_name_NS-last_name_NS-appointed_date3-middle_initial-gender                            4
+star-first_name_NS-last_name_NS-appointed_date-gender                                       3
+first_name_NS-current_age_m1-appointed_date                                                 3
+first_name_NS-last_name_NS-appointed_date3-gender                                           2
+first_name_NS-last_name_NS-middle_initial-gender                                            2
+last_name_NS-middle_initial-appointed_date-star-race-current_age_p1                         1
+first_name_NS-last_name_NS-current_age_m1-middle_initial-gender-race                        1
+first_name_NS-middle_initial-race-gender-current_age_m1-appointed_date-star                 1
+first_name_NS-last_name_NS-appointed_date-middle_initial                                    1
+star-first_name_NS-appointed_date-current_age_p1-gender-race                                1
+star-first_name_NS-appointed_date-current_age_m1-gender-race                                1
+star-F4FN-last_name_NS-appointed_date-middle_initial-gender-race                            1
+star-first_name_NS-F4LN-appointed_date                                                      1
+first_name_NS-last_name_NS-current_age_p1-middle_initial-gender-race                        1
+Name: count, dtype: int64

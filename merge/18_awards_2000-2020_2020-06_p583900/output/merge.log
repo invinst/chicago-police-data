@@ -1,0 +1,66 @@
+running merge.py
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+7324 rows dropped due to merge!=1. 21617 rows remaining
+Data reshaped wide (21617 rows) to long (25685 rows) by star columns
+Adding column [F4FN] to data with ID = awards_2000-2020_2020-06_p583900_ID
+Adding column [F4LN] to data with ID = awards_2000-2020_2020-06_p583900_ID
+Running merge (1 of 5): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+21596 rows merged. 60.77% of ref and 99.9% of sup merged.
+13942 unmerged in ref. 39.23% unmerged.
+21 unmerged in sup. 0.1% unmerged.
+
+Running merge (2 of 5): null appointed date (reference) merge
+Required column types: first_name, last_name, birth_year
+Optional column types: star, appointed_date, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+13942 unmerged in ref. 39.23% unmerged.
+21 unmerged in sup. 0.1% unmerged.
+
+Running merge (3 of 5): null appointed date and birth year reference merge
+Required column types: first_name, last_name
+Optional column types: star, appointed_date, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, 
+0 rows merged. 0.0% of ref and 0.0% of sup merged.
+13942 unmerged in ref. 39.23% unmerged.
+21 unmerged in sup. 0.1% unmerged.
+
+Running merge (4 of 5): married - last name change merge
+Required column types: star, first_name, appointed_date
+Optional column types: last_name, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN, ; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+2 rows merged. 0.01% of ref and 0.01% of sup merged.
+13940 unmerged in ref. 39.23% unmerged.
+19 unmerged in sup. 0.09% unmerged.
+
+Running merge (5 of 5): custom merges
+4 rows merged. 0.01% of ref and 0.02% of sup merged.
+13936 unmerged in ref. 39.21% unmerged.
+15 unmerged in sup. 0.07% unmerged.
+
+Final Merge Report: 
+21602 rows merged. 60.79% of ref and 99.93% of sup merged.
+13936 unmerged in ref. 39.21% unmerged.
+15 unmerged in sup. 0.07% unmerged.
+matched_on
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race    14881
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                    2797
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender-race          2612
+star-first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender           653
+first_name_NS-last_name_NS-appointed_date-birth_year-gender-race                          509
+star-first_name_NS-last_name_NS-appointed_date-birth_year-gender                           90
+first_name_NS-last_name_NS-appointed_date-birth_year-middle_initial-gender                 47
+first_name_NS-last_name_NS-appointed_date-birth_year-gender                                 3
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                            3
+star-first_name_NS-last_name_NS-appointed_date-middle_initial-gender-race                   1
+star-first_name_NS-last_name_NS-appointed_date                                              1
+star-first_name_NS-F4LN-appointed_date-birth_year-gender-race                               1
+first_name_NS-last_name_NS-appointed_date-middle_initial-gender                             1
+star-first_name_NS-appointed_date-birth_year-middle_initial-gender-race                     1
+star-first_name_NS-appointed_date-birth_year-gender-race                                    1
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                       1
+Name: count, dtype: int64

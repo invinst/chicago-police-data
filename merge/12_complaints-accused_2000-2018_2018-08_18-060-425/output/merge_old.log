@@ -1,0 +1,47 @@
+running src/merge.py
+Loading reference data with 422817 rows and 33667 universal IDs
+Adding file with intrafile ID: complaints-accused_2000-2018_2018-07_ID
+Adding column [F4FN] to data with ID = UID
+Adding column [F4LN] to data with ID = UID
+Adding column [F4FN] to data with ID = complaints-accused_2000-2018_2018-07_ID
+Adding column [F4LN] to data with ID = complaints-accused_2000-2018_2018-07_ID
+Beginning loop_merge.
+Merge Report:
+15742 Total Merged. 46.76% of ref and 98.92% of sup Merged.
+17925 Unmerged in ref. 53.24% Unmerged.
+172 Unmerged in sup. 1.08% Unmerged.
+
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                    11867
+star-first_name_NS-last_name_NS-birth_year-gender-race                                    2590
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name          402
+star-first_name_NS-last_name_NS-birth_year-gender-race-suffix_name                         260
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race                           227
+star-first_name_NS-last_name_NS                                                            126
+star-first_name_NS-last_name_NS-middle_initial-gender-race                                  90
+star-first_name_NS-last_name_NS-gender-race                                                 52
+first_name_NS-last_name_NS-birth_year-gender-race                                           44
+first_name_NS-last_name_NS-middle_initial-gender-race                                       11
+first_name_NS-last_name_NS-birth_year-middle_initial-gender-race-suffix_name                 9
+first_name_NS-last_name_NS-gender-race                                                       7
+first_name_NS-last_name_NS-birth_year                                                        7
+star-first_name_NS-last_name_NS-suffix_name                                                  5
+star-first_name_NS-last_name_NS-birth_year                                                   5
+first_name_NS-F4LN-gender-race                                                               5
+star-first_name_NS-last_name_NS-birth_year-middle_initial-middle_initial2-gender-race        5
+star-first_name_NS-F4LN-birth_year-middle_initial-gender-race                                4
+star-first_name_NS-last_name_NS-middle_initial-gender                                        3
+first_name_NS-last_name_NS                                                                   3
+first_name_NS-last_name_NS-middle_initial-gender                                             3
+first_name_NS-F4LN-gender                                                                    2
+star-F4FN-last_name_NS-birth_year-middle_initial-gender-race                                 2
+first_name_NS-last_name_NS-birth_year-gender-race-suffix_name                                2
+star-first_name_NS-last_name_NS-gender-race-suffix_name                                      2
+star-first_name_NS-last_name_NS-birth_year-middle_initial-gender                             2
+first_name_NS-last_name_NS-birth_year-middle_initial-gender                                  1
+star-first_name_NS-last_name_NS-middle_initial-gender-race-suffix_name                       1
+star-first_name_NS-last_name_NS-birth_year-gender                                            1
+first_name_NS-F4LN                                                                           1
+F4FN-last_name_NS-race                                                                       1
+F4FN-last_name_NS                                                                            1
+F4FN-F4LN                                                                                    1
+Name: matched_on, dtype: int64

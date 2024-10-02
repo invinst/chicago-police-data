@@ -1,24 +1,26 @@
-running src/merge.py
-Loading reference data with 213951 rows and 33028 universal IDs
-Adding file with intrafile ID: complaints-investigators_2000-2016_2016-11_ID
-224 rows dropped due to merge!=1. 2974 rows remaining
+running merge.py
 Adding column [F4FN] to data with ID = UID
 Adding column [F4LN] to data with ID = UID
-Adding column [BY_to_CA] to data with ID = UID
-Adding column [current_age] to data with ID = UID
+224 rows dropped due to merge!=1. 2974 rows remaining
+Data reshaped wide (2974 rows) to long (75587 rows) by cr_id columns
 Adding column [F4FN] to data with ID = complaints-investigators_2000-2016_2016-11_ID
 Adding column [F4LN] to data with ID = complaints-investigators_2000-2016_2016-11_ID
-Adding column [BY_to_CA] to data with ID = complaints-investigators_2000-2016_2016-11_ID
-Adding column [current_age] to data with ID = complaints-investigators_2000-2016_2016-11_ID
-Beginning loop_merge.
-Merge Report:
-2974 Total Merged. 9.0% of ref and 100.0% of sup Merged.
-30054 Unmerged in ref. 91.0% Unmerged.
-0 Unmerged in sup. 0.0% Unmerged.
+Running merge (1 of 1): base
+Required column types: first_name, last_name, appointed_date
+Optional column types: star, birth_year, middle_initial, gender, race, suffix_name, current_unit
+Alternate columns for types: first_name: first_name_NS, F4FN; last_name: last_name_NS, F4LN; birth_year: birth_year, current_age, current_age_m1, current_age_p1, 
+2974 rows merged. 9.01% of ref and 100.0% of sup merged.
+30046 unmerged in ref. 90.99% unmerged.
+0 unmerged in sup. 0.0% unmerged.
 
+Final Merge Report: 
+2974 rows merged. 9.01% of ref and 100.0% of sup merged.
+30046 unmerged in ref. 90.99% unmerged.
+0 unmerged in sup. 0.0% unmerged.
+matched_on
 first_name_NS-last_name_NS-appointed_date-current_unit                   1509
 star-first_name_NS-last_name_NS-appointed_date-current_unit              1407
 first_name_NS-last_name_NS-appointed_date                                  46
 star-first_name_NS-last_name_NS-appointed_date                             11
 first_name_NS-last_name_NS-appointed_date-middle_initial-current_unit       1
-Name: matched_on, dtype: int64
+Name: count, dtype: int64
