@@ -1,0 +1,6 @@
+running clean.py
+Column 'cr_id' was not cleaned.
+Column 'agency' was not cleaned.
+Column 'initiated_by' was not cleaned.
+Column(s) '('human_name',)' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('middle_name', 'middle_initial', 'middle_initial2')

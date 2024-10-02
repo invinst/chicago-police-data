@@ -38,4 +38,5 @@ cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file).reset_index(drop=True)
 df = clean_data(df, log)
+
 df.to_csv(cons.output_file, **cons.csv_opts)

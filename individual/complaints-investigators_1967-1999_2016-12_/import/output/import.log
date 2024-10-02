@@ -1,2 +1,2 @@
-running src/import.py
+running import.py
 Columns selected: ['CASE_NUMBER', 'INVESTIGATORS NAME']

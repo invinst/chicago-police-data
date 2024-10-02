@@ -1,0 +1,21 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'incident_date' cleaned as date using DateTimeCleaners.
+Column 'complaint_date' cleaned as date using DateTimeCleaners.
+Column 'closed_date' cleaned as date using DateTimeCleaners.
+Column 'incident_address' was not cleaned.
+Column 'direction' was not cleaned.
+Column 'street_name' was not cleaned.
+Column 'city' was not cleaned.
+Column 'state' was not cleaned.
+Column 'zipcode' was not cleaned.
+Column 'beat' was not cleaned.
+Column 'location_code' was not cleaned.
+Column 'category_code' was not cleaned.
+Column 'category_description' was not cleaned.
+Column 'complainant_type' was not cleaned.
+Column 'investigating_agency' was not cleaned.
+Column 'last_investigator' was not cleaned.
+Columns dropped due to all NA values: ()
+Assembling 2016 - 2021 crms complaints

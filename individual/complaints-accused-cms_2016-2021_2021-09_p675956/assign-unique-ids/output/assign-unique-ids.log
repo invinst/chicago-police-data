@@ -1,0 +1,13 @@
+running assign-unique-ids.py
+Total rows: 6801
+Unique id + conflict rows: 3432
+Conflict rows: 0
+Resolved conflcit UID count: 0
+Total unique ids: 3432
+
+Applying 1 changes for last_name_NS
+Applying 3 changes for appointed_date
+Applying 2 changes for race
+Applying 6 changes for ('current_age', 'appointed_date')
+Applying 4 changes for ('current_age', 'race')
+Applying 1 changes for ('current_age', 'last_name_NS')

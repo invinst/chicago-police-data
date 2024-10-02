@@ -40,4 +40,6 @@ df = pd.read_csv(cons.input_file).reset_index(drop=True)
 del df['gender']
 log.info('gender col dropped')
 df = clean_data(df, log)
+df.cr_id = df.cr_id.str.replace("C", "").astype(int)
+log.info("Removed C character at start of cr_ids.")
 df.to_csv(cons.output_file, **cons.csv_opts)

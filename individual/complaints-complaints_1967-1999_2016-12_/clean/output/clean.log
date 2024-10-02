@@ -1,4 +1,4 @@
-running src/clean.py
+running clean.py
 Column 'cr_id' was not cleaned.
 Column 'incident_date' cleaned as date using DateTimeCleaners.
 Column 'incident_time' cleaned as time using DateTimeCleaners.
@@ -44,3 +44,5 @@ Column 'investigation_unit' was not cleaned.
 Column 'incident_beat' was not cleaned.
 Column 'incident_location' was not cleaned.
 Columns dropped due to all NA values: ()
+Removed C character at start of cr_ids.
+Assembling 1967 - 1999 complaints

@@ -39,7 +39,7 @@ def get_setup():
 cons, log = get_setup()
 
 
-df = pd.read_excel(cons.input_file, sheetname=cons.sheet)
+df = pd.read_excel(cons.input_file, sheet_name=cons.sheet)
 df.columns = standardize_columns(df.columns, cons.column_names_key)
 df.insert(0, 'row_id', df.index + 1)
 df.to_csv(cons.output_file, **cons.csv_opts)

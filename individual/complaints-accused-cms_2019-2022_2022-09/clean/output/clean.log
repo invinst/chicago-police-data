@@ -1,0 +1,25 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'race' cleaned as race using GeneralCleaners.
+[nan, 'UNKNOWN', 'AMERICAN INDIAN OR ALASKA NATIVE', 'U', 'NOT LISTED', 'MIDDLE EASTERN OR NORTH AFRICAN', 'NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER'] values not in race_types.yaml file. 1957 cases replaced with ''
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan, 'NOT LISTED', 'PREFER NOT TO SAY'] values not in gender_types.yaml file. 1684 cases replaced with ''
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'birth_year' was not cleaned.
+Column 'unit' cleaned as int using GeneralCleaners.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'current_rank' was not cleaned.
+Column 'duty_status' was not cleaned.
+Column 'accused_arrested' was not cleaned.
+Column 'injury_condition' was not cleaned.
+Column 'allegation_category_code' was not cleaned.
+Column 'allegation_category' was not cleaned.
+Column 'recommended_finding' was not cleaned.
+Column 'final_finding' was not cleaned.
+Column 'recommended_penalty' was not cleaned.
+Column 'final_penalty' was not cleaned.
+Column(s) '('first_name', 'middle_initial', 'last_name')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('human_name', 'middle_name', 'full_name', 'second_name', 'appointed_date')

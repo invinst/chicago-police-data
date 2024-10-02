@@ -42,6 +42,7 @@ def get_setup():
 cons, log = get_setup()
 
 df = pd.read_csv(cons.input_file)
+df.cr_id = df.cr_id.str.replace("C", "").astype(int)
 df = df[['row_id', cons.id] + cons.export_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)
 

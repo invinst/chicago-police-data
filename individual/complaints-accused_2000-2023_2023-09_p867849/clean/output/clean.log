@@ -1,0 +1,31 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'status' was not cleaned.
+Column 'accused_arrested' was not cleaned.
+Column 'injured' was not cleaned.
+Column 'role' was not cleaned.
+Column 'on_duty' was not cleaned.
+Column 'race' cleaned as race using GeneralCleaners.
+[nan, 'SOME OTHER RACE, ETHNICITY, OR ORIGIN', 'U', 'NOT LISTED', 'UNKNOWN', 'PREFER NOT TO SAY'] values not in race_types.yaml file. 21022 cases replaced with ''
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan, 'PREFER NOT TO SAY', 'NOT LISTED'] values not in gender_types.yaml file. 20316 cases replaced with ''
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'birth_year' was not cleaned.
+Column 'unit_description' was not cleaned.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'current_rank' was not cleaned.
+Column 'allegation_number' was not cleaned.
+Column 'category_code' was not cleaned.
+Column 'category' was not cleaned.
+Column 'finding' was not cleaned.
+Column 'penalty' was not cleaned.
+Column 'days' was not cleaned.
+Column(s) '('human_name',)' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('middle_name',)
+Forward filling cr ids
+Forward filling role, grouped by cr_id
+Removing non-accused rows
+Forward filling officer info for multiple allegations

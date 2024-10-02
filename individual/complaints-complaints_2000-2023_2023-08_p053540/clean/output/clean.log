@@ -1,0 +1,47 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'incident_date' cleaned as date using DateTimeCleaners.
+Column 'incident_time' cleaned as time using DateTimeCleaners.
+Some errors in incident_time. Returned as NaT:
+ 0       20:00:00
+1       20:30:00
+2       03:30:00
+3       01:15:00
+4       12:01:00
+          ...   
+1427    06:49:00
+1428    04:06:00
+1429    06:02:00
+1430    08:17:00
+1431    05:04:00
+Name: incident_time, Length: 1407, dtype: object.
+Column 'complaint_date' cleaned as date using DateTimeCleaners.
+Column 'closed_date' cleaned as date using DateTimeCleaners.
+Column 'block' was not cleaned.
+Column 'street_dir' was not cleaned.
+Column 'street_name' was not cleaned.
+Column 'apartment_number' was not cleaned.
+Column 'city' was not cleaned.
+Column 'state' was not cleaned.
+Column 'zip' was not cleaned.
+Column 'beat' was not cleaned.
+Column 'location_code' was not cleaned.
+Column 'complaint_code' was not cleaned.
+Column 'allegation_category' was not cleaned.
+Column 'case_type' was not cleaned.
+Column 'final_finding_narrative' was not cleaned.
+Column 'days_to_closure' was not cleaned.
+Column 'eeoc_no' was not cleaned.
+Column 'civil_suit_no' was not cleaned.
+Column 'suit_settled_date' was not cleaned.
+Column 'biased_language_i' was not cleaned.
+Column 'pursuit_related_i' was not cleaned.
+Column 'domestic_violence_i' was not cleaned.
+Column 'police_shooting' was not cleaned.
+Column 'complainant_type' was not cleaned.
+Column 'referred_to_agency' was not cleaned.
+Column 'investigating_agency' was not cleaned.
+Column 'current_status' was not cleaned.
+Columns dropped due to all NA values: ()
+Fixing two cr_ids formats

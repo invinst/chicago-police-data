@@ -17,4 +17,4 @@ Column 'final_finding_desc' was not cleaned.
 Column 'final_discipline' was not cleaned.
 Column 'final_discipline_desc' was not cleaned.
 Column(s) '('human_name',)' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('date_of_birth', 'middle_name')
+Columns dropped due to all NA values: ('middle_name', 'date_of_birth')

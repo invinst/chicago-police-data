@@ -21,6 +21,10 @@ def get_setup():
     args = {
         'input_file': 'input/complaints-complaints_2000-2016_2016-11.csv.gz',
         'output_file': 'output/complaints-complaints_2000-2016_2016-11.csv.gz',
+        'keep_cols': ['cr_id', 'address', 'beat', 'location_code', 'street_number',
+       'apartment_number', 'incident_date', 'incident_time',
+       'complaint_date', 'closed_date', 'state', 'zip', 'city',
+       'street_direction', 'street_name']
         }
 
     assert (args['input_file'].startswith('input/') and
@@ -35,5 +39,5 @@ def get_setup():
 
 cons, log = get_setup()
 
-df = pd.read_csv(cons.input_file)
+df = pd.read_csv(cons.input_file)[cons.keep_cols]
 df.to_csv(cons.output_file, **cons.csv_opts)

@@ -1,0 +1,40 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'incident_date' cleaned as date using DateTimeCleaners.
+Some errors in incident_date. Returned as NaT:
+ 2120    10/11/1003
+2139    12/23/1004
+2192    04/05/1005
+2393    01/21/1004
+2738    06/28/0200
+2880    02/14/0200
+2906    03/13/0007
+3026    06/08/0200
+3036    07/17/0200
+3150    11/14/0200
+3358    06/20/0200
+5893    07/01/0201
+6393    06/21/0201
+Name: incident_date, dtype: object.
+Column 'incident_time' cleaned as time using DateTimeCleaners.
+Column 'complaint_date' cleaned as date using DateTimeCleaners.
+Column 'closed_date' cleaned as date using DateTimeCleaners.
+Column 'street_number' was not cleaned.
+Column 'street_dir' was not cleaned.
+Column 'street_name' was not cleaned.
+Column 'apartment_number' was not cleaned.
+Column 'city' was not cleaned.
+Column 'state' was not cleaned.
+Column 'zip' was not cleaned.
+Column 'beat' was not cleaned.
+Column 'location_code' was not cleaned.
+Column 'category_code' was not cleaned.
+Column 'category' was not cleaned.
+Column 'case_type' was not cleaned.
+Column 'police_shooting' was not cleaned.
+Column 'complainant_type' was not cleaned.
+Column 'investigating_agency' was not cleaned.
+Column 'current_status' was not cleaned.
+Columns dropped due to all NA values: ()
+Assembling 2000 - 2020 clear complaints

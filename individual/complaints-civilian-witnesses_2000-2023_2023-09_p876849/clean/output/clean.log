@@ -1,0 +1,11 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'role' was not cleaned.
+Column 'race' cleaned as race using GeneralCleaners.
+['SOME OTHER RACE, ETHNICITY, OR ORIGIN', nan, 'NOT LISTED', 'UNKNOWN', 'PREFER NOT TO SAY'] values not in race_types.yaml file. 712 cases replaced with ''
+Column 'gender' cleaned as gender using GeneralCleaners.
+['PREFER NOT TO SAY', nan, 'NOT LISTED', 'PREFER TO SELF-DESCRIBE'] values not in gender_types.yaml file. 321 cases replaced with ''
+Column 'birth_year' was not cleaned.
+Column 'injury_type' was not cleaned.
+Columns dropped due to all NA values: ()

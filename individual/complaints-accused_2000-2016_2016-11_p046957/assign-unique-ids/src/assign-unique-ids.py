@@ -28,6 +28,7 @@ def get_setup():
             'first_name_NS', 'last_name_NS',
             'appointed_date', 'birth_year', 'gender', 'race',
             ],
+        'list_cols': ['cr_id'],
         'conflict_cols': [
             'middle_initial', 'middle_initial2',
             'current_unit', 'current_star', 'current_rank'
@@ -54,6 +55,7 @@ df = assign_unique_ids(df, cons.id, cons.id_cols,
                        log=log)
 df.to_csv(cons.output_file, **cons.csv_opts)
 
-profiles_df = aggregate_data(df, cons.id, cons.id_cols,
-                             max_cols=cons.conflict_cols)
+profiles_df = aggregate_data(df, cons.id, cons.id_cols, 
+                            max_cols=cons.conflict_cols,
+                            list_cols=cons.list_cols)
 profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)

@@ -1,0 +1,40 @@
+running clean.py
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'incident_date' cleaned as date using DateTimeCleaners.
+Column 'complaint_date' cleaned as date using DateTimeCleaners.
+Column 'closed_date' cleaned as date using DateTimeCleaners.
+Column 'street_number' was not cleaned.
+Column 'direction' was not cleaned.
+Column 'street' was not cleaned.
+Column 'city' was not cleaned.
+Column 'state' was not cleaned.
+Column 'zip' was not cleaned.
+Column 'beat' was not cleaned.
+Column 'location_code' was not cleaned.
+Column 'agency' was not cleaned.
+Column 'investigator' was not cleaned.
+Column 'gender' cleaned as gender using GeneralCleaners.
+[nan, 'NOT LISTED'] values not in gender_types.yaml file. 964 cases replaced with ''
+Column 'race' cleaned as race using GeneralCleaners.
+[nan, 'U', 'NOT LISTED', 'UNKNOWN', 'SOME OTHER RACE, ETHNICITY, OR ORIGIN'] values not in race_types.yaml file. 1107 cases replaced with ''
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'current_age' cleaned as age using GeneralCleaners.
+Column 'on_duty' was not cleaned.
+Column 'arrested' was not cleaned.
+Column 'officer_injury' was not cleaned.
+Column 'assigned_unit' was not cleaned.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'complaint_code' was not cleaned.
+Column 'category_tier_1' was not cleaned.
+Column 'cateogry_tier_2' was not cleaned.
+Column 'category_tier_3' was not cleaned.
+Column 'category_tier_4' was not cleaned.
+Column 'finding' was not cleaned.
+Column 'final_finding' was not cleaned.
+Column 'recommended_penalty' was not cleaned.
+Column 'final_penalty' was not cleaned.
+Column(s) '('first_name', 'last_name')' cleaned as name(s) using NameCleaners.
+Columns dropped due to all NA values: ('human_name', 'full_name', 'second_name', 'middle_initial2', 'middle_name')

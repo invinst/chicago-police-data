@@ -6,4 +6,4 @@ Column 'current_rank' was not cleaned.
 Column 'current_star' cleaned as star using GeneralCleaners.
 Column 'appointed_date' cleaned as date using DateTimeCleaners.
 Column(s) '('full_name',)' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('middle_name', 'human_name', 'second_name', 'middle_initial2')
+Columns dropped due to all NA values: ('middle_initial2', 'second_name', 'middle_name', 'human_name')

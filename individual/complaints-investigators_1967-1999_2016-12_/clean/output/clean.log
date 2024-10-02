@@ -1,5 +1,6 @@
-running src/clean.py
+running clean.py
 Column 'row_id' was not cleaned.
 Column 'cr_id' was not cleaned.
 Column(s) '('human_name',)' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('middle_initial2', 'middle_name')
+Columns dropped due to all NA values: ('middle_name', 'middle_initial2')
+Removed C character at start of cr_ids.

@@ -1,0 +1,18 @@
+running clean.py
+Forward filling cr ids
+Column 'row_id' was not cleaned.
+Column 'cr_id' was not cleaned.
+Column 'status' was not cleaned.
+Column 'role' was not cleaned.
+Column 'race' cleaned as race using GeneralCleaners.
+['SOME OTHER RACE, ETHNICITY, OR ORIGIN', nan, 'U', 'NOT LISTED', 'UNKNOWN'] values not in race_types.yaml file. 171 cases replaced with ''
+Column 'gender' cleaned as gender using GeneralCleaners.
+['PREFER NOT TO SAY', nan] values not in gender_types.yaml file. 115 cases replaced with ''
+Column 'star' cleaned as star using GeneralCleaners.
+Column 'appointed_date' cleaned as date using DateTimeCleaners.
+Column 'birth_year' was not cleaned.
+Column 'unit_description' was not cleaned.
+Column 'current_unit' cleaned as int using GeneralCleaners.
+Column 'rank' was not cleaned.
+Column 'current_rank' was not cleaned.
+Columns dropped due to all NA values: ()

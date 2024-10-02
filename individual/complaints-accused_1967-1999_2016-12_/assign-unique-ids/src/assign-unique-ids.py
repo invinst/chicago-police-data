@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 #
-# Author(s):    Roman Rivera (Invisible Institute)
+# Author(s):    Roman Rivera / Ashwin Sharma (Invisible Institute)
 
 '''assign-unique-ids script for complaints-accused_1967-1999_2016-12_'''
 
@@ -36,6 +36,7 @@ def get_setup():
                         'last_name', 'last_name_NS', 'middle_initial',
                         'middle_initial2', 'suffix_name', 'cr_id']},
         'cr_uid' : 'CR_UID',
+        'list_cols': ["cr_id"],
         'id': 'complaints-accused_1967-1999_2016-12_ID',
         }
 
@@ -62,5 +63,8 @@ df = df.merge(udf, on=[cons.cr_uid, cons.ind_uid])\
 df.to_csv(cons.output_file, **cons.csv_opts)
 
 profiles_df = aggregate_data(df, cons.id, cons.ind_auid['id_cols'],
-                             max_cols=cons.ind_auid['conflict_cols'] + ['star'])
+                             max_cols=cons.ind_auid['conflict_cols'] + ['star'],
+                             current_cols=['unit'],
+                             time_col='cr_id',
+                             list_cols=cons.list_cols)
 profiles_df.to_csv(cons.output_profiles_file, **cons.csv_opts)

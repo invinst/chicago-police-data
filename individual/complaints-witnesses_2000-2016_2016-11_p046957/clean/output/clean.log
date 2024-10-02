@@ -9,4 +9,4 @@ Column 'current_star' cleaned as star using GeneralCleaners.
 Column 'birth_year' was not cleaned.
 Column 'appointed_date' cleaned as date using DateTimeCleaners.
 Column(s) '('full_name',)' cleaned as name(s) using NameCleaners.
-Columns dropped due to all NA values: ('middle_name', 'human_name', 'second_name')
+Columns dropped due to all NA values: ('second_name', 'human_name', 'middle_name')
