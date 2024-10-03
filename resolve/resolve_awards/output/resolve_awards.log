@@ -1,0 +1,9 @@
+running resolve_awards.py
+Reading in award files.
+Loading award file 1 with 26817 officers.
+Loading award file 2 with 16795 officers.
+Loading award file 3 with 21617 officers.
+Combining award files.
+Dropping non-police officer awards, logging ranks with counts.
+Dropped 300 ranks, counts below
+Exporting awards.

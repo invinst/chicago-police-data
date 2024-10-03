@@ -1,0 +1,22 @@
+running resolve_trrs.py
+Reading in main and officer files.
+Loading main file 1 with 67019 trr_ids and 40921 rd_nos.
+Loading main file 2 with 75759 trr_ids and 45953 rd_nos.
+Loading main file 3 with 10141 trr_ids and 5798 rd_nos.
+Loading main file 4 with 15921 trr_ids and 8477 rd_nos.
+Loading main file 5 with 9331 trr_ids and 4963 rd_nos.
+Loading officer file 1 with 67019 trr_ids and 10798 officers.
+Loading officer file 2 with 75759 trr_ids and 11756 officers.
+Loading officer file 3 with 10141 trr_ids and 4507 officers.
+Loading officer file 4 with 15921 trr_ids and 6077 officers.
+Loading officer file 5 with 9331 trr_ids and 4276 officers.
+Combining main and officer dfs for old format, preferring more recent data, filling in nulls
+Combining main and officer dfs for new format, preferring more recent data, filling in nulls
+Classifying trr_ids as showing up in new format, old format, or both
+Preferring new trr format: use new trr data where available, otherwise use old trr data
+Add back in trr_ids that were missing from the UID merge (UID or rd_no is null)
+Getting corresponding officer data for new and old trr data respectively
+Combining old and new formats for main and officer data
+Checking for duplicates on trr_id for main and trr_id and UID for officers.
+Checking for missing rd_no
+Writing main file  (98864 trr_ids) and officer files (98864 trr_ids)

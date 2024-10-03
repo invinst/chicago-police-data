@@ -1,0 +1,8 @@
+running resolve_salary.py
+Reading in salary files.
+Loading salary file 1 with 19802 officers.
+Loading salary file 2 with 16493 officers.
+Combining salary files.
+Checking for missing officers.
+Checking for missing officer years.
+Exporting salaries.

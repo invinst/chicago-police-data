@@ -1,0 +1,8 @@
+running resolve_complaints.py
+Removing 64126 expunged cases from complaints-complaints-clear_2000-2020_2020-07 file
+Combining complaints
+Combining accused
+Finding and readding any missing accused
+Found 65814 cr_ids in complaints but not in accused.
+Dropping 49758 rows from accused for not having a UID
+Writing complaints (234971 CRs) and accused (169157 CRs)

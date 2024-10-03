@@ -1,0 +1,8 @@
+running resolve_trr_supplementary.py
+Reading in TRR main files
+Loading in TRR actions responses
+Missing 76 supplemental trr_ids in main file 1. Dropping.
+Missing 85 supplemental trr_ids in main file 2. Dropping.
+Missing 1 supplemental trr_ids in main file 5. Dropping.
+Missing 1 supplemental trr_ids in main file 2. Dropping.
+Outputting TRR supplemental files

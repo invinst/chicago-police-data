@@ -1,0 +1,11 @@
+running resolve.py
+Moved over ['complaint_code', 'complaint_category'] from complaint to accused for cv 3.
+Moved over ['complaint_category', 'category_tier_2', 'category_tier_3', 'category_tier_4'] from complaint to accused for cv 4.
+Moved over ['complaint_code', 'complaint_category'] from complaint to accused for cv 5.
+Moved over ['complaint_code', 'complaint_category'] from complaint to accused for cv 6.
+Moved over ['complaint_code', 'complaint_category'] from complaint to accused for cv 7.
+Combining complaints
+Combining accused
+Finding and readding any missing accused
+Found 114128 cr_ids in complaints but not in accused.
+Writing complaints (287576 CRs) and accused (173448 CRs)

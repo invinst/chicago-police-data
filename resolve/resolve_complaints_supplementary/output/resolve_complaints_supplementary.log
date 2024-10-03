@@ -1,0 +1,14 @@
+running resolve_complaints_supplementary.py
+Reading in resolved complaint file for comparison
+Reading in investigator files
+Resolving investigator files
+Reading in complainant files
+Resolving complainant files
+Reading in separate civilian and cpd witness files
+Reading in combined witness file
+Splitting witness files, adding them to respective lists
+Resolving civilian witnesses files
+Resolving cpd witnesses files
+Reading in victim files
+Resolving victims files
+Outputting supplementary files
