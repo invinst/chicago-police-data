@@ -1,5 +1,5 @@
 *.csv filter=lfs diff=lfs merge=lfs -text
 individual/**/import/input/*.xlsx filter=lfs diff=lfs merge=lfs -text
-data/unified_data/**/* !filter !diff !merge text
-unified_data/**/*.csv filter=lfs diff=lfs merge=lfs -text
 data/unified_data/**/*.csv filter=lfs diff=lfs merge=lfs -text
+data/unified_data/**/*.txt filter=lfs diff=lfs merge=lfs -text
+unified_data/**/*.csv filter=lfs diff=lfs merge=lfs -text
